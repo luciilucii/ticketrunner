@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A1734B037729D44ADAA9652E5F49875 /* Pods-ticketrunner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBA4D10889B96C91A4AFADDD6F67354 /* Pods-ticketrunner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D044766679EB1B2336BD07D8D14AA0BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		F4A4B31CF59B67F9CB71BFDDFB804090 /* Pods-ticketrunner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3981305EE2A2B72C9F33005DBF4D942F /* Pods-ticketrunner-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27C93F314257148CB9A57BDF058E69E3 /* ICMCompany.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ICMCompany.h; path = Intercom/Intercom.framework/Versions/A/Headers/ICMCompany.h; sourceTree = "<group>"; };
+		305A07D77D80F326B50B2975E9B4AD34 /* Pods-ticketrunner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ticketrunner.modulemap"; sourceTree = "<group>"; };
+		3981305EE2A2B72C9F33005DBF4D942F /* Pods-ticketrunner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ticketrunner-dummy.m"; sourceTree = "<group>"; };
+		3CBA4D10889B96C91A4AFADDD6F67354 /* Pods-ticketrunner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ticketrunner-umbrella.h"; sourceTree = "<group>"; };
+		6B548637D59439063F8D16F8C80C36E5 /* Pods-ticketrunner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ticketrunner.debug.xcconfig"; sourceTree = "<group>"; };
+		7560871DE87236A8105D5D5474694B47 /* Pods_ticketrunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ticketrunner.framework; path = "Pods-ticketrunner.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A433A71DB4B845B668A0C26AA69A93 /* Intercom.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = Intercom.bundle; path = Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle; sourceTree = "<group>"; };
+		8564333926D9C0B49516562ABEA08C38 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9BDEAC57F69B1DE7F88E19C4BB72D4F1 /* Pods-ticketrunner-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ticketrunner-frameworks.sh"; sourceTree = "<group>"; };
+		9C7619B5323EFAE1060CCE2F3741C1EB /* Intercom.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Intercom.h; path = Intercom/Intercom.framework/Versions/A/Headers/Intercom.h; sourceTree = "<group>"; };
+		A0A92E5C64FE32FC06AFF32FD56A3A40 /* Pods-ticketrunner-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ticketrunner-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D92AAF815F97869276FB57936B36DD8F /* ICMUserAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ICMUserAttributes.h; path = Intercom/Intercom.framework/Versions/A/Headers/ICMUserAttributes.h; sourceTree = "<group>"; };
+		DBF5D2004235D7613DD548F70DA97B36 /* Pods-ticketrunner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ticketrunner.release.xcconfig"; sourceTree = "<group>"; };
+		E8A0785E40D04AE0993454B4BE1F976F /* Pods-ticketrunner-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ticketrunner-resources.sh"; sourceTree = "<group>"; };
+		EAADDF0A7EA7BB2DF782036F11B963D5 /* Pods-ticketrunner-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ticketrunner-acknowledgements.plist"; sourceTree = "<group>"; };
+		FABBF10C9300BFB590B4E694B94D73A3 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intercom.framework; path = Intercom/Intercom.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AEB19ECADBF1A5FBAE3AE3F4BA577380 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D044766679EB1B2336BD07D8D14AA0BA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0318450854A8721E2EF607A27C2F9A56 /* Intercom */ = {
+			isa = PBXGroup;
+			children = (
+				27C93F314257148CB9A57BDF058E69E3 /* ICMCompany.h */,
+				D92AAF815F97869276FB57936B36DD8F /* ICMUserAttributes.h */,
+				9C7619B5323EFAE1060CCE2F3741C1EB /* Intercom.h */,
+				BDC40563FB013B50781FB45E482641A3 /* Frameworks */,
+				CCBCBE555B96AE10D389CFB5C2030152 /* Resources */,
+			);
+			name = Intercom;
+			path = Intercom;
+			sourceTree = "<group>";
+		};
+		21CEE529236642D1C0A970C196AE2098 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0318450854A8721E2EF607A27C2F9A56 /* Intercom */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3A852A5467E2DB07EB03AD2C39B11B52 /* Pods-ticketrunner */ = {
+			isa = PBXGroup;
+			children = (
+				8564333926D9C0B49516562ABEA08C38 /* Info.plist */,
+				305A07D77D80F326B50B2975E9B4AD34 /* Pods-ticketrunner.modulemap */,
+				A0A92E5C64FE32FC06AFF32FD56A3A40 /* Pods-ticketrunner-acknowledgements.markdown */,
+				EAADDF0A7EA7BB2DF782036F11B963D5 /* Pods-ticketrunner-acknowledgements.plist */,
+				3981305EE2A2B72C9F33005DBF4D942F /* Pods-ticketrunner-dummy.m */,
+				9BDEAC57F69B1DE7F88E19C4BB72D4F1 /* Pods-ticketrunner-frameworks.sh */,
+				E8A0785E40D04AE0993454B4BE1F976F /* Pods-ticketrunner-resources.sh */,
+				3CBA4D10889B96C91A4AFADDD6F67354 /* Pods-ticketrunner-umbrella.h */,
+				6B548637D59439063F8D16F8C80C36E5 /* Pods-ticketrunner.debug.xcconfig */,
+				DBF5D2004235D7613DD548F70DA97B36 /* Pods-ticketrunner.release.xcconfig */,
+			);
+			name = "Pods-ticketrunner";
+			path = "Target Support Files/Pods-ticketrunner";
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				21CEE529236642D1C0A970C196AE2098 /* Pods */,
+				81D89EE1620E359998CD8D9912E5DCE6 /* Products */,
+				80846E99C9E5C406DE69B16C426FB745 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		80846E99C9E5C406DE69B16C426FB745 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A852A5467E2DB07EB03AD2C39B11B52 /* Pods-ticketrunner */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		81D89EE1620E359998CD8D9912E5DCE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7560871DE87236A8105D5D5474694B47 /* Pods_ticketrunner.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDC40563FB013B50781FB45E482641A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FABBF10C9300BFB590B4E694B94D73A3 /* Intercom.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCBCBE555B96AE10D389CFB5C2030152 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81A433A71DB4B845B668A0C26AA69A93 /* Intercom.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D6F60A77FF5AF5927F232F81E11A8863 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A1734B037729D44ADAA9652E5F49875 /* Pods-ticketrunner-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BEFB8B1E8726999575474337E0256636 /* Pods-ticketrunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17DE187F8D60D0FF88B8DBD2A21F0CA7 /* Build configuration list for PBXNativeTarget "Pods-ticketrunner" */;
+			buildPhases = (
+				9CB6E3DDDC3CC7744EB8D7A845E42DDB /* Sources */,
+				AEB19ECADBF1A5FBAE3AE3F4BA577380 /* Frameworks */,
+				D6F60A77FF5AF5927F232F81E11A8863 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ticketrunner";
+			productName = "Pods-ticketrunner";
+			productReference = 7560871DE87236A8105D5D5474694B47 /* Pods_ticketrunner.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 81D89EE1620E359998CD8D9912E5DCE6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEFB8B1E8726999575474337E0256636 /* Pods-ticketrunner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9CB6E3DDDC3CC7744EB8D7A845E42DDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A4B31CF59B67F9CB71BFDDFB804090 /* Pods-ticketrunner-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DF46AF756B53702593BF0C45E42ABC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B548637D59439063F8D16F8C80C36E5 /* Pods-ticketrunner.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ticketrunner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ticketrunner/Pods-ticketrunner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ticketrunner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E021DC9F7A221A9D5C90F8BC4B690352 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBF5D2004235D7613DD548F70DA97B36 /* Pods-ticketrunner.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ticketrunner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ticketrunner/Pods-ticketrunner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ticketrunner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17DE187F8D60D0FF88B8DBD2A21F0CA7 /* Build configuration list for PBXNativeTarget "Pods-ticketrunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF46AF756B53702593BF0C45E42ABC99 /* Debug */,
+				E021DC9F7A221A9D5C90F8BC4B690352 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
+				B7324857C38B065FEB1EEE3105C2367A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

@@ -1,0 +1,12 @@
+PODS:
+  - Intercom (3.1.2)
+
+DEPENDENCIES:
+  - Intercom
+
+SPEC CHECKSUMS:
+  Intercom: bbaa3aee66d90d99ff4f6184dda931ff4ecc4382
+
+PODFILE CHECKSUM: 45667dcf46e7b351a8bcf839268bb8d706e653c3
+
+COCOAPODS: 1.2.0
