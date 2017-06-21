@@ -11,7 +11,7 @@ import UIKit
 class TemplateForScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var titleLabel: UILabel!
-    let titleString = "ScrollView"
+    let titleString = "ScrollView Controller"
     
     var scrollView: UIScrollView!
     
