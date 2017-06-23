@@ -22,9 +22,16 @@ class EventSubscriptionController: UIViewController, UIScrollViewDelegate {
         
         setupViews()
         setupTitleLabel()
-        setupScrollView(height: 2500)
+        setupScrollView(height: getScrollViewHeight())
         
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+    }
+    
+    func getScrollViewHeight() -> CGFloat {
+        let cvHeight = genreContainer.getHeight()
+        
+        let height = CGFloat(345) + cvHeight
+        return height
     }
     
     func setupScrollView(height: CGFloat) {
@@ -79,7 +86,6 @@ class EventSubscriptionController: UIViewController, UIScrollViewDelegate {
     let genreContainer: GenreContainer = {
         let container = GenreContainer()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .green
         return container
     }()
     
