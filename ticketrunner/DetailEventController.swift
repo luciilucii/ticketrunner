@@ -17,6 +17,8 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     let cellId = "cellId"
     let rewardsCellId = "rewardsCellId"
     
+    var mapViewHeightAnchor: NSLayoutConstraint?
+    
     var currentEvent: Event? {
         didSet {
             guard let eventName = currentEvent?.name else {
@@ -41,7 +43,10 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
             guard let container = lineUpContainer else {
                 return
             }
-            container.artists = artists
+            guard let event = currentEvent else {
+                return
+            }
+            container.artists = eventResource.getFirstFourArtists(forEvent: event)
             
             lineUpHeight = container.getHeight() - 44
             
@@ -85,10 +90,12 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupEventInMapView(lat: 50.941357, long: 6.958307)
+        if let lat = currentEvent?.latidute, let long = currentEvent?.longitude {
+            setupEventInMapView(lat: Double(lat), long: Double(long))
+        }
         
         //TODO: change that!
-        artists = eventResource.getEvent().artists
+        artists = currentEvent?.artists
         
     }
     
@@ -211,9 +218,12 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         return view
     }()
     
-    let progressBarContainer: ProgressBarContainer = {
+    lazy var progressBarContainer: ProgressBarContainer = {
         let container = ProgressBarContainer()
-        container.event = EventResource().getEvent()
+        guard let event = self.currentEvent else {
+            return container
+        }
+        container.event = event
         container.shouldTrianglesShowUp = true
         return container
     }()
@@ -234,7 +244,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        
         return view
     }()
     
@@ -331,7 +340,10 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     func handleShowArtists() {
         
         let allArtistsForEventController = AllArtistsForEventController()
-        allArtistsForEventController.artists = eventResource.getEvent().artists
+        guard let artists = currentEvent?.artists else {
+            return
+        }
+        allArtistsForEventController.artists = artists
         
         show(allArtistsForEventController, sender: self)
         

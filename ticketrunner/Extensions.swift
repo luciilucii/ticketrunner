@@ -109,9 +109,6 @@ extension UICollectionViewController {
         let detailEventController = DetailEventController()
         detailEventController.currentEvent = event
         
-        let eventResource = EventResource()
-        
-        detailEventController.artists = eventResource.getFirstFourArtists()
         detailEventController.lineUpContainer = ArtistLineUpContainer()
         
         guard let lineUpHeight = detailEventController.lineUpContainer?.getHeight() else {
@@ -138,12 +135,12 @@ extension UICollectionViewController {
         }
         
         detailEventController.rewardsHeight = height
-        setupScrollViewHeight(detailController: detailEventController)
+        setupScrollViewHeight(detailController: detailEventController, event: event)
         
         return detailEventController
     }
     
-    func setupScrollViewHeight(detailController: DetailEventController) {
+    func setupScrollViewHeight(detailController: DetailEventController, event: Event) {
         
         navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -155,8 +152,14 @@ extension UICollectionViewController {
         guard let lineUpContainer = detailController.lineUpContainer else {
             return
         }
+        var height: CGFloat = 0
         
-        let height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer)
+        if event.latidute != nil && event.longitude != nil {
+            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer)
+        } else {
+            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer) - 258
+            detailController.mapViewHeightAnchor?.constant = 0
+        }
         
         detailController.setupScrollView(height: height)
         detailController.setupViews()

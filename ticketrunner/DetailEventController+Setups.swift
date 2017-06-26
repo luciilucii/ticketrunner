@@ -25,6 +25,8 @@ extension DetailEventController {
         scrollContainerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: scrollView.contentSize.height)
     }
     
+
+    
     func setupViews() {
         
         scrollContainerView.addSubview(eventImageView)
@@ -72,7 +74,12 @@ extension DetailEventController {
         mapView.topAnchor.constraint(equalTo: artistLineUpContainer.bottomAnchor, constant: 8).isActive = true
         mapView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         mapView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        mapView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        if currentEvent?.latidute != nil && currentEvent?.longitude != nil {
+            mapViewHeightAnchor = mapView.heightAnchor.constraint(equalToConstant: 250)
+            
+        }
+        mapViewHeightAnchor?.isActive = true
         
         //x,y,w,h
         facebookContainer.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 8).isActive = true

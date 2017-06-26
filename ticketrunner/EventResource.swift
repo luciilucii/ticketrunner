@@ -127,6 +127,9 @@ class EventResource: NSObject {
             
         })
         
+        event1.latidute = 50.941357
+        event1.longitude = 6.958307
+        
         event1.facebookPageLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
         
         
@@ -206,9 +209,9 @@ class EventResource: NSObject {
     
     var controller: DetailEventController?
     
-    func getFirstFourArtists() -> [Artist] {
+    func getFirstFourArtists(forEvent: Event) -> [Artist] {
         
-        let event = getEvent()
+        let event = forEvent
         var artists = [Artist]()
         
         var i = 0
@@ -221,7 +224,7 @@ class EventResource: NSObject {
             
             if i < 4 {
                 artists.append(artist)
-                i = i + 1
+                i += 1
             }
             
         }

@@ -17,10 +17,14 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     let cellId = "cellId"
     
+    var refresher: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isTranslucent = false
+        
+        
         
         setupViews()
         setupTitleLabel()
@@ -48,7 +52,23 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         collectionView?.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
         
+        refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        collectionView?.addSubview(refresher)
+        refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
+        
     }
+    
+    func loadData() {
+        collectionView?.reloadData()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        self.refresher.endRefreshing()
+    }
+
     
     var menu: Menu!
     
@@ -124,12 +144,9 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func handleShowEventInfo(sender: UIButton) {
-        
         let event = events[sender.tag]
         handleShowEventInfoFor(event: event)
     }
-    
-    
     
     func setupTitleLabel() {
         let titleView = UIView()
