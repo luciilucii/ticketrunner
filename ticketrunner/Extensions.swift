@@ -159,6 +159,7 @@ extension UICollectionViewController {
         } else {
             height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer) - 258
             detailController.mapViewHeightAnchor?.constant = 0
+            detailController.facebookContainerTopAnchorConstant = 0
         }
         
         detailController.setupScrollView(height: height)

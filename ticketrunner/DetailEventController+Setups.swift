@@ -82,7 +82,7 @@ extension DetailEventController {
         mapViewHeightAnchor?.isActive = true
         
         //x,y,w,h
-        facebookContainer.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 8).isActive = true
+        facebookContainer.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: facebookContainerTopAnchorConstant).isActive = true
         facebookContainer.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         facebookContainer.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
         facebookContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true

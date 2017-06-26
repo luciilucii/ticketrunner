@@ -18,6 +18,7 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     let rewardsCellId = "rewardsCellId"
     
     var mapViewHeightAnchor: NSLayoutConstraint?
+    var facebookContainerTopAnchorConstant: CGFloat = 8
     
     var currentEvent: Event? {
         didSet {
