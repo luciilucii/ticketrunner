@@ -15,8 +15,6 @@ extension UIColor {
     
 }
 
-
-
 extension UIView {
     
     func addContraintsWithFormat(format: String, views: UIView...) {
@@ -109,30 +107,16 @@ extension UICollectionViewController {
         let detailEventController = DetailEventController()
         detailEventController.currentEvent = event
         
-        detailEventController.lineUpContainer = ArtistLineUpContainer()
+        navigationController?.navigationBar.tintColor = UIColor.white
         
-        guard let lineUpHeight = detailEventController.lineUpContainer?.getHeight() else {
-            return DetailEventController()
-        }
+        detailEventController.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         
-        detailEventController.lineUpHeight = lineUpHeight
+        setupLineUpContainer(controller: detailEventController)
         
         //set ticketsSoldLabel über der ProgressBar
         detailEventController.soldTicketsLabel.text = "\(detailEventController.progressBarContainer.getTicketsSoldCount())"
         
-        guard let event = detailEventController.currentEvent else {
-            return DetailEventController()
-        }
-        guard let rewards = event.rewards else {
-            return DetailEventController()
-        }
-        
-        detailEventController.rewards = rewards
-        detailEventController.eventRewardsContainer = EventRewardsContainer()
-        
-        guard let height = detailEventController.eventRewardsContainer?.getHeight() else {
-            return DetailEventController()
-        }
+        let height = setupEventRewardsContainerHeight(controller: detailEventController, event: event)
         
         detailEventController.rewardsHeight = height
         setupScrollViewHeight(detailController: detailEventController, event: event)
@@ -140,11 +124,30 @@ extension UICollectionViewController {
         return detailEventController
     }
     
+    func setupLineUpContainer(controller: DetailEventController) {
+        controller.lineUpContainer = ArtistLineUpContainer()
+        
+        guard let lineUpHeight = controller.lineUpContainer?.getHeight() else {
+            return
+        }
+        controller.lineUpHeight = lineUpHeight
+    }
+    
+    func setupEventRewardsContainerHeight(controller: DetailEventController, event: Event) -> CGFloat {
+        guard let rewards = event.rewards else {
+            return 0
+        }
+        controller.rewards = rewards
+        controller.eventRewardsContainer = EventRewardsContainer()
+        
+        guard let height = controller.eventRewardsContainer?.getHeight() else {
+            return 0
+        }
+        
+        return height
+    }
+    
     func setupScrollViewHeight(detailController: DetailEventController, event: Event) {
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        detailController.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         
         guard let eventRewardsContainer = detailController.eventRewardsContainer else {
             return
@@ -161,22 +164,16 @@ extension UICollectionViewController {
             detailController.mapViewHeightAnchor?.constant = 0
             detailController.facebookContainerTopAnchorConstant = 0
         }
-        
         detailController.setupScrollView(height: height)
         detailController.setupViews()
-        
     }
     
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
-        
         let basis: CGFloat = 779
         let lineUpHeight = lineUpContainer.getHeight()
         let rewardHeight = rewardContainer.getHeight()
-        
         let height = basis + lineUpHeight + rewardHeight + 8 + 119
-        
         return height
-        
     }
     
     func handlePromoteFor(event: Event) {
@@ -193,15 +190,12 @@ extension UICollectionViewController {
 
     func handleRewardsFor(event: Event) {
         let controller = setupDetailController(event: event)
-        
         show(controller, sender: self)
-        
         controller.scrollView.contentOffset.y = 455
     }
     
     func handleShowEventInfoFor(event: Event) {
         let controller = setupDetailController(event: event)
-        
         show(controller, sender: self)
         controller.handleShowEventDescription()
     }

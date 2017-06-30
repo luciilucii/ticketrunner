@@ -27,8 +27,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
             }
         
             eventNameLabel.text = eventName
-            
-            
         }
     }
     
@@ -40,50 +38,55 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     
     var lineUpContainer: ArtistLineUpContainer? {
         didSet {
-            
-            guard let container = lineUpContainer else {
-                return
-            }
-            guard let event = currentEvent else {
-                return
-            }
-            container.artists = eventResource.getFirstFourArtists(forEvent: event)
-            
-            lineUpHeight = container.getHeight() - 44
-            
-            artistLineUpContainer.addSubview(seeAllArtistsButton)
-            artistLineUpContainer.addSubview(container)
-            
-            artistLineUpContainer.addContraintsWithFormat(format: "H:|[v0]|", views: container)
-            artistLineUpContainer.addContraintsWithFormat(format: "V:|[v0(\(lineUpHeight))][v1(44)]", views: container, seeAllArtistsButton)
-            artistLineUpContainer.addContraintsWithFormat(format: "H:[v0(100)]|", views: seeAllArtistsButton)
-            
+            setupLineUpContainer()
         }
+    }
+    
+    fileprivate func setupLineUpContainer() {
+        guard let container = lineUpContainer else {
+            return
+        }
+        guard let event = currentEvent else {
+            return
+        }
+        container.artists = eventResource.getFirstFourArtists(forEvent: event)
+        
+        lineUpHeight = container.getHeight() - 44
+        
+        artistLineUpContainer.addSubview(seeAllArtistsButton)
+        artistLineUpContainer.addSubview(container)
+        
+        artistLineUpContainer.addContraintsWithFormat(format: "H:|[v0]|", views: container)
+        artistLineUpContainer.addContraintsWithFormat(format: "V:|[v0(\(lineUpHeight))][v1(44)]", views: container, seeAllArtistsButton)
+        artistLineUpContainer.addContraintsWithFormat(format: "H:[v0(100)]|", views: seeAllArtistsButton)
     }
     
     var eventRewardsContainer: EventRewardsContainer? {
         didSet {
-            
-            guard let container = eventRewardsContainer else {
-                return
-            }
-            container.rewards = rewards
-            
-            //TODO: nächste Zeile auch im EventController?!
-            rewardsHeight = container.getHeight() - 133
-            
-            promoteContainerView.addSubview(promoteTitleLabel)
-            promoteContainerView.addSubview(promoteBarContainerView)
-            promoteContainerView.addSubview(container)
-            
-            promoteContainerView.addContraintsWithFormat(format: "H:|-16-[v0]-16-|", views: promoteTitleLabel)
-            promoteContainerView.addContraintsWithFormat(format: "V:|[v0(40)]-8-[v1(85)][v2(\(rewardsHeight))]", views: promoteTitleLabel, promoteBarContainerView, container)
-            
-            promoteContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: promoteBarContainerView)
-            
-            promoteContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: container)
-            
+            setupEventRewardsContainer()
         }
+    }
+    
+    fileprivate func setupEventRewardsContainer() {
+        guard let container = eventRewardsContainer else {
+            return
+        }
+        container.rewards = rewards
+        
+        //TODO: nächste Zeile auch im EventController?!
+        rewardsHeight = container.getHeight() - 133
+        
+        promoteContainerView.addSubview(promoteTitleLabel)
+        promoteContainerView.addSubview(promoteBarContainerView)
+        promoteContainerView.addSubview(container)
+        
+        promoteContainerView.addContraintsWithFormat(format: "H:|-16-[v0]-16-|", views: promoteTitleLabel)
+        promoteContainerView.addContraintsWithFormat(format: "V:|[v0(40)]-8-[v1(85)][v2(\(rewardsHeight))]", views: promoteTitleLabel, promoteBarContainerView, container)
+        
+        promoteContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: promoteBarContainerView)
+        
+        promoteContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: container)
+
     }
     
     let eventResource = EventResource()
@@ -321,6 +324,7 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         let button = UIButton()
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
         button.setTitle("Promote", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.addTarget(self, action: #selector(handleShowPromoteController), for: .touchUpInside)
         button.tintColor = UIColor.white
         button.translatesAutoresizingMaskIntoConstraints = false
