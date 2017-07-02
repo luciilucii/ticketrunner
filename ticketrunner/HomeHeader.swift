@@ -23,7 +23,7 @@ class HomeHeader: BaseCell {
     
     let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
+        label.text = "Aloha Bastard!"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
@@ -74,7 +74,8 @@ class HomeHeader: BaseCell {
     let noTicketsSoldLeftImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(named: "home welcome LEFT")
+        iv.image = #imageLiteral(resourceName: "home-welcome-left-ohne-logo")
+        iv.image = UIImage(named: "home-welcome-left-ohne-logo")
         iv.contentMode = .scaleAspectFit
         iv.layer.masksToBounds = true
         return iv
@@ -83,9 +84,41 @@ class HomeHeader: BaseCell {
     let noTicketsSoldRightImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(named: "home welcome Right")
+        iv.image = #imageLiteral(resourceName: "home-welcome-Right-ohne-logo")
         iv.contentMode = .scaleAspectFit
         iv.layer.masksToBounds = true
+        return iv
+    }()
+    
+    let firstLogoAnimationImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
+    let secondLogoAnimationImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
+    let thirdLogoAnimationImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
+    let fourthLogoAnimationImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -108,7 +141,6 @@ class HomeHeader: BaseCell {
         
         addSubview(ticketsSoldView)
         
-        
         let ticketsSoldViewHeight: CGFloat = 210
         
         //x,y,w,h
@@ -123,27 +155,98 @@ class HomeHeader: BaseCell {
         setupAnimationTimer()
     }
     
+    var firstTimer: Timer?
+    var secondTimer: Timer?
+    
     fileprivate func setupAnimationTimer() {
         _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
         
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handleAnimateFirstLogo), userInfo: nil, repeats: false)
+        
+        _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(handleAnimateSecondLogo), userInfo: nil, repeats: false)
+        
+        _ = Timer.scheduledTimer(timeInterval: 0.6, target: self, selector: #selector(handleAnimateThirdLogoBack), userInfo: nil, repeats: false)
+        
+        _ = Timer.scheduledTimer(timeInterval: 1.8, target: self, selector: #selector(handleAnimateFourthLogoBack), userInfo: nil, repeats: false)
+    }
+    
+    func handleAnimateFirstLogo() {
+        handleAnimation(anchor: firstAnimatingLogoLeftAnchor, constant: 200, duration: 4.5) { 
+            self.handleAnimateFirstLogoBack()
+        }
+    }
+    
+    func handleAnimateFirstLogoBack() {
+        handleAnimation(anchor: firstAnimatingLogoLeftAnchor, constant: 15, duration: 4.5) { 
+            self.handleAnimateFirstLogo()
+        }
+    }
+    
+    func handleAnimateSecondLogo() {
+        handleAnimation(anchor: secondAnimatingLogoLeftAnchor, constant: 250, duration: 4.2) {
+            self.handleAnimateSecondLogoBack()
+        }
+    }
+    
+    func handleAnimateSecondLogoBack() {
+        handleAnimation(anchor: secondAnimatingLogoLeftAnchor, constant: 50, duration: 4.2) {
+            self.handleAnimateSecondLogo()
+        }
+    }
+    
+    func handleAnimateThirdLogo() {
+        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width/2 - 75, duration: 4.6) {
+            self.handleAnimateThirdLogoBack()
+        }
+    }
+    
+    func handleAnimateThirdLogoBack() {
+        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width / 2 + 100, duration: 4.6) {
+            self.handleAnimateThirdLogo()
+        }
+    }
+    func handleAnimateFourthLogo() {
+        handleAnimation(anchor: fourthAnimatingLogoLeftAnchor, constant: frame.width / 2 + 80, duration: 4.0) {
+            self.handleAnimateFourthLogoBack()
+        }
+    }
+    
+    func handleAnimateFourthLogoBack() {
+        handleAnimation(anchor: fourthAnimatingLogoLeftAnchor, constant: frame.width / 2 - 80, duration: 4.0) { 
+            self.handleAnimateFourthLogo()
+        }
+    }
+    
+    fileprivate func handleAnimation(anchor: NSLayoutConstraint?, constant: CGFloat, duration: TimeInterval, completion: @escaping () -> ()) {
+        if let anchor = anchor {
+            anchor.constant = constant
+            UIView.animate(withDuration: duration, animations: {
+                self.layoutIfNeeded()
+            }, completion: { (completed) in
+                
+                completion()
+            })
+        }
     }
     
     func animateProfileImageView() {
         
         avatarImageViewCenterYAnchor?.constant = 0
         
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 2, options: .curveEaseOut, animations: { 
+        UIView.animate(withDuration: 1.3, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             
             self.avatarImageView.alpha = 1
             self.layoutIfNeeded()
             
         }, completion: nil)
-        
     }
     
     var avatarImageViewCenterYAnchor: NSLayoutConstraint?
     
     func setupTicketsSoldView() {
+        
+        setupAnimatingLogos()
+        
         
         ticketsSoldView.addSubview(welcomeLabel)
         ticketsSoldView.addSubview(ticketsSoldImageView)
@@ -182,7 +285,6 @@ class HomeHeader: BaseCell {
         awesomeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         
-        
         //MARK: views when no tickets sold
         ticketsSoldView.addSubview(noTicketsSoldLeftImageView)
         ticketsSoldView.addSubview(noTicketsSoldRightImageView)
@@ -200,16 +302,54 @@ class HomeHeader: BaseCell {
         
         avatarImageView.centerXAnchor.constraint(equalTo: ticketsSoldView.centerXAnchor).isActive = true
         
-        avatarImageViewCenterYAnchor = avatarImageView.centerYAnchor.constraint(equalTo: noTicketsSoldLeftImageView.centerYAnchor, constant: 100)
+        avatarImageViewCenterYAnchor = avatarImageView.centerYAnchor.constraint(equalTo: noTicketsSoldLeftImageView.centerYAnchor, constant: 80)
         avatarImageViewCenterYAnchor?.isActive = true
         
         avatarImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         avatarImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
+        
+        
+    }
+    
+    var firstAnimatingLogoLeftAnchor: NSLayoutConstraint?
+    var secondAnimatingLogoLeftAnchor: NSLayoutConstraint?
+    var thirdAnimatingLogoLeftAnchor: NSLayoutConstraint?
+    var fourthAnimatingLogoLeftAnchor: NSLayoutConstraint?
+    
+    private func setupAnimatingLogos() {
+        
+        ticketsSoldView.addSubview(firstLogoAnimationImageView)
+        ticketsSoldView.addSubview(secondLogoAnimationImageView)
+        ticketsSoldView.addSubview(thirdLogoAnimationImageView)
+        ticketsSoldView.addSubview(fourthLogoAnimationImageView)
+        
+        firstAnimatingLogoLeftAnchor = firstLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 15)
+        firstAnimatingLogoLeftAnchor?.isActive = true
+        firstLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 55).isActive = true
+        firstLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        firstLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
+        secondAnimatingLogoLeftAnchor = secondLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 50)
+        secondAnimatingLogoLeftAnchor?.isActive = true
+        secondLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 74).isActive = true
+        secondLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        secondLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
+        thirdAnimatingLogoLeftAnchor = thirdLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 2 + 100)
+        thirdAnimatingLogoLeftAnchor?.isActive = true
+        thirdLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 89).isActive = true
+        thirdLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        thirdLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
+        fourthAnimatingLogoLeftAnchor = fourthLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 2 + 80)
+        fourthAnimatingLogoLeftAnchor?.isActive = true
+        fourthLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 105).isActive = true
+        fourthLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        fourthLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     func setupVariables() {
-        
         guard let user = user else {
             return
         }
@@ -254,13 +394,10 @@ class HomeHeader: BaseCell {
         let ticketsSoldString = String(ticketsSoldForUser)
         ticketCountLabel.text = ticketsSoldString
         
-        
     }
     
     func handleSelectProfileImage() {
         homeController?.handleSelectProfileImage()
     }
-    
-    
 }
 

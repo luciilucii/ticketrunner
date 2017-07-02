@@ -131,8 +131,12 @@ class EventCell: UICollectionViewCell {
         return view
     }()
     
+    var cellWidth: CGFloat?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        cellWidth = frame.width
         
         setupViews()
     }
@@ -159,7 +163,11 @@ class EventCell: UICollectionViewCell {
         eventImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         eventImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         eventImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        eventImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        guard let cellWidth = cellWidth else { return }
+        let height = cellWidth / 2.7
+        eventImageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        
         
         //x,y,w,h
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
