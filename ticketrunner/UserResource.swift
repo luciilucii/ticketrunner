@@ -20,7 +20,7 @@ class UserResource: NSObject {
     
     func getTicketsSoldFor(user: User) -> Int {
         
-        return 15
+        return 0
     }
     
 }

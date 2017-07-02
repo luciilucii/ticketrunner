@@ -124,6 +124,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         button.setTitle("Preview Landing Page", for: .normal)
         button.addTarget(self, action: #selector(handlePreview), for: .touchUpInside)
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.tintColor = UIColor.white
         return button
     }()
@@ -135,6 +136,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         button.addTarget(self, action: #selector(handleUpdateLandingPage), for: .touchUpInside)
         button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
         button.tintColor = UIColor.white
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
     

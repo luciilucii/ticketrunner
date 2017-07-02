@@ -61,6 +61,7 @@
 		19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B6B1EDB3CAA0085624C /* EventController.swift */; };
 		19E64B701EDB48DC0085624C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B6F1EDB48DC0085624C /* EventCell.swift */; };
 		19E64B721EDB4B960085624C /* DetailEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B711EDB4B960085624C /* DetailEventController.swift */; };
+		19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E7865D1F06D31700956958 /* FilterSearchController.swift */; };
 		19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */; };
 		19E8DC851EE27AF5000F216D /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC841EE27AF5000F216D /* Artist.swift */; };
 		19E8DC881EE282EC000F216D /* ProgressBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */; };
@@ -142,6 +143,7 @@
 		19E64B6B1EDB3CAA0085624C /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		19E64B6F1EDB48DC0085624C /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		19E64B711EDB4B960085624C /* DetailEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEventController.swift; sourceTree = "<group>"; };
+		19E7865D1F06D31700956958 /* FilterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSearchController.swift; sourceTree = "<group>"; };
 		19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistLineUpContainer.swift; sourceTree = "<group>"; };
 		19E8DC841EE27AF5000F216D /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarContainer.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				19CD6FFA1EF39EDA006D9E7C /* Change Password */,
 				19CD6FFD1EF4647F006D9E7C /* Connected Accounts */,
 				19CD70001EF46A86006D9E7C /* Deactivate Account */,
+				19E7865D1F06D31700956958 /* FilterSearchController.swift */,
 			);
 			name = SettingController;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
+				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
 				19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */,
 				1907757B1EF6B5B900C166CD /* ChatLogController.swift in Sources */,

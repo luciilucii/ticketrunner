@@ -14,11 +14,7 @@ class EventCell: UICollectionViewCell {
     
     var currentEvent: Event? {
         didSet {
-            
-            guard let event = currentEvent else {
-                return
-            }
-            
+            guard let event = currentEvent else { return }
             progressBar.event = event
         }
     }
@@ -27,7 +23,7 @@ class EventCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.backgroundColor = .green
-        iv.image = UIImage(named: "event")
+        iv.image = UIImage(named: "event5")
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
         return iv
@@ -96,6 +92,7 @@ class EventCell: UICollectionViewCell {
         let button = UIButton()
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
         button.setTitle("Promote", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.tintColor = UIColor.white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -105,6 +102,7 @@ class EventCell: UICollectionViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Rewards", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         button.backgroundColor = .white
         return button
@@ -114,6 +112,7 @@ class EventCell: UICollectionViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Event Info", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         return button
     }()
@@ -136,9 +135,7 @@ class EventCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupViews()
-        
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

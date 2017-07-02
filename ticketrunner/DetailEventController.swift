@@ -368,10 +368,7 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
             print("keine facebook url vorhanden")
             return
         }
-        
-        guard let url = URL(string: eventFacebookUrl) else {
-            return
-        }
+        guard let url = URL(string: eventFacebookUrl) else { return }
         
         UIApplication.shared.openURL(url)
     }

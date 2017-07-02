@@ -24,17 +24,29 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         navigationController?.navigationBar.isTranslucent = false
         
-        
-        
         setupViews()
         setupTitleLabel()
         setupMenuBar()
+        setupNavBarButton()
         
         setupCollectionView()
         
         events = eventResource.getEvents()
         
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+    }
+    
+    fileprivate func setupNavBarButton() {
+        let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(handleSearch))
+        
+        navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    func handleSearch() {
+        
+        let filterSearchController = FilterSearchController()
+        let navController = UINavigationController(rootViewController: filterSearchController)
+        present(navController, animated: true, completion: nil)
     }
     
     func setupMenuBar() {
@@ -69,7 +81,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         self.refresher.endRefreshing()
     }
 
-    
     var menu: Menu!
     
     func handleMenu() {
@@ -85,6 +96,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
         
         cell.backgroundColor = UIColor.white
+        
+        
         
         let event = events[indexPath.item]
         
@@ -129,7 +142,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 50
     }
     
     func handlePromote(sender: UIButton) {
@@ -137,7 +150,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         handlePromoteFor(event: event)
     }
     
-        
     func handleRewards(sender: UIButton) {
         let event = events[sender.tag]
         handleRewardsFor(event: event)

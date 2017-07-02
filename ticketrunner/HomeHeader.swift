@@ -33,7 +33,7 @@ class HomeHeader: BaseCell {
     
     let ticketsSoldImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "home tickets sold")
+        iv.image = #imageLiteral(resourceName: "home tickets sold")
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.isHidden = true
         iv.contentMode = .scaleAspectFit
@@ -97,6 +97,7 @@ class HomeHeader: BaseCell {
         iv.image = UIImage(named: "profile_avatar")
         iv.contentMode = .scaleAspectFill
         iv.isUserInteractionEnabled = true
+        iv.alpha = 0
         iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImage)))
         return iv
     }()
@@ -119,7 +120,28 @@ class HomeHeader: BaseCell {
         setupTicketsSoldView()
         setupVariables()
         
+        setupAnimationTimer()
     }
+    
+    fileprivate func setupAnimationTimer() {
+        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
+        
+    }
+    
+    func animateProfileImageView() {
+        
+        avatarImageViewCenterYAnchor?.constant = 0
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 2, options: .curveEaseOut, animations: { 
+            
+            self.avatarImageView.alpha = 1
+            self.layoutIfNeeded()
+            
+        }, completion: nil)
+        
+    }
+    
+    var avatarImageViewCenterYAnchor: NSLayoutConstraint?
     
     func setupTicketsSoldView() {
         
@@ -177,7 +199,10 @@ class HomeHeader: BaseCell {
         noTicketsSoldRightImageView.heightAnchor.constraint(equalTo: noTicketsSoldLeftImageView.heightAnchor).isActive = true
         
         avatarImageView.centerXAnchor.constraint(equalTo: ticketsSoldView.centerXAnchor).isActive = true
-        avatarImageView.centerYAnchor.constraint(equalTo: noTicketsSoldLeftImageView.centerYAnchor).isActive = true
+        
+        avatarImageViewCenterYAnchor = avatarImageView.centerYAnchor.constraint(equalTo: noTicketsSoldLeftImageView.centerYAnchor, constant: 100)
+        avatarImageViewCenterYAnchor?.isActive = true
+        
         avatarImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         avatarImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         

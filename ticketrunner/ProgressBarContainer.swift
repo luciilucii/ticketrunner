@@ -17,6 +17,14 @@ class ProgressBarContainer: UIView {
     
     var rewardCell: RewardCell?
     
+    var timer: Timer?
+    
+    var greenBarWidth: CGFloat? {
+        didSet {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animateGreenBar), userInfo: nil, repeats: false)
+        }
+    }
+    
     var progressBackgroundBarWidthAnchor: CGFloat? {
         didSet {
             
@@ -231,13 +239,38 @@ class ProgressBarContainer: UIView {
         }
     }
     
+    let greenBar: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        return view
+    }()
+    
+    var greenBarWidthAnchor: NSLayoutConstraint?
+    
     func setupPromoteBar(forWidth: CGFloat) {
         
-        let barView = UIView(frame: CGRect(x: 0, y: 0, width: forWidth, height: 32))
-        barView.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
-
+        promoteBackgroundBarView.addSubview(greenBar)
+        
+        greenBar.leftAnchor.constraint(equalTo: promoteBackgroundBarView.leftAnchor).isActive = true
+        greenBar.topAnchor.constraint(equalTo: promoteBackgroundBarView.topAnchor).isActive = true
+        greenBar.bottomAnchor.constraint(equalTo: promoteBackgroundBarView.bottomAnchor).isActive = true
+        
+        greenBarWidthAnchor = greenBar.widthAnchor.constraint(equalToConstant: 0)
+        greenBarWidthAnchor?.isActive = true
+        
         promoteBackgroundBarView.clipsToBounds = true
-        promoteBackgroundBarView.addSubview(barView)
+        
+        greenBarWidth = forWidth
+    }
+    
+    func animateGreenBar() {
+        guard let width = greenBarWidth else { return }
+        greenBarWidthAnchor?.constant = width
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
     }
     
     func getTicketsSoldCount(/*forEvent: Event*/) -> Int {

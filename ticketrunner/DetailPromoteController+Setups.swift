@@ -18,9 +18,7 @@ extension DetailPromoteEventController {
         scrollContainerView.addSubview(linkContainerView)
         scrollContainerView.addSubview(linkSeperatorView)
         scrollContainerView.addSubview(directShareContainerView)
-        scrollContainerView.addSubview(facebookPreviewContainer)
         scrollContainerView.addSubview(shareSeperatorView)
-        scrollContainerView.addSubview(facebookPreviewSeperatorView)
         scrollContainerView.addSubview(landingPagePreviewContainer)
         
         //No ScrollView
@@ -72,7 +70,7 @@ extension DetailPromoteEventController {
         directShareContainerView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         directShareContainerView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
         directShareContainerView.topAnchor.constraint(equalTo: linkSeperatorView.bottomAnchor, constant: 8).isActive = true
-        directShareContainerView.heightAnchor.constraint(equalToConstant: 314).isActive = true
+        directShareContainerView.heightAnchor.constraint(equalToConstant: 246).isActive = true
         
         setupDirectShareViews()
         
@@ -81,21 +79,9 @@ extension DetailPromoteEventController {
         shareSeperatorView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         shareSeperatorView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
         shareSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
         
-        //x,y,w,h
-        facebookPreviewContainer.topAnchor.constraint(equalTo: shareSeperatorView.bottomAnchor, constant: 8).isActive = true
-        facebookPreviewContainer.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
-        facebookPreviewContainer.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        facebookPreviewContainer.heightAnchor.constraint(equalToConstant: 521).isActive = true
-        
-        facebookPreviewSeperatorView.topAnchor.constraint(equalTo: facebookPreviewContainer.bottomAnchor, constant: 8).isActive = true
-        facebookPreviewSeperatorView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
-        facebookPreviewSeperatorView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        facebookPreviewSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        setupFacebookPreviewContainer()
-        
-        landingPagePreviewContainer.topAnchor.constraint(equalTo: facebookPreviewSeperatorView.bottomAnchor, constant: 8).isActive = true
+        landingPagePreviewContainer.topAnchor.constraint(equalTo: shareSeperatorView.bottomAnchor, constant: 8).isActive = true
         landingPagePreviewContainer.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         landingPagePreviewContainer.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
         landingPagePreviewContainer.heightAnchor.constraint(equalToConstant: 563).isActive = true
@@ -141,9 +127,8 @@ extension DetailPromoteEventController {
         
         directShareContainerView.addSubview(directShareTitleLabel)
         directShareContainerView.addSubview(directShareDescriptionLabel)
-        directShareContainerView.addSubview(facebookLogoImageView)
-        directShareContainerView.addSubview(facebookShareTextView)
-        directShareContainerView.addSubview(shareFacebookButton)
+        directShareContainerView.addSubview(shareTextView)
+        directShareContainerView.addSubview(shareButton)
         
         //x,y,w,h
         
@@ -159,32 +144,15 @@ extension DetailPromoteEventController {
         directShareDescriptionLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        facebookLogoImageView.topAnchor.constraint(equalTo: directShareDescriptionLabel.bottomAnchor, constant: 8).isActive = true
-        facebookLogoImageView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor, constant: 16).isActive = true
-        facebookLogoImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        facebookLogoImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        shareTextView.topAnchor.constraint(equalTo: directShareDescriptionLabel.bottomAnchor).isActive = true
+        shareTextView.leftAnchor.constraint(equalTo: directShareDescriptionLabel.leftAnchor).isActive = true
+        shareTextView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor, constant: -16).isActive = true
+        shareTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        //x,y,w,h
-        facebookShareTextView.topAnchor.constraint(equalTo: facebookLogoImageView.bottomAnchor).isActive = true
-        facebookShareTextView.leftAnchor.constraint(equalTo: facebookLogoImageView.leftAnchor).isActive = true
-        facebookShareTextView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor, constant: -16).isActive = true
-        facebookShareTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        shareFacebookButton.topAnchor.constraint(equalTo: facebookShareTextView.bottomAnchor).isActive = true
-        shareFacebookButton.leftAnchor.constraint(equalTo: facebookShareTextView.leftAnchor).isActive = true
-        shareFacebookButton.rightAnchor.constraint(equalTo: facebookShareTextView.rightAnchor).isActive = true
-        shareFacebookButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-    }
-    
-    func setupFacebookPreviewContainer() {
-        
-        facebookPreviewContainer.addSubview(facebookPreviewContainerView)
-        
-        facebookPreviewContainerView.topAnchor.constraint(equalTo: facebookPreviewContainer.topAnchor).isActive = true
-        facebookPreviewContainerView.leftAnchor.constraint(equalTo: facebookPreviewContainer.leftAnchor).isActive = true
-        facebookPreviewContainerView.rightAnchor.constraint(equalTo: facebookPreviewContainer.rightAnchor).isActive = true
-        facebookPreviewContainerView.bottomAnchor.constraint(equalTo: facebookPreviewContainer.bottomAnchor).isActive = true
+        shareButton.topAnchor.constraint(equalTo: shareTextView.bottomAnchor).isActive = true
+        shareButton.leftAnchor.constraint(equalTo: shareTextView.leftAnchor).isActive = true
+        shareButton.rightAnchor.constraint(equalTo: shareTextView.rightAnchor).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }
     

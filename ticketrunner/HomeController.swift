@@ -28,6 +28,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     var menu: Menu?
+    var userImage: UIImage? {
+        didSet{
+            collectionView?.reloadData()
+        }
+    }
+    
+    let testWebView: UIWebView = {
+        let wv = UIWebView()
+        wv.translatesAutoresizingMaskIntoConstraints = false
+        return wv
+    }()
     
     var userEvents = [Event]()
     
@@ -146,10 +157,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         if let selectedImage = selectedImageFromPicker {
             
-//            avatarImageView.image = selectedImage
+            self.userImage = selectedImage
         }
 
-        
         dismiss(animated: true) {
             UIApplication.shared.statusBarStyle = .lightContent
         }
@@ -211,6 +221,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! HomeHeader
         header.homeController = self
+        
+        if let userImage = userImage {
+            header.avatarImageView.image = userImage
+        }
         
         return header
         

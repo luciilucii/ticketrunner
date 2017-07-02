@@ -52,7 +52,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupScrollView()
+        setupScrollView(height: 1244)
         
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
@@ -63,7 +63,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
         setupTitleLabel()
         setupViews()
         
-        facebookPreviewContainerView.facebookPostDescriptionLabel.text = facebookShareTextView.text
+//        facebookPreviewContainerView.facebookPostDescriptionLabel.text = facebookShareTextView.text
         
     }
     
@@ -178,6 +178,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
         button.setTitle("Copy Link", for: .normal)
         button.addTarget(self, action: #selector(handleCopy), for: .touchUpInside)
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.tintColor = UIColor.white
         return button
     }()
@@ -221,23 +222,14 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     let directShareDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Share your Link directly to Facebook. The cooler the text, the more tickets you sell."
+        label.text = "Share your Link directly to your friends. The cooler the text, the more tickets you sell."
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         label.numberOfLines = 5
         return label
     }()
     
-    let facebookLogoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(named: "facebook_blue")
-        iv.contentMode = .scaleAspectFill
-        iv.layer.masksToBounds = true
-        return iv
-    }()
-    
-    lazy var facebookShareTextView: UITextView = {
+    lazy var shareTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont.systemFont(ofSize: 14)
@@ -249,38 +241,18 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
         return textView
     }()
     
-    let shareFacebookButton: UIButton = {
+    let shareButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Share", for: .normal)
-        button.addTarget(self, action: #selector(handleShareFacebook), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleShare), for: .touchUpInside)
         button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.tintColor = UIColor.white
         return button
     }()
     
     let shareSeperatorView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
-        return view
-    }()
-    
-    //Facebook Preview Container
-    
-    let facebookPreviewContainer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let facebookPreviewContainerView: FacebookPreviewContainer = {
-        let containerView = FacebookPreviewContainer()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        return containerView
-    }()
-    
-    let facebookPreviewSeperatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
@@ -302,13 +274,11 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
         return containerView
     }()
     
-    func setupScrollView(/*height: CGFloat*/) {
-        
-        //TODO: make there a parameter int the function and call it when detaileventcontroller is genereated
+    func setupScrollView(height: CGFloat) {
         
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
-        self.scrollView.contentSize = CGSize(width: view.frame.width, height: 1850)
+        self.scrollView.contentSize = CGSize(width: view.frame.width, height: height)
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 65, 0)
         
         scrollView.frame = view.bounds
@@ -324,7 +294,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
        
     func handleShare() {
         let eventLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
-        let eventShareText = "Hallo, schaue dir dieses super coole Event an: "
+        let eventShareText = "\(shareTextView) "
         
         let activityVC = UIActivityViewController(activityItems: ["\(eventShareText)\(eventLink)"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
@@ -368,21 +338,6 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     
     func handleShareFacebook() {
         
-        let facebookVC = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        facebookVC?.add(UIImage(named: "event"))
-        
-        guard let urlString = linkLabel.text else {
-            print("textfield nicht gefüllt")
-            return
-        }
-        facebookVC?.add(URL(string: urlString))
-        
-        guard let initialText = facebookShareTextView.text else {
-            return
-        }
-        facebookVC?.setInitialText(initialText)
-
-        self.present(facebookVC!, animated: true, completion: nil)
     }
     
     func handleDismiss() {
@@ -391,25 +346,15 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if textView == facebookShareTextView {
+        if textView == shareTextView {
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 
-                self.scrollView.contentOffset.y = 440
+                self.scrollView.contentOffset.y = 400
                 
             }, completion: nil)
             
         }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        
-        if textView == facebookShareTextView {
-            
-            facebookPreviewContainerView.facebookPostDescriptionLabel.text = facebookShareTextView.text
-            
-        }
-        
     }
     
 }
