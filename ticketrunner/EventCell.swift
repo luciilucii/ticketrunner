@@ -10,7 +10,7 @@ import UIKit
 
 class EventCell: UICollectionViewCell {
     
-    //INFO: Height of the Eventcell is 501
+    //INFO: Height of the Eventcell is 369 + imageview
     
     var currentEvent: Event? {
         didSet {
@@ -31,9 +31,9 @@ class EventCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.text = "Masquerade & Crime - Um Vaters Willen, Hercule Poirot ermittelt!"
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 2
         label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,14 +44,18 @@ class EventCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "01/09/2017"
+        label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
     
-    let genreLabel: UILabel = {
+    let streetLabel: UILabel = {
         let label = UILabel()
-        label.text = "Theatre"
-        label.textAlignment = .right
+        label.text = "Körnebachstraße 72"
+        label.textAlignment = .left
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -60,6 +64,7 @@ class EventCell: UICollectionViewCell {
     let locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Cologne, Germany"
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -146,13 +151,12 @@ class EventCell: UICollectionViewCell {
     }
     
     func setupViews() {
-        
         setupPromoteBarContainer()
         
         addSubview(eventImageView)
         addSubview(titleLabel)
         addSubview(dateLabel)
-        addSubview(genreLabel)
+        addSubview(streetLabel)
         addSubview(locationLabel)
         addSubview(promoteBarContainerView)
         addSubview(promoteButton)
@@ -176,22 +180,22 @@ class EventCell: UICollectionViewCell {
         titleLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         //x,y,w,h
-        dateLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 32).isActive = true
-        dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        streetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        streetLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        streetLabel.rightAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        streetLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        //x,y,w,h
+        dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: streetLabel.topAnchor).isActive = true
         dateLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
-        dateLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        dateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
-        genreLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -32).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor).isActive = true
-        genreLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        //x,y,w,h
-        locationLabel.leftAnchor.constraint(equalTo: dateLabel.leftAnchor).isActive = true
-        locationLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor).isActive = true
+        locationLabel.leftAnchor.constraint(equalTo: streetLabel.leftAnchor).isActive = true
+        locationLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor).isActive = true
         locationLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        locationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
         promoteBarContainerView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8).isActive = true
@@ -232,7 +236,6 @@ class EventCell: UICollectionViewCell {
         rewardsSeperatorView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         rewardsSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        
     }
     
     func setupPromoteBarContainer() {
@@ -243,8 +246,6 @@ class EventCell: UICollectionViewCell {
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0(30)]-8-[v1]-8-|", views: soldTicketsLabel, progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
-        
-        
     }
     
 }

@@ -63,11 +63,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     
     func showMenu() {
-        
-        
         if let window = UIApplication.shared.keyWindow {
-            
-            
             //TODO: Alpha anpassen
             
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -120,8 +116,6 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        //TODO: Individual height for each iPhone (view.frame.height - profileImageView) / 7 z.B.
         //TODO: Initialize the right width
         
         return CGSize(width: menuView.frame.width, height: 50)
@@ -284,11 +278,18 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
     }
     
+    func showEventController() {
+        let indexPath = IndexPath(item: 2, section: 0)
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+        self.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
     override init() {
         super.init()
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.allowsMultipleSelection = false
         collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)

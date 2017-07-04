@@ -159,13 +159,13 @@ class HomeHeader: BaseCell {
     var secondTimer: Timer?
     
     fileprivate func setupAnimationTimer() {
-        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
         
         _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handleAnimateFirstLogo), userInfo: nil, repeats: false)
         
-        _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(handleAnimateSecondLogo), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 4.5, target: self, selector: #selector(handleAnimateSecondLogo), userInfo: nil, repeats: false)
         
-        _ = Timer.scheduledTimer(timeInterval: 0.6, target: self, selector: #selector(handleAnimateThirdLogoBack), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 3.6, target: self, selector: #selector(handleAnimateThirdLogo), userInfo: nil, repeats: false)
         
         _ = Timer.scheduledTimer(timeInterval: 1.8, target: self, selector: #selector(handleAnimateFourthLogoBack), userInfo: nil, repeats: false)
     }
@@ -195,13 +195,13 @@ class HomeHeader: BaseCell {
     }
     
     func handleAnimateThirdLogo() {
-        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width/2 - 75, duration: 4.6) {
+        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width/2 - 125, duration: 4.6) {
             self.handleAnimateThirdLogoBack()
         }
     }
     
     func handleAnimateThirdLogoBack() {
-        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width / 2 + 100, duration: 4.6) {
+        handleAnimation(anchor: thirdAnimatingLogoLeftAnchor, constant: frame.width / 2 + 75, duration: 4.6) {
             self.handleAnimateThirdLogo()
         }
     }
@@ -246,7 +246,6 @@ class HomeHeader: BaseCell {
     func setupTicketsSoldView() {
         
         setupAnimatingLogos()
-        
         
         ticketsSoldView.addSubview(welcomeLabel)
         ticketsSoldView.addSubview(ticketsSoldImageView)
@@ -336,7 +335,7 @@ class HomeHeader: BaseCell {
         secondLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
         secondLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        thirdAnimatingLogoLeftAnchor = thirdLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 2 + 100)
+        thirdAnimatingLogoLeftAnchor = thirdLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 2 + 75)
         thirdAnimatingLogoLeftAnchor?.isActive = true
         thirdLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 89).isActive = true
         thirdLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true

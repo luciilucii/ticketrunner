@@ -34,16 +34,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
-    let testWebView: UIWebView = {
-        let wv = UIWebView()
-        wv.translatesAutoresizingMaskIntoConstraints = false
-        return wv
-    }()
-    
     var userEvents = [Event]()
     
     private let cellId = "cellId"
     private let headerId = "headerId"
+    private let noEventId = "noEventId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +61,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         collectionView?.register(EventCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
+        
+        collectionView?.register(HomeNoEventCell.self, forCellWithReuseIdentifier: noEventId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
         
@@ -177,39 +174,59 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height = CGFloat(501)
-        let width = view.frame.width - 16
-        
-        let size = CGSize(width: width, height: height)
-        
-        return size
-        
+        if userEvents.count == 0 {
+            
+            let height = CGFloat(488)
+            let width = view.frame.width - 16
+            
+            let size = CGSize(width: width, height: height)
+            
+            return size
+            
+        } else {
+            let height = CGFloat(494)
+            let width = view.frame.width - 16
+            
+            let size = CGSize(width: width, height: height)
+            
+            return size
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
-        
-        cell.backgroundColor = UIColor.white
-        
-        let event = userEvents[indexPath.item]
-        
-        cell.currentEvent = event
-        
-        cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-        
-        cell.promoteButton.tag = indexPath.item
-        cell.promoteButton.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
-        
-        cell.rewardsButton.tag = indexPath.item
-        cell.rewardsButton.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
-        
-        cell.eventInfoButton.tag = indexPath.item
-        cell.eventInfoButton.addTarget(self, action: #selector(handleShowEventInfo), for: .touchUpInside)
-        
-        cell.titleLabel.text = event.name
-        
-        return cell
+        if userEvents.count == 0 {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
+            
+            cell.homeController = self
+            
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
+            
+            cell.backgroundColor = UIColor.white
+            
+            let event = userEvents[indexPath.item]
+            
+            cell.currentEvent = event
+            
+            cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
+            
+            cell.promoteButton.tag = indexPath.item
+            cell.promoteButton.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
+            
+            cell.rewardsButton.tag = indexPath.item
+            cell.rewardsButton.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
+            
+            cell.eventInfoButton.tag = indexPath.item
+            cell.eventInfoButton.addTarget(self, action: #selector(handleShowEventInfo), for: .touchUpInside)
+            
+            cell.titleLabel.text = event.name
+            
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -227,11 +244,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         return header
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userEvents.count
+        if userEvents.count == 0 {
+            return 1
+        } else {
+            return userEvents.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

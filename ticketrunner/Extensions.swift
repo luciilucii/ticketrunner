@@ -28,6 +28,30 @@ extension UIView {
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
+    
+    func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        if let top = top {
+            self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
+        }
+        if let left = left {
+            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
+        }
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
+        }
+        if let right = right {
+            rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
+        }
+        
+        if width != 0 {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        if height != 0 {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+    }
 }
 
 extension UIViewController {
@@ -169,7 +193,7 @@ extension UICollectionViewController {
     }
     
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
-        let basis: CGFloat = 779
+        let basis: CGFloat = 768
         let lineUpHeight = lineUpContainer.getHeight()
         let rewardHeight = rewardContainer.getHeight()
         let height = basis + lineUpHeight + rewardHeight + 8 + 119
@@ -191,7 +215,7 @@ extension UICollectionViewController {
     func handleRewardsFor(event: Event) {
         let controller = setupDetailController(event: event)
         show(controller, sender: self)
-        controller.scrollView.contentOffset.y = 455
+        controller.scrollView.contentOffset.y = 444
     }
     
     func handleShowEventInfoFor(event: Event) {
@@ -201,6 +225,7 @@ extension UICollectionViewController {
     }
     
 }
+
 
 
 

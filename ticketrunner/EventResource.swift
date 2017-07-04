@@ -75,7 +75,7 @@ class EventResource: NSObject {
         var events = [Event]()
         
         let event1 = Event()
-        event1.name = "Hello Kitty Event"
+        event1.name = "Hello Kitty Event mit einem längeren Titel und sogar mit Ort, Köln"
         event1.rewards = [Reward]()
         
         let reward1 = Reward()

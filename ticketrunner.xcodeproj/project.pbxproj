@@ -28,6 +28,7 @@
 		19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */; };
 		19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB41EDA929100E0FFEC /* Extensions.swift */; };
 		193930DC1EEC6169004E52C0 /* DetailPromoteController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */; };
+		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
 		19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF511EDBDF7D00739A49 /* RewardsController.swift */; };
 		19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF551EDCA20300739A49 /* MessagesController.swift */; };
 		19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF571EDCA38E00739A49 /* SettingsController.swift */; };
@@ -96,6 +97,7 @@
 		19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		19247BB41EDA929100E0FFEC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailPromoteController+Setups.swift"; sourceTree = "<group>"; };
+		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
 		19B5DF511EDBDF7D00739A49 /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		19B5DF551EDCA20300739A49 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		19B5DF571EDCA38E00739A49 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				1907D5AD1EED4AAD00E603A6 /* StartCell.swift */,
 				19EE5CB41EF25D190003F24E /* SettingCell.swift */,
 				19086CE81EFCD0BE0024F7D0 /* SettingsEventSubCell.swift */,
+				195D46661F0A010C00E59777 /* HomeNoEventCell.swift */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
+				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
 				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
 				19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */,

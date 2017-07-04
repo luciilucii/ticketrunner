@@ -50,7 +50,8 @@ extension DetailEventController {
         eventImageView.topAnchor.constraint(equalTo: scrollContainerView.topAnchor).isActive = true
         eventImageView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         eventImageView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        eventImageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        let height = view.frame.width / 2.7
+        eventImageView.heightAnchor.constraint(equalToConstant: height).isActive = true
         
         //x,y,w,h
         eventInfoContainer.topAnchor.constraint(equalTo: eventImageView.bottomAnchor).isActive = true

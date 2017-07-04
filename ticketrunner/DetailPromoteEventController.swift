@@ -294,7 +294,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
        
     func handleShare() {
         let eventLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
-        let eventShareText = "\(shareTextView) "
+        let eventShareText = "\(shareTextView.text) "
         
         let activityVC = UIActivityViewController(activityItems: ["\(eventShareText)\(eventLink)"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
