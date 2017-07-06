@@ -142,18 +142,18 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         return label
     }()
     
-    let dateLabel: UILabel = {
+    let streetLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "01/09/2017"
+        label.text = "Nobelstr. 91,"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
     
-    let genreLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "Theatre"
+        label.text = "01/09/2017"
         label.textAlignment = .right
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)

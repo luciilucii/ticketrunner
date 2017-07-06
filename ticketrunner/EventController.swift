@@ -43,7 +43,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func handleSearch() {
-        
         let filterSearchController = FilterSearchController()
         let navController = UINavigationController(rootViewController: filterSearchController)
         present(navController, animated: true, completion: nil)
@@ -96,8 +95,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
         
         cell.backgroundColor = UIColor.white
-        
-        
         
         let event = events[indexPath.item]
         

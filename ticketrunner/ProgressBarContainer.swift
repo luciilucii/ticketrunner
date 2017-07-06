@@ -167,17 +167,17 @@ class ProgressBarContainer: UIView {
     
     func checkForHighestReward(rewards: [Reward]) -> Int {
         
-        var i = 0
+        var highestReward = 0
         
         for reward in rewards {
             guard let rewardTicketsToSell = reward.ticketsToSell else {
                 return 0
             }
-            if rewardTicketsToSell >= i {
-                i = rewardTicketsToSell
+            if rewardTicketsToSell >= highestReward {
+                highestReward = rewardTicketsToSell
             }
         }
-        return i
+        return highestReward
     }
     
     func setupPromoteBarProgress(forEvent: Event) {

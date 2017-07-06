@@ -95,6 +95,7 @@ class HomeHeader: BaseCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
         iv.contentMode = .scaleAspectFit
+        iv.transform = CGAffineTransform(rotationAngle: CGFloat(-0.15 * Double.pi))
         return iv
     }()
     
@@ -103,6 +104,7 @@ class HomeHeader: BaseCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
         iv.contentMode = .scaleAspectFit
+        iv.transform = CGAffineTransform(rotationAngle: CGFloat(0.1 * Double.pi))
         return iv
     }()
     
@@ -111,6 +113,7 @@ class HomeHeader: BaseCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
         iv.contentMode = .scaleAspectFit
+        iv.transform = CGAffineTransform(rotationAngle: CGFloat(0.05 * Double.pi))
         return iv
     }()
     
@@ -119,6 +122,7 @@ class HomeHeader: BaseCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
         iv.contentMode = .scaleAspectFit
+        iv.transform = CGAffineTransform(rotationAngle: CGFloat(-0.15 * Double.pi))
         return iv
     }()
     
@@ -140,7 +144,6 @@ class HomeHeader: BaseCell {
         user = UserResource().getUser()
         
         addSubview(ticketsSoldView)
-        
         let ticketsSoldViewHeight: CGFloat = 210
         
         //x,y,w,h
@@ -153,6 +156,34 @@ class HomeHeader: BaseCell {
         setupVariables()
         
         setupAnimationTimer()
+        
+        setupRotations()
+    }
+    
+    fileprivate func setupRotations() {
+        let firstLogoPercentage = getRotationPercentage(imageView: firstLogoAnimationImageView) + 0.5
+        let fourthLogoPercentage = getRotationPercentage(imageView: fourthLogoAnimationImageView) + 0.5
+        
+        _ = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(setupTimedRotations), userInfo: nil, repeats: false)
+        
+        handleRotation(percent: firstLogoPercentage, logoImageView: firstLogoAnimationImageView)
+        handleRotation(percent: fourthLogoPercentage, logoImageView: fourthLogoAnimationImageView)
+    }
+    
+    func setupTimedRotations() {
+        let secondLogoPercentage = getRotationPercentage(imageView: secondLogoAnimationImageView) + 0.5
+        let thirdLogoPercentage = getRotationPercentage(imageView: thirdLogoAnimationImageView) + 0.5
+        
+        handleRotation(percent: secondLogoPercentage, logoImageView: secondLogoAnimationImageView)
+        handleRotation(percent: thirdLogoPercentage, logoImageView: thirdLogoAnimationImageView)
+    }
+    
+    func getRotationPercentage(imageView: UIImageView) -> CGFloat {
+        let radians = atan2f(Float(imageView.transform.b), Float(imageView.transform.a))
+        let degrees = radians * 180 / Float(Double.pi)
+        let percent: CGFloat = CGFloat(degrees / 360)
+        
+        return percent
     }
     
     var firstTimer: Timer?
@@ -217,6 +248,22 @@ class HomeHeader: BaseCell {
         }
     }
     
+    func handleRotation(percent: CGFloat, logoImageView: UIImageView) {
+        UIView.animate(withDuration: 7.0, animations: {
+            logoImageView.transform = CGAffineTransform(rotationAngle: percent * 2 * CGFloat(Double.pi))
+        }) { (completed) in
+            self.handleRotationBack(percent: percent + 0.5, logoImageView: logoImageView)
+        }
+    }
+    
+    func handleRotationBack(percent: CGFloat, logoImageView: UIImageView) {
+        UIView.animate(withDuration: 7.0, animations: {
+            logoImageView.transform = CGAffineTransform(rotationAngle: percent * 2 * CGFloat(Double.pi))
+        }) { (completed) in
+            self.handleRotation(percent: percent - 0.5, logoImageView: logoImageView)
+        }
+    }
+    
     fileprivate func handleAnimation(anchor: NSLayoutConstraint?, constant: CGFloat, duration: TimeInterval, completion: @escaping () -> ()) {
         if let anchor = anchor {
             anchor.constant = constant
@@ -230,14 +277,10 @@ class HomeHeader: BaseCell {
     }
     
     func animateProfileImageView() {
-        
         avatarImageViewCenterYAnchor?.constant = 0
-        
         UIView.animate(withDuration: 1.3, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
-            
             self.avatarImageView.alpha = 1
             self.layoutIfNeeded()
-            
         }, completion: nil)
     }
     
@@ -306,8 +349,6 @@ class HomeHeader: BaseCell {
         
         avatarImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         avatarImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        
         
     }
     

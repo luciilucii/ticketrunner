@@ -264,10 +264,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let event = userEvents[indexPath.item]
-        let controller = setupDetailController(event: event)
-        
-        show(controller, sender: self)
+        if userEvents.count == 0 {
+            return
+        } else {
+            let event = userEvents[indexPath.item]
+            let controller = setupDetailController(event: event)
+            
+            show(controller, sender: self)
+        }
     }
     
     func handlePromote(sender: UIButton) {
@@ -285,6 +289,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let event = userEvents[sender.tag]
         handleShowEventInfoFor(event: event)
+    }
+    
+    func showSignUpConfirmation() {
+        let confirmationController = ConfirmationController()
+        present(confirmationController, animated: true) {
+            UIApplication.shared.statusBarStyle = .default
+        }
     }
     
 }

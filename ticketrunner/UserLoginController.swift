@@ -140,6 +140,15 @@ class UserLoginController: UIViewController {
         return button
     }()
     
+    let forgetPasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Forgot Password?", for: .normal)
+        button.tintColor = UIColor(red:0.48, green:0.48, blue:0.48, alpha:1.0)
+        button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+        return button
+    }()
+    
     var appImageViewTopAnchor: NSLayoutConstraint?
     
     var loginButtonBottomAnchor: NSLayoutConstraint?
@@ -176,7 +185,7 @@ class UserLoginController: UIViewController {
         
         //x,y,w,h
         inputsContainerView.topAnchor.constraint(equalTo: appImageView.bottomAnchor, constant: 8).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         
         
         //x,y,w,h
@@ -221,6 +230,7 @@ class UserLoginController: UIViewController {
         inputsContainerView.addSubview(passwordTextField)
         inputsContainerView.addSubview(emailSeperatorView)
         inputsContainerView.addSubview(passwordSeperatorView)
+        inputsContainerView.addSubview(forgetPasswordButton)
         
         
         //x,y,w,h
@@ -248,6 +258,13 @@ class UserLoginController: UIViewController {
         passwordSeperatorView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor).isActive = true
         passwordSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
+        forgetPasswordButton.anchor(top: passwordSeperatorView.bottomAnchor, left: passwordSeperatorView.leftAnchor, bottom: nil, right: passwordSeperatorView.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        
+    }
+    
+    func handleForgotPassword() {
+        let forgotPasswordController = ForgotPasswordController()
+        show(forgotPasswordController, sender: self)
     }
     
     func setupKeyboardObservers() {

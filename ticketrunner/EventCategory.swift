@@ -13,4 +13,5 @@ class EventCategory: NSObject {
     var categoryName: String?
     var categoryID: Int?
     
+    
 }

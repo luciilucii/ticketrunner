@@ -325,10 +325,11 @@ class UserRegistrationController: UIViewController {
             return
         }
         
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true) {
+            self.homeController?.showSignUpConfirmation()
+        }
         
         homeController?.menu?.currentUser = UserResource().getUser()
-        
         UIApplication.shared.statusBarStyle = .lightContent
         
     }

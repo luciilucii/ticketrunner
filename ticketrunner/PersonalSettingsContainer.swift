@@ -89,6 +89,8 @@ class PersonalContainer: CustomUIView {
 
 class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var pickerView = UIPickerView()
+    
     let addressContainerTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -134,13 +136,16 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         return tv
     }()
     
-    lazy var pickerView: UIPickerView = {
-        let picker = UIPickerView()
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.backgroundColor = .white
-        picker.dataSource = self
-        picker.delegate = self
-        return picker
+    let countryTextField: UITextField = {
+        let tv = UITextField()
+        tv.backgroundColor = .white
+        tv.setLeftPaddingPoints(5)
+        tv.setRightPaddingPoints(5)
+        tv.tag = 3
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.placeholder = "Country"
+        tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        return tv
     }()
     
     let lands = ["Germany", "Ghana", "Nederlands", "United Kingdom"]
@@ -158,17 +163,24 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        countryTextField.text = lands[row]
         print(lands[row])
     }
     
     override func setupViews() {
         super.setupViews()
         
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        countryTextField.inputView = pickerView
+        
         addSubview(addressContainerTitleLabel)
         addSubview(streetTextField)
         addSubview(postalCodeTextField)
         addSubview(cityTextField)
-        addSubview(pickerView)
+        addSubview(countryTextField)
         
         addressContainerTitleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         addressContainerTitleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -190,11 +202,10 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         cityTextField.rightAnchor.constraint(equalTo: streetTextField.rightAnchor).isActive = true
         cityTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        pickerView.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 16).isActive = true
-        pickerView.leftAnchor.constraint(equalTo: streetTextField.leftAnchor).isActive = true
-        pickerView.rightAnchor.constraint(equalTo: streetTextField.rightAnchor).isActive = true
-        pickerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
+        countryTextField.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 16).isActive = true
+        countryTextField.leftAnchor.constraint(equalTo: streetTextField.leftAnchor).isActive = true
+        countryTextField.rightAnchor.constraint(equalTo: streetTextField.rightAnchor).isActive = true
+        countryTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
 }

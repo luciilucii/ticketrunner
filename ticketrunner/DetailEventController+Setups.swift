@@ -25,8 +25,6 @@ extension DetailEventController {
         scrollContainerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: scrollView.contentSize.height)
     }
     
-
-    
     func setupViews() {
         
         scrollContainerView.addSubview(eventImageView)
@@ -88,8 +86,6 @@ extension DetailEventController {
         facebookContainer.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
         facebookContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        
-        
         //x,y,w,h
         promoteFixedContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         promoteFixedContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -107,8 +103,8 @@ extension DetailEventController {
     
     func setupEventInfoContainer() {
         eventInfoContainer.addSubview(eventNameLabel)
+        eventInfoContainer.addSubview(streetLabel)
         eventInfoContainer.addSubview(dateLabel)
-        eventInfoContainer.addSubview(genreLabel)
         eventInfoContainer.addSubview(locationLabel)
         
         eventInfoContainer.addSubview(eventDesriptionHeadlineLabel)
@@ -122,20 +118,20 @@ extension DetailEventController {
         eventNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        dateLabel.leftAnchor.constraint(equalTo: eventInfoContainer.leftAnchor, constant: 32).isActive = true
-        dateLabel.topAnchor.constraint(equalTo: eventNameLabel.bottomAnchor, constant: 8).isActive = true
+        streetLabel.leftAnchor.constraint(equalTo: eventInfoContainer.leftAnchor, constant: 32).isActive = true
+        streetLabel.topAnchor.constraint(equalTo: eventNameLabel.bottomAnchor, constant: 8).isActive = true
+        streetLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
+        streetLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        //x,y,w,h
+        dateLabel.rightAnchor.constraint(equalTo: eventInfoContainer.rightAnchor, constant: -32).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: streetLabel.topAnchor).isActive = true
         dateLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
         dateLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         //x,y,w,h
-        genreLabel.rightAnchor.constraint(equalTo: eventInfoContainer.rightAnchor, constant: -32).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor).isActive = true
-        genreLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        //x,y,w,h
-        locationLabel.leftAnchor.constraint(equalTo: dateLabel.leftAnchor).isActive = true
-        locationLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor).isActive = true
+        locationLabel.leftAnchor.constraint(equalTo: streetLabel.leftAnchor).isActive = true
+        locationLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor).isActive = true
         locationLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
         locationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -164,12 +160,9 @@ extension DetailEventController {
         
         promoteBarContainerView.addSubview(progressBarContainer)
         
-        
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBarContainer)
         promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0][v1]|", views: soldTicketsLabel, progressBarContainer)
-        
-        
     }
     
     
@@ -181,7 +174,6 @@ extension DetailEventController {
         facebookContainer.addContraintsWithFormat(format: "H:|[v0(50)]-8-[v1]-8-|", views: facebookImageView, facebookLabel)
         facebookContainer.addContraintsWithFormat(format: "V:|[v0]|", views: facebookImageView)
         facebookContainer.addContraintsWithFormat(format: "V:|[v0]|", views: facebookLabel)
-        
         
     }
     
@@ -200,7 +192,6 @@ extension DetailEventController {
         promoteButton.centerYAnchor.constraint(equalTo: promoteFixedContainerView.centerYAnchor).isActive = true
         promoteButton.widthAnchor.constraint(equalToConstant: 125).isActive = true
         promoteButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
     }
     
 }

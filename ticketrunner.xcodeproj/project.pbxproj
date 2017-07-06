@@ -29,6 +29,11 @@
 		19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB41EDA929100E0FFEC /* Extensions.swift */; };
 		193930DC1EEC6169004E52C0 /* DetailPromoteController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */; };
 		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
+		195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466A1F0D22D800E59777 /* EventCategoryResource.swift */; };
+		195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */; };
+		195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466E1F0DEF4600E59777 /* ConfirmationController.swift */; };
+		195D46711F0DF79500E59777 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46701F0DF79500E59777 /* GifExtension.swift */; };
+		195D46741F0DF7D500E59777 /* Verification-email.gif in Resources */ = {isa = PBXBuildFile; fileRef = 195D46731F0DF7D500E59777 /* Verification-email.gif */; };
 		19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF511EDBDF7D00739A49 /* RewardsController.swift */; };
 		19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF551EDCA20300739A49 /* MessagesController.swift */; };
 		19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF571EDCA38E00739A49 /* SettingsController.swift */; };
@@ -98,6 +103,11 @@
 		19247BB41EDA929100E0FFEC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailPromoteController+Setups.swift"; sourceTree = "<group>"; };
 		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
+		195D466A1F0D22D800E59777 /* EventCategoryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoryResource.swift; sourceTree = "<group>"; };
+		195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		195D466E1F0DEF4600E59777 /* ConfirmationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
+		195D46701F0DF79500E59777 /* GifExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
+		195D46731F0DF7D500E59777 /* Verification-email.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Verification-email.gif"; sourceTree = "<group>"; };
 		19B5DF511EDBDF7D00739A49 /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		19B5DF551EDCA20300739A49 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		19B5DF571EDCA38E00739A49 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -218,9 +228,12 @@
 		1907D5AC1EED4A7C00E603A6 /* Start */ = {
 			isa = PBXGroup;
 			children = (
+				195D46721F0DF7C200E59777 /* Confirmation */,
 				1907D5AF1EED4ADC00E603A6 /* StartController.swift */,
 				1907D5B11EED4B4000E603A6 /* UserLoginController.swift */,
 				1907D5B31EED4B8000E603A6 /* UserRegistrationController.swift */,
+				195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */,
+				195D466E1F0DEF4600E59777 /* ConfirmationController.swift */,
 			);
 			name = Start;
 			sourceTree = "<group>";
@@ -245,6 +258,14 @@
 				1907D5A71EED0C8E00E603A6 /* PromoteViews */,
 			);
 			name = DetailPromoteController;
+			sourceTree = "<group>";
+		};
+		195D46721F0DF7C200E59777 /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				195D46731F0DF7D500E59777 /* Verification-email.gif */,
+			);
+			name = Confirmation;
 			sourceTree = "<group>";
 		};
 		19C20AEB1ED8A9EF00C6FF17 = {
@@ -366,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				19247BB41EDA929100E0FFEC /* Extensions.swift */,
+				195D46701F0DF79500E59777 /* GifExtension.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -381,6 +403,7 @@
 				190775791EF6B59800C166CD /* MessagesController */,
 				19EE5CB61EF2784A0003F24E /* SettingController */,
 				19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */,
+				19E7865D1F06D31700956958 /* FilterSearchController.swift */,
 				19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */,
 				19CD6FF61EF39833006D9E7C /* TemplateForScrollViewController.swift */,
 			);
@@ -409,6 +432,7 @@
 				19E64B691EDB202B0085624C /* Event.swift */,
 				190C191D1EDE7543003BC179 /* EventResource.swift */,
 				19086CE61EFCCE110024F7D0 /* EventCategory.swift */,
+				195D466A1F0D22D800E59777 /* EventCategoryResource.swift */,
 				19D6CBD51EDD27FB00BA360A /* Language.swift */,
 				19C390541EE1E7D300954E64 /* Reward.swift */,
 				19E8DC841EE27AF5000F216D /* Artist.swift */,
@@ -445,7 +469,6 @@
 				19CD6FFA1EF39EDA006D9E7C /* Change Password */,
 				19CD6FFD1EF4647F006D9E7C /* Connected Accounts */,
 				19CD70001EF46A86006D9E7C /* Deactivate Account */,
-				19E7865D1F06D31700956958 /* FilterSearchController.swift */,
 			);
 			name = SettingController;
 			sourceTree = "<group>";
@@ -532,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19C20B021ED8A9F000C6FF17 /* LaunchScreen.storyboard in Resources */,
+				195D46741F0DF7D500E59777 /* Verification-email.gif in Resources */,
 				19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */,
 				19C390491EE11D7B00954E64 /* OFL.txt in Resources */,
 				19C20AFD1ED8A9F000C6FF17 /* Main.storyboard in Resources */,
@@ -593,9 +617,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
 				1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
+				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
 				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
 				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
@@ -605,6 +631,7 @@
 				19D2BD4E1ED9543400529F7F /* Menu.swift in Sources */,
 				19086CE71EFCCE110024F7D0 /* EventCategory.swift in Sources */,
 				1907D5B41EED4B8000E603A6 /* UserRegistrationController.swift in Sources */,
+				195D46711F0DF79500E59777 /* GifExtension.swift in Sources */,
 				19C390531EE1E31700954E64 /* DetailEventController+Setups.swift in Sources */,
 				19C390571EE1E82300954E64 /* RewardCell.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
@@ -623,6 +650,7 @@
 				19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */,
 				19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */,
 				19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */,
+				195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */,
 				1907D5AB1EED12D800E603A6 /* LandingPagePreviewContainer.swift in Sources */,
 				19CD6FF71EF39833006D9E7C /* TemplateForScrollViewController.swift in Sources */,
 				19E64B6A1EDB202B0085624C /* Event.swift in Sources */,

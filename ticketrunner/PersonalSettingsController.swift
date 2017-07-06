@@ -27,7 +27,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         setupViews()
         setupTitleLabel()
         setupKeyboardObservers()
-        setupScrollView(height: 980)
+        setupScrollView(height: 930)
         self.hideKeyboardWhenTappedAround(views: [view, personalContainer])
         
         
@@ -122,7 +122,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         addressContainer.centerXAnchor.constraint(equalTo: scrollContainerView.centerXAnchor).isActive = true
         addressContainer.topAnchor.constraint(equalTo: personalContainer.bottomAnchor, constant: 16).isActive = true
         addressContainer.widthAnchor.constraint(equalTo: personalContainer.widthAnchor).isActive = true
-        addressContainer.heightAnchor.constraint(equalToConstant: 336).isActive = true
+        addressContainer.heightAnchor.constraint(equalToConstant: 286).isActive = true
         
         contactContainer.centerXAnchor.constraint(equalTo: scrollContainerView.centerXAnchor).isActive = true
         contactContainer.topAnchor.constraint(equalTo: addressContainer.bottomAnchor, constant: 16).isActive = true
