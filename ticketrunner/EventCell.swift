@@ -31,7 +31,7 @@ class EventCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Masquerade & Crime - Um Vaters Willen, Hercule Poirot ermittelt!"
         label.textAlignment = .left
         label.numberOfLines = 2

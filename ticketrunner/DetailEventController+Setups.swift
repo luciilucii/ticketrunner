@@ -55,7 +55,7 @@ extension DetailEventController {
         eventInfoContainer.topAnchor.constraint(equalTo: eventImageView.bottomAnchor).isActive = true
         eventInfoContainer.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         eventInfoContainer.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        eventInfoContainer.heightAnchor.constraint(equalToConstant: 317).isActive = true
+        eventInfoContainer.heightAnchor.constraint(equalToConstant: 283).isActive = true
         
         //x,y,w,h
         promoteContainerView.topAnchor.constraint(equalTo: eventInfoContainer.bottomAnchor, constant: 8).isActive = true
@@ -118,22 +118,22 @@ extension DetailEventController {
         eventNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        streetLabel.leftAnchor.constraint(equalTo: eventInfoContainer.leftAnchor, constant: 32).isActive = true
+        streetLabel.leftAnchor.constraint(equalTo: eventInfoContainer.leftAnchor, constant: 16).isActive = true
         streetLabel.topAnchor.constraint(equalTo: eventNameLabel.bottomAnchor, constant: 8).isActive = true
         streetLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
-        streetLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        streetLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
-        dateLabel.rightAnchor.constraint(equalTo: eventInfoContainer.rightAnchor, constant: -32).isActive = true
+        dateLabel.rightAnchor.constraint(equalTo: eventInfoContainer.rightAnchor, constant: -16).isActive = true
         dateLabel.topAnchor.constraint(equalTo: streetLabel.topAnchor).isActive = true
         dateLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
-        dateLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        dateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
         locationLabel.leftAnchor.constraint(equalTo: streetLabel.leftAnchor).isActive = true
         locationLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor).isActive = true
         locationLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        locationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
         eventDesriptionHeadlineLabel.centerXAnchor.constraint(equalTo: eventInfoContainer.centerXAnchor).isActive = true
@@ -150,7 +150,7 @@ extension DetailEventController {
         //x,y,w,h
         moreDescriptionButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
         moreDescriptionButton.rightAnchor.constraint(equalTo: eventInfoContainer.rightAnchor, constant: -16).isActive = true
-        moreDescriptionButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        moreDescriptionButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         moreDescriptionButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
     }

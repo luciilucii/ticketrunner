@@ -14,6 +14,7 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     private let headerId = "headerId"
     private let cellId = "cellId"
+    private let noEventId = "noEventId"
     
     var events = [Event]()
     
@@ -26,9 +27,8 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         setupTitleLabel()
         setupMenuBar()
         
-        events = EventResource().getEvents()
+//        events = EventResource().getEvents()
         
-        setupBackgroundImage()
         setupCollectionView()
         
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
@@ -38,15 +38,12 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon_3")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
         menuButton.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = menuButton
-        
     }
     
     var menu: Menu!
     
-    
     func handleMenu() {
         menu.showMenu()
-        
     }
     
     func setupCollectionView() {
@@ -54,19 +51,9 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView?.register(EventRewardCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(RewardsHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
+        collectionView?.register(HomeNoEventCell.self, forCellWithReuseIdentifier: noEventId)
+        
         collectionView?.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
-    }
-    
-    func setupBackgroundImage() {
-        
-        if events.count == 0 {
-            noRewardsImageView.isHidden = false
-            noRewardLabel.isHidden = false
-        } else {
-            noRewardsImageView.isHidden = true
-            noRewardLabel.isHidden = true
-        }
-        
     }
     
     let rewardsTitleView: UIView = {
@@ -85,40 +72,7 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         return iv
     }()
     
-    let noRewardsImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "no rewards")
-        return iv
-    }()
-
-    let noRewardLabel: UILabel = {
-        let label = UILabel()
-        label.text = "No Rewards yet"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     func setupViews() {
-
-        view.addSubview(noRewardsImageView)
-        view.addSubview(noRewardLabel)
-        
-        //x,y,w,h
-        noRewardsImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20).isActive = true
-        noRewardsImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noRewardsImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        noRewardsImageView.widthAnchor.constraint(equalToConstant: view.frame.width - 100).isActive = true
-        
-        //x,y,w,h
-        noRewardLabel.topAnchor.constraint(equalTo: noRewardsImageView.bottomAnchor, constant: 8).isActive = true
-        noRewardLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noRewardLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        noRewardLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
     }
     
@@ -143,18 +97,26 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let event = events[indexPath.item]
-        guard let rewardsCount = event.rewards?.count else {
-            return CGSize(width: 0, height: 0)
+        if events.count == 0 {
+            let height = CGFloat(488)
+            let width = view.frame.width - 16
+            
+            let size = CGSize(width: width, height: height)
+            
+            return size
+        } else {
+            let event = events[indexPath.item]
+            guard let rewardsCount = event.rewards?.count else {
+                return CGSize(width: 0, height: 0)
+            }
+            
+            let height = getCellHeightFor(rewardsCount: rewardsCount)
+            let width = view.frame.width - 16
+            
+            let size = CGSize(width: width, height: height)
+            
+            return size
         }
-        
-        let height = getCellHeightFor(rewardsCount: rewardsCount)
-        let width = view.frame.width - 16
-        
-        let size = CGSize(width: width, height: height)
-        
-        return size
-        
     }
     
     func getCellHeightFor(rewardsCount: Int) -> CGFloat {
@@ -165,29 +127,39 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventRewardCell
-        
-        cell.backgroundColor = UIColor.white
-        
-        let event = events[indexPath.item]
-        
-        cell.currentEvent = event
-        cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-        
-        cell.rewards = event.rewards
-        cell.eventRewardsContainer = EventRewardsContainer()
-        
-        cell.titleLabel.text = event.name
-        
-        return cell
+        if events.count == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
+            
+            cell.rewardsController = self
+            cell.noEventImageView.image = #imageLiteral(resourceName: "no rewards")
+            
+            cell.noEventTitleLabel.text = "No Rewards yet..."
+            cell.noEventDescriptionLabel.text = "Not so fast, Thundercat. You have not even started promoting an event and already want to receive rewards?! Not in this barrio, amigo.\n\nJust start promoting an event and we’ll be able to show you something here."
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventRewardCell
+            
+            cell.backgroundColor = UIColor.white
+            
+            let event = events[indexPath.item]
+            
+            cell.currentEvent = event
+            cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
+            
+            cell.rewards = event.rewards
+            cell.eventRewardsContainer = EventRewardsContainer()
+            
+            cell.titleLabel.text = event.name
+            
+            return cell
+        }
     }
     
     func handlePromote(sender: UIButton) {
         let event = events[sender.tag]
         handlePromoteFor(event: event)
     }
-    
     
     func handleRewards(sender: UIButton) {
         let event = events[sender.tag]
@@ -214,7 +186,12 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return events.count
+        
+        if events.count == 0 {
+            return 1
+        } else {
+            return events.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

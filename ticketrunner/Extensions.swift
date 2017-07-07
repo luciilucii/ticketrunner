@@ -193,7 +193,7 @@ extension UICollectionViewController {
     }
     
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
-        let basis: CGFloat = 768
+        let basis: CGFloat = 734
         let lineUpHeight = lineUpContainer.getHeight()
         let rewardHeight = rewardContainer.getHeight()
         let height = basis + lineUpHeight + rewardHeight + 8 + 119

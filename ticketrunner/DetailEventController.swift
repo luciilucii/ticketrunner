@@ -134,8 +134,8 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     let eventNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.numberOfLines = 2
         label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
         label.text = "Seepark 6 | Süddeutschlands größte Mallorca-Party"

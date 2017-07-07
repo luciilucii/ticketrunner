@@ -11,6 +11,7 @@ import UIKit
 class HomeNoEventCell: BaseCell {
     
     var homeController: HomeController?
+    var rewardsController: RewardsController?
     
     let noEventImageView: UIImageView = {
         let iv = UIImageView()
@@ -59,7 +60,7 @@ class HomeNoEventCell: BaseCell {
         addSubview(noEventDescriptionLabel)
         addSubview(promoteButton)
         
-        noEventImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 250)
+        noEventImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 24, paddingBottom: 0, paddingRight: 24, width: 0, height: 250)
         noEventTitleLabel.anchor(top: noEventImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         noEventDescriptionLabel.anchor(top: noEventTitleLabel.bottomAnchor, left: noEventTitleLabel.leftAnchor, bottom: nil, right: noEventTitleLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
         
@@ -68,16 +69,11 @@ class HomeNoEventCell: BaseCell {
     }
     
     func handlePromote() {
-        
-        homeController?.menu?.showEventController()
-        
-//        let layout = UICollectionViewFlowLayout()
-//        let eventContoller = EventController(collectionViewLayout: layout)
-//        
-//        eventContoller.menu = homeController?.menu
-//        let navController = UINavigationController(rootViewController: eventContoller)
-//        
-//        homeController?.present(navController, animated: false, completion: nil)
+        if homeController != nil {
+            homeController?.menu?.showEventController()
+        } else if rewardsController != nil {
+            rewardsController?.menu.showEventController()
+        }
     }
     
     

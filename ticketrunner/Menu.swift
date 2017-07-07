@@ -197,17 +197,18 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func handleLogout() {
         
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+        
         let layout = UICollectionViewFlowLayout()
         let loginStartController = StartController(collectionViewLayout: layout)
         
-        guard let logoutController = homeController else {
-            return
-        }
-        
-        loginStartController.homeController = logoutController
-        logoutController.present(loginStartController, animated: true) {
+        startController?.present(loginStartController, animated: true, completion: { 
             UIApplication.shared.statusBarStyle = .default
-        }
+        })
+        
+        
+        
         
     }
     
@@ -254,6 +255,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.white
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.alwaysBounceVertical = true
         return cv
     }()
     

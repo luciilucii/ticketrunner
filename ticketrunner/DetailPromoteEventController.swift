@@ -173,7 +173,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     }()
     
     let copyLinkButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Copy Link", for: .normal)
         button.addTarget(self, action: #selector(handleCopy), for: .touchUpInside)
@@ -242,7 +242,7 @@ class DetailPromoteEventController: UIViewController, UIScrollViewDelegate, UITe
     }()
     
     let shareButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Share", for: .normal)
         button.addTarget(self, action: #selector(handleShare), for: .touchUpInside)

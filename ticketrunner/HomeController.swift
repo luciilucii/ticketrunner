@@ -65,7 +65,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomeNoEventCell.self, forCellWithReuseIdentifier: noEventId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
-        
     }
     
     func checkIfMenuIsSet() {
@@ -76,11 +75,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func checkIfUserIsLoggedIn() {
-        
         if currentUser == nil {
             menu?.handleLogout()
         }
-        
     }
     
     func setupMenuBar() {

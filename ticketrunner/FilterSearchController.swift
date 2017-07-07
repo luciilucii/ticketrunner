@@ -28,7 +28,9 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         
         setupViews()
         setupTitleLabel()
-        setupScrollView(height: 2500)
+        
+        let height = view.frame.height
+        setupScrollView(height: height)
         setupPickerView()
         setupNavBarButtons()
         
@@ -106,22 +108,22 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         return tv
     }()
     
-    let radiusTextField: UITextField = {
-        let tv = UITextField()
+    let radiusLabel: UILabel = {
+        let tv = UILabel()
         tv.backgroundColor = .white
-        tv.setLeftPaddingPoints(5)
-        tv.setRightPaddingPoints(5)
-        tv.text = "25km"
+        tv.text = "  25km"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return tv
     }()
     
-    let kilometerSlider: UISlider = {
-        let slider = UISlider()
+    let kilometerSlider: RadiusSlider = {
+        let slider = RadiusSlider()
         slider.maximumValue = 100.0
         slider.value = 25.0
         slider.minimumValue = 1.0
         slider.thumbTintColor = .white
+        slider.tintColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
         return slider
     }()
     
@@ -129,15 +131,21 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         scrollContainerView.addSubview(eventNameTextField)
         scrollContainerView.addSubview(categoryTextField)
         scrollContainerView.addSubview(cityTextField)
-        scrollContainerView.addSubview(radiusTextField)
+        scrollContainerView.addSubview(radiusLabel)
         scrollContainerView.addSubview(kilometerSlider)
         
         eventNameTextField.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         categoryTextField.anchor(top: eventNameTextField.bottomAnchor, left: eventNameTextField.leftAnchor, bottom: nil, right: eventNameTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         cityTextField.anchor(top: categoryTextField.bottomAnchor, left: categoryTextField.leftAnchor, bottom: nil, right: categoryTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        radiusTextField.anchor(top: cityTextField.bottomAnchor, left: cityTextField.leftAnchor, bottom: nil, right: cityTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        kilometerSlider.anchor(top: radiusTextField.bottomAnchor, left: radiusTextField.leftAnchor, bottom: nil, right: radiusTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        radiusLabel.anchor(top: cityTextField.bottomAnchor, left: cityTextField.leftAnchor, bottom: nil, right: cityTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        kilometerSlider.anchor(top: radiusLabel.bottomAnchor, left: radiusLabel.leftAnchor, bottom: nil, right: radiusLabel.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 32)
         
+    }
+    
+    func handleSliderChange(sender: UISlider) {
+        
+        let radius = Int(sender.value)
+        radiusLabel.text = "  \(radius)km"
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -164,7 +172,6 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
             categoryTextField.text = category?.categoryName
         }
     }
-
     
     fileprivate func setupNavBarButtons() {
         let closeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleClose))
@@ -207,3 +214,18 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         self.navigationItem.titleView = titleView
     }
 }
+
+class RadiusSlider: UISlider {
+    
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: 20))
+    }
+    
+}
+
+
+
+
+
+
+
