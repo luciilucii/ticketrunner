@@ -1,12 +1,15 @@
 PODS:
+  - Alamofire (4.5.0)
   - Intercom (3.1.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4)
   - Intercom
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Intercom: bbaa3aee66d90d99ff4f6184dda931ff4ecc4382
 
-PODFILE CHECKSUM: 45667dcf46e7b351a8bcf839268bb8d706e653c3
+PODFILE CHECKSUM: 9bac76f2f27002f8ff9e6de0a6321371ad837e74
 
 COCOAPODS: 1.2.0

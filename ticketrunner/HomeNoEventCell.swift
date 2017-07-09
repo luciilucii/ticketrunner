@@ -41,7 +41,7 @@ class HomeNoEventCell: BaseCell {
     }()
     
     lazy var promoteButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
         button.setTitle("Promote", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)

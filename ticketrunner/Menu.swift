@@ -126,14 +126,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let menuPoint = menuPoints[indexPath.item]
         
         if menuPoint.name == MenuName.Home {
-            
-            let layout = UICollectionViewFlowLayout()
-            let controller = HomeController(collectionViewLayout: layout)
-            let homeController = UINavigationController(rootViewController: controller)
-            controller.menu = self
-            controller.currentUser = currentUser
-            self.showMenuController(controller: homeController)
-            controller.menu?.startController = controller
+            setupHomeController()
         }
         
         if menuPoint.name == MenuName.Rewards {
@@ -197,8 +190,10 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func handleLogout() {
         
-        let indexPath = IndexPath(item: 0, section: 0)
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+//        let indexPath = IndexPath(item: 0, section: 0)
+//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+        
+        setupHomeController()
         
         let layout = UICollectionViewFlowLayout()
         let loginStartController = StartController(collectionViewLayout: layout)
@@ -206,10 +201,16 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         startController?.present(loginStartController, animated: true, completion: { 
             UIApplication.shared.statusBarStyle = .default
         })
-        
-        
-        
-        
+    }
+    
+    func setupHomeController() {
+        let layout = UICollectionViewFlowLayout()
+        let controller = HomeController(collectionViewLayout: layout)
+        let homeController = UINavigationController(rootViewController: controller)
+        controller.menu = self
+        controller.currentUser = currentUser
+        self.showMenuController(controller: homeController)
+        controller.menu?.startController = controller
     }
     
     func handleNewViewController(menuPoint: MenuPoint) {

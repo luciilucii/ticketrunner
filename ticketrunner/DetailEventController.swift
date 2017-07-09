@@ -101,6 +101,7 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         //TODO: change that!
         artists = currentEvent?.artists
         
+        
     }
     
     override func viewDidLayoutSubviews() {

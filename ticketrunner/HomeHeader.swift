@@ -250,17 +250,20 @@ class HomeHeader: BaseCell {
     
     func handleRotation(percent: CGFloat, logoImageView: UIImageView) {
         UIView.animate(withDuration: 7.0, animations: {
-            logoImageView.transform = CGAffineTransform(rotationAngle: percent * 2 * CGFloat(Double.pi))
+            
+            let rotationAngle: CGFloat = percent * 2 * CGFloat(Double.pi)
+            logoImageView.transform = CGAffineTransform(rotationAngle: rotationAngle)
         }) { (completed) in
-            self.handleRotationBack(percent: percent + 0.5, logoImageView: logoImageView)
+            self.handleRotationBack(percent: percent + 0.49, logoImageView: logoImageView)
         }
     }
     
     func handleRotationBack(percent: CGFloat, logoImageView: UIImageView) {
         UIView.animate(withDuration: 7.0, animations: {
-            logoImageView.transform = CGAffineTransform(rotationAngle: percent * 2 * CGFloat(Double.pi))
+            let rotationAngle: CGFloat = percent * 2 * CGFloat(Double.pi)
+            logoImageView.transform = CGAffineTransform(rotationAngle: rotationAngle)
         }) { (completed) in
-            self.handleRotation(percent: percent - 0.5, logoImageView: logoImageView)
+            self.handleRotation(percent: percent - 0.51, logoImageView: logoImageView)
         }
     }
     

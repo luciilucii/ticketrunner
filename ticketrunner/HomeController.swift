@@ -9,6 +9,7 @@
 import UIKit
 import MobileCoreServices
 import Intercom
+import Alamofire
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -42,6 +43,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentUser = User()
         
         checkIfMenuIsSet()
         checkIfUserIsLoggedIn()
