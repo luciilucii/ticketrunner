@@ -44,6 +44,7 @@
 		19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFE1ED8A9F000C6FF17 /* Assets.xcassets */; };
 		19C20B021ED8A9F000C6FF17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C20B001ED8A9F000C6FF17 /* LaunchScreen.storyboard */; };
 		19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */; };
+		19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C35F711F13E79A0056479F /* CustomTextField.swift */; };
 		19C390491EE11D7B00954E64 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19C390481EE11D7B00954E64 /* OFL.txt */; };
 		19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390501EE1E23A00954E64 /* DetailEventViewController+Map.swift */; };
 		19C390531EE1E31700954E64 /* DetailEventController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390521EE1E31700954E64 /* DetailEventController+Setups.swift */; };
@@ -120,6 +121,7 @@
 		19C20B011ED8A9F000C6FF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19C20B031ED8A9F000C6FF17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		19C35F711F13E79A0056479F /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		19C3903B1EE11D3E00954E64 /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
 		19C3903C1EE11D3E00954E64 /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		19C3903D1EE11D3E00954E64 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				19FDD14B1EE2E53000502BC6 /* EventRewardsContainer.swift */,
 				19FF8C231EEBC41800C40175 /* CustomPointAnnotation.swift */,
 				19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */,
+				19C35F711F13E79A0056479F /* CustomTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				19FDD14C1EE2E53000502BC6 /* EventRewardsContainer.swift in Sources */,
 				190C19211EDE7E33003BC179 /* EventDescriptionController.swift in Sources */,
 				19CD6FF51EF397B1006D9E7C /* EventSubscriptionsController.swift in Sources */,
+				19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */,
 				1907757D1EF6B8AE00C166CD /* UserCell.swift in Sources */,
 				19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */,
 				191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */,

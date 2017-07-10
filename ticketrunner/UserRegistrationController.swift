@@ -96,63 +96,40 @@ class UserRegistrationController: UIViewController {
         return label
     }()
     
-    let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = UIColor.darkGray
-        textField.placeholder = "Email Adresse"
-        textField.keyboardType = UIKeyboardType.emailAddress
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        return textField
+    let emailTextField: CustomAnimatedTextField = {
+        let tf = CustomAnimatedTextField()
+        tf.textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.textField.keyboardType = .emailAddress
+        tf.animatedLabel.text = "Email Address"
+        tf.backgroundColor = .white
+        return tf
     }()
     
-    let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = UIColor.darkGray
-        textField.placeholder = "Password"
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        textField.isSecureTextEntry = true
-        return textField
+    let passwordTextField: CustomAnimatedTextField = {
+        let tf = CustomAnimatedTextField()
+        tf.textField.isSecureTextEntry = true
+        tf.backgroundColor = .white
+        tf.animatedLabel.text = "Password"
+        tf.textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        return tf
     }()
     
-    let emailSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let passwordSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = UIColor.darkGray
-        textField.placeholder = "Name"
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        return textField
-    }()
-    
-    let nameSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let nameTextField: CustomAnimatedTextField = {
+        let tf = CustomAnimatedTextField()
+        tf.textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.animatedLabel.text = "Your Name"
+        tf.backgroundColor = .white
+        return tf
     }()
     
     let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        button.backgroundColor = UIColor(red:0.64, green:0.89, blue:0.76, alpha:1.0)
         button.setTitle("Registrieren", for: .normal)
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         button.layer.cornerRadius = 5
+        button.isEnabled = false
         return button
     }()
     
@@ -240,10 +217,7 @@ class UserRegistrationController: UIViewController {
         inputsContainerView.addSubview(titleLabel)
         inputsContainerView.addSubview(emailTextField)
         inputsContainerView.addSubview(passwordTextField)
-        inputsContainerView.addSubview(emailSeperatorView)
-        inputsContainerView.addSubview(passwordSeperatorView)
         inputsContainerView.addSubview(nameTextField)
-        inputsContainerView.addSubview(nameSeperatorView)
         
         
         //x,y,w,h
@@ -254,31 +228,16 @@ class UserRegistrationController: UIViewController {
         //x,y,w,h
         inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: emailTextField)
         emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 8).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
         inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: passwordTextField)
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        //x,y,w,h
-        inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: emailSeperatorView)
-        emailSeperatorView.bottomAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
-        emailSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        //x,y,w,h
-        inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: passwordSeperatorView)
-        passwordSeperatorView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor).isActive = true
-        passwordSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: nameTextField)
         nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        nameTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        //x,y,w,h
-        inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: nameSeperatorView)
-        nameSeperatorView.bottomAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
-        nameSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }
     
@@ -317,8 +276,24 @@ class UserRegistrationController: UIViewController {
         }
     }
     
+    func handleTextInputChange() {
+        
+        let isFormValid = emailTextField.textField.text?.characters.count ?? 0 > 0 && nameTextField.textField.text?.characters.count ?? 0 > 0 && passwordTextField.textField.text?.characters.count ?? 0 > 0
+        
+        if isFormValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor(red:0.64, green:0.89, blue:0.76, alpha:1.0)
+        }
+        
+    }
+    
     func handleRegister() {
         //TODO: Login einrichten
+        
+        startController?.handleStoreSessionKey()
         
         handleDismiss()
         guard let controller = startController else {

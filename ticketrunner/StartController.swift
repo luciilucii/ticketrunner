@@ -28,6 +28,14 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         setupCollectionView()
     }
     
+    func handleStoreSessionKey() {
+        
+        //MARK: Nur ein test
+        let sessionKeyExample = NSUUID().uuidString
+        UserDefaults.standard.setValue(sessionKeyExample, forKey: "sessionKey")
+        
+    }
+    
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
     }

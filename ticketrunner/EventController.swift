@@ -12,6 +12,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     var titleLabel: UILabel!
     var events = EventResource().getEvents()
+    var filteredEvents: [Event]?
     
     let eventResource = EventResource()
     
@@ -44,6 +45,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     func handleSearch() {
         let filterSearchController = FilterSearchController()
+        filterSearchController.events = events
+        filterSearchController.eventController = self
         let navController = UINavigationController(rootViewController: filterSearchController)
         present(navController, animated: true, completion: nil)
     }
@@ -96,9 +99,17 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         cell.backgroundColor = UIColor.white
         
-        let event = events[indexPath.item]
+        var event: Event?
         
-        cell.currentEvent = event
+        if filteredEvents != nil {
+            event = filteredEvents?[indexPath.item]
+        } else {
+            event = events[indexPath.item]
+        }
+        
+        guard let currentEvent = event else { return cell }
+        
+        cell.currentEvent = currentEvent
         
         cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
         
@@ -111,7 +122,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         cell.eventInfoButton.tag = indexPath.item
         cell.eventInfoButton.addTarget(self, action: #selector(handleShowEventInfo), for: .touchUpInside)
         
-        cell.titleLabel.text = event.name
+        cell.titleLabel.text = currentEvent.name
         
         return cell
     }
@@ -128,15 +139,28 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var event: Event?
         
-        let event = events[indexPath.item]
-        let controller = setupDetailController(event: event)
+        if filteredEvents != nil {
+            event = filteredEvents?[indexPath.item]
+        } else {
+            event = events[indexPath.item]
+        }
+        
+        guard let controllerEvent = event else { return }
+        let controller = setupDetailController(event: controllerEvent)
         
         show(controller, sender: self)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return events.count
+        
+        if filteredEvents != nil {
+            guard let returnCount = filteredEvents?.count else { return 0 }
+            return returnCount
+        } else {
+            return events.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

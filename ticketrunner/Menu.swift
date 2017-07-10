@@ -190,8 +190,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func handleLogout() {
         
-//        let indexPath = IndexPath(item: 0, section: 0)
-//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+        UserDefaults.standard.removeObject(forKey: "sessionKey")
         
         setupHomeController()
         

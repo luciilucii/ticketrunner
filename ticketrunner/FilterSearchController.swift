@@ -12,6 +12,8 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
     
     var eventController: EventController?
     
+    var events = [Event]()
+    
     var pickerView = UIPickerView()
     
     var titleLabel: UILabel!
@@ -188,6 +190,17 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
     
     func handleSearch() {
         
+        guard let searchText = eventNameTextField.text else {
+            eventController?.filteredEvents = nil
+            dismiss(animated: true, completion: { 
+                self.eventController?.collectionView?.reloadData()
+            })
+            
+            return
+        }
+        
+        filterContentFor(searchText: searchText)
+        
         dismiss(animated: true) {
             
             //TODO: Put the Search mechanism here
@@ -213,6 +226,18 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         
         self.navigationItem.titleView = titleView
     }
+    
+    func filterContentFor(searchText: String) {
+        
+        eventController?.filteredEvents = events.filter({ (event) -> Bool in
+            guard let searchString = event.name else { return false }
+            
+            return searchString.lowercased().contains(searchText.lowercased())
+        })
+        
+        eventController?.collectionView?.reloadData()
+    }
+    
 }
 
 class RadiusSlider: UISlider {

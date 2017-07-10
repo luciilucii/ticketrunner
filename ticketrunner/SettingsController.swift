@@ -44,11 +44,17 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
         
         setupCollectionView()
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         Intercom.setLauncherVisible(true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
+        super.viewDidDisappear(animated)
         
         Intercom.setLauncherVisible(false)
     }
@@ -75,6 +81,7 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         collectionView?.register(SettingCell.self, forCellWithReuseIdentifier: cellId)
         
+        collectionView?.alwaysBounceVertical = true
         collectionView?.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
     }
     

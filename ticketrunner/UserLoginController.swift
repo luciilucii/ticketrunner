@@ -96,47 +96,32 @@ class UserLoginController: UIViewController {
         return label
     }()
     
-    let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = UIColor.darkGray
-        textField.placeholder = "Email Adresse"
-        textField.keyboardType = UIKeyboardType.emailAddress
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        return textField
+    let emailTextField: CustomAnimatedTextField = {
+        let tf = CustomAnimatedTextField()
+        tf.textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.textField.keyboardType = .emailAddress
+        tf.animatedLabel.text = "Email Address"
+        tf.backgroundColor = .white
+        return tf
     }()
     
-    let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = UIColor.darkGray
-        textField.placeholder = "Password"
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    
-    let emailSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.74, blue:1.00, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let passwordSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.74, blue:1.00, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let passwordTextField: CustomAnimatedTextField = {
+        let tf = CustomAnimatedTextField()
+        tf.textField.isSecureTextEntry = true
+        tf.backgroundColor = .white
+        tf.animatedLabel.text = "Password"
+        tf.textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        return tf
     }()
     
     let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red:0.00, green:0.74, blue:1.00, alpha:1.0)
+        button.backgroundColor = UIColor(red:0.53, green:0.87, blue:0.96, alpha:1.0)
         button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
+        button.isEnabled = false
         return button
     }()
     
@@ -228,8 +213,6 @@ class UserLoginController: UIViewController {
         inputsContainerView.addSubview(titleLabel)
         inputsContainerView.addSubview(emailTextField)
         inputsContainerView.addSubview(passwordTextField)
-        inputsContainerView.addSubview(emailSeperatorView)
-        inputsContainerView.addSubview(passwordSeperatorView)
         inputsContainerView.addSubview(forgetPasswordButton)
         
         
@@ -241,24 +224,15 @@ class UserLoginController: UIViewController {
         //x,y,w,h
         inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: emailTextField)
         emailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
         inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: passwordTextField)
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        //x,y,w,h
-        inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: emailSeperatorView)
-        emailSeperatorView.bottomAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
-        emailSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        //x,y,w,h
-        inputsContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: passwordSeperatorView)
-        passwordSeperatorView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor).isActive = true
-        passwordSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        forgetPasswordButton.anchor(top: passwordSeperatorView.bottomAnchor, left: passwordSeperatorView.leftAnchor, bottom: nil, right: passwordSeperatorView.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        forgetPasswordButton.anchor(top: passwordTextField.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 32)
+        forgetPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }
     
@@ -300,16 +274,29 @@ class UserLoginController: UIViewController {
         }
     }
     
+    func handleTextInputChange() {
+        
+        let isFormValid = emailTextField.textField.text?.characters.count ?? 0 > 0 && passwordTextField.textField.text?.characters.count ?? 0 > 0
+        
+        if isFormValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor(red:0.00, green:0.74, blue:1.00, alpha:1.0)
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor(red:0.53, green:0.87, blue:0.96, alpha:1.0)
+        }
+        
+    }
+    
     func handleLogin() {
         //TODO: Login einrichten
-        print("this is workin'")
+        
+        startController?.handleStoreSessionKey()
         
         handleDismiss()
         guard let controller = startController else {
             return
         }
-        
-        
         
         controller.dismiss(animated: true, completion: nil)
         

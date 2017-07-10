@@ -47,7 +47,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         currentUser = User()
         
         checkIfMenuIsSet()
-        checkIfUserIsLoggedIn()
+        checkIfSessionKeyIsValid()
         
 //        userEvents = EventResource().getEvents()
         
@@ -77,10 +77,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
-    func checkIfUserIsLoggedIn() {
-        if currentUser == nil {
-            menu?.handleLogout()
+    func checkIfSessionKeyIsValid() {
+        
+        //TEST FOR SESSIONKEY
+        
+        if let loadedString = UserDefaults.standard.string(forKey: "sessionKey") {
+            print(loadedString)
+        } else {
+            let layout = UICollectionViewFlowLayout()
+            let loginStartController = StartController(collectionViewLayout: layout)
+            
+            present(loginStartController, animated: true, completion: {
+                UIApplication.shared.statusBarStyle = .default
+            })
+
         }
+        
     }
     
     func setupMenuBar() {
@@ -88,7 +100,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         menuButton.tintColor = UIColor.white
         
         navigationItem.leftBarButtonItem = menuButton
-        
     }
     
     func setupTitleLabel() {
