@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserLoginController: UIViewController {
+class UserLoginController: UIViewController, UITextFieldDelegate {
     
     var startController: StartController?
     
@@ -285,6 +285,7 @@ class UserLoginController: UIViewController {
             loginButton.isEnabled = false
             loginButton.backgroundColor = UIColor(red:0.53, green:0.87, blue:0.96, alpha:1.0)
         }
+        
         
     }
     

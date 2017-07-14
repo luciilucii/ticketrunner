@@ -293,6 +293,10 @@ class UserRegistrationController: UIViewController {
     func handleRegister() {
         //TODO: Login einrichten
         
+        guard let username = nameTextField.textField.text, let email = emailTextField.textField.text, let password = passwordTextField.textField.text else { return }
+        
+        makeSignUpRequest(username: username, email: email, password: password)
+        
         startController?.handleStoreSessionKey()
         
         handleDismiss()
@@ -307,6 +311,10 @@ class UserRegistrationController: UIViewController {
         homeController?.menu?.currentUser = UserResource().getUser()
         UIApplication.shared.statusBarStyle = .lightContent
         
+    }
+    
+    fileprivate func makeSignUpRequest(username: String, email: String, password: String) {
+        print(123)
     }
     
     func handleDismiss() {

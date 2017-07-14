@@ -25,6 +25,8 @@
 		190C19251EDF0A38003BC179 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19241EDF0A38003BC179 /* UserResource.swift */; };
 		190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */; };
 		191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191253A61EF4FFEC000839B1 /* ApiService.swift */; };
+		191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */; };
+		191B031D1F154D3F00CE8ED4 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */; };
 		19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */; };
 		19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB41EDA929100E0FFEC /* Extensions.swift */; };
 		193930DC1EEC6169004E52C0 /* DetailPromoteController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */; };
@@ -100,6 +102,8 @@
 		190C19241EDF0A38003BC179 /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMessages.swift; sourceTree = "<group>"; };
 		191253A61EF4FFEC000839B1 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
+		191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		19247BB41EDA929100E0FFEC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailPromoteController+Setups.swift"; sourceTree = "<group>"; };
@@ -390,6 +394,8 @@
 			children = (
 				19247BB41EDA929100E0FFEC /* Extensions.swift */,
 				195D46701F0DF79500E59777 /* GifExtension.swift */,
+				191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */,
+				191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
 				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
+				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
 				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
 				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
@@ -664,6 +671,7 @@
 				190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */,
 				19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,
+				191B031D1F154D3F00CE8ED4 /* KeychainAccess.swift in Sources */,
 				19CD70021EF46ABA006D9E7C /* DeactivateAccountController.swift in Sources */,
 				19CD6FFC1EF39EF1006D9E7C /* ChangePasswordController.swift in Sources */,
 				19FF8C241EEBC41800C40175 /* CustomPointAnnotation.swift in Sources */,
