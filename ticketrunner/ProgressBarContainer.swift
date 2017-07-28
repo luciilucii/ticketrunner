@@ -108,7 +108,6 @@ class ProgressBarContainer: UIView {
         ticketProgressLabelForReward.centerYAnchor.constraint(equalTo: promoteBackgroundBarView.centerYAnchor).isActive = true
         ticketProgressLabelForReward.heightAnchor.constraint(equalToConstant: 30).isActive = true
         ticketProgressLabelForReward.widthAnchor.constraint(equalTo: promoteBackgroundBarView.widthAnchor).isActive = true
-        
     }
     
     func setupTriangles() {
@@ -198,7 +197,6 @@ class ProgressBarContainer: UIView {
         }
         
         setupPromoteBar(forWidth: width)
-        
     }
     
     func setupPromoteBarProgress(forReward: Reward) {

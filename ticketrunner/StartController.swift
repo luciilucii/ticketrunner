@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
+import MediaPlayer
 
 class StartController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var cellId = "cellId"
     
     var homeController: HomeController?
+    
+    var player: AVPlayer?
     
     let shortHeadlineTitles = ["", "Sign Up", "Share your Ticketrunner Link", "Keep Promoting", "Join us now"]
     let firstHeadlineTextArray = ["Promote your favorite events", "", "", "", ""]
@@ -23,9 +28,12 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
+        
         setupViews()
         setupCollectionView()
+        
+        setupBackgroundVideo()
     }
     
     func handleStoreSessionKey() {
@@ -94,14 +102,18 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         let userLoginController = UserLoginController()
         userLoginController.startController = self
         userLoginController.homeController = homeController
-        present(userLoginController, animated: true, completion: nil)
+        present(userLoginController, animated: true) { 
+            UIApplication.shared.statusBarStyle = .default
+        }
     }
     
     func showRegisterController() {
         let userRegisterController = UserRegistrationController()
         userRegisterController.startController = self
         userRegisterController.homeController = homeController
-        present(userRegisterController, animated: true, completion: nil)
+        present(userRegisterController, animated: true) {
+            UIApplication.shared.statusBarStyle = .default
+        }
     }
     
     var logoImageWidthAnchor: NSLayoutConstraint?
@@ -176,7 +188,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         }
         
         collectionView?.register(StartCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView?.backgroundColor = UIColor.white
+        collectionView?.backgroundColor = UIColor.black
         
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 148, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 148, 0)
@@ -253,6 +265,43 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
         pageControl.currentPage = pageNumber
         
+    }
+    
+    
+    
+    func setupBackgroundVideo() {
+        guard let videoUrl = Bundle.main.url(forResource: "neonsplash", withExtension: "mp4") else { return }
+        
+        player = AVPlayer(url: videoUrl)
+        player?.isMuted = true
+        
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        
+        playerLayer.frame = view.frame
+        
+        let videoView = UIView()
+        videoView.layer.addSublayer(playerLayer)
+        videoView.layer.zPosition = -1
+        
+        let blackView = UIView()
+        blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        blackView.layer.zPosition = 0
+        blackView.frame = view.frame
+        
+        videoView.addSubview(blackView)
+        
+        collectionView?.backgroundView = videoView
+        
+        player?.play()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(repeatVideo), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
+    }
+    
+    func repeatVideo() {
+        self.player?.seek(to: kCMTimeZero)
+        self.player?.play()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

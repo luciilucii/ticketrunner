@@ -53,7 +53,7 @@ class StartCell: BaseCell {
         textView.font = UIFont.boldSystemFont(ofSize: 24)
         textView.textAlignment = .center
         textView.isScrollEnabled = false
-        textView.textColor = UIColor.darkGray
+        textView.textColor = UIColor.white
         textView.backgroundColor = .clear
         textView.text = "Short Headline here"
         return textView
@@ -65,7 +65,7 @@ class StartCell: BaseCell {
         tv.textAlignment = .center
         tv.isEditable = false
         tv.isScrollEnabled = false
-        tv.textColor = UIColor.darkGray
+        tv.textColor = UIColor.white
         tv.backgroundColor = .clear
         tv.font = UIFont.boldSystemFont(ofSize: 24)
         return tv
@@ -77,7 +77,7 @@ class StartCell: BaseCell {
         tv.textAlignment = .center
         tv.isEditable = false
         tv.isScrollEnabled = false
-        tv.textColor = UIColor.lightGray
+        tv.textColor = UIColor.white
         tv.backgroundColor = .clear
         tv.font = UIFont.systemFont(ofSize: 14)
         return tv

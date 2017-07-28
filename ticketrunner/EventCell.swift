@@ -8,7 +8,17 @@
 
 import UIKit
 
+protocol EventCellDelegate {
+    func didTapPromote(event: Event)
+    
+    func didTapRewards(event: Event)
+    
+    func didTapEventInfo(event: Event)
+}
+
 class EventCell: UICollectionViewCell {
+    
+    var delegate: EventCellDelegate?
     
     //INFO: Height of the Eventcell is 369 + imageview
     
@@ -93,34 +103,52 @@ class EventCell: UICollectionViewCell {
         return label
     }()
     
-    let promoteButton: UIButton = {
+    lazy var promoteButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
         button.setTitle("Promote", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.tintColor = UIColor.white
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
         return button
     }()
     
-    let rewardsButton: UIButton = {
+    func handlePromote() {
+        guard let event = currentEvent else { return }
+        delegate?.didTapPromote(event: event)
+    }
+    
+    lazy var rewardsButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Rewards", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         button.backgroundColor = .white
+        button.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
         return button
     }()
     
-    let eventInfoButton: UIButton = {
+    func handleRewards() {
+        guard let event = currentEvent else { return }
+        delegate?.didTapRewards(event: event)
+    }
+    
+    lazy var eventInfoButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Event Info", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
+        button.addTarget(self, action: #selector(handleEventInfo), for: .touchUpInside)
         return button
     }()
+    
+    func handleEventInfo() {
+        guard let event = currentEvent else { return }
+        delegate?.didTapEventInfo(event: event)
+    }
     
     let promoteSeperatorView: UIView = {
         let view = UIView()

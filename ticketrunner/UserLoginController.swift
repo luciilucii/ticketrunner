@@ -285,8 +285,6 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
             loginButton.isEnabled = false
             loginButton.backgroundColor = UIColor(red:0.53, green:0.87, blue:0.96, alpha:1.0)
         }
-        
-        
     }
     
     func handleLogin() {
@@ -308,7 +306,9 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
     }
     
     func handleDismiss() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            UIApplication.shared.statusBarStyle = .lightContent
+        })
     }
     
 }

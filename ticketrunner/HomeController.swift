@@ -11,7 +11,7 @@ import MobileCoreServices
 import Intercom
 import Alamofire
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventCellDelegate {
     
     var titleLabel: UILabel!
     let userResource = UserResource()
@@ -24,7 +24,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             guard let userName = user.firstname else {
                 return
             }
-            
         }
     }
     
@@ -88,7 +87,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let loginStartController = StartController(collectionViewLayout: layout)
             
             present(loginStartController, animated: true, completion: {
-                UIApplication.shared.statusBarStyle = .default
+//                UIApplication.shared.statusBarStyle = .ligh
             })
 
         }
@@ -206,8 +205,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if userEvents.count == 0 {
-            
+        if userEvents.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
             
             cell.homeController = self
@@ -215,6 +213,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return cell
             
         } else {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
             
             cell.backgroundColor = UIColor.white
@@ -222,22 +221,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let event = userEvents[indexPath.item]
             
             cell.currentEvent = event
+            cell.delegate = self
             
             cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-            
-            cell.promoteButton.tag = indexPath.item
-            cell.promoteButton.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
-            
-            cell.rewardsButton.tag = indexPath.item
-            cell.rewardsButton.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
-            
-            cell.eventInfoButton.tag = indexPath.item
-            cell.eventInfoButton.addTarget(self, action: #selector(handleShowEventInfo), for: .touchUpInside)
             
             cell.titleLabel.text = event.name
             
             return cell
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -285,20 +277,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
-    func handlePromote(sender: UIButton) {
-        let event = userEvents[sender.tag]
+    func didTapPromote(event: Event) {
         handlePromoteFor(event: event)
     }
     
-    
-    func handleRewards(sender: UIButton) {
-        let event = userEvents[sender.tag]
+    func didTapRewards(event: Event) {
         handleRewardsFor(event: event)
     }
     
-    func handleShowEventInfo(sender: UIButton) {
-        
-        let event = userEvents[sender.tag]
+    func didTapEventInfo(event: Event) {
         handleShowEventInfoFor(event: event)
     }
     

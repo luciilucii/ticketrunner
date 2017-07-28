@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class EventController: UICollectionViewController, UICollectionViewDelegateFlowLayout, EventCellDelegate {
     
     var titleLabel: UILabel!
     var events = EventResource().getEvents()
@@ -110,17 +110,9 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         guard let currentEvent = event else { return cell }
         
         cell.currentEvent = currentEvent
+        cell.delegate = self
         
         cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-        
-        cell.promoteButton.tag = indexPath.item
-        cell.promoteButton.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
-        
-        cell.rewardsButton.tag = indexPath.item
-        cell.rewardsButton.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
-        
-        cell.eventInfoButton.tag = indexPath.item
-        cell.eventInfoButton.addTarget(self, action: #selector(handleShowEventInfo), for: .touchUpInside)
         
         cell.titleLabel.text = currentEvent.name
         
@@ -167,18 +159,15 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         return 50
     }
     
-    func handlePromote(sender: UIButton) {
-        let event = events[sender.tag]
+    func didTapPromote(event: Event) {
         handlePromoteFor(event: event)
     }
     
-    func handleRewards(sender: UIButton) {
-        let event = events[sender.tag]
+    func didTapRewards(event: Event) {
         handleRewardsFor(event: event)
     }
     
-    func handleShowEventInfo(sender: UIButton) {
-        let event = events[sender.tag]
+    func didTapEventInfo(event: Event) {
         handleShowEventInfoFor(event: event)
     }
     

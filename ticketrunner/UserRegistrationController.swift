@@ -318,7 +318,9 @@ class UserRegistrationController: UIViewController {
     }
     
     func handleDismiss() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            UIApplication.shared.statusBarStyle = .lightContent
+        })
     }
     
 }

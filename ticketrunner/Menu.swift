@@ -196,10 +196,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         let layout = UICollectionViewFlowLayout()
         let loginStartController = StartController(collectionViewLayout: layout)
-        
-        startController?.present(loginStartController, animated: true, completion: { 
-            UIApplication.shared.statusBarStyle = .default
-        })
+        startController?.present(loginStartController, animated: true, completion: nil)
     }
     
     func setupHomeController() {
