@@ -16,7 +16,7 @@ protocol EventCellDelegate {
     func didTapEventInfo(event: Event)
 }
 
-class EventCell: UICollectionViewCell {
+class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     
     var delegate: EventCellDelegate?
     
@@ -90,7 +90,8 @@ class EventCell: UICollectionViewCell {
         let container = ProgressBarContainer()
         let width = self.frame.width - 16
         container.progressBackgroundBarWidthAnchor = width
-        container.shouldTrianglesShowUp = true
+        container.shouldTrianglesShowUp = false
+        container.delegate = self
         return container
     }()
     
@@ -274,6 +275,19 @@ class EventCell: UICollectionViewCell {
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0(30)]-8-[v1]-8-|", views: soldTicketsLabel, progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
+    }
+    
+    func shouldShowTriangles() -> Bool {
+        return true
+    }
+    
+    func progressBarBackgroundWidth() -> CGFloat {
+        let width = self.frame.width - 16
+        return width
+    }
+    
+    func shouldProgressBarAnimate() -> Bool {
+        return true
     }
     
 }

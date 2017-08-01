@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol ProgressBarContainerDelegate {
+    func shouldShowTriangles() -> Bool
+    func progressBarBackgroundWidth() -> CGFloat
+    func shouldProgressBarAnimate() -> Bool
+}
+
 class ProgressBarContainer: UIView {
+    
+    var delegate: ProgressBarContainerDelegate?
     
     var event: Event?
     var reward: Reward?
@@ -28,7 +36,14 @@ class ProgressBarContainer: UIView {
     var progressBackgroundBarWidthAnchor: CGFloat? {
         didSet {
             
+            guard let shouldShowUp = delegate?.shouldShowTriangles() else { return }
+            
             if event != nil {
+                
+                if shouldShowUp {
+                    setupTriangles()
+                }
+                
                 if shouldTrianglesShowUp == true {
                     setupTriangles()
                 }
@@ -51,8 +66,13 @@ class ProgressBarContainer: UIView {
         }
     }
     
+    var delegateProgressBackgroundBarWidthAnchor: CGFloat?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        delegateProgressBackgroundBarWidthAnchor = delegate?.progressBarBackgroundWidth()
+        
         
         setupViews()
         

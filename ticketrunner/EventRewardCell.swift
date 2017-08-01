@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventRewardCell: BaseCell {
+class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
     
     var currentEvent: Event? {
         didSet {
@@ -83,13 +83,7 @@ class EventRewardCell: BaseCell {
         let width = self.frame.width - 16
         container.progressBackgroundBarWidthAnchor = width
         container.shouldTrianglesShowUp = true
-        return container
-    }()
-    
-    let progressBarContainer: ProgressBarContainer = {
-        let container = ProgressBarContainer()
-        container.event = EventResource().getEvent()
-        container.shouldTrianglesShowUp = true
+        container.delegate = self
         return container
     }()
     
@@ -115,8 +109,18 @@ class EventRewardCell: BaseCell {
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0(30)]-8-[v1]-8-|", views: soldTicketsLabel, progressBar)
         promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
-        
-        
+    }
+    
+    func shouldShowTriangles() -> Bool {
+        return true
+    }
+    
+    func progressBarBackgroundWidth() -> CGFloat {
+        return self.frame.width - 16
+    }
+    
+    func shouldProgressBarAnimate() -> Bool {
+        return true
     }
     
 }
