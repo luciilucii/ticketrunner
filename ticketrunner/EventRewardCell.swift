@@ -24,6 +24,12 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
     var rewards: [Reward]?
     var rewardsHeight: CGFloat = 0
     
+    var shouldAnimateProgressBar = true {
+        didSet {
+            progressBar.animateProgressBar = shouldAnimateProgressBar
+        }
+    }
+    
     var eventRewardsContainer: EventRewardsContainer? {
         didSet {
             
@@ -82,7 +88,6 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
         let container = ProgressBarContainer()
         let width = self.frame.width - 16
         container.progressBackgroundBarWidthAnchor = width
-        container.shouldTrianglesShowUp = true
         container.delegate = self
         return container
     }()
@@ -122,5 +127,4 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
     func shouldProgressBarAnimate() -> Bool {
         return true
     }
-    
 }

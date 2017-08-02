@@ -29,6 +29,12 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         }
     }
     
+    var shouldAnimateProgressBar = true {
+        didSet {
+            progressBar.animateProgressBar = shouldAnimateProgressBar
+        }
+    }
+    
     let eventImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -88,9 +94,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     
     lazy var progressBar: ProgressBarContainer = {
         let container = ProgressBarContainer()
-        let width = self.frame.width - 16
-        container.progressBackgroundBarWidthAnchor = width
-        container.shouldTrianglesShowUp = false
         container.delegate = self
         return container
     }()
@@ -289,7 +292,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     func shouldProgressBarAnimate() -> Bool {
         return true
     }
-    
 }
 
 

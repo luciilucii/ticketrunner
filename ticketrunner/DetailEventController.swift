@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
+class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, ProgressBarContainerDelegate {
     
     var titleLabel: UILabel!
     var scrollView: UIScrollView!
@@ -229,7 +229,7 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
             return container
         }
         container.event = event
-        container.shouldTrianglesShowUp = true
+        container.delegate = self
         return container
     }()
     
@@ -372,6 +372,18 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         guard let url = URL(string: eventFacebookUrl) else { return }
         
         UIApplication.shared.openURL(url)
+    }
+    
+    func shouldShowTriangles() -> Bool {
+        return true
+    }
+    
+    func shouldProgressBarAnimate() -> Bool {
+        return true
+    }
+    
+    func progressBarBackgroundWidth() -> CGFloat {
+        return view.frame.width - 16
     }
     
 }

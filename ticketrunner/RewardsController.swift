@@ -18,6 +18,8 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     var events = [Event]()
     
+    var alreadyAnimatedArray = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +29,7 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         setupTitleLabel()
         setupMenuBar()
         
-//        events = EventResource().getEvents()
+        events = EventResource().getEvents()
         
         setupCollectionView()
         
@@ -142,6 +144,8 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
             
             cell.backgroundColor = UIColor.white
             
+            checkIfAnimated(cell: cell, int: indexPath.item)
+            
             let event = events[indexPath.item]
             
             cell.currentEvent = event
@@ -153,6 +157,15 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.titleLabel.text = event.name
             
             return cell
+        }
+    }
+    
+    func checkIfAnimated(cell: EventRewardCell, int: Int) {
+        if !alreadyAnimatedArray.contains(int) {
+            alreadyAnimatedArray.append(int)
+            cell.shouldAnimateProgressBar = true
+        } else {
+            cell.shouldAnimateProgressBar = false
         }
     }
     

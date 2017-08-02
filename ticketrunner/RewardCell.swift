@@ -8,30 +8,36 @@
 
 import UIKit
 
-class RewardCell: BaseCell {
+class RewardCell: BaseCell, ProgressBarContainerDelegate {
     
-    var reward: Reward?
-    
-    var progressBarContainer: ProgressBarContainer? {
+    var reward: Reward? {
         didSet {
-            
-            guard let container = progressBarContainer else {
-                return
-            }
-            
-            guard let widthAnchor = container.progressBackgroundBarWidthAnchor else {
-                return
-            }
-            
-            let width = widthAnchor
-            
-            addSubview(container)
-            
-            addContraintsWithFormat(format: "V:|-9-[v0]-9-|", views: container)
-            addContraintsWithFormat(format: "H:[v0(\(width))]-8-|", views: container)
-            
+            progressBarContainer.reward = reward
         }
     }
+    
+//    var progressBarContainer: ProgressBarContainer? {
+//        didSet {
+//            
+//            guard let container = progressBarContainer else {
+//                return
+//            }
+//            
+//            container.delegate = self
+//            
+//            guard let widthAnchor = container.progressBackgroundBarWidthAnchor else {
+//                return
+//            }
+//            
+//            let width = widthAnchor
+//            
+//            addSubview(container)
+//            
+//            addContraintsWithFormat(format: "V:|-9-[v0]-9-|", views: container)
+//            addContraintsWithFormat(format: "H:[v0(\(width))]-8-|", views: container)
+//            
+//        }
+//    }
     
     let rewardImageView: UIImageView = {
         let iv = UIImageView()
@@ -79,14 +85,23 @@ class RewardCell: BaseCell {
         return iv
     }()
     
+    lazy var progressBarContainer: ProgressBarContainer = {
+        let container = ProgressBarContainer()
+        return container
+    }()
+    
     override func setupViews() {
         super.setupViews()
+        
+        progressBarContainer.delegate = self
+        progressBarContainer.rewardCell = self
         
         addSubview(rewardImageView)
         addSubview(rewardTitleLabel)
         addSubview(rewardSubtitleLabel)
         addSubview(seperatorView)
         addSubview(rewardAchievedImageView)
+        addSubview(progressBarContainer)
         
         //x,y,w,h
         rewardImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -118,6 +133,20 @@ class RewardCell: BaseCell {
         rewardAchievedImageView.leftAnchor.constraint(equalTo: rewardTitleLabel.rightAnchor, constant: 8).isActive = true
         rewardAchievedImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
+        progressBarContainer.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 9, paddingLeft: 0, paddingBottom: 9, paddingRight: 8, width: 100, height: 0)
+        
+    }
+    
+    func shouldShowTriangles() -> Bool {
+        return false
+    }
+    
+    func shouldProgressBarAnimate() -> Bool {
+        return true
+    }
+    
+    func progressBarBackgroundWidth() -> CGFloat {
+        return CGFloat(100)
     }
     
 }

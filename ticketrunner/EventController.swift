@@ -20,6 +20,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     var refresher: UIRefreshControl!
     
+    var alreadyAnimatedArray = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +101,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         cell.backgroundColor = UIColor.white
         
+        checkIfAnimated(cell: cell, int: indexPath.item)
+        
         var event: Event?
         
         if filteredEvents != nil {
@@ -112,11 +116,20 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         cell.currentEvent = currentEvent
         cell.delegate = self
         
-        cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
+//        cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
         
         cell.titleLabel.text = currentEvent.name
         
         return cell
+    }
+    
+    func checkIfAnimated(cell: EventCell, int: Int) {
+        if !alreadyAnimatedArray.contains(int) {
+            alreadyAnimatedArray.append(int)
+            cell.shouldAnimateProgressBar = true
+        } else {
+            cell.shouldAnimateProgressBar = false
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

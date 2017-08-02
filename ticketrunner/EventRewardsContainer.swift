@@ -52,18 +52,7 @@ class EventRewardsContainer: UIView, UICollectionViewDataSource, UICollectionVie
         
         let reward = rewards[indexPath.item]
         
-        let container: ProgressBarContainer = {
-            let container = ProgressBarContainer()
-            container.reward = reward
-            container.rewardCell = cell
-            container.progressBackgroundBarWidthAnchor = 100
-            container.shouldTrianglesShowUp = false
-            return container
-        }()
-        
         cell.reward = reward
-        cell.progressBarContainer = container
-        
         cell.rewardTitleLabel.text = reward.name
         
         return cell
@@ -99,7 +88,5 @@ class EventRewardsContainer: UIView, UICollectionViewDataSource, UICollectionVie
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
 }

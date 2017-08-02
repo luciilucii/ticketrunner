@@ -16,27 +16,14 @@ protocol ProgressBarContainerDelegate {
 
 class ProgressBarContainer: UIView {
     
-    var delegate: ProgressBarContainerDelegate?
-    
-    var event: Event?
-    var reward: Reward?
-    
-    var shouldTrianglesShowUp: Bool!
-    
-    var rewardCell: RewardCell?
-    
-    var timer: Timer?
-    
-    var greenBarWidth: CGFloat? {
-        didSet {
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animateGreenBar), userInfo: nil, repeats: false)
-        }
-    }
-    
-    var progressBackgroundBarWidthAnchor: CGFloat? {
+    var delegate: ProgressBarContainerDelegate? {
         didSet {
             
-            guard let shouldShowUp = delegate?.shouldShowTriangles() else { return }
+            progressBackgroundBarWidthAnchor = delegate?.progressBarBackgroundWidth()
+            
+            guard let shouldShowUp = delegate?.shouldShowTriangles() else {
+                return
+            }
             
             if event != nil {
                 
@@ -44,12 +31,8 @@ class ProgressBarContainer: UIView {
                     setupTriangles()
                 }
                 
-                if shouldTrianglesShowUp == true {
-                    setupTriangles()
-                }
-                
                 guard let event = event else {
-                    return 
+                    return
                 }
                 setupPromoteBarProgress(forEvent: event)
             }
@@ -66,16 +49,58 @@ class ProgressBarContainer: UIView {
         }
     }
     
-    var delegateProgressBackgroundBarWidthAnchor: CGFloat?
+    var event: Event? {
+        didSet {
+            if delegate != nil {
+                
+                guard let shouldShowUp = delegate?.shouldShowTriangles() else {
+                    return
+                }
+                
+                if shouldShowUp {
+                    setupTriangles()
+                }
+                
+                guard let event = event else {
+                    return
+                }
+                setupPromoteBarProgress(forEvent: event)
+            }
+        }
+    }
+    
+    
+    var reward: Reward? {
+        didSet {
+            if delegate != nil {
+                guard let reward = reward else {
+                    return
+                }
+                
+                ticketProgressLabelForReward.isHidden = false
+                setupPromoteBarProgress(forReward: reward)
+            }
+        }
+    }
+    
+    var rewardCell: RewardCell?
+    
+    var timer: Timer?
+    
+    var greenBarWidth: CGFloat? {
+        didSet {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animateGreenBar), userInfo: nil, repeats: false)
+        }
+    }
+    
+    var animateProgressBar = true
+    
+    var progressBackgroundBarWidthAnchor: CGFloat?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        delegateProgressBackgroundBarWidthAnchor = delegate?.progressBarBackgroundWidth()
-        
-        
         setupViews()
-        
     }
     
     let promoteBackgroundBarView: UIView = {
@@ -274,12 +299,19 @@ class ProgressBarContainer: UIView {
         greenBar.topAnchor.constraint(equalTo: promoteBackgroundBarView.topAnchor).isActive = true
         greenBar.bottomAnchor.constraint(equalTo: promoteBackgroundBarView.bottomAnchor).isActive = true
         
-        greenBarWidthAnchor = greenBar.widthAnchor.constraint(equalToConstant: 0)
-        greenBarWidthAnchor?.isActive = true
-        
-        promoteBackgroundBarView.clipsToBounds = true
-        
-        greenBarWidth = forWidth
+        if animateProgressBar {
+            greenBarWidthAnchor = greenBar.widthAnchor.constraint(equalToConstant: 0)
+            greenBarWidthAnchor?.isActive = true
+            
+            promoteBackgroundBarView.clipsToBounds = true
+            
+            greenBarWidth = forWidth
+        } else {
+            greenBarWidthAnchor = greenBar.widthAnchor.constraint(equalToConstant: forWidth)
+            greenBarWidthAnchor?.isActive = true
+            
+            promoteBackgroundBarView.clipsToBounds = true
+        }
     }
     
     func animateGreenBar() {
