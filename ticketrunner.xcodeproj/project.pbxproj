@@ -25,6 +25,12 @@
 		190C19251EDF0A38003BC179 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19241EDF0A38003BC179 /* UserResource.swift */; };
 		190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */; };
 		191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191253A61EF4FFEC000839B1 /* ApiService.swift */; };
+		1913C7A41F333968000B4710 /* FixedPromoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7A31F333968000B4710 /* FixedPromoteButton.swift */; };
+		1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7A61F33557E000B4710 /* LeaderboardController.swift */; };
+		1913C7A91F3355DA000B4710 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7A81F3355DA000B4710 /* LeaderboardCell.swift */; };
+		1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7AA1F3357C0000B4710 /* ColorCodes.swift */; };
+		1913C7AD1F335834000B4710 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7AC1F335834000B4710 /* CustomImageView.swift */; };
+		1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7AE1F336612000B4710 /* LeaderboardHeader.swift */; };
 		191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */; };
 		191B031D1F154D3F00CE8ED4 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */; };
 		19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */; };
@@ -103,6 +109,12 @@
 		190C19241EDF0A38003BC179 /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMessages.swift; sourceTree = "<group>"; };
 		191253A61EF4FFEC000839B1 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		1913C7A31F333968000B4710 /* FixedPromoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPromoteButton.swift; sourceTree = "<group>"; };
+		1913C7A61F33557E000B4710 /* LeaderboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardController.swift; sourceTree = "<group>"; };
+		1913C7A81F3355DA000B4710 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		1913C7AA1F3357C0000B4710 /* ColorCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodes.swift; sourceTree = "<group>"; };
+		1913C7AC1F335834000B4710 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		1913C7AE1F336612000B4710 /* LeaderboardHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardHeader.swift; sourceTree = "<group>"; };
 		191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		19247BB21EDA8F4E00E0FFEC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -254,8 +266,25 @@
 				190C19201EDE7E33003BC179 /* EventDescriptionController.swift */,
 				19FDD14D1EE2EF7C00502BC6 /* AllArtistsForEventController.swift */,
 				193930DA1EEC610C004E52C0 /* DetailPromoteController */,
+				1913C7A51F33555C000B4710 /* LeaderboardController */,
 			);
 			name = EventController;
+			sourceTree = "<group>";
+		};
+		1913C7A21F33393D000B4710 /* PromoteButton */ = {
+			isa = PBXGroup;
+			children = (
+				1913C7A31F333968000B4710 /* FixedPromoteButton.swift */,
+			);
+			name = PromoteButton;
+			sourceTree = "<group>";
+		};
+		1913C7A51F33555C000B4710 /* LeaderboardController */ = {
+			isa = PBXGroup;
+			children = (
+				1913C7A61F33557E000B4710 /* LeaderboardController.swift */,
+			);
+			name = LeaderboardController;
 			sourceTree = "<group>";
 		};
 		193930DA1EEC610C004E52C0 /* DetailPromoteController */ = {
@@ -388,6 +417,7 @@
 			children = (
 				19CFB4531EF0F76F00AB557E /* HomeHeader.swift */,
 				19CFB4551EF159FF00AB557E /* RewardsHeader.swift */,
+				1913C7AE1F336612000B4710 /* LeaderboardHeader.swift */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -399,6 +429,8 @@
 				195D46701F0DF79500E59777 /* GifExtension.swift */,
 				191B031A1F15460E00CE8ED4 /* HTTPHelper.swift */,
 				191B031C1F154D3F00CE8ED4 /* KeychainAccess.swift */,
+				1913C7AA1F3357C0000B4710 /* ColorCodes.swift */,
+				1913C7AC1F335834000B4710 /* CustomImageView.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -424,6 +456,7 @@
 		19D2BD4B1ED9508C00529F7F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1913C7A21F33393D000B4710 /* PromoteButton */,
 				190775761EF6B2B300C166CD /* TableViewCell */,
 				19CFB4521EF0F75C00AB557E /* Headers */,
 				19E8DC861EE27EC5000F216D /* CollectionViewCells */,
@@ -468,6 +501,7 @@
 				19EE5CB41EF25D190003F24E /* SettingCell.swift */,
 				19086CE81EFCD0BE0024F7D0 /* SettingsEventSubCell.swift */,
 				195D46661F0A010C00E59777 /* HomeNoEventCell.swift */,
+				1913C7A81F3355DA000B4710 /* LeaderboardCell.swift */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -630,13 +664,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
 				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
 				1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
 				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
+				1913C7A91F3355DA000B4710 /* LeaderboardCell.swift in Sources */,
 				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
 				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
+				1913C7A41F333968000B4710 /* FixedPromoteButton.swift in Sources */,
 				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
 				19247BB51EDA929100E0FFEC /* Extensions.swift in Sources */,
@@ -644,6 +681,7 @@
 				19EE5CB81EF2786A0003F24E /* PersonalSettingsController.swift in Sources */,
 				19D2BD4E1ED9543400529F7F /* Menu.swift in Sources */,
 				19086CE71EFCCE110024F7D0 /* EventCategory.swift in Sources */,
+				1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */,
 				1907D5B41EED4B8000E603A6 /* UserRegistrationController.swift in Sources */,
 				195D46711F0DF79500E59777 /* GifExtension.swift in Sources */,
 				19C390531EE1E31700954E64 /* DetailEventController+Setups.swift in Sources */,
@@ -684,10 +722,12 @@
 				1907D5B01EED4ADC00E603A6 /* StartController.swift in Sources */,
 				19EE5CB51EF25D190003F24E /* SettingCell.swift in Sources */,
 				19CFB4561EF159FF00AB557E /* RewardsHeader.swift in Sources */,
+				1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */,
 				19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */,
 				19FDD14C1EE2E53000502BC6 /* EventRewardsContainer.swift in Sources */,
 				190C19211EDE7E33003BC179 /* EventDescriptionController.swift in Sources */,
 				19CD6FF51EF397B1006D9E7C /* EventSubscriptionsController.swift in Sources */,
+				1913C7AD1F335834000B4710 /* CustomImageView.swift in Sources */,
 				19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */,
 				1907757D1EF6B8AE00C166CD /* UserCell.swift in Sources */,
 				19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */,

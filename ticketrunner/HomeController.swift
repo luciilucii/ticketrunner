@@ -48,7 +48,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         checkIfMenuIsSet()
         checkIfSessionKeyIsValid()
         
-//        userEvents = EventResource().getEvents()
+        userEvents = EventResource().getEvents()
         
         navigationController?.navigationBar.isTranslucent = false
         
@@ -82,6 +82,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         if let loadedString = UserDefaults.standard.string(forKey: "sessionKey") {
             print(loadedString)
+            
+            
         } else {
             let layout = UICollectionViewFlowLayout()
             let loginStartController = StartController(collectionViewLayout: layout)
@@ -92,6 +94,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         }
         
+    }
+    
+    func setupPromoteButton() {
+        let fixedPromoteButton = FixedPromoteButton()
+        fixedPromoteButton.setupViews()
     }
     
     func setupMenuBar() {
@@ -194,7 +201,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return size
             
         } else {
-            let height = CGFloat(494)
+            let height = CGFloat(419) + ((view.frame.width - 32) / 2.7)
             let width = view.frame.width - 16
             
             let size = CGSize(width: width, height: height)
@@ -273,7 +280,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let event = userEvents[indexPath.item]
             let controller = setupDetailController(event: event)
             
-            show(controller, sender: self)
+            showAndSetupButton(controller: controller)
         }
     }
     
@@ -287,6 +294,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func didTapEventInfo(event: Event) {
         handleShowEventInfoFor(event: event)
+    }
+    
+    func didTapLeaderboards(event: Event) {
+        handleShowLeaderboards(event: event)
     }
     
     func showSignUpConfirmation() {

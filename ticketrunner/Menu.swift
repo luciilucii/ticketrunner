@@ -44,6 +44,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     let menuView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.layer.zPosition = 10
         return view
     }()
     
@@ -67,6 +68,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
             //TODO: Alpha anpassen
             
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            blackView.layer.zPosition = 6
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
             
             window.addSubview(blackView)
@@ -196,6 +198,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         let layout = UICollectionViewFlowLayout()
         let loginStartController = StartController(collectionViewLayout: layout)
+        loginStartController.homeController = homeController
         startController?.present(loginStartController, animated: true, completion: nil)
     }
     

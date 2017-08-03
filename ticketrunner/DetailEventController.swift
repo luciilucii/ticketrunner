@@ -101,6 +101,35 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         //TODO: change that!
         artists = currentEvent?.artists
         
+        setupNavBarButtons()
+    }
+    
+    let backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(handlePopView))
+        return button
+    }()
+    
+    func handlePopView() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func setupNavBarButtons() {
+        
+        
+        
+        
+        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(handleNavigationMenu))
+        menuButton.tintColor = UIColor.white
+        
+        navigationItem.leftBarButtonItems = [backButton, menuButton]
+//
+//        navigationItem.leftItemsSupplementBackButton = true
+//        navigationItem.leftBarButtonItem = menuButton
+    }
+    
+    func handleNavigationMenu() {
+        
+        print(123)
         
     }
     

@@ -14,13 +14,15 @@ protocol EventCellDelegate {
     func didTapRewards(event: Event)
     
     func didTapEventInfo(event: Event)
+    
+    func didTapLeaderboards(event: Event)
 }
 
 class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     
     var delegate: EventCellDelegate?
     
-    //INFO: Height of the Eventcell is 369 + imageview
+    //INFO: Height of the Eventcell is 419 + imageview
     
     var currentEvent: Event? {
         didSet {
@@ -154,10 +156,30 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         delegate?.didTapEventInfo(event: event)
     }
     
+    lazy var leaderboardButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Leaderboard", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
+        button.addTarget(self, action: #selector(handleEventLeaderboard), for: .touchUpInside)
+        return button
+    }()
+    
+    func handleEventLeaderboard() {
+        guard let event = currentEvent else { return }
+        delegate?.didTapLeaderboards(event: event)
+    }
+    
     let promoteSeperatorView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let leaderBoardSeperatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         return view
     }()
     
@@ -194,6 +216,7 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         addSubview(promoteButton)
         addSubview(rewardsButton)
         addSubview(eventInfoButton)
+        addSubview(leaderboardButton)
         
         //x,y,w,h
         eventImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -253,8 +276,11 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         eventInfoButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         eventInfoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
         addSubview(promoteSeperatorView)
         addSubview(rewardsSeperatorView)
+        addSubview(leaderBoardSeperatorView)
         
         //x,y,w,h
         promoteSeperatorView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -267,6 +293,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         rewardsSeperatorView.bottomAnchor.constraint(equalTo: rewardsButton.bottomAnchor).isActive = true
         rewardsSeperatorView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         rewardsSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        leaderBoardSeperatorView.anchor(top: nil, left: leftAnchor, bottom: eventInfoButton.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1)
         
     }
     
