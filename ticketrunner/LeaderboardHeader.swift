@@ -12,7 +12,7 @@ class LeaderboardHeader: BaseCell {
     
     let placementLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Rank"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
@@ -21,7 +21,7 @@ class LeaderboardHeader: BaseCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Name"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
@@ -31,7 +31,7 @@ class LeaderboardHeader: BaseCell {
     let reachLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Reach"
         label.font = UIFont.systemFont(ofSize: 12)
         return label
@@ -40,7 +40,7 @@ class LeaderboardHeader: BaseCell {
     let ticketsSoldLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Tickets"
         label.font = UIFont.systemFont(ofSize: 12)
         return label

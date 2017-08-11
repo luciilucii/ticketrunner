@@ -229,54 +229,6 @@ extension UICollectionViewController {
         let controller = LeaderboardController(collectionViewLayout: layout)
         show(controller, sender: self)
     }
-    
-    
-    
-    func showAndSetupButton(controller: UIViewController) {
-        
-//        let customView = UIView()
-//        
-//        customView.frame = CGRect(x: 0, y: 0, width: 100, height: 45)
-//        
-//        let backbutton = UIButton(type: .system)
-//        backbutton.setTitle("<", for: .normal)
-//        backbutton.tintColor = UIColor.white
-//        backbutton.addTarget(self, action: #selector(handleNavigationBack), for: .touchUpInside)
-//        
-//        let menuButton = UIButton()
-//        menuButton.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
-//        menuButton.tintColor = UIColor.white
-//        menuButton.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
-//        
-//        customView.addSubview(backbutton)
-//        customView.addSubview(menuButton)
-//        
-//        backbutton.anchor(top: customView.topAnchor, left: customView.leftAnchor, bottom: customView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 0)
-//        menuButton.anchor(top: customView.topAnchor, left: backbutton.rightAnchor, bottom: customView.bottomAnchor, right: customView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        
-//        let barButtons = UIBarButtonItem(customView: customView)
-//        
-//        navigationItem.backBarButtonItem = barButtons
-        
-//        let backItem = UIBarButtonItem()
-//        backItem.title = ""
-//        navigationItem.backBarButtonItem = backItem
-        
-//        controller.navigationItem.leftBarButtonItems = [menuButton]
-        
-        show(controller, sender: self)
-        
-    }
-    
-    func handleNavigationBack() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func handleNavigationMenu() {
-        let menu = Menu()
-        menu.showMenu()
-    }
-    
 }
 
 

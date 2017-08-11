@@ -35,7 +35,7 @@ class LeaderboardCell: BaseCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Max Gonzales Mustermann"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
@@ -46,7 +46,7 @@ class LeaderboardCell: BaseCell {
     let reachLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "583"
         label.font = UIFont.systemFont(ofSize: 14)
         return label
@@ -55,7 +55,7 @@ class LeaderboardCell: BaseCell {
     let ticketsSoldLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = ColorCodes.textColor
+        label.textColor = ColorCodes.textColorGrey
         label.text = "27"
         label.font = UIFont.systemFont(ofSize: 14)
         return label

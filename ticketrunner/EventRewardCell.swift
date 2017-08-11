@@ -17,6 +17,9 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
                 return
             }
             
+            guard let eventName = event.name else { return }
+            titleLabel.text = eventName
+            
             progressBar.event = event
         }
     }
@@ -53,7 +56,6 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
             addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: promoteBarContainerView)
             
             addContraintsWithFormat(format: "H:|[v0]|", views: container)
-            
         }
     }
     
@@ -86,8 +88,6 @@ class EventRewardCell: BaseCell, ProgressBarContainerDelegate {
     
     lazy var progressBar: ProgressBarContainer = {
         let container = ProgressBarContainer()
-        let width = self.frame.width - 16
-        container.progressBackgroundBarWidthAnchor = width
         container.delegate = self
         return container
     }()

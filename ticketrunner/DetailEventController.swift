@@ -104,33 +104,47 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         setupNavBarButtons()
     }
     
-    let backButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(handlePopView))
-        return button
-    }()
-    
     func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
     
     func setupNavBarButtons() {
         
+        let button = UIButton(type: .system)
+        button.setTitle("<", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
         
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 45)
         
+        let backButton = UIBarButtonItem(customView: button)
+        backButton.width = 15
         
-        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(handleNavigationMenu))
-        menuButton.tintColor = UIColor.white
+        let menuCustomView = UIButton()
+        menuCustomView.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
+        menuCustomView.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
+        menuCustomView.tintColor = UIColor.white
+        
+        menuCustomView.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
+        let menuButton = UIBarButtonItem(customView: menuCustomView)
+        menuButton.width = 45
         
         navigationItem.leftBarButtonItems = [backButton, menuButton]
-//
-//        navigationItem.leftItemsSupplementBackButton = true
-//        navigationItem.leftBarButtonItem = menuButton
     }
     
     func handleNavigationMenu() {
-        
-        print(123)
-        
+        handleMenu()
+    }
+    
+    lazy var menu: Menu = {
+        let menu = Menu()
+        menu.startController = self
+        return menu
+    }()
+    
+    func handleMenu() {
+        menu.showMenu()
     }
     
     override func viewDidLayoutSubviews() {

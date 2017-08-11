@@ -230,8 +230,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             cell.currentEvent = event
             cell.delegate = self
             
-            cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-            
             cell.titleLabel.text = event.name
             
             return cell
@@ -241,7 +239,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 210)
+        return CGSize(width: view.frame.width, height: 2000)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -250,7 +248,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         header.homeController = self
         
         if let userImage = userImage {
-            header.avatarImageView.image = userImage
+            header.avatarImage = userImage
         }
         
         return header
@@ -280,7 +278,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let event = userEvents[indexPath.item]
             let controller = setupDetailController(event: event)
             
-            showAndSetupButton(controller: controller)
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
     

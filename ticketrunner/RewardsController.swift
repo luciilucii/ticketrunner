@@ -146,15 +146,12 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
             
             checkIfAnimated(cell: cell, int: indexPath.item)
             
-            let event = events[indexPath.item]
+            let cellEvent = events[indexPath.item]
             
-            cell.currentEvent = event
-            cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
+            cell.currentEvent = cellEvent
             
-            cell.rewards = event.rewards
+            cell.rewards = cellEvent.rewards
             cell.eventRewardsContainer = EventRewardsContainer()
-            
-            cell.titleLabel.text = event.name
             
             return cell
         }
