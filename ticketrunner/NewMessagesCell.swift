@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewMessagesCell: BaseCell {
+class NewMessagesCell: TableCell {
     
     let messageImageView: UIImageView = {
         let iv = UIImageView()

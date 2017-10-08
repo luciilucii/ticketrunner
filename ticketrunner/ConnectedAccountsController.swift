@@ -63,7 +63,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         return iv
     }()
     
-    let twitterSwitchController: UISwitch = {
+    lazy var twitterSwitchController: UISwitch = {
         let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         return switchView
     }()
     
-    let facebookSwitchController: UISwitch = {
+    lazy var facebookSwitchController: UISwitch = {
         let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +81,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         return switchView
     }()
     
-    let whatsappSwitchController: UISwitch = {
+    lazy var whatsappSwitchController: UISwitch = {
         let switchView = UISwitch()
         switchView.isOn = false
         switchView.translatesAutoresizingMaskIntoConstraints = false

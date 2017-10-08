@@ -111,7 +111,8 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     func setupNavBarButtons() {
         
         let button = UIButton(type: .system)
-        button.setTitle("<", for: .normal)
+//        button.setTitle("<", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.tintColor = UIColor.white
         button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)

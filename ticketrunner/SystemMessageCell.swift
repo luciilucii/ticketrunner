@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SystemMessageCell: BaseCell {
+class SystemMessageCell: TableCell {
     
     let alertImageView: UIImageView = {
         let iv = UIImageView()

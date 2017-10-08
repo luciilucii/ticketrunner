@@ -91,9 +91,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             present(loginStartController, animated: true, completion: {
 //                UIApplication.shared.statusBarStyle = .ligh
             })
-
         }
-        
     }
     
     func setupPromoteButton() {
@@ -138,11 +136,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func handleMenu() {
         menu?.showMenu()
         menu?.homeController = self
-        
     }
     
     func handleSelectProfileImage() {
-        
         let picker = UIImagePickerController()
         
         picker.delegate = self
@@ -239,7 +235,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 2000)
+        return CGSize(width: view.frame.width, height: 1401)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

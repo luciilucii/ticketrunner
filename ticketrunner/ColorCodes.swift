@@ -14,6 +14,7 @@ class ColorCodes {
     static let ticketrunnerYellow = UIColor(red:0.98, green:0.68, blue:0.39, alpha:1.0)
     static let ticketrunnerPurple = UIColor(red:0.72, green:0.55, blue:0.99, alpha:1.0)
     static let ticketrunnerGreen = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+    static let ticketrunnerRed = UIColor(red:0.95, green:0.36, blue:0.36, alpha:1.0)
     
     static let lightPurple = UIColor(red:0.73, green:0.76, blue:0.99, alpha:1.0)
     
