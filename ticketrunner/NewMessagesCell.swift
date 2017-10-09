@@ -40,17 +40,17 @@ class NewMessagesCell: TableCell {
         super.setupViews()
         
         layer.cornerRadius = 5
-        backgroundColor = ColorCodes.lightPurple
+        view.backgroundColor = ColorCodes.lightPurple
         
-        addSubview(messageImageView)
-        messageImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        view.addSubview(messageImageView)
+        messageImageView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         messageImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(headlineLabel)
-        headlineLabel.anchor(top: topAnchor, left: messageImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
+        view.addSubview(headlineLabel)
+        headlineLabel.anchor(top: view.topAnchor, left: messageImageView.rightAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
         
-        addSubview(messageLabel)
-        messageLabel.anchor(top: headlineLabel.bottomAnchor, left: headlineLabel.leftAnchor, bottom: bottomAnchor, right: headlineLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
+        view.addSubview(messageLabel)
+        messageLabel.anchor(top: headlineLabel.bottomAnchor, left: headlineLabel.leftAnchor, bottom: view.bottomAnchor, right: headlineLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
         
     }
     

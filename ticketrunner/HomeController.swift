@@ -27,6 +27,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
+    lazy var promoteButton: FixedPromoteButton = {
+        let button = FixedPromoteButton()
+        button.viewController = self
+        return button
+    }()
+    
     var menu: Menu?
     var userImage: UIImage? {
         didSet{
@@ -52,7 +58,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         navigationController?.navigationBar.isTranslucent = false
         
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = ColorCodes.controllerBackground
+        
+        view.addSubview(promoteButton)
+        
+        if #available(iOS 11.0, *) {
+            promoteButton.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        } else {
+            // Fallback on earlier versions
+            promoteButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        }
+        
         setupTitleLabel()
         setupMenuBar()
         setupCollectionView()
@@ -92,11 +108,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 //                UIApplication.shared.statusBarStyle = .ligh
             })
         }
-    }
-    
-    func setupPromoteButton() {
-        let fixedPromoteButton = FixedPromoteButton()
-        fixedPromoteButton.setupViews()
     }
     
     func setupMenuBar() {

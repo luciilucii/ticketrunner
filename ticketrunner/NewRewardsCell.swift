@@ -37,15 +37,15 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         setupCollectionView()
         
-        backgroundColor = .white
+        view.backgroundColor = .white
         self.layer.cornerRadius = 5
         
-        addSubview(rewardsTitleLabel)
-        addSubview(rewardsCollectionView)
+        view.addSubview(rewardsTitleLabel)
+        view.addSubview(rewardsCollectionView)
         
-        rewardsTitleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        rewardsTitleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        rewardsCollectionView.anchor(top: rewardsTitleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
+        rewardsCollectionView.anchor(top: rewardsTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

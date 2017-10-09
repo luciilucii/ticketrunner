@@ -22,9 +22,10 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     var homeController: HomeController?
     var avatarImage: UIImage?
     
-    var statisticsCellHeight: CGFloat = 46 {
+    var statisticsCellHeight: CGFloat = 54 {
         didSet {
-            
+            tableView.beginUpdates()
+            tableView.endUpdates()
         }
     }
     
@@ -33,6 +34,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         tv.delegate = self
         tv.dataSource = self
         tv.allowsSelection = false
+        tv.separatorStyle = .none
         return tv
     }()
     
@@ -61,19 +63,19 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 218
+            return 226
         case 1:
-            return 100
+            return 108
         case 2:
-            return 75
+            return 83
         case 3:
-            return 46
+            return statisticsCellHeight
         case 4:
-            return 154
+            return 162
         case 5:
-            return 412
+            return 420
         case 6:
-            return 199
+            return 207
         default:
             return 0
         }
@@ -104,6 +106,8 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: statisticsId, for: indexPath) as! StatisticsCell
             
+            cell.delegate = self
+            
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: newRewardsId, for: indexPath) as! NewRewardsCell
@@ -124,6 +128,17 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         }
     }
     
+    func handleUpDown(buttonState: ButtonState) {
+        //nothing?
+        
+        if buttonState == .down {
+            self.statisticsCellHeight = 195
+        } else {
+            self.statisticsCellHeight = 54
+        }
+        
+        
+    }
     
 }
 

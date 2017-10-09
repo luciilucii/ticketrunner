@@ -12,22 +12,18 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     
     var detailController: DetailPromoteEventController?
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
+    let titleLabel: HeadlineLabel = {
+        let label = HeadlineLabel(title: "Landing Page Setup")
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.text = "Landing Page Preview"
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "You can choose to direct everyone to your Landing page to provide more info about the event you are promoting, and helps increase sales."
+        label.text = "Direct everyone to your landing page to provide more info about the event."
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.textColor = ColorCodes.textColorGrey
         label.numberOfLines = 5
         return label
     }()
@@ -51,11 +47,11 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     
     let activateLandingPageLabel: UILabel = {
         let label = UILabel()
+        label.text = "Activate Landing Page"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.text = "Activate Landing Page"
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = ColorCodes.textColorGrey
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -78,31 +74,27 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     
     let landingPageProfileImageLabel: UILabel = {
         let label = UILabel()
+        label.text = "Show my profile picture"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.text = "Show my profile picture"
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = ColorCodes.textColorGrey
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
-    let customTextLabel: UILabel = {
-        let label = UILabel()
+    let customTextLabel: HeadlineLabel = {
+        let label = HeadlineLabel(title: "Custom Landing Page Message")
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.text = "Custom Landing Page message"
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     let customTextSubtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "You can choose to direct everyone to your Landing page to provide more info about the event you are promoting, and helps increase sales."
+        label.text = "Tell everyone what you personally love about the event."
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
-        label.numberOfLines = 5
+        label.textColor = ColorCodes.textColorGrey
+        label.numberOfLines = 2
         return label
     }()
     
@@ -112,31 +104,24 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.backgroundColor = UIColor.white
         textView.delegate = self
-        textView.layer.borderColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0).cgColor
-//        textView.text = "Add a personal Message to your Landing Page"
-        textView.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = ColorCodes.lightGrayText.cgColor
+        textView.layer.cornerRadius = 5
+        textView.textColor = ColorCodes.textColorGrey
         return textView
     }()
     
-    let previewLandingPageButton: UIButton = {
-        let button = UIButton()
+    let previewLandingPageButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Preview")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Preview Landing Page", for: .normal)
         button.addTarget(self, action: #selector(handlePreview), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.tintColor = UIColor.white
         return button
     }()
     
-    let updateLandingPageButton: UIButton = {
-        let button = UIButton()
+    let updateLandingPageButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Update")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Update Landing Page", for: .normal)
         button.addTarget(self, action: #selector(handleUpdateLandingPage), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
-        button.tintColor = UIColor.white
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
     
@@ -169,6 +154,12 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = UIColor.white
+        layer.cornerRadius = 5
+        clipsToBounds = true
+        
+        
+        
         setupViews()
         
     }
@@ -184,17 +175,15 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         addSubview(landingPageProfileImageSwitchController)
         addSubview(landingPageProfileImageLabel)
         
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         subtitleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-        subtitleLabel.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        
-        
+        subtitleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         activateSwitchController.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 8).isActive = true
         activateSwitchController.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
@@ -241,7 +230,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         addSubview(previewLandingPageButton)
         addSubview(updateLandingPageButton)
         
-        customTextLabel.topAnchor.constraint(equalTo: landingPageProfileImageLabel.bottomAnchor, constant: 16).isActive = true
+        customTextLabel.topAnchor.constraint(equalTo: landingPageProfileImageLabel.bottomAnchor, constant: 24).isActive = true
         customTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         customTextLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         customTextLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
@@ -249,22 +238,22 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         customTextSubtitleLabel.topAnchor.constraint(equalTo: customTextLabel.bottomAnchor).isActive = true
         customTextSubtitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         customTextSubtitleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-        customTextSubtitleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        customTextSubtitleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         customMessageTextView.topAnchor.constraint(equalTo: customTextSubtitleLabel.bottomAnchor, constant: 8).isActive = true
-        customMessageTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
-        customMessageTextView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-        customMessageTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        customMessageTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        customMessageTextView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        customMessageTextView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        previewLandingPageButton.topAnchor.constraint(equalTo: customMessageTextView.bottomAnchor).isActive = true
-        previewLandingPageButton.leftAnchor.constraint(equalTo: customMessageTextView.leftAnchor).isActive = true
-        previewLandingPageButton.rightAnchor.constraint(equalTo: customMessageTextView.rightAnchor).isActive = true
+        previewLandingPageButton.topAnchor.constraint(equalTo: customMessageTextView.bottomAnchor, constant: 8).isActive = true
+        previewLandingPageButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        previewLandingPageButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         previewLandingPageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         updateLandingPageButton.topAnchor.constraint(equalTo: previewLandingPageButton.bottomAnchor, constant: 8).isActive = true
         updateLandingPageButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         updateLandingPageButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
-        updateLandingPageButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        updateLandingPageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }
     

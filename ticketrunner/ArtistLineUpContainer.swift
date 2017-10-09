@@ -21,8 +21,10 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     
     let lineUpHeadlineLabel: UILabel = {
         let label = UILabel()
+        label.textColor = ColorCodes.textColorGrey
         label.text = "Line Up"
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
@@ -87,11 +89,9 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     func getHeight() -> CGFloat {
-        
         guard let artists = artists else {
             return 0
         }
-        
         var height = 0
         
         if artists.count % 2 == 0 {

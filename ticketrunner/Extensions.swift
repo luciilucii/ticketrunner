@@ -71,6 +71,15 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         return tap
     }
+    
+    func setupWhiteTitle(title: String) {
+        
+        let textAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        
+        navigationItem.title = title
+    }
 }
 
 extension UITextField {
@@ -137,15 +146,17 @@ extension UICollectionViewController {
         
         setupLineUpContainer(controller: detailEventController)
         
-        //set ticketsSoldLabel über der ProgressBar
-        detailEventController.soldTicketsLabel.text = "\(detailEventController.progressBarContainer.getTicketsSoldCount())"
-        
-        let height = setupEventRewardsContainerHeight(controller: detailEventController, event: event)
-        
-        detailEventController.rewardsHeight = height
-        setupScrollViewHeight(detailController: detailEventController, event: event)
-        
         return detailEventController
+        
+        //set ticketsSoldLabel über der ProgressBar
+//        detailEventController.soldTicketsLabel.text = "\(detailEventController.progressBarContainer.getTicketsSoldCount())"
+        
+//        let height = setupEventRewardsContainerHeight(controller: detailEventController, event: event)
+//        
+//        detailEventController.rewardsHeight = height
+//        setupScrollViewHeight(detailController: detailEventController, event: event)
+//        
+//        return detailEventController
     }
     
     func setupLineUpContainer(controller: DetailEventController) {
@@ -156,41 +167,41 @@ extension UICollectionViewController {
         }
         controller.lineUpHeight = lineUpHeight
     }
-    
-    func setupEventRewardsContainerHeight(controller: DetailEventController, event: Event) -> CGFloat {
-        guard let rewards = event.rewards else {
-            return 0
-        }
-        controller.rewards = rewards
-        controller.eventRewardsContainer = EventRewardsContainer()
-        
-        guard let height = controller.eventRewardsContainer?.getHeight() else {
-            return 0
-        }
-        
-        return height
-    }
-    
-    func setupScrollViewHeight(detailController: DetailEventController, event: Event) {
-        
-        guard let eventRewardsContainer = detailController.eventRewardsContainer else {
-            return
-        }
-        guard let lineUpContainer = detailController.lineUpContainer else {
-            return
-        }
-        var height: CGFloat = 0
-        
-        if event.latidute != nil && event.longitude != nil {
-            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer)
-        } else {
-            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer) - 258
-            detailController.mapViewHeightAnchor?.constant = 0
-            detailController.facebookContainerTopAnchorConstant = 0
-        }
-        detailController.setupScrollView(height: height)
-        detailController.setupViews()
-    }
+//    
+//    func setupEventRewardsContainerHeight(controller: DetailEventController, event: Event) -> CGFloat {
+//        guard let rewards = event.rewards else {
+//            return 0
+//        }
+//        controller.rewards = rewards
+//        controller.eventRewardsContainer = EventRewardsContainer()
+//        
+//        guard let height = controller.eventRewardsContainer?.getHeight() else {
+//            return 0
+//        }
+//        
+//        return height
+//    }
+//    
+//    func setupScrollViewHeight(detailController: DetailEventController, event: Event) {
+//        
+//        guard let eventRewardsContainer = detailController.eventRewardsContainer else {
+//            return
+//        }
+//        guard let lineUpContainer = detailController.lineUpContainer else {
+//            return
+//        }
+//        var height: CGFloat = 0
+//        
+//        if event.latidute != nil && event.longitude != nil {
+//            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer)
+//        } else {
+//            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer) - 258
+//            detailController.mapViewHeightAnchor?.constant = 0
+//            detailController.facebookContainerTopAnchorConstant = 0
+//        }
+//        detailController.setupScrollView(height: height)
+//        detailController.setupViews()
+//    }
     
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
         let basis: CGFloat = 734
@@ -231,9 +242,19 @@ extension UICollectionViewController {
     }
 }
 
-
-
-
+//extension UIView {
+//    func applyGradient(colours: [UIColor]) -> Void {
+//        self.applyGradient(colours, locations: nil)
+//    }
+//    
+//    func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> Void {
+//        let gradient: CAGradientLayer = CAGradientLayer()
+//        gradient.frame = self.bounds
+//        gradient.colors = colours.map { $0.UIColor }
+//        gradient.locations = locations
+//        self.layer.insertSublayer(gradient, atIndex: 0)
+//    }
+//}
 
 
 

@@ -1,15 +1,44 @@
 //
-//  DetailEventViewController+Map.swift
+//  EventInfoMapView.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 02.06.17.
+//  Created by Luca Kiedrowski on 09.10.17.
 //  Copyright © 2017 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-extension DetailEventController: MKMapViewDelegate {
+class EventInfoMapView: CustomUIView, CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    var currentEvent: Event? {
+        didSet {
+            if let lat = currentEvent?.latidute, let long = currentEvent?.longitude {
+                setupEventInMapView(lat: Double(lat), long: Double(long))
+            }
+        }
+    }
+    
+    lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.mapType = .standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        mapView.delegate = self
+        return mapView
+    }()
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        self.backgroundColor = UIColor.white
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        
+        addSubview(mapView)
+        
+        mapView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    }
     
     func setupEventInMapView(lat: Double, long: Double) {
         
@@ -46,6 +75,5 @@ extension DetailEventController: MKMapViewDelegate {
         
         return annotationView
     }
-    
     
 }

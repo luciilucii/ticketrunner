@@ -99,8 +99,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
         
-        cell.backgroundColor = UIColor.white
-        
         checkIfAnimated(cell: cell, int: indexPath.item)
         
         var event: Event?
@@ -135,7 +133,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        let height = CGFloat(419) + ((view.frame.width - 32) / 2.7)
+        let height = CGFloat(467) + ((view.frame.width - 32) / 2.7)
         let width = view.frame.width - 16
         
         let size = CGSize(width: width, height: height)
@@ -153,7 +151,10 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         }
         
         guard let controllerEvent = event else { return }
-        let controller = setupDetailController(event: controllerEvent)
+//        let controller = setupDetailController(event: controllerEvent)
+        
+        let controller = EventInfoController()
+        controller.event = event
         
         show(controller, sender: self)
     }
@@ -173,7 +174,10 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func didTapPromote(event: Event) {
-        handlePromoteFor(event: event)
+        let promoteController = EventPromoteController()
+        promoteController.event = event
+        self.show(promoteController, sender: self)
+        
     }
     
     func didTapRewards(event: Event) {
@@ -181,7 +185,11 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func didTapEventInfo(event: Event) {
-        handleShowEventInfoFor(event: event)
+        let eventInfoController = EventInfoController()
+        eventInfoController.event = event
+        
+        self.show(eventInfoController, sender: self)
+        
     }
     
     func didTapLeaderboards(event: Event) {

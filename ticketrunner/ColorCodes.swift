@@ -27,4 +27,6 @@ class ColorCodes {
     
     static let homeYellow = UIColor(red:1.00, green:0.76, blue:0.27, alpha:1.0)
     
+    static let lightGrayText = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
+    
 }

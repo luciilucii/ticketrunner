@@ -37,11 +37,27 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         }
     }
     
+    let eventInfoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
+    let progressBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
     let eventImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.backgroundColor = .green
-        iv.image = UIImage(named: "event5")
+        iv.image = #imageLiteral(resourceName: "event_neu")
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
         return iv
@@ -49,9 +65,9 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Masquerade & Crime - Um Vaters Willen, Hercule Poirot ermittelt!"
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.numberOfLines = 2
         label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +104,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         return label
     }()
     
+    //Cut
+    
     let promoteBarContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -100,21 +118,16 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         return container
     }()
     
-    let soldTicketsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "12"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+    let soldTicketsLabel: TicketrunnerPointsLabel = {
+        let label = TicketrunnerPointsLabel()
+        label.text = "9.542°"
         return label
     }()
     
-    lazy var promoteButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        button.setTitle("Promote", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.tintColor = UIColor.white
+    //next Cut
+    
+    lazy var promoteButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Promote")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
         return button
@@ -129,10 +142,11 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Rewards", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
+        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -145,9 +159,11 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Event Info", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         button.addTarget(self, action: #selector(handleEventInfo), for: .touchUpInside)
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -159,9 +175,11 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     lazy var leaderboardButton: UIButton = {
         let button = UIButton()
         button.setTitle("Leaderboard", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
         button.addTarget(self, action: #selector(handleEventLeaderboard), for: .touchUpInside)
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -169,26 +187,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         guard let event = currentEvent else { return }
         delegate?.didTapLeaderboards(event: event)
     }
-    
-    let promoteSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let leaderBoardSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        return view
-    }()
-    
-    let rewardsSeperatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
     
     var cellWidth: CGFloat?
     
@@ -207,41 +205,51 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     func setupViews() {
         setupPromoteBarContainer()
         
-        addSubview(eventImageView)
-        addSubview(titleLabel)
-        addSubview(dateLabel)
-        addSubview(streetLabel)
-        addSubview(locationLabel)
-        addSubview(promoteBarContainerView)
+        addSubview(eventInfoView)
+        addSubview(progressBackgroundView)
+        
+        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230)
+        
+        progressBackgroundView.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 116)
+        
+        
+        eventInfoView.addSubview(eventImageView)
+        eventInfoView.addSubview(titleLabel)
+        eventInfoView.addSubview(dateLabel)
+        eventInfoView.addSubview(streetLabel)
+        eventInfoView.addSubview(locationLabel)
+        
+        
+        
+        progressBackgroundView.addSubview(promoteBarContainerView)
+        
+        
         addSubview(promoteButton)
         addSubview(rewardsButton)
         addSubview(eventInfoButton)
         addSubview(leaderboardButton)
         
         //x,y,w,h
-        eventImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        eventImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        eventImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        
         guard let cellWidth = cellWidth else { return }
-        let height = cellWidth / 2.7
-        eventImageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        eventImageView.anchor(top: eventInfoView.topAnchor, left: eventInfoView.leftAnchor, bottom: nil, right: eventInfoView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: cellWidth / 2.7)
+        
+        
         
         
         //x,y,w,h
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: eventInfoView.leftAnchor, constant: 8).isActive = true
         titleLabel.topAnchor.constraint(equalTo: eventImageView.bottomAnchor).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: eventInfoView.rightAnchor, constant: -8).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         //x,y,w,h
-        streetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        streetLabel.leftAnchor.constraint(equalTo: eventInfoView.leftAnchor, constant: 8).isActive = true
         streetLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         streetLabel.rightAnchor.constraint(equalTo: centerXAnchor).isActive = true
         streetLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         //x,y,w,h
-        dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        dateLabel.rightAnchor.constraint(equalTo: eventInfoView.rightAnchor, constant: -8).isActive = true
         dateLabel.topAnchor.constraint(equalTo: streetLabel.topAnchor).isActive = true
         dateLabel.widthAnchor.constraint(equalToConstant: 125).isActive = true
         dateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -252,49 +260,36 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         locationLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
         locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
+        
+        
         //x,y,w,h
-        promoteBarContainerView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8).isActive = true
-        promoteBarContainerView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        promoteBarContainerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        promoteBarContainerView.topAnchor.constraint(equalTo: progressBackgroundView.topAnchor, constant: 8).isActive = true
+        promoteBarContainerView.leftAnchor.constraint(equalTo: progressBackgroundView.leftAnchor, constant: 8).isActive = true
+        promoteBarContainerView.rightAnchor.constraint(equalTo: progressBackgroundView.rightAnchor, constant: -8).isActive = true
         promoteBarContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        
         
         //x,y,w,h
         promoteButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        promoteButton.topAnchor.constraint(equalTo: promoteBarContainerView.bottomAnchor).isActive = true
+        promoteButton.topAnchor.constraint(equalTo: progressBackgroundView.bottomAnchor, constant: 4).isActive = true
         promoteButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         promoteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
         rewardsButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        rewardsButton.topAnchor.constraint(equalTo: promoteButton.bottomAnchor).isActive = true
+        rewardsButton.topAnchor.constraint(equalTo: promoteButton.bottomAnchor, constant: 4).isActive = true
         rewardsButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         rewardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
         eventInfoButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        eventInfoButton.topAnchor.constraint(equalTo: rewardsButton.bottomAnchor).isActive = true
+        eventInfoButton.topAnchor.constraint(equalTo: rewardsButton.bottomAnchor, constant: 4).isActive = true
         eventInfoButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         eventInfoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        addSubview(promoteSeperatorView)
-        addSubview(rewardsSeperatorView)
-        addSubview(leaderBoardSeperatorView)
-        
-        //x,y,w,h
-        promoteSeperatorView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        promoteSeperatorView.bottomAnchor.constraint(equalTo: promoteButton.bottomAnchor).isActive = true
-        promoteSeperatorView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        promoteSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        //x,y,w,h
-        rewardsSeperatorView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        rewardsSeperatorView.bottomAnchor.constraint(equalTo: rewardsButton.bottomAnchor).isActive = true
-        rewardsSeperatorView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        rewardsSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        leaderBoardSeperatorView.anchor(top: nil, left: leftAnchor, bottom: eventInfoButton.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1)
         
     }
     

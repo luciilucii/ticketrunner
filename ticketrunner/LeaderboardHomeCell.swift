@@ -34,7 +34,7 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = .white
+        view.backgroundColor = .white
         self.layer.cornerRadius = 5
         
         setupCollectionView()
@@ -48,11 +48,11 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     
     func setupCellViews() {
         
-        addSubview(leaderboardLabel)
-        addSubview(collectionView)
+        view.addSubview(leaderboardLabel)
+        view.addSubview(collectionView)
         
-        leaderboardLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 25)
-        collectionView.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
+        leaderboardLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 25)
+        collectionView.anchor(top: leaderboardLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

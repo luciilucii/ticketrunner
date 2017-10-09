@@ -156,7 +156,6 @@ class ProgressBarContainer: UIView {
     }
     
     func setupTriangles() {
-        
         guard let event = event else {
             return
         }

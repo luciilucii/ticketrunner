@@ -25,7 +25,9 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
             guard let eventName = currentEvent?.name else {
                 return
             }
-        
+            
+//            eventRewardContainerView.event = currentEvent
+            
             eventNameLabel.text = eventName
         }
     }
@@ -61,34 +63,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         artistLineUpContainer.addContraintsWithFormat(format: "H:[v0(100)]|", views: seeAllArtistsButton)
     }
     
-    var eventRewardsContainer: EventRewardsContainer? {
-        didSet {
-            setupEventRewardsContainer()
-        }
-    }
-    
-    fileprivate func setupEventRewardsContainer() {
-        guard let container = eventRewardsContainer else {
-            return
-        }
-        container.rewards = rewards
-        
-        //TODO: nächste Zeile auch im EventController?!
-        rewardsHeight = container.getHeight() - 133
-        
-        promoteContainerView.addSubview(promoteTitleLabel)
-        promoteContainerView.addSubview(promoteBarContainerView)
-        promoteContainerView.addSubview(container)
-        
-        promoteContainerView.addContraintsWithFormat(format: "H:|-16-[v0]-16-|", views: promoteTitleLabel)
-        promoteContainerView.addContraintsWithFormat(format: "V:|[v0(40)]-8-[v1(85)][v2(\(rewardsHeight))]", views: promoteTitleLabel, promoteBarContainerView, container)
-        
-        promoteContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: promoteBarContainerView)
-        
-        promoteContainerView.addContraintsWithFormat(format: "H:|[v0]|", views: container)
-
-    }
-    
     let eventResource = EventResource()
     
     override func viewDidLoad() {
@@ -111,7 +85,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     func setupNavBarButtons() {
         
         let button = UIButton(type: .system)
-//        button.setTitle("<", for: .normal)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.tintColor = UIColor.white
@@ -146,12 +119,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
     
     func handleMenu() {
         menu.showMenu()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        if progressBarContainer.frame.width > 0 {
-            progressBarContainer.progressBackgroundBarWidthAnchor = progressBarContainer.frame.width
-        }
     }
     
     let scrollContainerView: UIView = {
@@ -251,40 +218,6 @@ class DetailEventController: UIViewController, UIScrollViewDelegate, CLLocationM
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         return view
-    }()
-    
-    let promoteTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
-        label.text = "Rewards"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        return label
-    }()
-    
-    let promoteBarContainerView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
-    lazy var progressBarContainer: ProgressBarContainer = {
-        let container = ProgressBarContainer()
-        guard let event = self.currentEvent else {
-            return container
-        }
-        container.event = event
-        container.delegate = self
-        return container
-    }()
-    
-    let soldTicketsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "12"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     //Artist Line Up Container

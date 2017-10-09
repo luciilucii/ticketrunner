@@ -8,60 +8,38 @@
 
 import UIKit
 
-class FixedPromoteButton: NSObject {
+class FixedPromoteButton: UIButton {
     
-    var view: UIView?
+    var viewController: UIViewController?
     
-    lazy var promoteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red:0.00, green:0.74, blue:1.00, alpha:1.0)
-        button.setTitle("Promote", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.tintColor = UIColor.white
-        button.layer.zPosition = 5
-        button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
-        button.isUserInteractionEnabled = true
-        return button
-    }()
-    
-    func handlePromote() {
-        print("Hello")
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = ColorCodes.ticketrunnerBlue
+        self.setTitle("Promote", for: .normal)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.addTarget(self, action: #selector(handleShowPromoteController), for: .touchUpInside)
+        self.setTitleColor(UIColor.white, for: .normal)
     }
     
-    override init() {
-        super.init()
-        
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
-        
-        if let keyWindow = UIApplication.shared.keyWindow {
-            
-            view = UIView()
-            view?.layer.zPosition = 5
-            view?.backgroundColor = .purple
-//            view?.frame = keyWindow.frame
-            
-            guard let unwrappedView = view else {
-                return
-            }
-            
-            keyWindow.addSubview(unwrappedView)
-            
-            
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                
-                unwrappedView.anchor(top: nil, left: keyWindow.leftAnchor, bottom: keyWindow.bottomAnchor, right: keyWindow.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-                
-                
-            }, completion: { (completedAnimation) in
-                //maybe here sth later
-            })
-            
-            unwrappedView.addSubview(promoteButton)
-            promoteButton.anchor(top: unwrappedView.topAnchor, left: unwrappedView.leftAnchor, bottom: nil, right: unwrappedView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        }
-        
+    @objc func handleShowPromoteController() {
+        let controller = FixedPromoteController()
+        let navController = UINavigationController(rootViewController: controller)
+
+        viewController?.present(navController, animated: true, completion: {
+            //completion here
+        })
     }
     
 }
+
+
+
+
+
+
+

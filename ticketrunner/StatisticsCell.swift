@@ -80,9 +80,9 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     }()
     
     override func setupViews() {
-        backgroundColor = .white
-        layer.cornerRadius = 5
-        clipsToBounds = true
+        super.setupViews()
+        
+        view.backgroundColor = .white
         
         let ticketsSoldLabelText = "15"
         ticketsSoldLabel.text = ticketsSoldLabelText
@@ -118,8 +118,6 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
             self.downButtonState = .down
             delegate?.handleUpDown(buttonState: .down)
             
-            
-            
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.downButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 self.layoutIfNeeded()
@@ -145,27 +143,27 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     var ticketsSoldLabelWidthAnchor: NSLayoutConstraint?
     
     func setupAnchors() {
-        addSubview(ticketsSoldLabel)
-        addSubview(plusTicketsLabel)
+        view.addSubview(ticketsSoldLabel)
+        view.addSubview(plusTicketsLabel)
         
-        addSubview(downButton)
+        view.addSubview(downButton)
         
-        addSubview(menuBarCollectionView)
-        addSubview(statisticCollectionView)
+        view.addSubview(menuBarCollectionView)
+        view.addSubview(statisticCollectionView)
         
-        ticketsSoldLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
-        ticketsSoldLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        ticketsSoldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         plusTicketsLabel.anchor(top: nil, left: ticketsSoldLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 35, height: 14)
         plusTicketsLabel.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
         
-        downButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 25, height: 25)
+        downButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 25, height: 25)
         downButton.centerYAnchor.constraint(equalTo: plusTicketsLabel.centerYAnchor).isActive = true
         
-        menuBarCollectionView.anchor(top: ticketsSoldLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 25)
+        menuBarCollectionView.anchor(top: ticketsSoldLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 25)
         
         //TODO: collectionviewheight should be calculated through number of events
-        statisticCollectionView.anchor(top: menuBarCollectionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
+        statisticCollectionView.anchor(top: menuBarCollectionView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
         
     }
     

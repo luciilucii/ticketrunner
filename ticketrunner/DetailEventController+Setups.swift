@@ -34,9 +34,9 @@ extension DetailEventController {
         scrollContainerView.addSubview(mapView)
         scrollContainerView.addSubview(facebookContainer)
         
-        guard let promoteHeight = eventRewardsContainer?.getHeight() else {
-            return
-        }
+//        guard let promoteHeight = eventRewardsContainer?.getHeight() else {
+//            return
+//        }
         
         guard let artistsHeight = lineUpContainer?.getHeight() else {
             return
@@ -58,11 +58,11 @@ extension DetailEventController {
         eventInfoContainer.heightAnchor.constraint(equalToConstant: 283).isActive = true
         
         //x,y,w,h
-        promoteContainerView.topAnchor.constraint(equalTo: eventInfoContainer.bottomAnchor, constant: 8).isActive = true
-        promoteContainerView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
-        promoteContainerView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
-        promoteContainerView.heightAnchor.constraint(equalToConstant: promoteHeight).isActive = true
-        
+//        promoteContainerView.topAnchor.constraint(equalTo: eventInfoContainer.bottomAnchor, constant: 8).isActive = true
+//        promoteContainerView.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
+//        promoteContainerView.rightAnchor.constraint(equalTo: scrollContainerView.rightAnchor).isActive = true
+//        promoteContainerView.heightAnchor.constraint(equalToConstant: promoteHeight).isActive = true
+//        
         //x,y,w,h
         artistLineUpContainer.leftAnchor.constraint(equalTo: scrollContainerView.leftAnchor).isActive = true
         artistLineUpContainer.topAnchor.constraint(equalTo: promoteContainerView.bottomAnchor, constant: 8).isActive = true
@@ -97,7 +97,7 @@ extension DetailEventController {
         setupEventInfoContainer()
         setupPromoteFixedContainer()
         setupFacebookContainer()
-        setupPromoteBarContainer()
+//        setupPromoteBarContainer()
         
     }
     
@@ -154,17 +154,17 @@ extension DetailEventController {
         moreDescriptionButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
     }
-    
-    func setupPromoteBarContainer() {
-        promoteBarContainerView.addSubview(soldTicketsLabel)
-        
-        promoteBarContainerView.addSubview(progressBarContainer)
-        
-        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
-        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBarContainer)
-        promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0][v1]|", views: soldTicketsLabel, progressBarContainer)
-    }
-    
+//    
+//    func setupPromoteBarContainer() {
+//        promoteBarContainerView.addSubview(soldTicketsLabel)
+//        
+//        promoteBarContainerView.addSubview(progressBarContainer)
+//        
+//        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
+//        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBarContainer)
+//        promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0][v1]|", views: soldTicketsLabel, progressBarContainer)
+//    }
+//    
     
     func setupFacebookContainer() {
         

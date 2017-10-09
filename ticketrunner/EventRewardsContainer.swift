@@ -19,7 +19,11 @@ class EventRewardsContainer: UIView, UICollectionViewDataSource, UICollectionVie
         return cv
     }()
     
-    var rewards: [Reward]?
+    var rewards: [Reward]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     let cellId = "cellId"
     

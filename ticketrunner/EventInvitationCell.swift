@@ -78,18 +78,18 @@ class EventInvitationCell: TableCell {
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = ColorCodes.lightPurple
+        view.backgroundColor = ColorCodes.lightPurple
         self.layer.cornerRadius = 5
         
         
-        addSubview(eventInvitationLabel)
-        addSubview(subtitleLabel)
-        addSubview(eventImageView)
+        view.addSubview(eventInvitationLabel)
+        view.addSubview(subtitleLabel)
+        view.addSubview(eventImageView)
         
-        eventInvitationLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
+        eventInvitationLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
         subtitleLabel.anchor(top: eventInvitationLabel.bottomAnchor, left: eventInvitationLabel.leftAnchor, bottom: nil, right: eventInvitationLabel.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 45)
         
-        eventImageView.anchor(top: subtitleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 105)
+        eventImageView.anchor(top: subtitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 105)
         
         let stackView = UIStackView(arrangedSubviews: [eventInfoButton, rewardsButton, declineButton, acceptButton])
         
@@ -97,8 +97,8 @@ class EventInvitationCell: TableCell {
         stackView.distribution = .fillEqually
         stackView.spacing = 2
         
-        addSubview(stackView)
-        stackView.anchor(top: eventImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 206)
+        view.addSubview(stackView)
+        stackView.anchor(top: eventImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 206)
         
         
     }
