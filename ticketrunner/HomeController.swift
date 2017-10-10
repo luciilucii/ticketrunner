@@ -27,12 +27,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
-    lazy var promoteButton: FixedPromoteButton = {
-        let button = FixedPromoteButton()
-        button.viewController = self
-        return button
-    }()
-    
     var menu: Menu?
     var userImage: UIImage? {
         didSet{
@@ -54,20 +48,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         checkIfMenuIsSet()
         checkIfSessionKeyIsValid()
         
-        userEvents = EventResource().getEvents()
+//        userEvents = EventResource().getEvents()
         
         navigationController?.navigationBar.isTranslucent = false
         
         view.backgroundColor = ColorCodes.controllerBackground
-        
-        view.addSubview(promoteButton)
-        
-        if #available(iOS 11.0, *) {
-            promoteButton.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        } else {
-            // Fallback on earlier versions
-            promoteButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        }
         
         setupTitleLabel()
         setupMenuBar()
@@ -201,14 +186,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if userEvents.count == 0 {
             
             let height = CGFloat(488)
-            let width = view.frame.width - 16
+            let width = view.frame.width
             
             let size = CGSize(width: width, height: height)
             
             return size
             
         } else {
-            let height = CGFloat(419) + ((view.frame.width - 32) / 2.7)
+            let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
             let width = view.frame.width - 16
             
             let size = CGSize(width: width, height: height)
@@ -223,6 +208,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
             
             cell.homeController = self
+            cell.nightMode = false
             
             return cell
             
@@ -245,8 +231,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: view.frame.width, height: 1401)
+        if userEvents.count == 0 {
+            return CGSize(width: 0, height: 0)
+        } else {
+            return CGSize(width: view.frame.width, height: 1401)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

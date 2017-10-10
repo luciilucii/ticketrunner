@@ -42,6 +42,8 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         super.setupViews()
         setupTableView()
         
+        clipsToBounds = true
+        
         tableView.backgroundColor = ColorCodes.controllerBackground
         
         addSubview(tableView)

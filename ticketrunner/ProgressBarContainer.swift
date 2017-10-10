@@ -64,6 +64,7 @@ class ProgressBarContainer: UIView {
                 guard let event = event else {
                     return
                 }
+                ticketProgressLabelForReward.isHidden = false
                 setupPromoteBarProgress(forEvent: event)
             }
         }
@@ -106,7 +107,7 @@ class ProgressBarContainer: UIView {
     let promoteBackgroundBarView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
-        view.backgroundColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
+        view.backgroundColor = ColorCodes.lightGrayText
         return view
     }()
     
@@ -120,10 +121,10 @@ class ProgressBarContainer: UIView {
 
     let triangleImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "triangle-small")?.withRenderingMode(.alwaysTemplate)
+//        iv.image = UIImage(named: "triangle-small")?.withRenderingMode(.alwaysTemplate)
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.tintColor = UIColor(red:0.98, green:0.68, blue:0.39, alpha:1.0)
-        iv.backgroundColor = .red
+        iv.tintColor = ColorCodes.ticketrunnerYellow
+        iv.backgroundColor = ColorCodes.ticketrunnerYellow
         return iv
     }()
     
@@ -169,10 +170,10 @@ class ProgressBarContainer: UIView {
         for reward in eventRewards {
             
             let iv = UIImageView()
-            iv.image = UIImage(named: "triangle-small")?.withRenderingMode(.alwaysTemplate)
             iv.translatesAutoresizingMaskIntoConstraints = false
             iv.contentMode = .scaleAspectFit
-            iv.tintColor = UIColor(red:0.98, green:0.68, blue:0.39, alpha:1.0)
+            iv.backgroundColor = ColorCodes.ticketrunnerYellow
+            iv.layer.cornerRadius = 4
             
             addSubview(iv)
             
@@ -187,10 +188,10 @@ class ProgressBarContainer: UIView {
                 iv.isHidden = false
             }
             
-            iv.topAnchor.constraint(equalTo: promoteBackgroundBarView.bottomAnchor).isActive = true
+            iv.topAnchor.constraint(equalTo: promoteBackgroundBarView.bottomAnchor, constant: 2).isActive = true
             iv.centerXAnchor.constraint(equalTo: promoteBackgroundBarView.leftAnchor, constant: centerXConstant).isActive = true
-            iv.heightAnchor.constraint(equalToConstant: 10).isActive = true
-            iv.widthAnchor.constraint(equalToConstant: 10).isActive = true
+            iv.heightAnchor.constraint(equalToConstant: 8).isActive = true
+            iv.widthAnchor.constraint(equalToConstant: 8).isActive = true
             
         }
     }
@@ -239,6 +240,8 @@ class ProgressBarContainer: UIView {
         } else {
             width = widthAnchorConstant / ticketsToSell * ticketsSold
         }
+        
+        ticketProgressLabelForReward.text = "8542/35000"
         
         setupPromoteBar(forWidth: width)
     }

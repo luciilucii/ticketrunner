@@ -69,7 +69,7 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         label.text = "Masquerade & Crime - Um Vaters Willen, Hercule Poirot ermittelt!"
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
+        label.textColor = ColorCodes.textColorGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -79,8 +79,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "01/09/2017"
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     
@@ -89,8 +89,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         label.text = "Körnebachstraße 72"
         label.textAlignment = .left
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = ColorCodes.lightGrayText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -98,8 +98,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     let locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Cologne, Germany"
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = ColorCodes.lightGrayText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -121,6 +121,15 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     let soldTicketsLabel: TicketrunnerPointsLabel = {
         let label = TicketrunnerPointsLabel()
         label.text = "9.542°"
+        return label
+    }()
+    
+    let rewardsUnlockedLabel: UILabel = {
+        let label = UILabel()
+        label.text = "6/10 rewards unlocked"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     
@@ -210,7 +219,7 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         
         eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230)
         
-        progressBackgroundView.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 116)
+        progressBackgroundView.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 138)
         
         
         eventInfoView.addSubview(eventImageView)
@@ -222,7 +231,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         
         
         progressBackgroundView.addSubview(promoteBarContainerView)
-        
         
         addSubview(promoteButton)
         addSubview(rewardsButton)
@@ -266,7 +274,7 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         promoteBarContainerView.topAnchor.constraint(equalTo: progressBackgroundView.topAnchor, constant: 8).isActive = true
         promoteBarContainerView.leftAnchor.constraint(equalTo: progressBackgroundView.leftAnchor, constant: 8).isActive = true
         promoteBarContainerView.rightAnchor.constraint(equalTo: progressBackgroundView.rightAnchor, constant: -8).isActive = true
-        promoteBarContainerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        promoteBarContainerView.heightAnchor.constraint(equalToConstant: 128).isActive = true
         
         
         
@@ -293,14 +301,18 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         
     }
     
-    func setupPromoteBarContainer() {
-        
+    func setupPromoteBarContainer() {        
         promoteBarContainerView.addSubview(soldTicketsLabel)
+        promoteBarContainerView.addSubview(rewardsUnlockedLabel)
         promoteBarContainerView.addSubview(progressBar)
+
         
-        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: progressBar)
-        promoteBarContainerView.addContraintsWithFormat(format: "V:|[v0(30)]-8-[v1]-8-|", views: soldTicketsLabel, progressBar)
-        promoteBarContainerView.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: soldTicketsLabel)
+        soldTicketsLabel.anchor(top: promoteBarContainerView.topAnchor, left: promoteBarContainerView.leftAnchor, bottom: nil, right: promoteBarContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        rewardsUnlockedLabel.anchor(top: soldTicketsLabel.bottomAnchor, left: promoteBarContainerView.leftAnchor, bottom: nil, right: promoteBarContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        progressBar.anchor(top: rewardsUnlockedLabel.bottomAnchor, left: promoteBarContainerView.leftAnchor, bottom: promoteBarContainerView.bottomAnchor, right: promoteBarContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        
     }
     
     func shouldShowTriangles() -> Bool {

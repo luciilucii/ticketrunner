@@ -59,6 +59,7 @@
 		1998D2901F8B9922004C8334 /* ScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28F1F8B9922004C8334 /* ScrollController.swift */; };
 		1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */; };
 		1998D2941F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */; };
+		19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */; };
 		19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF511EDBDF7D00739A49 /* RewardsController.swift */; };
 		19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF551EDCA20300739A49 /* MessagesController.swift */; };
 		19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF571EDCA38E00739A49 /* SettingsController.swift */; };
@@ -169,6 +170,7 @@
 		1998D28F1F8B9922004C8334 /* ScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollController.swift; sourceTree = "<group>"; };
 		1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoHeadlineView.swift; sourceTree = "<group>"; };
 		1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoLineUpContainerView.swift; sourceTree = "<group>"; };
+		19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsController.swift; sourceTree = "<group>"; };
 		19B5DF511EDBDF7D00739A49 /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		19B5DF551EDCA20300739A49 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		19B5DF571EDCA38E00739A49 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -318,7 +320,8 @@
 				19F7167C1F8BC0A6003710F1 /* EventPromoteController */,
 				1998D28C1F8B98DF004C8334 /* EventInfoController */,
 				19FDD14D1EE2EF7C00502BC6 /* AllArtistsForEventController.swift */,
-				193930DA1EEC610C004E52C0 /* DetailPromoteController */,
+				19A6E25A1F8BFFC700A3F880 /* EventRewardsController */,
+				193930DA1EEC610C004E52C0 /* Delete This!!!! */,
 				1913C7A51F33555C000B4710 /* LeaderboardController */,
 			);
 			name = EventController;
@@ -359,14 +362,14 @@
 			name = StatisticsCVCells;
 			sourceTree = "<group>";
 		};
-		193930DA1EEC610C004E52C0 /* DetailPromoteController */ = {
+		193930DA1EEC610C004E52C0 /* Delete This!!!! */ = {
 			isa = PBXGroup;
 			children = (
 				190C19221EDE802B003BC179 /* DetailPromoteEventController.swift */,
 				193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */,
 				1907D5A71EED0C8E00E603A6 /* PromoteViews */,
 			);
-			name = DetailPromoteController;
+			name = "Delete This!!!!";
 			sourceTree = "<group>";
 		};
 		195D46721F0DF7C200E59777 /* Confirmation */ = {
@@ -396,6 +399,14 @@
 				19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */,
 			);
 			name = EventInfoController;
+			sourceTree = "<group>";
+		};
+		19A6E25A1F8BFFC700A3F880 /* EventRewardsController */ = {
+			isa = PBXGroup;
+			children = (
+				19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */,
+			);
+			name = EventRewardsController;
 			sourceTree = "<group>";
 		};
 		19C20AEB1ED8A9EF00C6FF17 = {
@@ -820,6 +831,7 @@
 				19953DD51F42ABE700409195 /* NewRewardsCVCell.swift in Sources */,
 				1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */,
 				19C390571EE1E82300954E64 /* RewardCell.swift in Sources */,
+				19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
 				19B5DF5B1EDCA3CC00739A49 /* LanguageController.swift in Sources */,

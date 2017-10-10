@@ -29,4 +29,9 @@ class ColorCodes {
     
     static let lightGrayText = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1.0)
     
+    static let nightModePurple = UIColor(red:0.13, green:0.00, blue:0.28, alpha:1.0)
+    static let nightModeLightPurple = UIColor(red:0.24, green:0.19, blue:0.48, alpha:1.0)
+    
+    static let dayModeBlue = UIColor(red:0.40, green:0.67, blue:0.89, alpha:1.0)
+    
 }

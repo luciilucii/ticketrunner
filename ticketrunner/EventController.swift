@@ -133,7 +133,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        let height = CGFloat(467) + ((view.frame.width - 32) / 2.7)
+        let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
         let width = view.frame.width - 16
         
         let size = CGSize(width: width, height: height)
@@ -181,7 +181,11 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func didTapRewards(event: Event) {
-        handleRewardsFor(event: event)
+        let eventRewardsController = EventRewardsController()
+        eventRewardsController.event = event
+        
+        self.show(eventRewardsController, sender: self)
+        
     }
     
     func didTapEventInfo(event: Event) {

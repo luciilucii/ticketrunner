@@ -133,10 +133,10 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
             
             cell.rewardsController = self
-            cell.noEventImageView.image = #imageLiteral(resourceName: "no rewards")
+//            cell.noEventImageView.image = #imageLiteral(resourceName: "no rewards")
             
-            cell.noEventTitleLabel.text = "No Rewards yet..."
-            cell.noEventDescriptionLabel.text = "Not so fast, Thundercat. You have not even started promoting an event and already want to receive rewards?! Not in this barrio, amigo.\n\nJust start promoting an event and we’ll be able to show you something here."
+//            cell.noEventTitleLabel.text = "No Rewards yet..."
+//            cell.noEventDescriptionLabel.text = "Not so fast, Thundercat. You have not even started promoting an event and already want to receive rewards?! Not in this barrio, amigo.\n\nJust start promoting an event and we’ll be able to show you something here."
             
             return cell
         } else {

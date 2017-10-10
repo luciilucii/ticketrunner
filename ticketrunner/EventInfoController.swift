@@ -45,15 +45,10 @@ class EventInfoController: ScrollController {
         return view
     }()
     
-    lazy var promoteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = ColorCodes.ticketrunnerBlue
-        button.layer.cornerRadius = 5
-        button.setTitle("Promote", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.clipsToBounds = true
+    lazy var promoteButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Promote")
         button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
+        button.layer.zPosition = 1
         return button
     }()
     
@@ -106,7 +101,7 @@ class EventInfoController: ScrollController {
             promoteButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 50)
         }
         
-        promoteButtonHelperView.anchor(top: promoteButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        promoteButtonHelperView.anchor(top: promoteButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: -5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     

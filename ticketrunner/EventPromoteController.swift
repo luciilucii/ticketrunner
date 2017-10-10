@@ -45,7 +45,7 @@ class EventPromoteController: ScrollController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.setupScrollView(height: 1500)
+        super.setupScrollView(height: 807)
         
         super.setupController()
         
@@ -67,7 +67,7 @@ class EventPromoteController: ScrollController {
         
         promoteShareLinkView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 258)
         
-        landingPagePreviewContainer.anchor(top: promoteShareLinkView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 550)
+        landingPagePreviewContainer.anchor(top: promoteShareLinkView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 460)
         
         view.addSubview(linkCopiedLabel)
         

@@ -15,8 +15,6 @@ class ScrollController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let textAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
-//        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func setupController() {
@@ -35,7 +33,7 @@ class ScrollController: UIViewController, UIScrollViewDelegate {
         self.scrollView.contentSize = CGSize(width: view.frame.width, height: height)
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 65, 0)
         
-        
+//        scrollView.anchor(top: topLayoutGuide.topAnchor, left: view.leftAnchor, bottom: bottomLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         scrollView.frame = view.bounds
         
         view.addSubview(scrollView)
