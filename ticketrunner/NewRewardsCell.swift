@@ -16,7 +16,7 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     let rewardsTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Congrats new rewards earned!"
+        label.text = "Congrats new rewards unlocked!"
         label.textAlignment = .center
         label.textColor = ColorCodes.homeYellow
         label.font = UIFont.boldSystemFont(ofSize: 16)

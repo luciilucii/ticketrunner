@@ -16,23 +16,23 @@ class EventResource: NSObject {
         event1.name = "Hello Kitty Event"
         event1.rewards = [Reward]()
         
-        let reward1 = Reward()
+        let reward1 = Reward(id: 1)
         reward1.name = "Free VIP Ticket"
         reward1.ticketsToSell = 5
         
-        let reward15 = Reward()
+        let reward15 = Reward(id: 2)
         reward15.name = "Meet & Greet"
         reward15.ticketsToSell = 7
         
-        let reward3 = Reward()
+        let reward3 = Reward(id: 3)
         reward3.name = "5 Free Tickets"
         reward3.ticketsToSell = 25
         
-        let reward2 = Reward()
+        let reward2 = Reward(id: 4)
         reward2.name = "Free TShirt"
         reward2.ticketsToSell = 15
         
-        let reward5 = Reward()
+        let reward5 = Reward(id: 5)
         reward5.name = "5 VIP Tickets"
         reward5.ticketsToSell = 35
         
@@ -78,23 +78,23 @@ class EventResource: NSObject {
         event1.name = "Hello Kitty Event mit einem längeren Titel und sogar mit Ort, Köln"
         event1.rewards = [Reward]()
         
-        let reward1 = Reward()
+        let reward1 = Reward(id: 6)
         reward1.name = "Free VIP Ticket"
         reward1.ticketsToSell = 5
         
-        let reward15 = Reward()
+        let reward15 = Reward(id: 7)
         reward15.name = "Meet & Greet"
         reward15.ticketsToSell = 7
         
-        let reward3 = Reward()
+        let reward3 = Reward(id: 8)
         reward3.name = "5 Free Tickets"
         reward3.ticketsToSell = 25
         
-        let reward2 = Reward()
+        let reward2 = Reward(id: 9)
         reward2.name = "Free TShirt"
         reward2.ticketsToSell = 15
         
-        let reward5 = Reward()
+        let reward5 = Reward(id: 10)
         reward5.name = "5 VIP Tickets"
         reward5.ticketsToSell = 35
         
@@ -137,23 +137,23 @@ class EventResource: NSObject {
         let event2 = Event()
         event2.name = "Ticketrunner After Party"
         
-        let reward10 = Reward()
+        let reward10 = Reward(id: 11)
         reward10.name = "Free Ticket"
         reward10.ticketsToSell = 5
         
-        let reward150 = Reward()
+        let reward150 = Reward(id: 12)
         reward150.name = "Meet & Greet mit Cro"
         reward150.ticketsToSell = 20
         
-        let reward30 = Reward()
+        let reward30 = Reward(id: 13)
         reward30.name = "1 Free VIP Tickets"
         reward30.ticketsToSell = 25
         
-        let reward20 = Reward()
+        let reward20 = Reward(id: 14)
         reward20.name = "Free TShirt von Cro"
         reward20.ticketsToSell = 10
         
-        let reward50 = Reward()
+        let reward50 = Reward(id: 15)
         reward50.name = "5 VIP Tickets"
         reward50.ticketsToSell = 45
         
@@ -206,8 +206,6 @@ class EventResource: NSObject {
         
         return fetchedEvents
     }
-    
-    var controller: DetailEventController?
     
     func getFirstFourArtists(forEvent: Event) -> [Artist] {
         

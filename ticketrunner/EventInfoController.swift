@@ -138,6 +138,18 @@ class EventInfoController: ScrollController {
         handleMenu()
     }
     
+    @objc func handleMenu() {
+        menu.showMenu()
+        
+    }
+    
+    lazy var menu: Menu = {
+        let menu = Menu()
+        menu.startController = self
+        return menu
+    }()
+
+    
     func handlePromote() {
         let promoteController = EventPromoteController()
         self.show(promoteController, sender: self)

@@ -35,13 +35,11 @@ class AllArtistsForEventController: UIViewController {
                 return height
                 
             } else {
-                
                 let count = (artistsCount + 1) / 2
                 let height = CGFloat(count) * 162 + 40
                 return height
             }
         }
-        
         return 0
     }
     

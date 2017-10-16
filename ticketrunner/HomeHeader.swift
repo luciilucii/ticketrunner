@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, StatisticsCellDelegate {
+class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, StatisticsCellDelegate, SystemMessageCellDelegate, NewMessagesCellDelegate {
+    
+    var homeCells = [WelcomeCell.self, SystemMessageCell.self, NewMessagesCell.self, StatisticsCell.self, NewRewardsCell.self, EventInvitationCell.self, LeaderboardHomeCell.self]
     
     let defaultId = "defaultId"
     let cellId = "cellId"
@@ -63,20 +65,23 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
+        
+        let type = homeCells[indexPath.row]
+        
+        switch type {
+        case _ where type == WelcomeCell.self:
             return 226
-        case 1:
+        case _ where type == SystemMessageCell.self:
             return 108
-        case 2:
+        case _ where type == NewMessagesCell.self:
             return 83
-        case 3:
+        case _ where type == StatisticsCell.self:
             return statisticsCellHeight
-        case 4:
+        case _ where type == NewRewardsCell.self:
             return 162
-        case 5:
+        case _ where type == EventInvitationCell.self:
             return 420
-        case 6:
+        case _ where type == LeaderboardHomeCell.self:
             return 207
         default:
             return 0
@@ -88,38 +93,50 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return homeCells.count
     }
     
+    var systemMessageContained = false
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        
+        let type = homeCells[indexPath.row]
+        
+        switch type {
+        case _ where type == WelcomeCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WelcomeCell
             
+            cell.homeController = self.homeController
+            
             return cell
-        case 1:
+        case _ where type == SystemMessageCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: notificationId, for: indexPath) as! SystemMessageCell
             
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: messageId, for: indexPath) as! NewMessagesCell
+            cell.indexPath = indexPath
+            cell.delegate = self
             
             return cell
-        case 3:
+        case _ where type == NewMessagesCell.self:
+            let cell = tableView.dequeueReusableCell(withIdentifier: messageId, for: indexPath) as! NewMessagesCell
+            
+            cell.delegate = self
+            
+            return cell
+        case _ where type == StatisticsCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: statisticsId, for: indexPath) as! StatisticsCell
             
             cell.delegate = self
             
             return cell
-        case 4:
+        case _ where type == NewRewardsCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: newRewardsId, for: indexPath) as! NewRewardsCell
             
             return cell
-        case 5:
+        case _ where type == EventInvitationCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: eventInvitationId, for: indexPath) as! EventInvitationCell
             
             return cell
-        case 6:
+        case _ where type == LeaderboardHomeCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: leaderboardId, for: indexPath) as! LeaderboardHomeCell
             
             return cell
@@ -130,17 +147,29 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         }
     }
     
+    func didTapCancel(indexPath: IndexPath) {
+        self.homeCells.remove(at: indexPath.item)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 1 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func didTapOnCell() {
+        self.homeController?.menu?.showMessagesController()
+    }
+    
     func handleUpDown(buttonState: ButtonState) {
-        //nothing?
-        
         if buttonState == .down {
             self.statisticsCellHeight = 195
         } else {
             self.statisticsCellHeight = 54
         }
-        
-        
     }
-    
 }
 

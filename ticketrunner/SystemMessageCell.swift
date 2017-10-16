@@ -8,13 +8,22 @@
 
 import UIKit
 
+protocol SystemMessageCellDelegate {
+    func didTapCancel(indexPath: IndexPath)
+}
+
 class SystemMessageCell: TableCell {
+    
+    var indexPath: IndexPath?
+    
+    var delegate: SystemMessageCellDelegate?
     
     let alertImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "System Message Icon")
+        iv.image = #imageLiteral(resourceName: "System Message Icon").withRenderingMode(.alwaysTemplate)
+        iv.tintColor = UIColor.white
         return iv
     }()
     
@@ -35,11 +44,20 @@ class SystemMessageCell: TableCell {
         return label
     }()
     
+    lazy var cancelButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = UIColor(white: 0, alpha: 0.15)
+        button.addTarget(self, action: #selector(handleDeleteCell), for: .touchUpInside)
+        return button
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
         layer.cornerRadius = 5
-        view.backgroundColor = ColorCodes.homeYellow
+//        view.backgroundColor = ColorCodes.homeYellow
+        view.backgroundColor = ColorCodes.ticketrunnerRed
         
         view.addSubview(alertImageView)
         alertImageView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
@@ -51,6 +69,15 @@ class SystemMessageCell: TableCell {
         view.addSubview(messageLabel)
         messageLabel.anchor(top: headlineLabel.bottomAnchor, left: headlineLabel.leftAnchor, bottom: view.bottomAnchor, right: headlineLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
         
+        view.addSubview(cancelButton)
+        cancelButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 35, height: 35)
+        
+        
+    }
+    
+    func handleDeleteCell() {
+        guard let indexPath = indexPath else { return }
+        delegate?.didTapCancel(indexPath: indexPath)
     }
     
 }

@@ -8,19 +8,32 @@
 
 import UIKit
 
+enum HomeControllerMode {
+    case day
+    case night
+}
+
 class HomeNoEventCell: BaseCell {
     
     var homeController: HomeController?
     var rewardsController: RewardsController?
     
-    var nightMode = true {
+    var homeControllerMode: HomeControllerMode? {
         didSet {
-            if nightMode == false {
+            guard let homeControllerMode = homeControllerMode else { return }
+            switch homeControllerMode {
+            case .day:
+                homeController?.collectionView?.backgroundColor = ColorCodes.dayModeBlue
                 self.backgroundColor = ColorCodes.dayModeBlue
                 self.welcomeSubtitleLabel.textColor = ColorCodes.ticketrunnerYellow
-            } else {
+                
+                setupDayModeViews()
+            case .night:
+                homeController?.collectionView?.backgroundColor = ColorCodes.nightModePurple
                 self.backgroundColor = ColorCodes.nightModePurple
                 self.welcomeSubtitleLabel.textColor = ColorCodes.ticketrunnerBlue
+                
+                setupNightModeViews()
             }
         }
     }
@@ -36,6 +49,7 @@ class HomeNoEventCell: BaseCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "profile_avatar")
+        iv.layer.zPosition = 1
         return iv
     }()
     
@@ -75,6 +89,38 @@ class HomeNoEventCell: BaseCell {
         return button
     }()
     
+    let stageImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "Festival Stage")
+        return iv
+    }()
+    
+    let sunImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "Sun")
+        return iv
+    }()
+    
+    let cloud1ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "Cloud 1")
+        return iv
+    }()
+    
+    let cloud2ImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "Cloud 2")
+        return iv
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
@@ -86,6 +132,8 @@ class HomeNoEventCell: BaseCell {
         addSubview(noEventTitleLabel)
         addSubview(noEventDescriptionLabel)
         addSubview(discoverButton)
+        
+        addSubview(stageImageView)
         
         welcomeLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
@@ -101,6 +149,8 @@ class HomeNoEventCell: BaseCell {
         
         discoverButton.anchor(top: noEventDescriptionLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 25, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
+        stageImageView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
+        
     }
     
     func handlePromote() {
@@ -111,6 +161,32 @@ class HomeNoEventCell: BaseCell {
         }
     }
     
+    fileprivate func setupNightModeViews() {
+        
+        
+    }
     
+    fileprivate func setupDayModeViews() {
+        addSubview(sunImageView)
+        addSubview(cloud1ImageView)
+        addSubview(cloud2ImageView)
+        
+        sunImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 35, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 55, height: 55)
+        
+        cloud1ImageView.anchor(top: profileImageView.topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: -30, paddingBottom: 0, paddingRight: 0, width: 150, height: 50)
+        
+        cloud2ImageView.anchor(top: profileImageView.topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: -45, width: 130, height: 50)
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+

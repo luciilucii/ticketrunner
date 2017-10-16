@@ -81,7 +81,6 @@ class EventPromoteController: ScrollController {
     }
     
     func setupNavBarButtons() {
-        
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
@@ -112,6 +111,16 @@ class EventPromoteController: ScrollController {
     func handleNavigationMenu() {
         handleMenu()
     }
+    
+    @objc func handleMenu() {
+        menu.showMenu()
+    }
+    
+    lazy var menu: Menu = {
+        let menu = Menu()
+        menu.startController = self
+        return menu
+    }()
     
     func handleCopy() {
         timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(handleShowLinkCopied), userInfo: nil, repeats: false)

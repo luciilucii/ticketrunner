@@ -13,6 +13,9 @@ class EventInfoLineUpContainerView: CustomUIView {
     var event: Event? {
         didSet {
             print("hello dog")
+            
+            
+            lineUpContainer.artists = event?.artists
         }
     }
     

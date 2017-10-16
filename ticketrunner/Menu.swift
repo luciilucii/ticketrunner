@@ -59,7 +59,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let logoutMenuPoint = MenuPoint(name: .Logout, imageName: "")
         
         
-        return [homeMenuPoint, rewardsMenuPoint, eventMenuPoint, messagesMenuPoint, settingsMenuPoint, languageMenuPoint, logoutMenuPoint]
+        return [homeMenuPoint, eventMenuPoint, rewardsMenuPoint, messagesMenuPoint, settingsMenuPoint, languageMenuPoint, logoutMenuPoint]
     }()
     
     
@@ -282,6 +282,12 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func showEventController() {
         let indexPath = IndexPath(item: 2, section: 0)
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+        self.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
+    func showMessagesController() {
+        let indexPath = IndexPath(item: 3, section: 0)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
         self.collectionView(collectionView, didSelectItemAt: indexPath)
     }

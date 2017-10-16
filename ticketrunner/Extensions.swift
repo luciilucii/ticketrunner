@@ -80,6 +80,7 @@ extension UIViewController {
         
         navigationItem.title = title
     }
+    
 }
 
 extension UITextField {
@@ -135,19 +136,19 @@ extension UIImageView {
 
 extension UICollectionViewController {
     
-    func setupDetailController(event: Event) -> DetailEventController {
-        
-        let detailEventController = DetailEventController()
-        detailEventController.currentEvent = event
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        detailEventController.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-        
-        setupLineUpContainer(controller: detailEventController)
-        
-        return detailEventController
-        
+//    func setupDetailController(event: Event) -> DetailEventController {
+//
+//        let detailEventController = DetailEventController()
+//        detailEventController.currentEvent = event
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//
+//        detailEventController.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+//
+//        setupLineUpContainer(controller: detailEventController)
+//
+//        return detailEventController
+//
         //set ticketsSoldLabel über der ProgressBar
 //        detailEventController.soldTicketsLabel.text = "\(detailEventController.progressBarContainer.getTicketsSoldCount())"
         
@@ -157,52 +158,16 @@ extension UICollectionViewController {
 //        setupScrollViewHeight(detailController: detailEventController, event: event)
 //        
 //        return detailEventController
-    }
-    
-    func setupLineUpContainer(controller: DetailEventController) {
-        controller.lineUpContainer = ArtistLineUpContainer()
-        
-        guard let lineUpHeight = controller.lineUpContainer?.getHeight() else {
-            return
-        }
-        controller.lineUpHeight = lineUpHeight
-    }
-//    
-//    func setupEventRewardsContainerHeight(controller: DetailEventController, event: Event) -> CGFloat {
-//        guard let rewards = event.rewards else {
-//            return 0
-//        }
-//        controller.rewards = rewards
-//        controller.eventRewardsContainer = EventRewardsContainer()
-//        
-//        guard let height = controller.eventRewardsContainer?.getHeight() else {
-//            return 0
-//        }
-//        
-//        return height
-//    }
-//    
-//    func setupScrollViewHeight(detailController: DetailEventController, event: Event) {
-//        
-//        guard let eventRewardsContainer = detailController.eventRewardsContainer else {
-//            return
-//        }
-//        guard let lineUpContainer = detailController.lineUpContainer else {
-//            return
-//        }
-//        var height: CGFloat = 0
-//        
-//        if event.latidute != nil && event.longitude != nil {
-//            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer)
-//        } else {
-//            height = getHeight(rewardContainer: eventRewardsContainer, lineUpContainer: lineUpContainer) - 258
-//            detailController.mapViewHeightAnchor?.constant = 0
-//            detailController.facebookContainerTopAnchorConstant = 0
-//        }
-//        detailController.setupScrollView(height: height)
-//        detailController.setupViews()
 //    }
     
+//    func setupLineUpContainer(controller: DetailEventController) {
+//        controller.lineUpContainer = ArtistLineUpContainer()
+//
+//        guard let lineUpHeight = controller.lineUpContainer?.getHeight() else {
+//            return
+//        }
+//        controller.lineUpHeight = lineUpHeight
+//    }
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
         let basis: CGFloat = 734
         let lineUpHeight = lineUpContainer.getHeight()
@@ -211,29 +176,23 @@ extension UICollectionViewController {
         return height
     }
     
-    func handlePromoteFor(event: Event) {
-        let controller = setupDetailController(event: event)
-        
-        show(controller, sender: self)
-        
-        let detailPromoteController = DetailPromoteEventController()
-        detailPromoteController.currentEvent = event
-        let navigationPromoteController = UINavigationController(rootViewController: detailPromoteController)
-        
-        controller.present(navigationPromoteController, animated: true, completion: nil)
-    }
-
-    func handleRewardsFor(event: Event) {
-        let controller = setupDetailController(event: event)
-        show(controller, sender: self)
-        controller.scrollView.contentOffset.y = 444
-    }
-    
-    func handleShowEventInfoFor(event: Event) {
-        let controller = setupDetailController(event: event)
-        show(controller, sender: self)
-        controller.handleShowEventDescription()
-    }
+//    func handlePromoteFor(event: Event) {
+//        let controller = setupDetailController(event: event)
+//        
+//        show(controller, sender: self)
+//    }
+//
+//    func handleRewardsFor(event: Event) {
+//        let controller = setupDetailController(event: event)
+//        show(controller, sender: self)
+//        controller.scrollView.contentOffset.y = 444
+//    }
+//    
+//    func handleShowEventInfoFor(event: Event) {
+//        let controller = setupDetailController(event: event)
+//        show(controller, sender: self)
+//        controller.handleShowEventDescription()
+//    }
     
     func handleShowLeaderboards(event: Event) {
         let layout = UICollectionViewFlowLayout()
@@ -242,19 +201,7 @@ extension UICollectionViewController {
     }
 }
 
-//extension UIView {
-//    func applyGradient(colours: [UIColor]) -> Void {
-//        self.applyGradient(colours, locations: nil)
-//    }
-//    
-//    func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> Void {
-//        let gradient: CAGradientLayer = CAGradientLayer()
-//        gradient.frame = self.bounds
-//        gradient.colors = colours.map { $0.UIColor }
-//        gradient.locations = locations
-//        self.layer.insertSublayer(gradient, atIndex: 0)
-//    }
-//}
+
 
 
 

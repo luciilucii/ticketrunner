@@ -8,13 +8,19 @@
 
 import Foundation
 
-class Reward: NSObject {
+class Reward {
     
-    var id: Int?
+    var id: Int
     var name: String?
     var iconName: String?
+    var rewardDescription: String?
+    
     var ticketsToSell: Int?
     
     var claimed = false
+    
+    init(id: Int) {        
+        self.id = id
+    }
     
 }

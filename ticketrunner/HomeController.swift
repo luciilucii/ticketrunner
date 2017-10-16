@@ -48,7 +48,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         checkIfMenuIsSet()
         checkIfSessionKeyIsValid()
         
-//        userEvents = EventResource().getEvents()
+        userEvents = EventResource().getEvents()
         
         navigationController?.navigationBar.isTranslucent = false
         
@@ -57,14 +57,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupTitleLabel()
         setupMenuBar()
         setupCollectionView()
-        
     }
     
     func setupCollectionView() {
-        collectionView?.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        collectionView?.backgroundColor = ColorCodes.controllerBackground
         collectionView?.register(EventCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(HomeHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
-        
+        collectionView?.alwaysBounceVertical = true
         collectionView?.register(HomeNoEventCell.self, forCellWithReuseIdentifier: noEventId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
@@ -80,7 +79,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func checkIfSessionKeyIsValid() {
         
         //TEST FOR SESSIONKEY
-        
         if let loadedString = UserDefaults.standard.string(forKey: "sessionKey") {
             print(loadedString)
             
@@ -185,7 +183,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         if userEvents.count == 0 {
             
-            let height = CGFloat(488)
+            let height = view.frame.height
             let width = view.frame.width
             
             let size = CGSize(width: width, height: height)
@@ -203,31 +201,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if userEvents.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
             
             cell.homeController = self
-            cell.nightMode = false
+            cell.homeControllerMode = .day
+            self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
             
             return cell
-            
         } else {
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
-            
-            cell.backgroundColor = UIColor.white
             
             let event = userEvents[indexPath.item]
             
             cell.currentEvent = event
             cell.delegate = self
             
-            cell.titleLabel.text = event.name
-            
             return cell
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -246,7 +237,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if let userImage = userImage {
             header.avatarImage = userImage
         }
-        
         return header
     }
     
@@ -272,22 +262,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return
         } else {
             let event = userEvents[indexPath.item]
-            let controller = setupDetailController(event: event)
-            
-            navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     func didTapPromote(event: Event) {
-        handlePromoteFor(event: event)
     }
     
     func didTapRewards(event: Event) {
-        handleRewardsFor(event: event)
     }
     
     func didTapEventInfo(event: Event) {
-        handleShowEventInfoFor(event: event)
     }
     
     func didTapLeaderboards(event: Event) {

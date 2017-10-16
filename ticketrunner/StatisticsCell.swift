@@ -84,7 +84,7 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         view.backgroundColor = .white
         
-        let ticketsSoldLabelText = "15"
+        let ticketsSoldLabelText = "1725"
         ticketsSoldLabel.text = ticketsSoldLabelText
         ticketsSoldLabelWidthAnchor?.constant = estimateFrameForText(text: ticketsSoldLabelText).width
         ticketsSoldLabelWidthAnchor?.isActive = true

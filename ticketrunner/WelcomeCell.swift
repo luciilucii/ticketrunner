@@ -78,6 +78,7 @@ class WelcomeCell: TableCell {
         iv.image = UIImage(named: "home-welcome-left-ohne-logo")
         iv.contentMode = .scaleAspectFit
         iv.layer.masksToBounds = true
+        iv.layer.zPosition = 1
         return iv
     }()
     
@@ -87,42 +88,47 @@ class WelcomeCell: TableCell {
         iv.image = #imageLiteral(resourceName: "home-welcome-Right-ohne-logo")
         iv.contentMode = .scaleAspectFit
         iv.layer.masksToBounds = true
+        iv.layer.zPosition = 1
         return iv
     }()
     
     let firstLogoAnimationImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.image = #imageLiteral(resourceName: "ticket-red")
         iv.contentMode = .scaleAspectFit
         iv.transform = CGAffineTransform(rotationAngle: CGFloat(-0.15 * Double.pi))
+        iv.layer.zPosition = 2
         return iv
     }()
     
     let secondLogoAnimationImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.image = #imageLiteral(resourceName: "ticket-red")
         iv.contentMode = .scaleAspectFit
         iv.transform = CGAffineTransform(rotationAngle: CGFloat(0.1 * Double.pi))
+        iv.layer.zPosition = 2
         return iv
     }()
     
     let thirdLogoAnimationImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.image = #imageLiteral(resourceName: "ticket-red")
         iv.contentMode = .scaleAspectFit
         iv.transform = CGAffineTransform(rotationAngle: CGFloat(0.05 * Double.pi))
+        iv.layer.zPosition = 2
         return iv
     }()
     
     let fourthLogoAnimationImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+        iv.image = #imageLiteral(resourceName: "ticket-red")
         iv.contentMode = .scaleAspectFit
         iv.transform = CGAffineTransform(rotationAngle: CGFloat(-0.15 * Double.pi))
+        iv.layer.zPosition = 2
         return iv
     }()
     
@@ -131,11 +137,13 @@ class WelcomeCell: TableCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.masksToBounds = true
         iv.layer.cornerRadius = 50
-        iv.image = UIImage(named: "profile_avatar")
+        iv.image = #imageLiteral(resourceName: "profile_avatar")
         iv.contentMode = .scaleAspectFill
         iv.isUserInteractionEnabled = true
         iv.alpha = 0
         iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImage)))
+        iv.layer.zPosition = 3
+        
         return iv
     }()
     
@@ -156,6 +164,8 @@ class WelcomeCell: TableCell {
         
         setupTicketsSoldView()
         setupVariables()
+        
+        _ = Timer.scheduledTimer(timeInterval: 1.2, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
         
         _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(handleFirstAnimations), userInfo: nil, repeats: false)
         
@@ -415,6 +425,9 @@ class WelcomeCell: TableCell {
     
     func handleSelectProfileImage() {
         homeController?.handleSelectProfileImage()
+        
+        
+        
     }
 }
 

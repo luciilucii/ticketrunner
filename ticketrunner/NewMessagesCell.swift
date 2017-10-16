@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol NewMessagesCellDelegate {
+    func didTapOnCell()
+}
+
 class NewMessagesCell: TableCell {
+    
+    var delegate: NewMessagesCellDelegate?
     
     let messageImageView: UIImageView = {
         let iv = UIImageView()
@@ -39,6 +45,9 @@ class NewMessagesCell: TableCell {
     override func setupViews() {
         super.setupViews()
         
+        isUserInteractionEnabled = true
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowMessages)))
+        
         layer.cornerRadius = 5
         view.backgroundColor = ColorCodes.lightPurple
         
@@ -54,4 +63,20 @@ class NewMessagesCell: TableCell {
         
     }
     
+    func handleShowMessages() {
+        delegate?.didTapOnCell()
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

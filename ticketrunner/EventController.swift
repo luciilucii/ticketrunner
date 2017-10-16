@@ -132,7 +132,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
         let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
         let width = view.frame.width - 16
         

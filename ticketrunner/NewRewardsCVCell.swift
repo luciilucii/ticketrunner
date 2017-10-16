@@ -13,7 +13,7 @@ class NewRewardsCVCell: BaseCell {
     let rewardImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = #imageLiteral(resourceName: "magic").withRenderingMode(.alwaysTemplate)
+        iv.image = #imageLiteral(resourceName: "Icon Merchandise").withRenderingMode(.alwaysTemplate)
         iv.tintColor = ColorCodes.homeYellow
         return iv
     }()

@@ -10,11 +10,15 @@ import UIKit
 
 class LeaderboardController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    //TODO: fetch User with pagination
+    
     let cellId = "cellId"
     let headerId  = "headerId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupWhiteTitle(title: "Leaderboard")
         
         setupCollectionView()
         setupNavBarButtons()
@@ -33,7 +37,7 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
     func setupNavBarButtons() {
         
         let button = UIButton(type: .system)
-        button.setTitle("<", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.tintColor = UIColor.white
         button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
@@ -109,7 +113,9 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LeaderboardCell
         
         let rank = indexPath.item + 1
-        cell.placementLabel.text = "\(rank)."
+        cell.placementLabel.text = "\(rank)"
+        
+        //TODO: Don't do this in the setup here! This has to be fixed with an timer
         
         switch (indexPath.item) {
         case _ where indexPath.item < 3 :

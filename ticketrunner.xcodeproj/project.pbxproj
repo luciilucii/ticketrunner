@@ -11,7 +11,6 @@
 		190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190775771EF6B2CA00C166CD /* ChatMessageCell.swift */; };
 		1907757B1EF6B5B900C166CD /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907757A1EF6B5B900C166CD /* ChatLogController.swift */; };
 		1907757D1EF6B8AE00C166CD /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907757C1EF6B8AE00C166CD /* UserCell.swift */; };
-		1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907D5A81EED0CC300E603A6 /* FacebookPreviewContainer.swift */; };
 		1907D5AB1EED12D800E603A6 /* LandingPagePreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907D5AA1EED12D800E603A6 /* LandingPagePreviewContainer.swift */; };
 		1907D5AE1EED4AAD00E603A6 /* StartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907D5AD1EED4AAD00E603A6 /* StartCell.swift */; };
 		1907D5B01EED4ADC00E603A6 /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907D5AF1EED4ADC00E603A6 /* StartController.swift */; };
@@ -21,7 +20,6 @@
 		19086CE91EFCD0BE0024F7D0 /* SettingsEventSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19086CE81EFCD0BE0024F7D0 /* SettingsEventSubCell.swift */; };
 		190C191E1EDE7543003BC179 /* EventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C191D1EDE7543003BC179 /* EventResource.swift */; };
 		190C19211EDE7E33003BC179 /* EventDescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19201EDE7E33003BC179 /* EventDescriptionController.swift */; };
-		190C19231EDE802B003BC179 /* DetailPromoteEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19221EDE802B003BC179 /* DetailPromoteEventController.swift */; };
 		190C19251EDF0A38003BC179 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19241EDF0A38003BC179 /* UserResource.swift */; };
 		190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */; };
 		191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191253A61EF4FFEC000839B1 /* ApiService.swift */; };
@@ -42,7 +40,6 @@
 		192C56871F3E16B400C77D34 /* StatisticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C56861F3E16B400C77D34 /* StatisticsCell.swift */; };
 		192C568A1F3E262300C77D34 /* StatisticsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */; };
 		19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */; };
-		193930DC1EEC6169004E52C0 /* DetailPromoteController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */; };
 		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
 		195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466A1F0D22D800E59777 /* EventCategoryResource.swift */; };
 		195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */; };
@@ -60,12 +57,15 @@
 		1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */; };
 		1998D2941F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */; };
 		19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */; };
+		19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */; };
+		19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C71F90CBD600684B48 /* RewardTableCell.swift */; };
 		19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF511EDBDF7D00739A49 /* RewardsController.swift */; };
 		19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF551EDCA20300739A49 /* MessagesController.swift */; };
 		19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF571EDCA38E00739A49 /* SettingsController.swift */; };
 		19B5DF5B1EDCA3CC00739A49 /* LanguageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */; };
 		19B5DF5D1EDCA85E00739A49 /* TemplateForController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */; };
 		19BB087E1F8A58F4001D8715 /* FixedPromoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */; };
+		19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */; };
 		19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */; };
 		19C20AFD1ED8A9F000C6FF17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFB1ED8A9F000C6FF17 /* Main.storyboard */; };
 		19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFE1ED8A9F000C6FF17 /* Assets.xcassets */; };
@@ -73,8 +73,6 @@
 		19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */; };
 		19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C35F711F13E79A0056479F /* CustomTextField.swift */; };
 		19C390491EE11D7B00954E64 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19C390481EE11D7B00954E64 /* OFL.txt */; };
-		19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390501EE1E23A00954E64 /* DetailEventViewController+Map.swift */; };
-		19C390531EE1E31700954E64 /* DetailEventController+Setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390521EE1E31700954E64 /* DetailEventController+Setups.swift */; };
 		19C390551EE1E7D300954E64 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390541EE1E7D300954E64 /* Reward.swift */; };
 		19C390571EE1E82300954E64 /* RewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390561EE1E82300954E64 /* RewardCell.swift */; };
 		19C3CFBC1EDFC737006BF04B /* ArtistLineUpContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3CFBB1EDFC737006BF04B /* ArtistLineUpContainerCell.swift */; };
@@ -97,11 +95,11 @@
 		19E64B6A1EDB202B0085624C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B691EDB202B0085624C /* Event.swift */; };
 		19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B6B1EDB3CAA0085624C /* EventController.swift */; };
 		19E64B701EDB48DC0085624C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B6F1EDB48DC0085624C /* EventCell.swift */; };
-		19E64B721EDB4B960085624C /* DetailEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B711EDB4B960085624C /* DetailEventController.swift */; };
 		19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E7865D1F06D31700956958 /* FilterSearchController.swift */; };
 		19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */; };
 		19E8DC851EE27AF5000F216D /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC841EE27AF5000F216D /* Artist.swift */; };
 		19E8DC881EE282EC000F216D /* ProgressBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */; };
+		19E98E2C1F8DCFBF00E62DB5 /* RewardsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E98E2B1F8DCFBF00E62DB5 /* RewardsContainer.swift */; };
 		19EE5CB51EF25D190003F24E /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE5CB41EF25D190003F24E /* SettingCell.swift */; };
 		19EE5CB81EF2786A0003F24E /* PersonalSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE5CB71EF2786A0003F24E /* PersonalSettingsController.swift */; };
 		19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE5CBA1EF2B6450003F24E /* PersonalSettingsContainer.swift */; };
@@ -122,7 +120,6 @@
 		190775771EF6B2CA00C166CD /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		1907757A1EF6B5B900C166CD /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		1907757C1EF6B8AE00C166CD /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		1907D5A81EED0CC300E603A6 /* FacebookPreviewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPreviewContainer.swift; sourceTree = "<group>"; };
 		1907D5AA1EED12D800E603A6 /* LandingPagePreviewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPagePreviewContainer.swift; sourceTree = "<group>"; };
 		1907D5AD1EED4AAD00E603A6 /* StartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCell.swift; sourceTree = "<group>"; };
 		1907D5AF1EED4ADC00E603A6 /* StartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 		19086CE81EFCD0BE0024F7D0 /* SettingsEventSubCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEventSubCell.swift; sourceTree = "<group>"; };
 		190C191D1EDE7543003BC179 /* EventResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventResource.swift; sourceTree = "<group>"; };
 		190C19201EDE7E33003BC179 /* EventDescriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionController.swift; sourceTree = "<group>"; };
-		190C19221EDE802B003BC179 /* DetailPromoteEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPromoteEventController.swift; sourceTree = "<group>"; };
 		190C19241EDF0A38003BC179 /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMessages.swift; sourceTree = "<group>"; };
 		191253A61EF4FFEC000839B1 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -153,7 +149,6 @@
 		192C56861F3E16B400C77D34 /* StatisticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsCell.swift; sourceTree = "<group>"; };
 		192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTitleCell.swift; sourceTree = "<group>"; };
 		19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsEventCell.swift; sourceTree = "<group>"; };
-		193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailPromoteController+Setups.swift"; sourceTree = "<group>"; };
 		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
 		195D466A1F0D22D800E59777 /* EventCategoryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoryResource.swift; sourceTree = "<group>"; };
 		195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -171,12 +166,15 @@
 		1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoHeadlineView.swift; sourceTree = "<group>"; };
 		1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoLineUpContainerView.swift; sourceTree = "<group>"; };
 		19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsController.swift; sourceTree = "<group>"; };
+		19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsTableContainer.swift; sourceTree = "<group>"; };
+		19B001C71F90CBD600684B48 /* RewardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableCell.swift; sourceTree = "<group>"; };
 		19B5DF511EDBDF7D00739A49 /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		19B5DF551EDCA20300739A49 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		19B5DF571EDCA38E00739A49 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageController.swift; sourceTree = "<group>"; };
 		19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateForController.swift; sourceTree = "<group>"; };
 		19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedPromoteController.swift; sourceTree = "<group>"; };
+		19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardModelViewController.swift; sourceTree = "<group>"; };
 		19C20AF41ED8A9EF00C6FF17 /* ticketrunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ticketrunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C20AFC1ED8A9F000C6FF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,8 +196,6 @@
 		19C390451EE11D3E00954E64 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		19C390461EE11D3E00954E64 /* SourceSansPro-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		19C390481EE11D7B00954E64 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		19C390501EE1E23A00954E64 /* DetailEventViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailEventViewController+Map.swift"; sourceTree = "<group>"; };
-		19C390521EE1E31700954E64 /* DetailEventController+Setups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailEventController+Setups.swift"; sourceTree = "<group>"; };
 		19C390541EE1E7D300954E64 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		19C390561EE1E82300954E64 /* RewardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCell.swift; sourceTree = "<group>"; };
 		19C3CFBB1EDFC737006BF04B /* ArtistLineUpContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistLineUpContainerCell.swift; sourceTree = "<group>"; };
@@ -222,11 +218,11 @@
 		19E64B691EDB202B0085624C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		19E64B6B1EDB3CAA0085624C /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		19E64B6F1EDB48DC0085624C /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		19E64B711EDB4B960085624C /* DetailEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEventController.swift; sourceTree = "<group>"; };
 		19E7865D1F06D31700956958 /* FilterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSearchController.swift; sourceTree = "<group>"; };
 		19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistLineUpContainer.swift; sourceTree = "<group>"; };
 		19E8DC841EE27AF5000F216D /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarContainer.swift; sourceTree = "<group>"; };
+		19E98E2B1F8DCFBF00E62DB5 /* RewardsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsContainer.swift; sourceTree = "<group>"; };
 		19EE5CB41EF25D190003F24E /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		19EE5CB71EF2786A0003F24E /* PersonalSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSettingsController.swift; sourceTree = "<group>"; };
 		19EE5CBA1EF2B6450003F24E /* PersonalSettingsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalSettingsContainer.swift; sourceTree = "<group>"; };
@@ -277,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				1907757C1EF6B8AE00C166CD /* UserCell.swift */,
+				19B001C71F90CBD600684B48 /* RewardTableCell.swift */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -288,14 +285,6 @@
 				1907757A1EF6B5B900C166CD /* ChatLogController.swift */,
 			);
 			name = MessagesController;
-			sourceTree = "<group>";
-		};
-		1907D5A71EED0C8E00E603A6 /* PromoteViews */ = {
-			isa = PBXGroup;
-			children = (
-				1907D5A81EED0CC300E603A6 /* FacebookPreviewContainer.swift */,
-			);
-			name = PromoteViews;
 			sourceTree = "<group>";
 		};
 		1907D5AC1EED4A7C00E603A6 /* Start */ = {
@@ -315,13 +304,11 @@
 			isa = PBXGroup;
 			children = (
 				19E64B6B1EDB3CAA0085624C /* EventController.swift */,
-				19C3CFBD1EDFCE7F006BF04B /* Delete THis! */,
 				190C19201EDE7E33003BC179 /* EventDescriptionController.swift */,
 				19F7167C1F8BC0A6003710F1 /* EventPromoteController */,
 				1998D28C1F8B98DF004C8334 /* EventInfoController */,
 				19FDD14D1EE2EF7C00502BC6 /* AllArtistsForEventController.swift */,
 				19A6E25A1F8BFFC700A3F880 /* EventRewardsController */,
-				193930DA1EEC610C004E52C0 /* Delete This!!!! */,
 				1913C7A51F33555C000B4710 /* LeaderboardController */,
 			);
 			name = EventController;
@@ -362,16 +349,6 @@
 			name = StatisticsCVCells;
 			sourceTree = "<group>";
 		};
-		193930DA1EEC610C004E52C0 /* Delete This!!!! */ = {
-			isa = PBXGroup;
-			children = (
-				190C19221EDE802B003BC179 /* DetailPromoteEventController.swift */,
-				193930DB1EEC6169004E52C0 /* DetailPromoteController+Setups.swift */,
-				1907D5A71EED0C8E00E603A6 /* PromoteViews */,
-			);
-			name = "Delete This!!!!";
-			sourceTree = "<group>";
-		};
 		195D46721F0DF7C200E59777 /* Confirmation */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */,
+				19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */,
+				19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */,
 			);
 			name = EventRewardsController;
 			sourceTree = "<group>";
@@ -471,17 +450,6 @@
 				19C390461EE11D3E00954E64 /* SourceSansPro-SemiboldItalic.ttf */,
 			);
 			name = "Source Sans Pro";
-			sourceTree = "<group>";
-		};
-		19C3CFBD1EDFCE7F006BF04B /* Delete THis! */ = {
-			isa = PBXGroup;
-			children = (
-				19E64B711EDB4B960085624C /* DetailEventController.swift */,
-				19C390521EE1E31700954E64 /* DetailEventController+Setups.swift */,
-				19C390501EE1E23A00954E64 /* DetailEventViewController+Map.swift */,
-				1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */,
-			);
-			name = "Delete THis!";
 			sourceTree = "<group>";
 		};
 		19CD6FF31EF396DA006D9E7C /* Event Subscriptions */ = {
@@ -575,6 +543,8 @@
 				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
 				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
 				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
+				19E98E2B1F8DCFBF00E62DB5 /* RewardsContainer.swift */,
+				1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -804,9 +774,7 @@
 				19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */,
 				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
 				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
-				1907D5A91EED0CC300E603A6 /* FacebookPreviewContainer.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
-				19C390511EE1E23A00954E64 /* DetailEventViewController+Map.swift in Sources */,
 				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
 				1913C7A91F3355DA000B4710 /* LeaderboardCell.swift in Sources */,
 				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
@@ -827,16 +795,16 @@
 				19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */,
 				1907D5B41EED4B8000E603A6 /* UserRegistrationController.swift in Sources */,
 				195D46711F0DF79500E59777 /* GifExtension.swift in Sources */,
-				19C390531EE1E31700954E64 /* DetailEventController+Setups.swift in Sources */,
 				19953DD51F42ABE700409195 /* NewRewardsCVCell.swift in Sources */,
 				1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */,
+				19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */,
 				19C390571EE1E82300954E64 /* RewardCell.swift in Sources */,
 				19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
+				19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */,
 				19B5DF5B1EDCA3CC00739A49 /* LanguageController.swift in Sources */,
 				19C390551EE1E7D300954E64 /* Reward.swift in Sources */,
-				19E64B721EDB4B960085624C /* DetailEventController.swift in Sources */,
 				19FDD14E1EE2EF7C00502BC6 /* AllArtistsForEventController.swift in Sources */,
 				19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */,
 				19CD6FFF1EF464A7006D9E7C /* ConnectedAccountsController.swift in Sources */,
@@ -845,6 +813,7 @@
 				19E64B681EDB13920085624C /* User.swift in Sources */,
 				1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */,
 				190C191E1EDE7543003BC179 /* EventResource.swift in Sources */,
+				19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */,
 				19F716821F8BC60A003710F1 /* HeadlineLabel.swift in Sources */,
 				190775751EF6B16200C166CD /* Message.swift in Sources */,
 				1907D5AE1EED4AAD00E603A6 /* StartCell.swift in Sources */,
@@ -861,11 +830,9 @@
 				192AE8E21F552614006E0B2A /* StatisticsScrollCell.swift in Sources */,
 				19E64B6A1EDB202B0085624C /* Event.swift in Sources */,
 				19F716791F8BB043003710F1 /* EventInfoDescriptionView.swift in Sources */,
-				190C19231EDE802B003BC179 /* DetailPromoteEventController.swift in Sources */,
 				19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */,
 				1907D5B21EED4B4000E603A6 /* UserLoginController.swift in Sources */,
 				192C56851F3E134B00C77D34 /* NewMessagesCell.swift in Sources */,
-				193930DC1EEC6169004E52C0 /* DetailPromoteController+Setups.swift in Sources */,
 				190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */,
 				19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,
@@ -881,6 +848,7 @@
 				19EE5CB51EF25D190003F24E /* SettingCell.swift in Sources */,
 				19E35A091F3D819900F91BB5 /* WelcomeCell.swift in Sources */,
 				19CFB4561EF159FF00AB557E /* RewardsHeader.swift in Sources */,
+				19E98E2C1F8DCFBF00E62DB5 /* RewardsContainer.swift in Sources */,
 				1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */,
 				19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */,
 				1998D2941F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift in Sources */,

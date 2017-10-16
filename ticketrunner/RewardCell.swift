@@ -16,35 +16,11 @@ class RewardCell: BaseCell, ProgressBarContainerDelegate {
         }
     }
     
-//    var progressBarContainer: ProgressBarContainer? {
-//        didSet {
-//            
-//            guard let container = progressBarContainer else {
-//                return
-//            }
-//            
-//            container.delegate = self
-//            
-//            guard let widthAnchor = container.progressBackgroundBarWidthAnchor else {
-//                return
-//            }
-//            
-//            let width = widthAnchor
-//            
-//            addSubview(container)
-//            
-//            addContraintsWithFormat(format: "V:|-9-[v0]-9-|", views: container)
-//            addContraintsWithFormat(format: "H:[v0(\(width))]-8-|", views: container)
-//            
-//        }
-//    }
-    
     let rewardImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "gift")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = UIColor(red:0.97, green:0.75, blue:0.30, alpha:1.0)
+        iv.image = #imageLiteral(resourceName: "Icon Merchandise")
         iv.layer.masksToBounds = true
         return iv
     }()
@@ -54,7 +30,7 @@ class RewardCell: BaseCell, ProgressBarContainerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
         label.textAlignment = .left
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.textColor = ColorCodes.textColorGrey
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -64,7 +40,7 @@ class RewardCell: BaseCell, ProgressBarContainerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "for first 50 tickets sold"
         label.textAlignment = .left
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.textColor = ColorCodes.lightGrayText
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()

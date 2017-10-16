@@ -10,7 +10,7 @@ import UIKit
 
 class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     
-    var detailController: DetailPromoteEventController?
+    var detailController: UIViewController?
     
     let titleLabel: HeadlineLabel = {
         let label = HeadlineLabel(title: "Landing Page Setup")
@@ -268,7 +268,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
                 return
             }
             
-            controller.isCustomLandingPageMessageIsEditing = true
+//            controller.isCustomLandingPageMessageIsEditing = true
         }
         
     }
@@ -280,7 +280,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
                 return
             }
             
-            controller.isCustomLandingPageMessageIsEditing = false
+//            controller.isCustomLandingPageMessageIsEditing = false
         }
         
     }

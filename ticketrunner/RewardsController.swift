@@ -168,18 +168,18 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     func handlePromote(sender: UIButton) {
         let event = events[sender.tag]
-        handlePromoteFor(event: event)
+//        handlePromoteFor(event: event)
     }
     
     func handleRewards(sender: UIButton) {
         let event = events[sender.tag]
-        handleRewardsFor(event: event)
+//        handleRewardsFor(event: event)
     }
     
     func handleShowEventInfo(sender: UIButton) {
         
         let event = events[sender.tag]
-        handleShowEventInfoFor(event: event)
+//        handleShowEventInfoFor(event: event)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -215,9 +215,9 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let event = events[indexPath.item]
-        let controller = setupDetailController(event: event)
-        
-        show(controller, sender: self)
+//        let controller = setupDetailController(event: event)
+//
+//        show(controller, sender: self)
     }
 
     

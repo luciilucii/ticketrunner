@@ -52,7 +52,6 @@ class ProgressBarContainer: UIView {
     var event: Event? {
         didSet {
             if delegate != nil {
-                
                 guard let shouldShowUp = delegate?.shouldShowTriangles() else {
                     return
                 }
@@ -85,6 +84,7 @@ class ProgressBarContainer: UIView {
     }
     
     var rewardCell: RewardCell?
+    var rewardTableCell: RewardTableCell?
     
     var timer: Timer?
     
@@ -261,26 +261,43 @@ class ProgressBarContainer: UIView {
             return
         }
         
-        guard let cell = rewardCell else {
-            return
-        }
-        
-        ticketProgressLabelForReward.text = "\(Int(ticketsSold))/\(ticketsToSellForReward)"
-        
-        if ticketsSold >= ticketsToSell {
-            width = widthAnchor
+        if let cell = rewardTableCell {
+            ticketProgressLabelForReward.text = "\(Int(ticketsSold))/\(ticketsToSellForReward)"
             
-            isHidden = true
-            cell.rewardAchievedImageView.isHidden = false
+            if ticketsSold >= ticketsToSell {
+                width = widthAnchor
+                
+                isHidden = true
+                
+                cell.redeemButton.isHidden = false
+                
+                setupPromoteBar(forWidth: width)
+            } else {
+                
+                isHidden = false
+                cell.redeemButton.isHidden = true
+                
+                width = widthAnchor / ticketsToSell * ticketsSold
+                setupPromoteBar(forWidth: width)
+            }
+        } else if let cell = rewardCell {
+            ticketProgressLabelForReward.text = "\(Int(ticketsSold))/\(ticketsToSellForReward)"
             
-            setupPromoteBar(forWidth: width)
-        } else {
-            
-            isHidden = false
-            cell.rewardAchievedImageView.isHidden = true
-            
-            width = widthAnchor / ticketsToSell * ticketsSold
-            setupPromoteBar(forWidth: width)
+            if ticketsSold >= ticketsToSell {
+                width = widthAnchor
+                
+                isHidden = true
+                cell.rewardAchievedImageView.isHidden = false
+                
+                setupPromoteBar(forWidth: width)
+            } else {
+                
+                isHidden = false
+                cell.rewardAchievedImageView.isHidden = true
+                
+                width = widthAnchor / ticketsToSell * ticketsSold
+                setupPromoteBar(forWidth: width)
+            }
         }
     }
     

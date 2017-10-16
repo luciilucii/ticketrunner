@@ -47,23 +47,23 @@ class ScrollController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    func setupMenuBar() {
-        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menu_icon_3-CHANGE").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
-        menuButton.tintColor = UIColor.white
-        navigationItem.leftBarButtonItem = menuButton
-        
-    }
+//    func setupMenuBar() {
+//        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menu_icon_3-CHANGE").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
+//        menuButton.tintColor = UIColor.white
+//        navigationItem.leftBarButtonItem = menuButton
+//        
+//    }
     
-    lazy var menu: Menu = {
-        let menu = Menu()
-        menu.startController = self
-        return menu
-    }()
-    
-    @objc func handleMenu() {
-        menu.showMenu()
-        
-    }
+//    lazy var menu: Menu = {
+//        let menu = Menu()
+//        menu.startController = self
+//        return menu
+//    }()
+//
+//    @objc func handleMenu() {
+//        menu.showMenu()
+//
+//    }
     
     func setupViews() {
         

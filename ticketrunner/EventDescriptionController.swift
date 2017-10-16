@@ -80,8 +80,6 @@ class EventDescriptionController: UIViewController {
         guard let youtubeUrl = URL(string: "https://www.youtube.com/embed/\(videoID)") else {
             return
         }
-        
-        
         youtubeVideoWebView.loadRequest(URLRequest(url: youtubeUrl))
         
     }

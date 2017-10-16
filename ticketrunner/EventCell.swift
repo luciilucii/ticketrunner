@@ -18,7 +18,7 @@ protocol EventCellDelegate {
     func didTapLeaderboards(event: Event)
 }
 
-class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
+class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     
     var delegate: EventCellDelegate?
     
@@ -26,26 +26,22 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     
     var currentEvent: Event? {
         didSet {
+            guard let eventName = currentEvent?.name else { return }
+            self.titleLabel.text = eventName
+            
             guard let event = currentEvent else { return }
-            progressBar.event = event
+            rewardsContainer.event = event
         }
     }
     
     var shouldAnimateProgressBar = true {
         didSet {
-            progressBar.animateProgressBar = shouldAnimateProgressBar
+            rewardsContainer.animateProgressBar = shouldAnimateProgressBar
+//            progressBar.animateProgressBar = shouldAnimateProgressBar
         }
     }
     
     let eventInfoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 5
-        return view
-    }()
-    
-    let progressBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.clipsToBounds = true
@@ -104,33 +100,12 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         return label
     }()
     
-    //Cut
-    
-    let promoteBarContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var progressBar: ProgressBarContainer = {
-        let container = ProgressBarContainer()
+    lazy var rewardsContainer: RewardsContainer = {
+        let container = RewardsContainer()
         container.delegate = self
+        container.isUserInteractionEnabled = true
+        container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRewards)))
         return container
-    }()
-    
-    let soldTicketsLabel: TicketrunnerPointsLabel = {
-        let label = TicketrunnerPointsLabel()
-        label.text = "9.542°"
-        return label
-    }()
-    
-    let rewardsUnlockedLabel: UILabel = {
-        let label = UILabel()
-        label.text = "6/10 rewards unlocked"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = ColorCodes.lightGrayText
-        return label
     }()
     
     //next Cut
@@ -212,14 +187,12 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     }
     
     func setupViews() {
-        setupPromoteBarContainer()
-        
         addSubview(eventInfoView)
-        addSubview(progressBackgroundView)
+        addSubview(rewardsContainer)
         
         eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230)
         
-        progressBackgroundView.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 138)
+        rewardsContainer.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 128)
         
         
         eventInfoView.addSubview(eventImageView)
@@ -227,10 +200,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         eventInfoView.addSubview(dateLabel)
         eventInfoView.addSubview(streetLabel)
         eventInfoView.addSubview(locationLabel)
-        
-        
-        
-        progressBackgroundView.addSubview(promoteBarContainerView)
         
         addSubview(promoteButton)
         addSubview(rewardsButton)
@@ -271,16 +240,8 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         
         
         //x,y,w,h
-        promoteBarContainerView.topAnchor.constraint(equalTo: progressBackgroundView.topAnchor, constant: 8).isActive = true
-        promoteBarContainerView.leftAnchor.constraint(equalTo: progressBackgroundView.leftAnchor, constant: 8).isActive = true
-        promoteBarContainerView.rightAnchor.constraint(equalTo: progressBackgroundView.rightAnchor, constant: -8).isActive = true
-        promoteBarContainerView.heightAnchor.constraint(equalToConstant: 128).isActive = true
-        
-        
-        
-        //x,y,w,h
         promoteButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        promoteButton.topAnchor.constraint(equalTo: progressBackgroundView.bottomAnchor, constant: 4).isActive = true
+        promoteButton.topAnchor.constraint(equalTo: rewardsContainer.bottomAnchor, constant: 4).isActive = true
         promoteButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         promoteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
@@ -298,21 +259,6 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
         
         leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        
-    }
-    
-    func setupPromoteBarContainer() {        
-        promoteBarContainerView.addSubview(soldTicketsLabel)
-        promoteBarContainerView.addSubview(rewardsUnlockedLabel)
-        promoteBarContainerView.addSubview(progressBar)
-
-        
-        soldTicketsLabel.anchor(top: promoteBarContainerView.topAnchor, left: promoteBarContainerView.leftAnchor, bottom: nil, right: promoteBarContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
-        
-        rewardsUnlockedLabel.anchor(top: soldTicketsLabel.bottomAnchor, left: promoteBarContainerView.leftAnchor, bottom: nil, right: promoteBarContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
-        
-        progressBar.anchor(top: rewardsUnlockedLabel.bottomAnchor, left: promoteBarContainerView.leftAnchor, bottom: promoteBarContainerView.bottomAnchor, right: promoteBarContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
-        
     }
     
     func shouldShowTriangles() -> Bool {
@@ -325,8 +271,9 @@ class EventCell: UICollectionViewCell, ProgressBarContainerDelegate {
     }
     
     func shouldProgressBarAnimate() -> Bool {
-        return true
+        return shouldAnimateProgressBar
     }
+    
 }
 
 
