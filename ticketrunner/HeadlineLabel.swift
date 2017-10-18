@@ -16,7 +16,7 @@ class HeadlineLabel: UILabel {
         self.textColor = ColorCodes.textColorGrey
         self.text = title
         self.textAlignment = .center
-        self.font = UIFont.boldSystemFont(ofSize: 14)
+        self.font = UIFont.boldSourceSansPro(ofSize: 16)
         
     }
     
@@ -25,3 +25,4 @@ class HeadlineLabel: UILabel {
     }
     
 }
+

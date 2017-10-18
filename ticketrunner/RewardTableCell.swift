@@ -47,19 +47,16 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         return iv
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
+    let titleLabel: H3 = {
+        let label = H3()
         label.text = "Free Ticket"
-        label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textAlignment = .left
         return label
     }()
     
-    let subtitleLabel: UILabel = {
-        let label = UILabel()
+    let subtitleLabel: SmallTextLabel = {
+        let label = SmallTextLabel()
         label.text = "for first 50 tickets sold"
-        label.textColor = ColorCodes.lightGrayText
-        label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     
@@ -75,13 +72,8 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         return view
     }()
     
-    lazy var redeemButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Redeem", for: .normal)
-        button.backgroundColor = ColorCodes.ticketrunnerGreen
-        button.layer.cornerRadius = 5
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    lazy var redeemButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Redeem")
         button.addTarget(self, action: #selector(handleRedeem), for: .touchUpInside)
         button.isHidden = true
         return button
@@ -106,7 +98,7 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         tv.isSelectable = false
         tv.isScrollEnabled = false
         tv.isUserInteractionEnabled = false
-        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.font = UIFont.sourceSansPro(ofSize: 14)
         return tv
     }()
     

@@ -15,7 +15,7 @@ class TicketrunnerPointsLabel: UILabel {
         
         self.textColor = ColorCodes.ticketrunnerGreen
         self.textAlignment = .center
-        self.font = UIFont.boldSystemFont(ofSize: 18)
+        self.font = UIFont.boldSourceSansPro(ofSize: 18)
         
     }
     

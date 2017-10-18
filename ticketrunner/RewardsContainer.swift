@@ -44,11 +44,10 @@ class RewardsContainer: CustomUIView, ProgressBarContainerDelegate {
         return label
     }()
     
-    let rewardsUnlockedLabel: UILabel = {
-        let label = UILabel()
+    let rewardsUnlockedLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.text = "6/10 rewards unlocked"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = ColorCodes.lightGrayText
         return label
     }()

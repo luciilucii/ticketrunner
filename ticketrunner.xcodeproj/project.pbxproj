@@ -49,6 +49,19 @@
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
 		1978B9921F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */; };
+		1986E5A21F973132002A6552 /* TextLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986E5A11F973132002A6552 /* TextLabels.swift */; };
+		1986E5A31F973184002A6552 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903B1EE11D3E00954E64 /* SourceSansPro-Black.ttf */; };
+		1986E5A41F97318A002A6552 /* SourceSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903C1EE11D3E00954E64 /* SourceSansPro-BlackItalic.ttf */; };
+		1986E5A51F97318D002A6552 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903D1EE11D3E00954E64 /* SourceSansPro-Bold.ttf */; };
+		1986E5A61F973190002A6552 /* SourceSansPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903E1EE11D3E00954E64 /* SourceSansPro-BoldItalic.ttf */; };
+		1986E5A71F973193002A6552 /* SourceSansPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903F1EE11D3E00954E64 /* SourceSansPro-ExtraLight.ttf */; };
+		1986E5A81F973196002A6552 /* SourceSansPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390401EE11D3E00954E64 /* SourceSansPro-ExtraLightItalic.ttf */; };
+		1986E5A91F973198002A6552 /* SourceSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390411EE11D3E00954E64 /* SourceSansPro-Italic.ttf */; };
+		1986E5AA1F97319B002A6552 /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390421EE11D3E00954E64 /* SourceSansPro-Light.ttf */; };
+		1986E5AB1F97319E002A6552 /* SourceSansPro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390431EE11D3E00954E64 /* SourceSansPro-LightItalic.ttf */; };
+		1986E5AC1F9731A0002A6552 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390441EE11D3E00954E64 /* SourceSansPro-Regular.ttf */; };
+		1986E5AD1F9731A2002A6552 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390451EE11D3E00954E64 /* SourceSansPro-Semibold.ttf */; };
+		1986E5AE1F9731A5002A6552 /* SourceSansPro-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C390461EE11D3E00954E64 /* SourceSansPro-SemiboldItalic.ttf */; };
 		19953DD51F42ABE700409195 /* NewRewardsCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19953DD41F42ABE700409195 /* NewRewardsCVCell.swift */; };
 		19953DD71F42B13A00409195 /* EventInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19953DD61F42B13A00409195 /* EventInvitationCell.swift */; };
 		1998D28B1F8B93C9004C8334 /* EventRewardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */; };
@@ -158,6 +171,7 @@
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
 		1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerPointsLabel.swift; sourceTree = "<group>"; };
+		1986E5A11F973132002A6552 /* TextLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabels.swift; sourceTree = "<group>"; };
 		19953DD41F42ABE700409195 /* NewRewardsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRewardsCVCell.swift; sourceTree = "<group>"; };
 		19953DD61F42B13A00409195 /* EventInvitationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInvitationCell.swift; sourceTree = "<group>"; };
 		1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardContainerView.swift; sourceTree = "<group>"; };
@@ -540,6 +554,7 @@
 				19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */,
 				19C35F711F13E79A0056479F /* CustomTextField.swift */,
 				19F716811F8BC60A003710F1 /* HeadlineLabel.swift */,
+				1986E5A11F973132002A6552 /* TextLabels.swift */,
 				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
 				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
 				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
@@ -707,12 +722,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1986E5A41F97318A002A6552 /* SourceSansPro-BlackItalic.ttf in Resources */,
+				1986E5A61F973190002A6552 /* SourceSansPro-BoldItalic.ttf in Resources */,
 				19DB8F9F1F1B722600964BAA /* neonsplash.mp4 in Resources */,
+				1986E5A51F97318D002A6552 /* SourceSansPro-Bold.ttf in Resources */,
 				19C20B021ED8A9F000C6FF17 /* LaunchScreen.storyboard in Resources */,
+				1986E5AB1F97319E002A6552 /* SourceSansPro-LightItalic.ttf in Resources */,
+				1986E5AD1F9731A2002A6552 /* SourceSansPro-Semibold.ttf in Resources */,
+				1986E5A91F973198002A6552 /* SourceSansPro-Italic.ttf in Resources */,
 				195D46741F0DF7D500E59777 /* Verification-email.gif in Resources */,
 				19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */,
 				19C390491EE11D7B00954E64 /* OFL.txt in Resources */,
+				1986E5AA1F97319B002A6552 /* SourceSansPro-Light.ttf in Resources */,
+				1986E5AE1F9731A5002A6552 /* SourceSansPro-SemiboldItalic.ttf in Resources */,
+				1986E5AC1F9731A0002A6552 /* SourceSansPro-Regular.ttf in Resources */,
+				1986E5A81F973196002A6552 /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
+				1986E5A71F973193002A6552 /* SourceSansPro-ExtraLight.ttf in Resources */,
 				19C20AFD1ED8A9F000C6FF17 /* Main.storyboard in Resources */,
+				1986E5A31F973184002A6552 /* SourceSansPro-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +821,7 @@
 				1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */,
 				19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */,
 				1907D5B41EED4B8000E603A6 /* UserRegistrationController.swift in Sources */,
+				1986E5A21F973132002A6552 /* TextLabels.swift in Sources */,
 				195D46711F0DF79500E59777 /* GifExtension.swift in Sources */,
 				19953DD51F42ABE700409195 /* NewRewardsCVCell.swift in Sources */,
 				1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */,

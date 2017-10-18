@@ -23,10 +23,9 @@ class PromoteShareLinkView: CustomUIView {
         return label
     }()
     
-    let linkTextLabel: UILabel = {
-        let label = UILabel()
+    let linkTextLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "Every ticket that is sold through this Link will be accredited to you."
-        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorCodes.textColorGrey
         label.numberOfLines = 5
         return label
@@ -40,7 +39,7 @@ class PromoteShareLinkView: CustomUIView {
         tf.text = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
         tf.textColor = ColorCodes.lightGrayText
         tf.layer.borderColor = ColorCodes.lightGrayText.cgColor
-        tf.font = UIFont.boldSystemFont(ofSize: 14)
+        tf.font = UIFont.boldSourceSansPro(ofSize: 14)
         tf.layer.cornerRadius = 5
         tf.layer.borderWidth = 1
         return tf

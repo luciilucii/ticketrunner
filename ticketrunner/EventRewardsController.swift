@@ -127,7 +127,6 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
     }
     
     func setupNavBarButtons() {
-
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)

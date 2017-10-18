@@ -35,19 +35,16 @@ class RedeemRewardModelViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         button.backgroundColor = ColorCodes.ticketrunnerRed
         return button
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
+    let titleLabel: H2 = {
+        let label = H2()
         label.text = "Redeem Reward"
-        label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
         return label
     }()
     
@@ -69,24 +66,20 @@ class RedeemRewardModelViewController: UIViewController {
     let pointsLabel: TicketrunnerPointsLabel = {
         let label = TicketrunnerPointsLabel()
         label.text = "-200°"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = ColorCodes.ticketrunnerRed
         return label
     }()
     
-    let rewardTitleLabel: UILabel = {
-        let label = UILabel()
+    let rewardTitleLabel: H2 = {
+        let label = H2()
         label.text = "Meet & Greet"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = ColorCodes.textColorGrey
         return label
     }()
     
-    let textLabel: UILabel = {
-        let label = UILabel()
+    let textLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.text = "Do you want to redeem this reward?"
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
         return label
     }()
@@ -155,9 +148,9 @@ class RedeemRewardModelViewController: UIViewController {
         
     }
     
-    let congratsLabel: HeadlineLabel = {
-        let label = HeadlineLabel(title: "Congrats!")
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+    let congratsLabel: H1 = {
+        let label = H1()
+        label.text = "Congrats!"
         label.textColor = ColorCodes.homeYellow
         return label
     }()
@@ -170,12 +163,10 @@ class RedeemRewardModelViewController: UIViewController {
         return iv
     }()
     
-    let redeemedRewardTitleLabel: UILabel = {
-        let label = UILabel()
+    let redeemedRewardTitleLabel: H2 = {
+        let label = H2()
         label.text = "Meet & Greet"
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
         return label
     }()
     

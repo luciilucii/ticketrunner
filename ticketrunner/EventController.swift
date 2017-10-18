@@ -10,7 +10,6 @@ import UIKit
 
 class EventController: UICollectionViewController, UICollectionViewDelegateFlowLayout, EventCellDelegate {
     
-    var titleLabel: UILabel!
     var events = EventResource().getEvents()
     var filteredEvents: [Event]?
     
@@ -28,7 +27,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Events")
         setupMenuBar()
         setupNavBarButton()
         
@@ -36,7 +35,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         events = eventResource.getEvents()
         
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = ColorCodes.controllerBackground
     }
     
     fileprivate func setupNavBarButton() {
@@ -96,7 +95,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
         
         checkIfAnimated(cell: cell, int: indexPath.item)
@@ -114,10 +112,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         cell.currentEvent = currentEvent
         cell.delegate = self
         
-//        cell.progressBar.progressBackgroundBarWidthAnchor = view.frame.width - 48
-        
-        cell.titleLabel.text = currentEvent.name
-        
         return cell
     }
     
@@ -131,7 +125,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
         let width = view.frame.width - 16
         
@@ -149,9 +142,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
             event = events[indexPath.item]
         }
         
-        guard let controllerEvent = event else { return }
-//        let controller = setupDetailController(event: controllerEvent)
-        
         let controller = EventInfoController()
         controller.event = event
         
@@ -159,7 +149,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         if filteredEvents != nil {
             guard let returnCount = filteredEvents?.count else { return 0 }
             return returnCount
@@ -176,46 +165,24 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         let promoteController = EventPromoteController()
         promoteController.event = event
         self.show(promoteController, sender: self)
-        
     }
     
     func didTapRewards(event: Event) {
         let eventRewardsController = EventRewardsController()
         eventRewardsController.event = event
-        
         self.show(eventRewardsController, sender: self)
-        
     }
     
     func didTapEventInfo(event: Event) {
         let eventInfoController = EventInfoController()
         eventInfoController.event = event
-        
         self.show(eventInfoController, sender: self)
-        
     }
     
     func didTapLeaderboards(event: Event) {
-        handleShowLeaderboards(event: event)
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "Events"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
+        let layout = UICollectionViewFlowLayout()
+        let controller = LeaderboardController(collectionViewLayout: layout)
+        self.show(controller, sender: self)
     }
     
 }

@@ -121,21 +121,19 @@ class ProgressBarContainer: UIView {
 
     let triangleImageView: UIImageView = {
         let iv = UIImageView()
-//        iv.image = UIImage(named: "triangle-small")?.withRenderingMode(.alwaysTemplate)
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.tintColor = ColorCodes.ticketrunnerYellow
         iv.backgroundColor = ColorCodes.ticketrunnerYellow
         return iv
     }()
     
-    let ticketProgressLabelForReward: UILabel = {
-        let label = UILabel()
+    let ticketProgressLabelForReward: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isHidden = true
         label.layer.zPosition = 1
-        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = ""
         return label
     }()

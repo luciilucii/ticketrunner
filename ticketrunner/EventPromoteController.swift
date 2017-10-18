@@ -27,12 +27,11 @@ class EventPromoteController: ScrollController {
         return view
     }()
     
-    let linkCopiedLabel: UILabel = {
-        let label = UILabel()
+    let linkCopiedLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = ColorCodes.ticketrunnerGreen
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .center
         label.text = "Link copied!"
         label.layer.cornerRadius = 35/2

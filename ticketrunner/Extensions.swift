@@ -73,8 +73,7 @@ extension UIViewController {
     }
     
     func setupWhiteTitle(title: String) {
-        
-        let textAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        let textAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.boldSourceSansPro(ofSize: 20)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         
@@ -136,38 +135,6 @@ extension UIImageView {
 
 extension UICollectionViewController {
     
-//    func setupDetailController(event: Event) -> DetailEventController {
-//
-//        let detailEventController = DetailEventController()
-//        detailEventController.currentEvent = event
-//
-//        navigationController?.navigationBar.tintColor = UIColor.white
-//
-//        detailEventController.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
-//
-//        setupLineUpContainer(controller: detailEventController)
-//
-//        return detailEventController
-//
-        //set ticketsSoldLabel über der ProgressBar
-//        detailEventController.soldTicketsLabel.text = "\(detailEventController.progressBarContainer.getTicketsSoldCount())"
-        
-//        let height = setupEventRewardsContainerHeight(controller: detailEventController, event: event)
-//        
-//        detailEventController.rewardsHeight = height
-//        setupScrollViewHeight(detailController: detailEventController, event: event)
-//        
-//        return detailEventController
-//    }
-    
-//    func setupLineUpContainer(controller: DetailEventController) {
-//        controller.lineUpContainer = ArtistLineUpContainer()
-//
-//        guard let lineUpHeight = controller.lineUpContainer?.getHeight() else {
-//            return
-//        }
-//        controller.lineUpHeight = lineUpHeight
-//    }
     func getHeight(rewardContainer: EventRewardsContainer, lineUpContainer: ArtistLineUpContainer) -> CGFloat {
         let basis: CGFloat = 734
         let lineUpHeight = lineUpContainer.getHeight()
@@ -176,29 +143,6 @@ extension UICollectionViewController {
         return height
     }
     
-//    func handlePromoteFor(event: Event) {
-//        let controller = setupDetailController(event: event)
-//        
-//        show(controller, sender: self)
-//    }
-//
-//    func handleRewardsFor(event: Event) {
-//        let controller = setupDetailController(event: event)
-//        show(controller, sender: self)
-//        controller.scrollView.contentOffset.y = 444
-//    }
-//    
-//    func handleShowEventInfoFor(event: Event) {
-//        let controller = setupDetailController(event: event)
-//        show(controller, sender: self)
-//        controller.handleShowEventDescription()
-//    }
-    
-    func handleShowLeaderboards(event: Event) {
-        let layout = UICollectionViewFlowLayout()
-        let controller = LeaderboardController(collectionViewLayout: layout)
-        show(controller, sender: self)
-    }
 }
 
 

@@ -275,7 +275,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func didTapLeaderboards(event: Event) {
-        handleShowLeaderboards(event: event)
+        
     }
     
     func showSignUpConfirmation() {

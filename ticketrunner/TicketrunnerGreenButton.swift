@@ -17,7 +17,7 @@ class TicketrunnerGreenButton: UIButton {
         self.setTitle(title, for: .normal)
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         
         
     }

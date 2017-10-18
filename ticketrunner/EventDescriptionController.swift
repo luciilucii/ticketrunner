@@ -10,9 +10,6 @@ import UIKit
 
 class EventDescriptionController: UIViewController {
     
-    var titleLabel: UILabel!
-    let titleString = "Event Description"
-    
     var currentEvent: Event?
     
     override func viewDidLoad() {
@@ -22,13 +19,12 @@ class EventDescriptionController: UIViewController {
         appDelegate.shouldRotate = true
         
         setupViews()
-        setupTitleLabel()
+        
         
         view.backgroundColor = UIColor.white
         
         //Load the right Video
         loadYoutube(videoID: "wpDwgDuoOPU")
-        
         
     }
     
@@ -57,25 +53,6 @@ class EventDescriptionController: UIViewController {
         return wv
     }()
     
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
-    }
-
     func loadYoutube(videoID: String) {
         guard let youtubeUrl = URL(string: "https://www.youtube.com/embed/\(videoID)") else {
             return

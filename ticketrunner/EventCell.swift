@@ -37,7 +37,6 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     var shouldAnimateProgressBar = true {
         didSet {
             rewardsContainer.animateProgressBar = shouldAnimateProgressBar
-//            progressBar.animateProgressBar = shouldAnimateProgressBar
         }
     }
     
@@ -49,8 +48,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         return view
     }()
     
-    let eventImageView: UIImageView = {
-        let iv = UIImageView()
+    let eventImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.backgroundColor = .green
         iv.image = #imageLiteral(resourceName: "event_neu")
@@ -59,43 +58,34 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         return iv
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+    let titleLabel: H2 = {
+        let label = H2()
         label.text = "Masquerade & Crime - Um Vaters Willen, Hercule Poirot ermittelt!"
-        label.textAlignment = .center
         label.numberOfLines = 2
-        label.textColor = ColorCodes.textColorGrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let dateLabel: UILabel = {
-        let label = UILabel()
+    let dateLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "01/09/2017"
         label.textAlignment = .right
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     
-    let streetLabel: UILabel = {
-        let label = UILabel()
+    let streetLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.text = "Körnebachstraße 72"
         label.textAlignment = .left
         label.numberOfLines = 2
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = ColorCodes.lightGrayText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let locationLabel: UILabel = {
-        let label = UILabel()
+    let locationLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
         label.text = "Cologne, Germany"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = ColorCodes.lightGrayText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -126,8 +116,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Rewards", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        button.setTitleColor(ColorCodes.textColorGrey, for: .normal)
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
         button.layer.cornerRadius = 5
@@ -143,8 +133,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Event Info", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        button.setTitleColor(ColorCodes.textColorGrey, for: .normal)
         button.addTarget(self, action: #selector(handleEventInfo), for: .touchUpInside)
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 5
@@ -159,8 +149,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     lazy var leaderboardButton: UIButton = {
         let button = UIButton()
         button.setTitle("Leaderboard", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.setTitleColor(UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0), for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        button.setTitleColor(ColorCodes.textColorGrey, for: .normal)
         button.addTarget(self, action: #selector(handleEventLeaderboard), for: .touchUpInside)
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 5
