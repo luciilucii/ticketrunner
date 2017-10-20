@@ -10,9 +10,6 @@ import UIKit
 
 class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
     
-    var titleLabel: UILabel!
-    let titleString = "Password"
-    
     var scrollView: UIScrollView!
     
     override func viewDidLoad() {
@@ -22,7 +19,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         
         setupKeyboardObservers()
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Password")
         setupScrollView(height: view.frame.height)
         hideKeyboardWhenTappedAround(views: [view])
         
@@ -53,7 +50,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Current Password"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
@@ -67,6 +64,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         tv.isSecureTextEntry = true
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Current Password"
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return tv
     }()
@@ -75,7 +73,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "New Password"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
@@ -90,6 +88,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "New Password"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -97,7 +96,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Password Confirmation"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
@@ -112,16 +111,14 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         tv.isSecureTextEntry = true
         tv.placeholder = "Confirm New Password"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
-    let updateButton: UIButton = {
-        let button = UIButton()
+    let updateButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Update")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Update", for: .normal)
         button.addTarget(self, action: #selector(handleUpdate), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        button.tintColor = UIColor.white
         return button
     }()
     
@@ -175,25 +172,6 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         
     }
     
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
-    }
-    
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -207,19 +185,15 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
             print("Fehler in der Keyboard Höhe")
             return
         }
-        
         let aboveKeyboardView = view.frame.height - keyboardHeight
         
         if confirmPasswordTextField.isEditing == true {
-            
             if confirmPasswordTextField.frame.maxY >= aboveKeyboardView {
                 guard let duration = keyboardDuration else {
                     return
                 }
                 UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    
                     self.scrollView.contentOffset.y = 100
-                    
                 }, completion: nil)
             }
         }
@@ -236,7 +210,6 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
             self.scrollView.contentOffset.y = 0
             
         }, completion: nil)
-        
     }
     
     func handleUpdate() {

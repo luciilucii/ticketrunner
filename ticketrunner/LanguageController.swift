@@ -12,9 +12,6 @@ import UIKit
 
 class LanguageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var titleLabel: UILabel!
-    let titleString = "Language"
-    
     var languages = [Language]()
     
     var selectedLanguage = "en"
@@ -27,7 +24,7 @@ class LanguageController: UICollectionViewController, UICollectionViewDelegateFl
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Language")
         setupMenuBar()
         setupCollectionView()
         setupLanugages()
@@ -133,25 +130,6 @@ class LanguageController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupViews() {
         
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
 }

@@ -41,7 +41,7 @@ class StatisticsTitleCell: BaseCell {
         label.textColor = ColorCodes.textColorGrey
         label.textAlignment = .center
         label.layer.masksToBounds = true
-        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.font = UIFont.boldSourceSansPro(ofSize: 10)
         label.layer.cornerRadius = 10
         return label
     }()

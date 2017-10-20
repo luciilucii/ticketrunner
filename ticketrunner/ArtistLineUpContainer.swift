@@ -10,6 +10,8 @@ import UIKit
 
 class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    //height 324
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -19,13 +21,16 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
         return cv
     }()
     
-    let lineUpHeadlineLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ColorCodes.textColorGrey
+    let lineUpHeadlineLabel: H2 = {
+        let label = H2()
         label.text = "Line Up"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
+    }()
+    
+    lazy var showMoreButton: ShowMoreButton = {
+        let button = ShowMoreButton(frame: .zero)
+//        button.addTarget(self, action: #selector(handleShowMore), for: .touchUpInside)
+        return button
     }()
     
     var artists: [Artist]?
@@ -35,16 +40,21 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        backgroundColor = .white
+        
         collectionView.register(ArtistLineUpContainerCell.self, forCellWithReuseIdentifier: cellId)
         
         addSubview(lineUpHeadlineLabel)
         addSubview(collectionView)
+        addSubview(showMoreButton)
         
-        addContraintsWithFormat(format: "H:|[v0]|", views: lineUpHeadlineLabel)
-        addContraintsWithFormat(format: "H:|[v0]|", views: collectionView)
+        lineUpHeadlineLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        addContraintsWithFormat(format: "V:|[v0(40)][v1]|", views: lineUpHeadlineLabel, collectionView)
+        collectionView.anchor(top: lineUpHeadlineLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 38, paddingRight: 0, width: 0, height: 0)
         
+        showMoreButton.anchor(top: collectionView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 32, paddingBottom: 8, paddingRight: 32, width: 0, height: 0)
         
     }
     
@@ -53,8 +63,11 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
         guard let artistsCount = artists?.count else {
             return 0
         }
-        
-        return artistsCount
+        if artistsCount > 6 {
+            return 6
+        } else {
+            return artistsCount
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -90,16 +103,17 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     
     func getHeight() -> CGFloat {
         guard let artists = artists else {
-            return 0
+            return -8
         }
         var height = 0
         
-        if artists.count % 2 == 0 {
-            height = artists.count / 2 * 162 + 84
+        if artists.count > 6 {
+            height = 3 * 162 + 76
+        } else if artists.count % 2 == 0 {
+            height = (artists.count / 2 * 162) + 76
         } else {
-            height = (artists.count + 1) / 2 * 162 + 84
+            height = ((artists.count + 1) / 2 * 162) + 76
         }
-        
         return CGFloat(height)
     }
     

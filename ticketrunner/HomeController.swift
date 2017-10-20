@@ -13,7 +13,6 @@ import Alamofire
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventCellDelegate {
     
-    var titleLabel: UILabel!
     let userResource = UserResource()
     var currentUser: User? {
         didSet {
@@ -54,7 +53,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         view.backgroundColor = ColorCodes.controllerBackground
         
-        setupTitleLabel()
+        setupWhiteTitle(title: "Home")
         setupMenuBar()
         setupCollectionView()
     }
@@ -98,25 +97,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         menuButton.tintColor = UIColor.white
         
         navigationItem.leftBarButtonItem = menuButton
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "Home"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
     func checkIfUserHasPromotedEvents() {
@@ -225,7 +205,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if userEvents.count == 0 {
             return CGSize(width: 0, height: 0)
         } else {
-            return CGSize(width: view.frame.width, height: 1401)
+            return CGSize(width: view.frame.width, height: 1411)
         }
     }
     

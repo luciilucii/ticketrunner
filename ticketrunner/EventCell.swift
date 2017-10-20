@@ -66,16 +66,16 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         return label
     }()
     
-    let dateLabel: NormalTextLabel = {
-        let label = NormalTextLabel()
+    let dateLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "01/09/2017"
         label.textAlignment = .right
         return label
     }()
     
-    let streetLabel: NormalTextLabel = {
-        let label = NormalTextLabel()
+    let streetLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "Körnebachstraße 72"
         label.textAlignment = .left
         label.numberOfLines = 2
@@ -83,8 +83,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         return label
     }()
     
-    let locationLabel: NormalTextLabel = {
-        let label = NormalTextLabel()
+    let locationLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "Cologne, Germany"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

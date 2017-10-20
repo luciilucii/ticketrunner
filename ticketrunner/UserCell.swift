@@ -21,8 +21,8 @@ class UserCell: UITableViewCell {
         
     }
     
-    let profileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let profileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -43,7 +43,10 @@ class UserCell: UITableViewCell {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
         textLabel?.text = "Susanne"
+        textLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        
         detailTextLabel?.text = "Q-Base Festival"
+        detailTextLabel?.font = UIFont.sourceSansPro(ofSize: 14)
         profileImageView.image = UIImage(named: "profile_avatar")
         
         addSubview(profileImageView)

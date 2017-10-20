@@ -27,17 +27,16 @@ class SystemMessageCell: TableCell {
         return iv
     }()
     
-    let headlineLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+    let headlineLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.textColor = UIColor.white
         label.text = "System Alert Message"
         return label
     }()
     
-    let messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+    let messageLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.textColor = .white
         label.text = "This is the actual message. This could be long, could be short. It is displayed in full length."
         label.numberOfLines = 0

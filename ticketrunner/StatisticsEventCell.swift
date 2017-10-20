@@ -10,29 +10,26 @@ import UIKit
 
 class StatisticsEventCell: BaseCell {
     
-    let eventNameLabel: UILabel = {
-        let label = UILabel()
+    let eventNameLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.textColor = ColorCodes.textColorGrey
-        label.textAlignment = .left
         label.text = "Event Name with a little longer title"
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
-    let ticketsSoldLabel: UILabel = {
-        let label = UILabel()
+    let ticketsSoldLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "723"
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorCodes.textColorGrey
         return label
     }()
     
-    let plusTicketsLabel: UILabel = {
-        let label = UILabel()
+    let plusTicketsLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.textColor = ColorCodes.ticketrunnerGreen
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.textAlignment = .right
         label.text = "+13"
         return label

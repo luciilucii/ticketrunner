@@ -24,18 +24,16 @@ class NewMessagesCell: TableCell {
         return iv
     }()
     
-    let headlineLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+    let headlineLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.textColor = UIColor.white
-        label.numberOfLines = 2
         label.text = "You recieved 15 new Messages"
         return label
     }()
     
-    let messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+    let messageLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.textColor = .white
         label.text = "Click here, so we can catapult you to your inbox, boss."
         label.numberOfLines = 2

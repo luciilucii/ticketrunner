@@ -40,6 +40,7 @@
 		192C56871F3E16B400C77D34 /* StatisticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C56861F3E16B400C77D34 /* StatisticsCell.swift */; };
 		192C568A1F3E262300C77D34 /* StatisticsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */; };
 		19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */; };
+		1936ACF21F9A7EC600318577 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */; };
 		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
 		195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466A1F0D22D800E59777 /* EventCategoryResource.swift */; };
 		195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */; };
@@ -68,7 +69,6 @@
 		1998D28E1F8B98F2004C8334 /* EventInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28D1F8B98F2004C8334 /* EventInfoController.swift */; };
 		1998D2901F8B9922004C8334 /* ScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28F1F8B9922004C8334 /* ScrollController.swift */; };
 		1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */; };
-		1998D2941F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */; };
 		19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */; };
 		19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */; };
 		19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C71F90CBD600684B48 /* RewardTableCell.swift */; };
@@ -162,6 +162,7 @@
 		192C56861F3E16B400C77D34 /* StatisticsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsCell.swift; sourceTree = "<group>"; };
 		192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTitleCell.swift; sourceTree = "<group>"; };
 		19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsEventCell.swift; sourceTree = "<group>"; };
+		1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
 		195D466A1F0D22D800E59777 /* EventCategoryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoryResource.swift; sourceTree = "<group>"; };
 		195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		1998D28D1F8B98F2004C8334 /* EventInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoController.swift; sourceTree = "<group>"; };
 		1998D28F1F8B9922004C8334 /* ScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollController.swift; sourceTree = "<group>"; };
 		1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoHeadlineView.swift; sourceTree = "<group>"; };
-		1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoLineUpContainerView.swift; sourceTree = "<group>"; };
 		19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsController.swift; sourceTree = "<group>"; };
 		19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsTableContainer.swift; sourceTree = "<group>"; };
 		19B001C71F90CBD600684B48 /* RewardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableCell.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 				1998D28D1F8B98F2004C8334 /* EventInfoController.swift */,
 				1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */,
 				19F716781F8BB043003710F1 /* EventInfoDescriptionView.swift */,
-				1998D2931F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift */,
+				19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */,
 				19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */,
 			);
 			name = EventInfoController;
@@ -548,13 +548,13 @@
 				190775761EF6B2B300C166CD /* TableViewCell */,
 				19CFB4521EF0F75C00AB557E /* Headers */,
 				19E8DC861EE27EC5000F216D /* CollectionViewCells */,
-				19E8DC821EE278BC000F216D /* ArtistLineUpContainer.swift */,
 				19FDD14B1EE2E53000502BC6 /* EventRewardsContainer.swift */,
 				19FF8C231EEBC41800C40175 /* CustomPointAnnotation.swift */,
 				19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */,
 				19C35F711F13E79A0056479F /* CustomTextField.swift */,
 				19F716811F8BC60A003710F1 /* HeadlineLabel.swift */,
 				1986E5A11F973132002A6552 /* TextLabels.swift */,
+				1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */,
 				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
 				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
 				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
@@ -879,7 +879,6 @@
 				19E98E2C1F8DCFBF00E62DB5 /* RewardsContainer.swift in Sources */,
 				1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */,
 				19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */,
-				1998D2941F8BA3AA004C8334 /* EventInfoLineUpContainerView.swift in Sources */,
 				19F3B0C31F4025F400568387 /* NewRewardsCell.swift in Sources */,
 				19FDD14C1EE2E53000502BC6 /* EventRewardsContainer.swift in Sources */,
 				190C19211EDE7E33003BC179 /* EventDescriptionController.swift in Sources */,
@@ -893,6 +892,7 @@
 				190C19251EDF0A38003BC179 /* UserResource.swift in Sources */,
 				19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */,
 				19E8DC881EE282EC000F216D /* ProgressBarContainer.swift in Sources */,
+				1936ACF21F9A7EC600318577 /* ShowMoreButton.swift in Sources */,
 				19086CE91EFCD0BE0024F7D0 /* SettingsEventSubCell.swift in Sources */,
 				1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */,
 				19C3CFBC1EDFC737006BF04B /* ArtistLineUpContainerCell.swift in Sources */,

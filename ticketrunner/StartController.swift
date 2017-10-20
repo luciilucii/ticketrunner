@@ -60,23 +60,16 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         return imageView
     }()
     
-    let signUpButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("SignUp", for: .normal)
-        button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+    let signUpButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Sign Up")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(showRegisterController), for: .touchUpInside)
-        button.layer.cornerRadius = 10
         return button
     }()
     
-    let loginButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.text = "Login"
-        button.setTitle("Login", for: .normal)
-        button.layer.cornerRadius = 10
+    let loginButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Login")
         button.addTarget(self, action: #selector(showLoginController), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

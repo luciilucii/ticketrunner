@@ -23,7 +23,7 @@ class CustomAnimatedTextField: UIView, UITextFieldDelegate {
         let label = UILabel()
         label.text = self.title
         label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.sourceSansPro(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -10,32 +10,24 @@ import UIKit
 
 class EventInfoDescriptionView: CustomUIView {
     
-    let eventDesriptionHeadlineLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ColorCodes.textColorGrey
+    let eventDesriptionHeadlineLabel: H2 = {
+        let label = H2()
         label.text = "Event Description"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
+    let descriptionLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 5
-        label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byTruncatingTail
         label.text = "Ein Herrensitz in Cornwall: Nicolas Conman, Selfmademillionär und Oberhaupt eines neureichen Familienclans, feiert seinen 60. Geburtstag. Da er dem Tod geweiht ist, kommen noch mehr Erbschleicher als üblich. Seine Angehörigen zermürbt das alljährliche Possenspiel. Die Rangelei um Nicolas' Gunst und Habe schürt Heimlichkeiten, Intrigen, Lügen und Verrat. Doch dieses Jahr hat die Familie noch ganz andere Sorgen. Denn wie es aussieht, geht einer von ihnen über Leichen und versetzt die Teegesellschaft in Angst und Schrecken…"
         return label
     }()
     
-    let moreDescriptionButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("show more", for: .normal)
+    let moreDescriptionButton: ShowMoreButton = {
+        let button = ShowMoreButton(frame: .zero)
 //        button.addTarget(self, action: #selector(handleShowEventDescription), for: .touchUpInside)
-        button.setTitleColor(ColorCodes.lightGrayText, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

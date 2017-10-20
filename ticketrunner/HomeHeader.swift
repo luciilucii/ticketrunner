@@ -24,7 +24,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     var homeController: HomeController?
     var avatarImage: UIImage?
     
-    var statisticsCellHeight: CGFloat = 54 {
+    var statisticsCellHeight: CGFloat = 64 {
         didSet {
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -67,7 +67,6 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let type = homeCells[indexPath.row]
-        
         switch type {
         case _ where type == WelcomeCell.self:
             return 226
@@ -166,9 +165,9 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     
     func handleUpDown(buttonState: ButtonState) {
         if buttonState == .down {
-            self.statisticsCellHeight = 195
+            self.statisticsCellHeight = 205
         } else {
-            self.statisticsCellHeight = 54
+            self.statisticsCellHeight = 64
         }
     }
 }

@@ -10,21 +10,19 @@ import UIKit
 
 class EventInvitationCell: TableCell {
     
-    let eventInvitationLabel: UILabel = {
-        let label = UILabel()
+    let eventInvitationLabel: H2 = {
+        let label = H2()
         label.text = "Event Invitation"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .white
         return label
     }()
     
-    let subtitleLabel: UILabel = {
-        let label = UILabel()
+    let subtitleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "You've been invited to become a Ticketrunner for Event Name"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -38,7 +36,7 @@ class EventInvitationCell: TableCell {
     let eventInfoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Event Info", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         button.tintColor = ColorCodes.textColorGrey
         button.backgroundColor = .white
         button.layer.cornerRadius = 5
@@ -48,7 +46,7 @@ class EventInvitationCell: TableCell {
     let rewardsButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Rewards", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         button.tintColor = ColorCodes.textColorGrey
         button.backgroundColor = .white
         button.layer.cornerRadius = 5
@@ -65,13 +63,8 @@ class EventInvitationCell: TableCell {
         return button
     }()
     
-    let acceptButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Accept", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.tintColor = .white
-        button.backgroundColor = ColorCodes.ticketrunnerGreen
-        button.layer.cornerRadius = 5
+    let acceptButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Accept")
         return button
     }()
     

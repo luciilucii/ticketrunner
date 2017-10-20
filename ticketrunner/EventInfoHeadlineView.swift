@@ -12,42 +12,40 @@ class EventInfoHeadlineView: CustomUIView {
     
     var event: Event? {
         didSet {
-            
+            guard let eventName = event?.name else { return }
+            eventNameLabel.text = eventName
         }
     }
     
-    let eventNameLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+    let eventNameLabel: H2 = {
+        let label = H2()
         label.numberOfLines = 2
         label.textColor = ColorCodes.textColorGrey
-        label.text = "Seepark 6 | Süddeutschlands größte Mallorca-Party"
+        label.text = "Seepark Mallorca Party 2017 mit langem neuem Namen"
         return label
     }()
     
-    let streetLabel: UILabel = {
-        let label = UILabel()
+    let streetLabel: H3 = {
+        let label = H3()
         label.text = "Nobelstr. 91,"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.lightGray
+        label.textAlignment = .left
+        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     
-    let dateLabel: UILabel = {
-        let label = UILabel()
+    let dateLabel: H3 = {
+        let label = H3()
         label.text = "01/09/2017"
         label.textAlignment = .right
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.lightGray
+        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     
-    let locationLabel: UILabel = {
-        let label = UILabel()
+    let locationLabel: H3 = {
+        let label = H3()
         label.text = "Cologne, Germany"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.lightGray
+        label.textAlignment = .left
+        label.textColor = ColorCodes.lightGrayText
         return label
     }()
     

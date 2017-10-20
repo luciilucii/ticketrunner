@@ -10,35 +10,29 @@ import UIKit
 
 class DeactivateAccountController: UIViewController, UIScrollViewDelegate {
     
-    var titleLabel: UILabel!
-    let titleString = "Deactivate"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Deactivate")
         
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = ColorCodes.controllerBackground
     }
     
-    let deactivateTitleLabel: UILabel = {
-        let label = UILabel()
+    let deactivateTitleLabel: H2 = {
+        let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Do you really want to X your Account?"
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
     
-    let deactivateDescriptionLabel: UILabel = {
-        let label = UILabel()
+    let deactivateDescriptionLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byWordWrapping
         label.text = "You are about to delete all your information and events from Ticketrunner. Once you’ve checked the box and hit that delete button everything will be gone baby gone - forever!\n\nPlease Contact us if there is anything we can help you with"
         return label
@@ -52,22 +46,20 @@ class DeactivateAccountController: UIViewController, UIScrollViewDelegate {
         return switchView
     }()
     
-    let stopDescriptionLabel: UILabel = {
-        let label = UILabel()
+    let stopDescriptionLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byWordWrapping
         label.text = "I want to stop using Ticketrunner and go back to old school promoting"
         return label
     }()
     
-    let deactivateButton: UIButton = {
-        let button = UIButton()
+    let deactivateButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Deactivate")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Deactivate", for: .normal)
         button.addTarget(self, action: #selector(handleDeactivate), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.95, green:0.36, blue:0.36, alpha:1.0)
+        button.backgroundColor = ColorCodes.ticketrunnerRed
         button.tintColor = UIColor.white
         return button
     }()
@@ -110,27 +102,7 @@ class DeactivateAccountController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
-    }
-    
     func handleDeactivate() {
-        
         if stopSwitchController.isOn == true {
             print("Hello, are you stupid?!")
             let alertController = UIAlertController(title: "Deactivate Account", message: "Do you really want to deactivate your Account?", preferredStyle: .alert)

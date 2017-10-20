@@ -21,12 +21,9 @@ class WelcomeCell: TableCell {
         return view
     }()
     
-    let welcomeLabel: UILabel = {
-        let label = UILabel()
+    let welcomeLabel: H1 = {
+        let label = H1()
         label.text = "Aloha Bastard!"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,23 +37,11 @@ class WelcomeCell: TableCell {
         return iv
     }()
     
-    let ticketsSoldLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Tickets sold!"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.textColor = UIColor(red:0.73, green:0.76, blue:0.96, alpha:1.0)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let awesomeLabel: UILabel = {
-        let label = UILabel()
+    let awesomeLabel: H1 = {
+        let label = H1()
         label.text = "That's awesome! Congrats"
-        label.textColor = UIColor(red:0.98, green:0.68, blue:0.39, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
+        label.textColor = ColorCodes.homeYellow
         return label
     }()
     
@@ -148,7 +133,10 @@ class WelcomeCell: TableCell {
     }()
     
     override func setupViews() {
-        super.setupViews()
+        addSubview(view)
+        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: -8, paddingBottom: 0, paddingRight: -8, width: 0, height: 0)
+        
+        
         user = UserResource().getUser()
         
         backgroundColor = ColorCodes.controllerBackground
@@ -159,7 +147,7 @@ class WelcomeCell: TableCell {
         //x,y,w,h
         ticketsSoldView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         ticketsSoldView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        ticketsSoldView.widthAnchor.constraint(equalToConstant: frame.width - 16).isActive = true
+        ticketsSoldView.widthAnchor.constraint(equalToConstant: frame.width + 16).isActive = true
         ticketsSoldView.heightAnchor.constraint(equalToConstant: ticketsSoldViewHeight).isActive = true
         
         setupTicketsSoldView()
@@ -279,7 +267,6 @@ class WelcomeCell: TableCell {
         
         ticketsSoldView.addSubview(welcomeLabel)
         ticketsSoldView.addSubview(ticketsSoldImageView)
-        ticketsSoldView.addSubview(ticketsSoldLabel)
         ticketsSoldView.addSubview(ticketCountLabel)
         ticketsSoldView.addSubview(awesomeLabel)
         
@@ -302,13 +289,7 @@ class WelcomeCell: TableCell {
         ticketCountLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         //x,y,w,h
-        ticketsSoldLabel.topAnchor.constraint(equalTo: ticketsSoldImageView.bottomAnchor, constant: 8).isActive = true
-        ticketsSoldLabel.leftAnchor.constraint(equalTo: ticketsSoldView.leftAnchor).isActive = true
-        ticketsSoldLabel.rightAnchor.constraint(equalTo: ticketsSoldView.rightAnchor).isActive = true
-        ticketsSoldLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        //x,y,w,h
-        awesomeLabel.topAnchor.constraint(equalTo: ticketsSoldLabel.bottomAnchor).isActive = true
+        awesomeLabel.topAnchor.constraint(equalTo: ticketsSoldImageView.bottomAnchor).isActive = true
         awesomeLabel.leftAnchor.constraint(equalTo: ticketsSoldView.leftAnchor).isActive = true
         awesomeLabel.rightAnchor.constraint(equalTo: ticketsSoldView.rightAnchor).isActive = true
         awesomeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -387,7 +368,6 @@ class WelcomeCell: TableCell {
             
             ticketsSoldImageView.isHidden = true
             ticketCountLabel.isHidden = true
-            ticketsSoldLabel.text = "Upload Your Profile Picture"
             awesomeLabel.text = "Press that Button"
             
             noTicketsSoldLeftImageView.isHidden = false
@@ -396,7 +376,6 @@ class WelcomeCell: TableCell {
             
         } else if ticketsSoldForUser == 1 {
             
-            ticketsSoldLabel.text = "Ticket sold!"
             ticketsSoldImageView.isHidden = false
             ticketCountLabel.isHidden = false
             awesomeLabel.text = "That's awesome! Keep going"
@@ -407,7 +386,6 @@ class WelcomeCell: TableCell {
             
         } else {
             
-            ticketsSoldLabel.text = "Tickets sold!"
             ticketsSoldImageView.isHidden = false
             ticketCountLabel.isHidden = false
             awesomeLabel.text = "That's awesome! Congrats"

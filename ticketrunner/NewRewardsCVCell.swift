@@ -18,17 +18,16 @@ class NewRewardsCVCell: BaseCell {
         return iv
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+    let titleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.text = "Bungee Jump"
         label.textColor = ColorCodes.textColorGrey
         return label
     }()
     
-    let subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+    let subtitleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "for first 50 tickets sold"
         label.textColor = ColorCodes.textColorGrey
         return label

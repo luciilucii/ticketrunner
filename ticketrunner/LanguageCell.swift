@@ -22,8 +22,8 @@ class LanguageCell: BaseCell {
         return view
     }()
     
-    let languageImageView: UIImageView = {
-        let iv = UIImageView()
+    let languageImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "avatar")
         iv.contentMode = .scaleAspectFill
@@ -32,11 +32,9 @@ class LanguageCell: BaseCell {
         return iv
     }()
     
-    let languageTitleLabel: UILabel = {
-        let label = UILabel()
+    let languageTitleLabel: H2 = {
+        let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         label.text = "Language"
         return label
     }()

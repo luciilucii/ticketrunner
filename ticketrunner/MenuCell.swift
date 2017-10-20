@@ -40,8 +40,8 @@ class MenuCell: BaseCell {
     
     let menuLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
+        label.font = UIFont.boldSourceSansPro(ofSize: 20)
+        label.textColor = ColorCodes.textColorGrey
         return label
     }()
     

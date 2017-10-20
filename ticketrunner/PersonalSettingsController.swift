@@ -11,9 +11,6 @@ import Intercom
 
 class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var titleLabel: UILabel!
-    let titleString = "Personal"
-    
     var scrollView: UIScrollView!
     
     var firstnameTextField: UITextField?
@@ -25,7 +22,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Personal")
         setupKeyboardObservers()
         setupScrollView(height: 930)
         self.hideKeyboardWhenTappedAround(views: [view, personalContainer])
@@ -91,13 +88,10 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         return container
     }()
     
-    let updateButton: UIButton = {
-        let button = UIButton()
+    let updateButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Update")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Update", for: .normal)
         button.addTarget(self, action: #selector(handleUpdate), for: .touchUpInside)
-        button.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
-        button.tintColor = UIColor.white
         return button
     }()
     
@@ -134,25 +128,6 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         updateButton.widthAnchor.constraint(equalTo: contactContainer.widthAnchor).isActive = true
         updateButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
     func handleUpdate() {

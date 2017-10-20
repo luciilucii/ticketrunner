@@ -17,7 +17,7 @@ class ChatMessageCell: UICollectionViewCell {
     let textView: UITextView = {
         let tv = UITextView()
         tv.text = "Some smapsfh askdasd"
-        tv.font = UIFont.systemFont(ofSize: 16)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = UIColor.clear
         tv.isEditable = false

@@ -12,15 +12,31 @@ class EventInfoController: ScrollController {
     
     var event: Event? {
         didSet {
-            print(event?.name)
+            
+            containerArray.append(eventImageView)
+            containerArray.append(eventInfoHeadlineView)
+            containerArray.append(eventInfoDescriptionView)
+            //TODO: Setup all containers in array & anchor the optional container to the last container in the array
+            
+            if let eventArtists = event?.artists {
+                eventInfoLineUpContainerView.artists = eventArtists
+                let height = eventInfoLineUpContainerView.getHeight()
+                eventInfoLineUpContainerView.heightAnchor.constraint(equalToConstant: height).isActive = true
+            } else {
+                eventInfoLineUpContainerView.heightAnchor.constraint(equalToConstant: -8).isActive = true
+            }
+            
+            eventInfoMapView.currentEvent = event
+            
         }
     }
+    
+    var containerArray = [UIView]()
     
     let eventImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .brown
         iv.image = #imageLiteral(resourceName: "event5")
         return iv
     }()
@@ -35,8 +51,8 @@ class EventInfoController: ScrollController {
         return view
     }()
     
-    let eventInfoLineUpContainerView: EventInfoLineUpContainerView = {
-        let view = EventInfoLineUpContainerView()
+    let eventInfoLineUpContainerView: ArtistLineUpContainer = {
+        let view = ArtistLineUpContainer()
         return view
     }()
     
@@ -82,14 +98,15 @@ class EventInfoController: ScrollController {
         view.addSubview(promoteButton)
         view.addSubview(promoteButtonHelperView)
         
-        eventImageView.anchor(top: topLayoutGuide.topAnchor, left: scrollContainerView.leftAnchor, bottom: scrollContainerView.topAnchor, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -175, paddingRight: 0, width: 0, height: 0)
+        let eventImageHeight = view.frame.width / 2.7
         
-        eventInfoHeadlineView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 175, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 106 /*die 150 nur als beispiel, it's view.frame.width / 2.7*/)
+        eventImageView.anchor(top: topLayoutGuide.topAnchor, left: scrollContainerView.leftAnchor, bottom: scrollContainerView.topAnchor, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -eventImageHeight, paddingRight: 0, width: 0, height: 0)
+        
+        eventInfoHeadlineView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: eventImageHeight, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 106 /*die 150 nur als beispiel, it's view.frame.width / 2.7*/)
         
         eventInfoDescriptionView.anchor(top: eventInfoHeadlineView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 185)
         
-        
-        eventInfoLineUpContainerView.anchor(top: eventInfoDescriptionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 324)
+        eventInfoLineUpContainerView.anchor(top: eventInfoDescriptionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         eventInfoMapView.anchor(top: eventInfoLineUpContainerView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 300)
         

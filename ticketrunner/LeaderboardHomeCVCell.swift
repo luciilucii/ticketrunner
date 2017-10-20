@@ -29,21 +29,20 @@ class LeaderboardHomeCVCell: BaseCell {
         }
     }
 
-    let eventNameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.systemFont(ofSize: 14)
+    let eventNameLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.numberOfLines = 2
+        label.textColor = ColorCodes.textColorGrey
         label.text = "This is an Event with a loooong title"
         return label
     }()
     
-    let rankLabel: UILabel = {
-        let label = UILabel()
+    let rankLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "265"
-        label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.textAlignment = .right
+        label.textColor = ColorCodes.textColorGrey
         return label
     }()
     

@@ -18,11 +18,10 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         return label
     }()
     
-    let subtitleLabel: UILabel = {
-        let label = UILabel()
+    let subtitleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Direct everyone to your landing page to provide more info about the event."
-        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorCodes.textColorGrey
         label.numberOfLines = 5
         return label
@@ -45,13 +44,12 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         return switchView
     }()
     
-    let activateLandingPageLabel: UILabel = {
-        let label = UILabel()
+    let activateLandingPageLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "Activate Landing Page"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -72,13 +70,12 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         return switchView
     }()
     
-    let landingPageProfileImageLabel: UILabel = {
-        let label = UILabel()
+    let landingPageProfileImageLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.text = "Show my profile picture"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -88,11 +85,10 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         return label
     }()
     
-    let customTextSubtitleLabel: UILabel = {
-        let label = UILabel()
+    let customTextSubtitleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Tell everyone what you personally love about the event."
-        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = ColorCodes.textColorGrey
         label.numberOfLines = 2
         return label
@@ -101,7 +97,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
     lazy var customMessageTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont.sourceSansPro(ofSize: 14)
         textView.backgroundColor = UIColor.white
         textView.delegate = self
         textView.layer.borderWidth = 1

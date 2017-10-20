@@ -12,12 +12,9 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     
     let cellId = "cellId"
     
-    let leaderboardLabel: UILabel = {
-        let label = UILabel()
+    let leaderboardLabel: H2 = {
+        let label = H2()
         label.text = "Leaderboard"
-        label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
         return label
     }()
     

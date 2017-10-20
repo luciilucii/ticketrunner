@@ -50,7 +50,7 @@ class StartCell: BaseCell {
         textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textColor = .black
-        textView.font = UIFont.boldSystemFont(ofSize: 24)
+        textView.font = UIFont.boldSourceSansPro(ofSize: 24)
         textView.textAlignment = .center
         textView.isScrollEnabled = false
         textView.textColor = UIColor.white
@@ -67,7 +67,7 @@ class StartCell: BaseCell {
         tv.isScrollEnabled = false
         tv.textColor = UIColor.white
         tv.backgroundColor = .clear
-        tv.font = UIFont.boldSystemFont(ofSize: 24)
+        tv.font = UIFont.boldSourceSansPro(ofSize: 24)
         return tv
     }()
     
@@ -79,7 +79,7 @@ class StartCell: BaseCell {
         tv.isScrollEnabled = false
         tv.textColor = UIColor.white
         tv.backgroundColor = .clear
-        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.font = UIFont.sourceSansPro(ofSize: 14)
         return tv
     }()
     

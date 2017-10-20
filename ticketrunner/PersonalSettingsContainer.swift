@@ -28,12 +28,11 @@ class CustomUIView: UIView {
 
 class PersonalContainer: CustomUIView {
     
-    let personalContainerTitleLabel: UILabel = {
-        let label = UILabel()
+    let personalContainerTitleLabel: H2 = {
+        let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Personal"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.textAlignment = .left
         return label
     }()
     
@@ -45,6 +44,7 @@ class PersonalContainer: CustomUIView {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Firstname"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -56,6 +56,7 @@ class PersonalContainer: CustomUIView {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Lastname"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -95,7 +96,7 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Address"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
@@ -109,6 +110,7 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Steet"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -121,6 +123,7 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Postal Code"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -133,6 +136,7 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "City"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -144,6 +148,7 @@ class AddressContainer: CustomUIView, UIPickerViewDelegate, UIPickerViewDataSour
         tv.tag = 3
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Country"
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return tv
     }()

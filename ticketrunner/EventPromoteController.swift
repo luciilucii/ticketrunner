@@ -36,6 +36,7 @@ class EventPromoteController: ScrollController {
         label.text = "Link copied!"
         label.layer.cornerRadius = 35/2
         label.clipsToBounds = true
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         return label
     }()
     

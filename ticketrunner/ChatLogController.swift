@@ -21,9 +21,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return textField
     }()
     
-    var titleLabel: UILabel!
-    let titleString = "Susanne"
-    
     let cellId = "cellId"
     
     override func viewDidLoad() {
@@ -33,28 +30,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         setupCollectionView()
         setupKeyboardObservers()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Susanne")
         
         messages = ExampleMessages().getMessages()
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
     func setupCollectionView() {
@@ -74,7 +52,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         let sendButton = UIButton(type: .system)
         sendButton.setTitle("Send", for: .normal)
-        sendButton.backgroundColor = UIColor(red:0.00, green:0.75, blue:0.95, alpha:1.0)
+        sendButton.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        sendButton.backgroundColor = ColorCodes.ticketrunnerBlue
         sendButton.tintColor = UIColor.white
 //        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
@@ -139,9 +118,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func setupCell(cell: ChatMessageCell, message: Message) {
-        
-        
-        
         if message.vonMir == true {
             cell.bubbleView.backgroundColor = UIColor(red:0.72, green:0.55, blue:0.99, alpha:1.0)
             cell.textView.textColor = UIColor.white

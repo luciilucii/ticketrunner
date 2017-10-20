@@ -29,9 +29,6 @@ enum SettingName: String {
 
 class SettingsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var titleLabel: UILabel!
-    let titleString = "Settings"
-    
     let cellId = "cellId"
     
     override func viewDidLoad() {
@@ -39,7 +36,7 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
         
         navigationController?.navigationBar.isTranslucent = false
         
-        setupTitleLabel()
+        setupWhiteTitle(title: "Settings")
         setupMenuBar()
         
         setupCollectionView()
@@ -67,7 +64,7 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
         let accountsSettingPoint = SettingsPoint(name: .Accounts, imageName: "accounts_setting")
         let deactivateSettingPoint = SettingsPoint(name: .Deactivate, imageName: "deactivate_setting")
         
-        return [personalSettingPoint, paymentSettingPoint, passwordSettingPoint, accountsSettingPoint, deactivateSettingPoint]
+        return [personalSettingPoint, passwordSettingPoint, deactivateSettingPoint]
     }()
     
     func setupMenuBar() {
@@ -90,25 +87,6 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
     func handleMenu() {
         menu.showMenu()
         
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

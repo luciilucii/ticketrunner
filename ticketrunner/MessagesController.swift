@@ -10,9 +10,6 @@ import UIKit
 
 class MessagesController: UITableViewController {
     
-    var titleLabel: UILabel!
-    let titleString = "Messages"
-    
     let cellId = "cellId"
     
     var messages = [Message]()
@@ -24,10 +21,10 @@ class MessagesController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
-        setupTitleLabel()
+        setupWhiteTitle(title: "Messages")
         setupMenuBar()
         
-        view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        view.backgroundColor = ColorCodes.controllerBackground
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
     }
@@ -74,25 +71,6 @@ class MessagesController: UITableViewController {
     
     func setupViews() {
         
-    }
-    
-    func setupTitleLabel() {
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        
-        titleLabel = UILabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.text = "\(titleString)"
-        titleView.addSubview(titleLabel)
-        
-        //x,y,w,h
-        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        
-        self.navigationItem.titleView = titleView
     }
     
 }

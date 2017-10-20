@@ -10,11 +10,10 @@ import UIKit
 
 class SettingCell: BaseCell {
     
-    let settingTitleLabel: UILabel = {
-        let label = UILabel()
+    let settingTitleLabel: H2 = {
+        let label = H2()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        label.textAlignment = .left
         return label
     }()
     

@@ -14,12 +14,10 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     let cellId = "cellId"
     
-    let rewardsTitleLabel: UILabel = {
-        let label = UILabel()
+    let rewardsTitleLabel: H2 = {
+        let label = H2()
         label.text = "Congrats new rewards unlocked!"
-        label.textAlignment = .center
         label.textColor = ColorCodes.homeYellow
-        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     

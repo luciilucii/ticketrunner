@@ -102,11 +102,6 @@ extension UIFont {
     }
     
     class func boldSourceSansPro(ofSize: CGFloat) -> UIFont {
-        
-        if let sourceFont = UIFont(name: "SourceSansPro-Bold", size: ofSize) {
-            print("Source Font")
-        }
-        
         return UIFont(name: "SourceSansPro-Bold", size: ofSize) ?? UIFont.boldSystemFont(ofSize: ofSize)
     }
     

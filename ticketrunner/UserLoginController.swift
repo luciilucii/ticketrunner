@@ -61,7 +61,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         label.textAlignment = .left
         label.numberOfLines = 3
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.sourceSansPro(ofSize: 14)
         return label
     }()
     
@@ -86,13 +86,10 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         return view
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
+    let titleLabel: H1 = {
+        let label = H1()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Login"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = UIColor.darkGray
-        label.textAlignment = .center
         return label
     }()
     
@@ -119,6 +116,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red:0.53, green:0.87, blue:0.96, alpha:1.0)
         button.setTitle("Login", for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.isEnabled = false
@@ -130,7 +128,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         button.setTitle("Forgot Password?", for: .normal)
         button.tintColor = UIColor(red:0.48, green:0.48, blue:0.48, alpha:1.0)
         button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 12)
         return button
     }()
     

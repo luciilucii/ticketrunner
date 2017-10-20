@@ -151,7 +151,7 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         view.addSubview(menuBarCollectionView)
         view.addSubview(statisticCollectionView)
         
-        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
         ticketsSoldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         plusTicketsLabel.anchor(top: nil, left: ticketsSoldLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 35, height: 14)

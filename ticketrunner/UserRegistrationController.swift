@@ -61,7 +61,7 @@ class UserRegistrationController: UIViewController {
         label.textAlignment = .left
         label.numberOfLines = 3
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.sourceSansPro(ofSize: 14)
         return label
     }()
     
@@ -86,13 +86,10 @@ class UserRegistrationController: UIViewController {
         return view
     }()
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
+    let titleLabel: H1 = {
+        let label = H1()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Registrieren"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = UIColor.darkGray
-        label.textAlignment = .center
         return label
     }()
     
@@ -127,6 +124,7 @@ class UserRegistrationController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red:0.64, green:0.89, blue:0.76, alpha:1.0)
         button.setTitle("Registrieren", for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         button.layer.cornerRadius = 5
         button.isEnabled = false
