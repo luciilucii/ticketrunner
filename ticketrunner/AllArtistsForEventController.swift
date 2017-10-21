@@ -17,8 +17,10 @@ class AllArtistsForEventController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = ColorCodes.controllerBackground
         
+        setupNavBarButtons()
+        setupWhiteTitle(title: "Artists")
         setupViews()
         
     }
@@ -26,37 +28,69 @@ class AllArtistsForEventController: UIViewController {
     
     var lineUpContainerHeight: CGFloat?
     
-    func checkLineUpContainerHeight() -> CGFloat {
-        
-        if let artistsCount = artists?.count {
-            if artistsCount % 2 == 0 {
-                
-                let height = CGFloat(artistsCount / 2) * 162 + 40
-                return height
-                
-            } else {
-                let count = (artistsCount + 1) / 2
-                let height = CGFloat(count) * 162 + 40
-                return height
-            }
-        }
-        return 0
-    }
-    
     func setupViews() {
         
         let lineUpContainer: ArtistLineUpContainer = {
             let container = ArtistLineUpContainer()
             container.artists = artists
+            container.showMoreButton.isHidden = true
             return container
         }()
-
-        
         view.addSubview(lineUpContainer)
         
-        view.addContraintsWithFormat(format: "H:|[v0]|", views: lineUpContainer)
-        view.addContraintsWithFormat(format: "V:|[v0]|", views: lineUpContainer)
+        view.addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: lineUpContainer)
+        view.addContraintsWithFormat(format: "V:|-8-[v0]-8-|", views: lineUpContainer)
+    }
+    
+    func setupNavBarButtons() {
+        
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
+        
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 45)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        backButton.width = 15
+        
+        let menuCustomView = UIButton()
+        menuCustomView.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
+        menuCustomView.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
+        menuCustomView.tintColor = UIColor.white
+        
+        menuCustomView.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
+        let menuButton = UIBarButtonItem(customView: menuCustomView)
+        menuButton.width = 45
+        
+        navigationItem.leftBarButtonItems = [backButton, menuButton]
+    }
+    
+    func handlePopView() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func handleNavigationMenu() {
+        handleMenu()
+    }
+    
+    @objc func handleMenu() {
+        menu.showMenu()
         
     }
     
+    lazy var menu: Menu = {
+        let menu = Menu()
+        menu.startController = self
+        return menu
+    }()
+    
 }
+
+
+
+
+
+
+

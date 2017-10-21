@@ -10,6 +10,14 @@ import UIKit
 
 class EventInvitationCell: TableCell {
     
+    //height is
+    
+    var homeHeader: HomeHeader? {
+        didSet {
+            setupViewsInCell()
+        }
+    }
+    
     let eventInvitationLabel: H2 = {
         let label = H2()
         label.text = "Event Invitation"
@@ -29,7 +37,8 @@ class EventInvitationCell: TableCell {
     let eventImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "event5")
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -53,13 +62,9 @@ class EventInvitationCell: TableCell {
         return button
     }()
     
-    let declineButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Decline", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.tintColor = .white
+    let declineButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Decline")
         button.backgroundColor = ColorCodes.ticketrunnerRed
-        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -74,26 +79,43 @@ class EventInvitationCell: TableCell {
         view.backgroundColor = ColorCodes.lightPurple
         self.layer.cornerRadius = 5
         
-        
+    }
+    
+    fileprivate func setupViewsInCell() {
         view.addSubview(eventInvitationLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(eventImageView)
+        view.addSubview(eventInfoButton)
+        view.addSubview(rewardsButton)
+        view.addSubview(declineButton)
+        view.addSubview(acceptButton)
         
-        eventInvitationLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
-        subtitleLabel.anchor(top: eventInvitationLabel.bottomAnchor, left: eventInvitationLabel.leftAnchor, bottom: nil, right: eventInvitationLabel.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 45)
+        eventInvitationLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        subtitleLabel.anchor(top: eventInvitationLabel.bottomAnchor, left: eventInvitationLabel.leftAnchor, bottom: nil, right: eventInvitationLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 44)
         
-        eventImageView.anchor(top: subtitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 105)
+        guard let homeHeader = homeHeader else { return }
+        let imageHeight = (homeHeader.frame.width - 32) / 2.7
         
-        let stackView = UIStackView(arrangedSubviews: [eventInfoButton, rewardsButton, declineButton, acceptButton])
+        eventImageView.anchor(top: subtitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: imageHeight)
         
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 2
+        eventInfoButton.anchor(top: eventImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
-        view.addSubview(stackView)
-        stackView.anchor(top: eventImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 206)
+        rewardsButton.anchor(top: eventInfoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
+        declineButton.anchor(top: rewardsButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.centerXAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
+        
+        acceptButton.anchor(top: rewardsButton.bottomAnchor, left: view.centerXAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
     }
     
 }
+
+
+
+
+
+
+
+
+
+

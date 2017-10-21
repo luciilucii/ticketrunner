@@ -131,7 +131,7 @@ class EventResource: NSObject {
         event1.longitude = 6.958307
         
         event1.facebookPageLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
-        
+        event1.videoLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
         
         
         let event2 = Event()
@@ -166,7 +166,7 @@ class EventResource: NSObject {
         artist20.name = "Farid Bang"
         
         let artist30 = Artist()
-        artist30.name = "Spongebozz"
+        artist30.name = "Jeah"
         
         let artist40 = Artist()
         artist40.name = "DJ Matrix"
@@ -219,12 +219,10 @@ class EventResource: NSObject {
         }
         
         for artist in eventArtists {
-            
             if i < 4 {
                 artists.append(artist)
                 i += 1
             }
-            
         }
         
         return artists

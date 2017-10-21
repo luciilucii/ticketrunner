@@ -58,10 +58,9 @@ class EventInfoMapView: CustomUIView, CLLocationManagerDelegate, MKMapViewDelega
         pointAnnotation = CustomPointAnnotation()
         pointAnnotation.pinCustomImageName = "LocationMarker_new"
         pointAnnotation.coordinate = coordinates
-        pointAnnotation.title = "Hello Kitty"
-        pointAnnotation.subtitle = "Jiha"
         
-        
+        guard let title = currentEvent?.name else { return }
+        pointAnnotation.title = title
         
         pinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: mapViewId)
         guard let annotation = pinAnnotationView.annotation else { return }

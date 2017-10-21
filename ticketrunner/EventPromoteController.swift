@@ -56,6 +56,7 @@ class EventPromoteController: ScrollController {
         hideKeyboardWhenTappedAround(views: [view, scrollContainerView, landingPagePreviewContainer, promoteShareLinkView])
         
         setupViews()
+        setupKeyboardObservers()
     }
     
     override func setupViews() {
@@ -78,6 +79,38 @@ class EventPromoteController: ScrollController {
         
         linkCopiedLabelBottomAnchor = linkCopiedLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 35)
         linkCopiedLabelBottomAnchor?.isActive = true
+    }
+    
+    func setupKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func handleKeyboardWillShow(notification: NSNotification) {
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
+        
+        guard let duration = keyboardDuration else { return }
+        
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            self.scrollView.contentOffset.y = self.landingPagePreviewContainer.customMessageTextView.frame.minY + 228
+            
+        }, completion: nil)
+        
+    }
+    
+    func handleKeyboardWillHide(notification: NSNotification) {
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
+        
+        guard let duration = keyboardDuration else {
+            return
+        }
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            self.scrollView.contentOffset.y = self.scrollView.contentSize.height - self.view.frame.height - 65
+            
+        }, completion: nil)
+        
     }
     
     func setupNavBarButtons() {

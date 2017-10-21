@@ -12,22 +12,7 @@ class EventInfoController: ScrollController {
     
     var event: Event? {
         didSet {
-            
-            containerArray.append(eventImageView)
-            containerArray.append(eventInfoHeadlineView)
-            containerArray.append(eventInfoDescriptionView)
-            //TODO: Setup all containers in array & anchor the optional container to the last container in the array
-            
-            if let eventArtists = event?.artists {
-                eventInfoLineUpContainerView.artists = eventArtists
-                let height = eventInfoLineUpContainerView.getHeight()
-                eventInfoLineUpContainerView.heightAnchor.constraint(equalToConstant: height).isActive = true
-            } else {
-                eventInfoLineUpContainerView.heightAnchor.constraint(equalToConstant: -8).isActive = true
-            }
-            
-            eventInfoMapView.currentEvent = event
-            
+            setupViews()
         }
     }
     
@@ -51,14 +36,21 @@ class EventInfoController: ScrollController {
         return view
     }()
     
-    let eventInfoLineUpContainerView: ArtistLineUpContainer = {
+    lazy var eventInfoLineUpContainerView: ArtistLineUpContainer = {
         let view = ArtistLineUpContainer()
+        view.controller = self
         return view
     }()
     
     let eventInfoMapView: EventInfoMapView = {
         let view = EventInfoMapView()
         return view
+    }()
+    
+    lazy var videoView: EventInfoVideoContainer = {
+        let container = EventInfoVideoContainer()
+        container.controller = self
+        return container
     }()
     
     lazy var promoteButton: TicketrunnerBlueButton = {
@@ -74,10 +66,19 @@ class EventInfoController: ScrollController {
         return view
     }()
     
+    lazy var facebookButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.white
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(ColorCodes.ticketrunnerBlue, for: .normal)
+        button.addTarget(self, action: #selector(handleShowInFacebook), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.setupScrollView(height: 1500)
+        super.setupScrollView(height: 2500)
         
         super.setupController()
         
@@ -85,15 +86,13 @@ class EventInfoController: ScrollController {
         
         setupWhiteTitle(title: "Event Info")
         
-        setupViews()
     }
     
     override func setupViews() {
         scrollContainerView.addSubview(eventImageView)
         scrollContainerView.addSubview(eventInfoHeadlineView)
         scrollContainerView.addSubview(eventInfoDescriptionView)
-        scrollContainerView.addSubview(eventInfoLineUpContainerView)
-        scrollContainerView.addSubview(eventInfoMapView)
+        
         
         view.addSubview(promoteButton)
         view.addSubview(promoteButtonHelperView)
@@ -106,9 +105,6 @@ class EventInfoController: ScrollController {
         
         eventInfoDescriptionView.anchor(top: eventInfoHeadlineView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 185)
         
-        eventInfoLineUpContainerView.anchor(top: eventInfoDescriptionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-        
-        eventInfoMapView.anchor(top: eventInfoLineUpContainerView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 300)
         
         
         if #available(iOS 11.0, *) {
@@ -120,6 +116,58 @@ class EventInfoController: ScrollController {
         
         promoteButtonHelperView.anchor(top: promoteButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: -5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
+        
+        setupViewsInController()
+    }
+    
+    fileprivate func setupViewsInController() {
+        containerArray.append(eventImageView)
+        containerArray.append(eventInfoHeadlineView)
+        containerArray.append(eventInfoDescriptionView)
+        //TODO: Setup all containers in array & anchor the optional container to the last container in the array
+        
+        if let eventArtists = event?.artists {
+            eventInfoLineUpContainerView.artists = eventArtists
+            let height = eventInfoLineUpContainerView.getHeight()
+            scrollContainerView.addSubview(eventInfoLineUpContainerView)
+            
+            guard let lastContainer = containerArray.last else { return }
+            
+            eventInfoLineUpContainerView.anchor(top: lastContainer.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: height)
+            
+            containerArray.append(eventInfoLineUpContainerView)
+            
+        }
+        
+        if let videoLink = event?.videoLink {
+            scrollContainerView.addSubview(videoView)
+            
+            let height = (((view.frame.width - 32) / 16) * 9) + 46
+            guard let lastContainer = containerArray.last else { return }
+            
+            videoView.anchor(top: lastContainer.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: height)
+            
+            
+            containerArray.append(videoView)
+        }
+        
+        if event?.latidute != nil && event?.longitude != nil {
+            scrollContainerView.addSubview(eventInfoMapView)
+            guard let lastContainer = containerArray.last else { return }
+            eventInfoMapView.anchor(top: lastContainer.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 300)
+            
+            containerArray.append(eventInfoMapView)
+        }
+        
+        if let facebookLink = event?.facebookPageLink {
+            scrollContainerView.addSubview(facebookButton)
+            
+            guard let lastContainer = containerArray.last else { return }
+            facebookButton.anchor(top: lastContainer.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+            
+        }
+        
+        eventInfoMapView.currentEvent = event
     }
     
     func setupNavBarButtons() {
@@ -170,6 +218,10 @@ class EventInfoController: ScrollController {
     func handlePromote() {
         let promoteController = EventPromoteController()
         self.show(promoteController, sender: self)
+    }
+    
+    func handleShowInFacebook() {
+        print("facebook")
     }
     
 }

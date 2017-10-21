@@ -12,6 +12,8 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     
     //height 324
     
+    var controller: EventInfoController?
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -29,7 +31,7 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     
     lazy var showMoreButton: ShowMoreButton = {
         let button = ShowMoreButton(frame: .zero)
-//        button.addTarget(self, action: #selector(handleShowMore), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleShowMore), for: .touchUpInside)
         return button
     }()
     
@@ -59,7 +61,6 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         guard let artistsCount = artists?.count else {
             return 0
         }
@@ -115,6 +116,12 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
             height = ((artists.count + 1) / 2 * 162) + 76
         }
         return CGFloat(height)
+    }
+    
+    func handleShowMore() {
+        let allArtistsController = AllArtistsForEventController()
+        allArtistsController.artists = artists
+        controller?.show(allArtistsController, sender: controller)
     }
     
     required init?(coder aDecoder: NSCoder) {

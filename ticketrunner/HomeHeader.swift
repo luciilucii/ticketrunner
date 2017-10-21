@@ -21,7 +21,11 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     let eventInvitationId = "eventInvitationId"
     let leaderboardId = "leaderboardId"
     
-    var homeController: HomeController?
+    var homeController: HomeController? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var avatarImage: UIImage?
     
     var statisticsCellHeight: CGFloat = 64 {
@@ -49,7 +53,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         tableView.backgroundColor = ColorCodes.controllerBackground
         
         addSubview(tableView)
-        tableView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        tableView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     
@@ -65,11 +69,10 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         let type = homeCells[indexPath.row]
         switch type {
         case _ where type == WelcomeCell.self:
-            return 226
+            return 218
         case _ where type == SystemMessageCell.self:
             return 108
         case _ where type == NewMessagesCell.self:
@@ -79,7 +82,10 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         case _ where type == NewRewardsCell.self:
             return 162
         case _ where type == EventInvitationCell.self:
-            return 420
+            guard let controller = homeController else { return 0 }
+            let imageHeight = (controller.view.frame.width - 32) / 2.7
+            let height = 264 + imageHeight
+            return height
         case _ where type == LeaderboardHomeCell.self:
             return 207
         default:
@@ -133,6 +139,8 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
             return cell
         case _ where type == EventInvitationCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: eventInvitationId, for: indexPath) as! EventInvitationCell
+            
+            cell.homeHeader = self
             
             return cell
         case _ where type == LeaderboardHomeCell.self:

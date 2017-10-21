@@ -134,7 +134,7 @@ class WelcomeCell: TableCell {
     
     override func setupViews() {
         addSubview(view)
-        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: -8, paddingBottom: 0, paddingRight: -8, width: 0, height: 0)
+        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
         user = UserResource().getUser()
@@ -145,7 +145,7 @@ class WelcomeCell: TableCell {
         let ticketsSoldViewHeight: CGFloat = 210
         
         //x,y,w,h
-        ticketsSoldView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        ticketsSoldView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         ticketsSoldView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         ticketsSoldView.widthAnchor.constraint(equalToConstant: frame.width + 16).isActive = true
         ticketsSoldView.heightAnchor.constraint(equalToConstant: ticketsSoldViewHeight).isActive = true
@@ -262,6 +262,8 @@ class WelcomeCell: TableCell {
     var avatarImageViewCenterYAnchor: NSLayoutConstraint?
     
     func setupTicketsSoldView() {
+        
+        
         
         setupAnimatingLogos()
         
@@ -433,7 +435,7 @@ class TableCell: UITableViewCell {
     
     func setupViews() {
         addSubview(view)
-        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 0, width: 0, height: 0)
+        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
         
     }
     

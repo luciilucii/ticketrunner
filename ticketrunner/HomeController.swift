@@ -14,6 +14,7 @@ import Alamofire
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventCellDelegate {
     
     let userResource = UserResource()
+    
     var currentUser: User? {
         didSet {
             guard let user = currentUser else {
