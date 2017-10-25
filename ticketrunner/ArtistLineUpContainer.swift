@@ -118,7 +118,7 @@ class ArtistLineUpContainer: UIView, UICollectionViewDataSource, UICollectionVie
         return CGFloat(height)
     }
     
-    func handleShowMore() {
+    @objc func handleShowMore() {
         let allArtistsController = AllArtistsForEventController()
         allArtistsController.artists = artists
         controller?.show(allArtistsController, sender: controller)

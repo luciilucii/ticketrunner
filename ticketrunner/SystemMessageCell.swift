@@ -74,7 +74,7 @@ class SystemMessageCell: TableCell {
         
     }
     
-    func handleDeleteCell() {
+    @objc func handleDeleteCell() {
         guard let indexPath = indexPath else { return }
         delegate?.didTapCancel(indexPath: indexPath)
     }

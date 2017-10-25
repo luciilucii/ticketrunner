@@ -108,9 +108,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
-    func handleMenu() {
+    @objc func handleMenu() {
         menu?.showMenu()
-        menu?.homeController = self
+//        menu?.homeController = self
     }
     
     func handleSelectProfileImage() {
@@ -183,10 +183,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if userEvents.isEmpty {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
-            
-            cell.homeController = self
-            cell.homeControllerMode = .day
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+//
+//            cell.homeController = self
+//            cell.homeControllerMode = .day
             self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
             
             return cell
@@ -247,12 +247,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func didTapPromote(event: Event) {
+        
     }
     
     func didTapRewards(event: Event) {
+        
     }
     
     func didTapEventInfo(event: Event) {
+        
     }
     
     func didTapLeaderboards(event: Event) {
@@ -265,6 +268,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             UIApplication.shared.statusBarStyle = .default
         }
     }
+    
+    
     
 }
 

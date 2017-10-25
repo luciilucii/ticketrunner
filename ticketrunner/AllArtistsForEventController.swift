@@ -67,11 +67,11 @@ class AllArtistsForEventController: UIViewController {
         navigationItem.leftBarButtonItems = [backButton, menuButton]
     }
     
-    func handlePopView() {
+    @objc func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
     
-    func handleNavigationMenu() {
+    @objc func handleNavigationMenu() {
         handleMenu()
     }
     

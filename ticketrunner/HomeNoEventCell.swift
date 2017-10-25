@@ -13,9 +13,9 @@ enum HomeControllerMode {
     case night
 }
 
-class HomeNoEventCell: BaseCell {
+class HomeNoEventCell: TableCell {
     
-    var homeController: HomeController?
+    var homeController: HomeTableController?
     var rewardsController: RewardsController?
     
     var homeControllerMode: HomeControllerMode? {
@@ -23,13 +23,13 @@ class HomeNoEventCell: BaseCell {
             guard let homeControllerMode = homeControllerMode else { return }
             switch homeControllerMode {
             case .day:
-                homeController?.collectionView?.backgroundColor = ColorCodes.dayModeBlue
+                homeController?.tableView.backgroundColor = ColorCodes.dayModeBlue
                 self.backgroundColor = ColorCodes.dayModeBlue
                 self.welcomeSubtitleLabel.textColor = ColorCodes.ticketrunnerYellow
                 
                 setupDayModeViews()
             case .night:
-                homeController?.collectionView?.backgroundColor = ColorCodes.nightModePurple
+                homeController?.tableView.backgroundColor = ColorCodes.nightModePurple
                 self.backgroundColor = ColorCodes.nightModePurple
                 self.welcomeSubtitleLabel.textColor = ColorCodes.ticketrunnerBlue
                 
@@ -153,7 +153,7 @@ class HomeNoEventCell: BaseCell {
         
     }
     
-    func handlePromote() {
+    @objc func handlePromote() {
         if homeController != nil {
             homeController?.menu?.showEventController()
         } else if rewardsController != nil {

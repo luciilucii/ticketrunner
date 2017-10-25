@@ -62,7 +62,7 @@ extension UIViewController {
         }
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -73,7 +73,7 @@ extension UIViewController {
     }
     
     func setupWhiteTitle(title: String) {
-        let textAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.boldSourceSansPro(ofSize: 20)]
+        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 20)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         

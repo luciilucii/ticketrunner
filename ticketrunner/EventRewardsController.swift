@@ -121,7 +121,7 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         return true
     }
     
-    func handlePromote() {
+    @objc func handlePromote() {
         let promoteController = EventPromoteController()
         self.show(promoteController, sender: self)
     }
@@ -150,11 +150,11 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         navigationItem.leftBarButtonItems = [backButton, menuButton]
     }
 
-    func handlePopView() {
+    @objc func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
 
-    func handleNavigationMenu() {
+    @objc func handleNavigationMenu() {
         handleMenu()
     }
 

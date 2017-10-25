@@ -44,7 +44,7 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     var menu: Menu!
     
-    func handleMenu() {
+    @objc func handleMenu() {
         menu.showMenu()
     }
     
@@ -52,8 +52,6 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView?.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
         collectionView?.register(EventRewardCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(RewardsHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
-        
-        collectionView?.register(HomeNoEventCell.self, forCellWithReuseIdentifier: noEventId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
     }
@@ -130,9 +128,9 @@ class RewardsController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if events.count == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: noEventId, for: indexPath) as! HomeNoEventCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
             
-            cell.rewardsController = self
+//            cell.rewardsController = self
 //            cell.noEventImageView.image = #imageLiteral(resourceName: "no rewards")
             
 //            cell.noEventTitleLabel.text = "No Rewards yet..."

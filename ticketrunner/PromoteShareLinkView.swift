@@ -85,14 +85,14 @@ class PromoteShareLinkView: CustomUIView {
         
     }
     
-    func handleCopy() {
+    @objc func handleCopy() {
         UIPasteboard.general.string = linkTextField.text
         
         promoteController?.handleCopy()
         
     }
     
-    func handleShare() {
+    @objc func handleShare() {
         let eventLink = "https://www.ticketrunner.com/events/seepark-6-mallorca-schlag"
         let eventShareText = "Hello Bastard, buy this ticket!"
         

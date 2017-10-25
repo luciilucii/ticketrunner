@@ -12,7 +12,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
     
     var startController: StartController?
     
-    var homeController: HomeController?
+    var homeController: HomeTableController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -234,7 +234,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func handleForgotPassword() {
+    @objc func handleForgotPassword() {
         let forgotPasswordController = ForgotPasswordController()
         show(forgotPasswordController, sender: self)
     }
@@ -244,7 +244,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func handleKeyboardWillShow(notification: NSNotification) {
+    @objc func handleKeyboardWillShow(notification: NSNotification) {
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
@@ -258,7 +258,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    @objc func handleKeyboardWillHide(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         loginButtonBottomAnchor?.constant = -16
@@ -272,7 +272,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func handleTextInputChange() {
+    @objc func handleTextInputChange() {
         
         let isFormValid = emailTextField.textField.text?.characters.count ?? 0 > 0 && passwordTextField.textField.text?.characters.count ?? 0 > 0
         
@@ -285,7 +285,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func handleLogin() {
+    @objc func handleLogin() {
         //TODO: Login einrichten
         
         startController?.handleStoreSessionKey()
@@ -303,7 +303,7 @@ class UserLoginController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         dismiss(animated: true, completion: {
             UIApplication.shared.statusBarStyle = .lightContent
         })

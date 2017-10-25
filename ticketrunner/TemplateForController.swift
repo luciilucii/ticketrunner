@@ -38,7 +38,7 @@ class TemplateController: UIViewController {
         return menu
     }()
     
-    func handleMenu() {
+    @objc func handleMenu() {
         menu.showMenu()
         
     }

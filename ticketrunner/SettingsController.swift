@@ -84,7 +84,7 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
     
     var menu: Menu!
     
-    func handleMenu() {
+    @objc func handleMenu() {
         menu.showMenu()
         
     }

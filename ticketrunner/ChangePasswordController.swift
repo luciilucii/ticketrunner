@@ -177,7 +177,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func handleKeyboardWillShow(notification: NSNotification) {
+    @objc func handleKeyboardWillShow(notification: NSNotification) {
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
@@ -199,7 +199,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         }
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    @objc func handleKeyboardWillHide(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         guard let duration = keyboardDuration else {
@@ -212,7 +212,7 @@ class ChangePasswordController: UIViewController, UIScrollViewDelegate, UITextFi
         }, completion: nil)
     }
     
-    func handleUpdate() {
+    @objc func handleUpdate() {
         print("Grandma Update")
     }
     

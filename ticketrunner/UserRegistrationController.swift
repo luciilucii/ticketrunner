@@ -11,7 +11,7 @@ import UIKit
 class UserRegistrationController: UIViewController {
     
     var startController: StartController?
-    var homeController: HomeController?
+    var homeController: HomeTableController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -244,7 +244,7 @@ class UserRegistrationController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func handleKeyboardWillShow(notification: NSNotification) {
+    @objc func handleKeyboardWillShow(notification: NSNotification) {
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
@@ -259,7 +259,7 @@ class UserRegistrationController: UIViewController {
         }
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    @objc func handleKeyboardWillHide(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         loginButtonBottomAnchor?.constant = -16
@@ -274,7 +274,7 @@ class UserRegistrationController: UIViewController {
         }
     }
     
-    func handleTextInputChange() {
+    @objc func handleTextInputChange() {
         
         let isFormValid = emailTextField.textField.text?.characters.count ?? 0 > 0 && nameTextField.textField.text?.characters.count ?? 0 > 0 && passwordTextField.textField.text?.characters.count ?? 0 > 0
         
@@ -288,7 +288,7 @@ class UserRegistrationController: UIViewController {
         
     }
     
-    func handleRegister() {
+    @objc func handleRegister() {
         //TODO: Login einrichten
         
         guard let username = nameTextField.textField.text, let email = emailTextField.textField.text, let password = passwordTextField.textField.text else { return }
@@ -303,7 +303,7 @@ class UserRegistrationController: UIViewController {
         }
         
         controller.dismiss(animated: true) {
-            self.homeController?.showSignUpConfirmation()
+//            self.homeController?.showSignUpConfirmation()
         }
         
         homeController?.menu?.currentUser = UserResource().getUser()
@@ -315,7 +315,7 @@ class UserRegistrationController: UIViewController {
         print(123)
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         dismiss(animated: true, completion: {
             UIApplication.shared.statusBarStyle = .lightContent
         })

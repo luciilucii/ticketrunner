@@ -18,6 +18,12 @@ class EventInvitationCell: TableCell {
         }
     }
     
+    var homeController: HomeTableController? {
+        didSet {
+            setupViewsInCell()
+        }
+    }
+    
     let eventInvitationLabel: H2 = {
         let label = H2()
         label.text = "Event Invitation"
@@ -93,8 +99,8 @@ class EventInvitationCell: TableCell {
         eventInvitationLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         subtitleLabel.anchor(top: eventInvitationLabel.bottomAnchor, left: eventInvitationLabel.leftAnchor, bottom: nil, right: eventInvitationLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 44)
         
-        guard let homeHeader = homeHeader else { return }
-        let imageHeight = (homeHeader.frame.width - 32) / 2.7
+        guard let homeController = self.homeController else { return }
+        let imageHeight = (homeController.view.frame.width - 32) / 2.7
         
         eventImageView.anchor(top: subtitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: imageHeight)
         

@@ -221,7 +221,7 @@ class ContactContainer: CustomUIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Contact"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
         return label
     }()
@@ -235,6 +235,7 @@ class ContactContainer: CustomUIView {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Email"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     
@@ -246,6 +247,7 @@ class ContactContainer: CustomUIView {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.placeholder = "Phone"
         tv.textColor = UIColor(red:0.33, green:0.33, blue:0.33, alpha:1.0)
+        tv.font = UIFont.sourceSansPro(ofSize: 16)
         return tv
     }()
     

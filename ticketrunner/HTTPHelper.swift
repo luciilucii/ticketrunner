@@ -170,7 +170,7 @@ struct HTTPHelper {
         } catch let jsonError {
             print("Failed to create errorDict from Json: ", jsonError)
         }
-        let responseError: Error = NSError(domain: "HTTPHelperError", code: httpResponse.statusCode, userInfo: errorDict)
+        let responseError: Error = NSError(domain: "HTTPHelperError", code: httpResponse.statusCode, userInfo: errorDict as! [String : Any])
         
         return responseError
     }

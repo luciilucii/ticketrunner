@@ -44,7 +44,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         navigationItem.rightBarButtonItem = searchButton
     }
     
-    func handleSearch() {
+    @objc func handleSearch() {
         let filterSearchController = FilterSearchController()
         filterSearchController.events = events
         filterSearchController.eventController = self
@@ -75,7 +75,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
     }
     
-    func loadData() {
+    @objc func loadData() {
         collectionView?.reloadData()
         stopRefresher()
     }
@@ -86,7 +86,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
 
     var menu: Menu!
     
-    func handleMenu() {
+    @objc func handleMenu() {
         menu.showMenu()
     }
     
@@ -158,7 +158,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 16
     }
     
     func didTapPromote(event: Event) {

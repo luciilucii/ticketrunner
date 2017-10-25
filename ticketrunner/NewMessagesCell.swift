@@ -61,7 +61,7 @@ class NewMessagesCell: TableCell {
         
     }
     
-    func handleShowMessages() {
+    @objc func handleShowMessages() {
         delegate?.didTapOnCell()
     }
     

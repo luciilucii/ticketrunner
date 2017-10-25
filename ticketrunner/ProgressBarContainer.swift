@@ -154,7 +154,15 @@ class ProgressBarContainer: UIView {
         ticketProgressLabelForReward.widthAnchor.constraint(equalTo: promoteBackgroundBarView.widthAnchor).isActive = true
     }
     
+    var triangles = [UIImageView]()
+    
     func setupTriangles() {
+        
+        triangles.forEach { (imageView) in
+            imageView.removeFromSuperview()
+        }
+        triangles = [UIImageView]()
+        
         guard let event = event else {
             return
         }
@@ -190,6 +198,8 @@ class ProgressBarContainer: UIView {
             iv.centerXAnchor.constraint(equalTo: promoteBackgroundBarView.leftAnchor, constant: centerXConstant).isActive = true
             iv.heightAnchor.constraint(equalToConstant: 8).isActive = true
             iv.widthAnchor.constraint(equalToConstant: 8).isActive = true
+            
+            triangles.append(iv)
             
         }
     }
@@ -331,7 +341,7 @@ class ProgressBarContainer: UIView {
         }
     }
     
-    func animateGreenBar() {
+    @objc func animateGreenBar() {
         guard let width = greenBarWidth else { return }
         greenBarWidthAnchor?.constant = width
         

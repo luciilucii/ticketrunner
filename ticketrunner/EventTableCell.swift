@@ -1,26 +1,22 @@
 //
-//  EventCell.swift
+//  EventTableCell.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 28.05.17.
+//  Created by Luca Kiedrowski on 21.10.17.
 //  Copyright © 2017 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 
-protocol EventCellDelegate {
-    func didTapPromote(event: Event)
-    
-    func didTapRewards(event: Event)
-    
-    func didTapEventInfo(event: Event)
-    
-    func didTapLeaderboards(event: Event)
-}
-
-class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
+class EventTableCell: TableCell, RewardsContainerEventCellDelegate {
     
     var delegate: EventCellDelegate?
+    var homeController: HomeTableController? {
+        didSet {
+            self.cellWidth = self.frame.width
+            setupViewsInCell()
+        }
+    }
     
     //INFO: Height of the Eventcell is 419 + imageview
     
@@ -40,11 +36,13 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         }
     }
     
-    let eventInfoView: UIView = {
+    lazy var eventInfoView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.clipsToBounds = true
         view.layer.cornerRadius = 5
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDidTapEventInfoContainer)))
         return view
     }()
     
@@ -164,25 +162,19 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     
     var cellWidth: CGFloat?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func setupViews() {
         
-        cellWidth = frame.width
         
-        setupViews()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews() {
+    fileprivate func setupViewsInCell() {
+        
         addSubview(eventInfoView)
         addSubview(rewardsContainer)
         
-        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230)
+        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 230)
         
-        rewardsContainer.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 128)
+        rewardsContainer.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 128)
         
         
         eventInfoView.addSubview(eventImageView)
@@ -199,9 +191,6 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         //x,y,w,h
         guard let cellWidth = cellWidth else { return }
         eventImageView.anchor(top: eventInfoView.topAnchor, left: eventInfoView.leftAnchor, bottom: nil, right: eventInfoView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: cellWidth / 2.7)
-        
-        
-        
         
         //x,y,w,h
         titleLabel.leftAnchor.constraint(equalTo: eventInfoView.leftAnchor, constant: 8).isActive = true
@@ -230,24 +219,24 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         
         
         //x,y,w,h
-        promoteButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        promoteButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         promoteButton.topAnchor.constraint(equalTo: rewardsContainer.bottomAnchor, constant: 4).isActive = true
-        promoteButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        promoteButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         promoteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        rewardsButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        rewardsButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         rewardsButton.topAnchor.constraint(equalTo: promoteButton.bottomAnchor, constant: 4).isActive = true
-        rewardsButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        rewardsButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         rewardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //x,y,w,h
-        eventInfoButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        eventInfoButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         eventInfoButton.topAnchor.constraint(equalTo: rewardsButton.bottomAnchor, constant: 4).isActive = true
-        eventInfoButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        eventInfoButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         eventInfoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
     }
     
@@ -256,7 +245,7 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     }
     
     func progressBarBackgroundWidth() -> CGFloat {
-        let width = self.frame.width - 16
+        let width = self.frame.width - 32
         return width
     }
     
@@ -264,12 +253,9 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         return shouldAnimateProgressBar
     }
     
+    @objc func handleDidTapEventInfoContainer() {
+        guard let event = currentEvent else { return }
+        delegate?.didTapEventInfo(event: event)
+    }
+    
 }
-
-
-
-
-
-
-
-

@@ -153,7 +153,7 @@ class EventSubscriptionController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.titleView = titleView
     }
     
-    func handleSubscribe() {
+    @objc func handleSubscribe() {
         //TODO: create logic
         print("Subscribe")
     }

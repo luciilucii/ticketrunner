@@ -121,7 +121,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         return button
     }()
     
-    func switchValueDidChange() {
+    @objc func switchValueDidChange() {
         
         if activateSwitchController.isOn == true {
             print("on")
@@ -131,7 +131,7 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         
     }
     
-    func profileSwitchValueDidChange() {
+    @objc func profileSwitchValueDidChange() {
         if landingPageProfileImageSwitchController.isOn == true {
             print("profile on")
         } else {
@@ -139,11 +139,11 @@ class LandingPagePreviewContainer: UIView, UITextViewDelegate {
         }
     }
     
-    func handlePreview() {
+    @objc func handlePreview() {
         print("Preview")
     }
     
-    func handleUpdateLandingPage() {
+    @objc func handleUpdateLandingPage() {
         print("Update")
     }
     

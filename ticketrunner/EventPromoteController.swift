@@ -86,7 +86,7 @@ class EventPromoteController: ScrollController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func handleKeyboardWillShow(notification: NSNotification) {
+    @objc func handleKeyboardWillShow(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         guard let duration = keyboardDuration else { return }
@@ -96,10 +96,9 @@ class EventPromoteController: ScrollController {
             self.scrollView.contentOffset.y = self.landingPagePreviewContainer.customMessageTextView.frame.minY + 228
             
         }, completion: nil)
-        
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    @objc func handleKeyboardWillHide(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         guard let duration = keyboardDuration else {
@@ -110,7 +109,6 @@ class EventPromoteController: ScrollController {
             self.scrollView.contentOffset.y = self.scrollView.contentSize.height - self.view.frame.height - 65
             
         }, completion: nil)
-        
     }
     
     func setupNavBarButtons() {
@@ -137,11 +135,11 @@ class EventPromoteController: ScrollController {
         navigationItem.leftBarButtonItems = [backButton, menuButton]
     }
     
-    func handlePopView() {
+    @objc func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
     
-    func handleNavigationMenu() {
+    @objc func handleNavigationMenu() {
         handleMenu()
     }
     
@@ -163,7 +161,7 @@ class EventPromoteController: ScrollController {
     var timer: Timer?
     var dismissTimer: Timer?
     
-    func handleShowLinkCopied() {
+    @objc func handleShowLinkCopied() {
         
         linkCopiedLabelBottomAnchor?.constant = -8
         
@@ -175,7 +173,7 @@ class EventPromoteController: ScrollController {
         
     }
     
-    func handleDismissLinkCopied() {
+    @objc func handleDismissLinkCopied() {
         linkCopiedLabelBottomAnchor?.constant = 35
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

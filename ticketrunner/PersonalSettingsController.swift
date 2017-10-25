@@ -130,7 +130,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         
     }
     
-    func handleUpdate() {
+    @objc func handleUpdate() {
         //TODO: Update!
         print("hello, I'm a controller & i would like to update my information")
     }
@@ -142,7 +142,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
     
     var isContactTextFieldEditing = false
     
-    func handleKeyboardWillShow(notification: NSNotification) {
+    @objc func handleKeyboardWillShow(notification: NSNotification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
         
         if contactContainer.emailTextField.isEditing == true || contactContainer.phoneTextField.isEditing == true {
@@ -161,7 +161,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    @objc func handleKeyboardWillHide(notification: NSNotification) {
         
         if isContactTextFieldEditing == true {
             let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
@@ -180,7 +180,7 @@ class PersonalSettingsController: UIViewController, UIScrollViewDelegate, UIText
         
     }
     
-    func handleSelectProfileImage() {
+    @objc func handleSelectProfileImage() {
         
         let picker = UIImagePickerController()
         

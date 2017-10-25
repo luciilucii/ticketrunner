@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let layout = UICollectionViewFlowLayout()
-        let controller = HomeController(collectionViewLayout: layout)
-        let homeController = UINavigationController(rootViewController: controller)
+        let newController = HomeTableController(style: .plain)
+        let navController = UINavigationController(rootViewController: newController)
         
-        window?.rootViewController = homeController
+        
+        window?.rootViewController = navController
         
         UINavigationBar.appearance().barTintColor = UIColor(red:0.21, green:0.25, blue:0.28, alpha:1.0)
         UINavigationBar.appearance().tintColor = UIColor.white

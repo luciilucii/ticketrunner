@@ -15,7 +15,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     var cellId = "cellId"
     
-    var homeController: HomeController?
+    var homeController: HomeTableController?
     
     var player: AVPlayer?
     
@@ -91,7 +91,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         return pc
     }()
     
-    func showLoginController() {
+    @objc func showLoginController() {
         let userLoginController = UserLoginController()
         userLoginController.startController = self
         userLoginController.homeController = homeController
@@ -100,7 +100,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         }
     }
     
-    func showRegisterController() {
+    @objc func showRegisterController() {
         let userRegisterController = UserRegistrationController()
         userRegisterController.startController = self
         userRegisterController.homeController = homeController
@@ -269,7 +269,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         player?.isMuted = true
         
         let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         
         playerLayer.frame = view.frame
@@ -292,7 +292,7 @@ class StartController: UICollectionViewController, UICollectionViewDelegateFlowL
         NotificationCenter.default.addObserver(self, selector: #selector(repeatVideo), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
     }
     
-    func repeatVideo() {
+    @objc func repeatVideo() {
         self.player?.seek(to: kCMTimeZero)
         self.player?.play()
     }

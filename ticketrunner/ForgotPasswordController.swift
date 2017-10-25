@@ -16,6 +16,8 @@ class ForgotPasswordController: UIViewController {
         textField.placeholder = "Email Adresse"
         textField.keyboardType = UIKeyboardType.emailAddress
         textField.layer.cornerRadius = 10
+        textField.font = UIFont.sourceSansPro(ofSize: 16)
+        textField.textColor = ColorCodes.textColorGrey
         return textField
     }()
     
@@ -25,12 +27,9 @@ class ForgotPasswordController: UIViewController {
         return view
     }()
     
-    let resetButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
-        button.setTitle("Reset Password", for: .normal)
+    let resetButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Reset Password")
         button.addTarget(self, action: #selector(handleReset), for: .touchUpInside)
-        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -63,13 +62,13 @@ class ForgotPasswordController: UIViewController {
         resetButton.anchor(top: emailTextField.bottomAnchor, left: emailTextField.leftAnchor, bottom: nil, right: emailTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
     
-    func handleReset() {
+    @objc func handleReset() {
         //TODO: Make that Reset Call
         print(123)
         emailTextField.text = ""
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
     

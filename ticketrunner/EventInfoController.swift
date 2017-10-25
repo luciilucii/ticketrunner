@@ -195,11 +195,11 @@ class EventInfoController: ScrollController {
         navigationItem.leftBarButtonItems = [backButton, menuButton]
     }
     
-    func handlePopView() {
+    @objc func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
     
-    func handleNavigationMenu() {
+    @objc func handleNavigationMenu() {
         handleMenu()
     }
     
@@ -215,12 +215,12 @@ class EventInfoController: ScrollController {
     }()
 
     
-    func handlePromote() {
+    @objc func handlePromote() {
         let promoteController = EventPromoteController()
         self.show(promoteController, sender: self)
     }
     
-    func handleShowInFacebook() {
+    @objc func handleShowInFacebook() {
         print("facebook")
     }
     

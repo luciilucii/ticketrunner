@@ -92,17 +92,16 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         setupAnchors()
         
         setupCollectionView()
+        menuBarCollectionView.allowsSelection = true
         
-        let selectedIndexPath = IndexPath(item: 2, section: 0)
-        menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .top)
-        
-        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleStartStatisticsCV), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleStartStatisticsCV), userInfo: nil, repeats: false)
         
         
     }
     
-    func handleStartStatisticsCV() {
+    @objc func handleStartStatisticsCV() {
         let selectedIndexPath = IndexPath(item: 2, section: 0)
+        menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .top)
         statisticCollectionView.scrollToItem(at: selectedIndexPath, at: [], animated: true)
     }
     
@@ -110,10 +109,10 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }
     
-    func handleDownUp() {
+    @objc func handleDownUp() {
         if downButtonState == .up {
             self.downButtonState = .down
             delegate?.handleUpDown(buttonState: .down)

@@ -74,11 +74,11 @@ class ConfirmationController: UIViewController {
         
     }
     
-    func handleResend() {
+    @objc func handleResend() {
         print(123)
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         dismiss(animated: true) {
             UIApplication.shared.statusBarStyle = .lightContent
         }

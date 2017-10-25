@@ -186,18 +186,18 @@ class RedeemRewardModelViewController: UIViewController {
         
     }
     
-    func handleDone() {
+    @objc func handleDone() {
         //TODO: Animation for ticketrunner in EventRewardsController
         handleDismiss()
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         self.dismiss(animated: true) {
             //completion here
         }
     }
     
-    func redeemReward() {
+    @objc func redeemReward() {
         UIView.transition(with: whiteView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             //completion here
         }) { (completed) in
@@ -212,7 +212,7 @@ class RedeemRewardModelViewController: UIViewController {
         delegate?.didTapRedeem(redeemRewardModelViewController: self)
     }
     
-    func handleCancel() {
+    @objc func handleCancel() {
         delegate?.didTapCancel(redeemRewardModelViewController: self)
     }
     

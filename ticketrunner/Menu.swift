@@ -39,7 +39,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     var startController: UIViewController?
     var endController: UIViewController?
     
-    var homeController: HomeController?
+    var homeController: HomeTableController?
     
     let menuView: UIView = {
         let view = UIView()
@@ -203,9 +203,13 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func setupHomeController() {
-        let layout = UICollectionViewFlowLayout()
-        let controller = HomeController(collectionViewLayout: layout)
+//        let layout = UICollectionViewFlowLayout()
+//        let controller = HomeController(collectionViewLayout: layout)
+//        let homeController = UINavigationController(rootViewController: controller)
+        
+        let controller = HomeTableController(style: .plain)
         let homeController = UINavigationController(rootViewController: controller)
+        
         controller.menu = self
         controller.currentUser = currentUser
         self.showMenuController(controller: homeController)
@@ -222,7 +226,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
     }
     
-    func handleDismiss() {
+    @objc func handleDismiss() {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
             
             self.blackView.alpha = 0
@@ -281,7 +285,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func showEventController() {
-        let indexPath = IndexPath(item: 2, section: 0)
+        let indexPath = IndexPath(item: 1, section: 0)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
         self.collectionView(collectionView, didSelectItemAt: indexPath)
     }

@@ -102,7 +102,7 @@ class DeactivateAccountController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func handleDeactivate() {
+    @objc func handleDeactivate() {
         if stopSwitchController.isOn == true {
             print("Hello, are you stupid?!")
             let alertController = UIAlertController(title: "Deactivate Account", message: "Do you really want to deactivate your Account?", preferredStyle: .alert)

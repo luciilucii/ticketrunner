@@ -151,13 +151,13 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         
     }
     
-    func handleTap() {
+    @objc func handleTap() {
         guard let reward = reward else { return }
         guard let indexPath = indexPath else { return }
         delegate?.didTapCell(reward: reward, indexPath: indexPath)
     }
     
-    func handleRedeem() {
+    @objc func handleRedeem() {
         guard let reward = reward else { return }
         delegate?.didTapRedeem(reward: reward)
     }
@@ -178,7 +178,7 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         let size = CGSize(width: self.frame.width - 16, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)], context: nil)
     }
     
     func getCellHeight() -> CGFloat {

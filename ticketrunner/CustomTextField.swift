@@ -15,7 +15,8 @@ class CustomAnimatedTextField: UIView, UITextFieldDelegate {
     lazy var textField: UITextField = {
         let tf = UITextField()
         tf.delegate = self
-        tf.textColor = UIColor.darkGray
+        tf.textColor = ColorCodes.textColorGrey
+        tf.font = UIFont.sourceSansPro(ofSize: 16)
         return tf
     }()
     

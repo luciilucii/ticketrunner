@@ -28,31 +28,11 @@ class WelcomeCell: TableCell {
         return label
     }()
     
-    let ticketsSoldImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "home tickets sold")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.isHidden = true
-        iv.contentMode = .scaleAspectFit
-        return iv
-    }()
-    
     let awesomeLabel: H1 = {
         let label = H1()
         label.text = "That's awesome! Congrats"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = ColorCodes.homeYellow
-        return label
-    }()
-    
-    let ticketCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 48)
-        label.text = ""
-        label.isHidden = true
-        label.textAlignment = .center
         return label
     }()
     
@@ -142,7 +122,7 @@ class WelcomeCell: TableCell {
         backgroundColor = ColorCodes.controllerBackground
         
         addSubview(ticketsSoldView)
-        let ticketsSoldViewHeight: CGFloat = 210
+        let ticketsSoldViewHeight: CGFloat = 180
         
         //x,y,w,h
         ticketsSoldView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -155,7 +135,7 @@ class WelcomeCell: TableCell {
         
         _ = Timer.scheduledTimer(timeInterval: 1.2, target: self, selector: #selector(animateProfileImageView), userInfo: nil, repeats: false)
         
-        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(handleFirstAnimations), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(handleAnimations), userInfo: nil, repeats: false)
         
         setupRotations()
     }
@@ -170,7 +150,7 @@ class WelcomeCell: TableCell {
         handleRotation(percent: fourthLogoPercentage, logoImageView: fourthLogoAnimationImageView)
     }
     
-    func setupTimedRotations() {
+    @objc func setupTimedRotations() {
         let secondLogoPercentage = getRotationPercentage(imageView: secondLogoAnimationImageView) + 0.5
         let thirdLogoPercentage = getRotationPercentage(imageView: thirdLogoAnimationImageView) + 0.5
         
@@ -189,34 +169,53 @@ class WelcomeCell: TableCell {
     var firstTimer: Timer?
     var secondTimer: Timer?
     
-    func handleFirstAnimations() {
-        self.setupAnimationWithAnchor(anchor: firstAnimatingLogoLeftAnchor, delay: 0)
-        self.setupAnimationWithAnchor(anchor: secondAnimatingLogoLeftAnchor, delay: 4.0)
-        self.setupAnimationWithAnchor(anchor: thirdAnimatingLogoLeftAnchor, delay: 1.6)
-        self.setupAnimationWithAnchor(anchor: fourthAnimatingLogoLeftAnchor, delay: 7.1)
+    @objc func handleAnimations() {
+        self.setupFirstAnimation(anchor: firstAnimatingLogoLeftAnchor, startingPoint: 50)
+        
+        
+        _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleFirstDelayedAnimation), userInfo: nil, repeats: false)
+        
+        _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(handleSecondDelayedAnimation), userInfo: nil, repeats: false)
+        
     }
     
-    func setupAnimationWithAnchor(anchor: NSLayoutConstraint?, delay: TimeInterval) {
-        anchor?.constant = self.frame.width
-        UIView.animate(withDuration: 8.0, delay: delay, options: .curveLinear, animations: {
+    @objc func handleFirstDelayedAnimation() {
+        self.setupFirstAnimation(anchor: secondAnimatingLogoLeftAnchor, startingPoint: 200)
+        self.setupFirstAnimation(anchor: fourthAnimatingLogoLeftAnchor, startingPoint: 120)
+    }
+    
+    @objc func handleSecondDelayedAnimation() {
+        self.setupFirstAnimation(anchor: thirdAnimatingLogoLeftAnchor, startingPoint: 85)
+    }
+    
+    func setupFirstAnimation(anchor: NSLayoutConstraint?, startingPoint: CGFloat) {
+        let endingPoint = self.frame.width
+        anchor?.constant = endingPoint
+        
+        let duration = (endingPoint - startingPoint) / 40
+        let timeInterval = TimeInterval(duration)
+        
+        UIView.animate(withDuration: timeInterval, delay: 0, options: .curveLinear, animations: {
             self.layoutIfNeeded()
         }) { (completed) in
-//            self.setupAnimationBack(anchor: anchor)
-            
             anchor?.constant = -35
             self.layoutIfNeeded()
-            self.setupAnimationBack(anchor: anchor)
+            self.setupSecondAnimation(anchor: anchor, endingPoint: startingPoint)
         }
     }
     
-    func setupAnimationBack(anchor: NSLayoutConstraint?) {
-        anchor?.constant = self.frame.width
-        UIView.animate(withDuration: 8.0, delay: 0, options: .curveLinear, animations: {
+    func setupSecondAnimation(anchor: NSLayoutConstraint?, endingPoint: CGFloat) {
+        let startingFloat: CGFloat = -35
+        let duration = (endingPoint - startingFloat) / 40
+        let timeInterval = TimeInterval(duration)
+        anchor?.constant = endingPoint
+        
+        UIView.animate(withDuration: timeInterval, delay: 0, options: .curveLinear, animations: {
             self.layoutIfNeeded()
         }) { (completed) in
-            anchor?.constant = -35
+            anchor?.constant = endingPoint
             self.layoutIfNeeded()
-            self.setupAnimationWithAnchor(anchor: anchor, delay: 0)
+            self.setupFirstAnimation(anchor: anchor, startingPoint: endingPoint)
         }
     }
     
@@ -251,7 +250,7 @@ class WelcomeCell: TableCell {
         }
     }
     
-    func animateProfileImageView() {
+    @objc func animateProfileImageView() {
         avatarImageViewCenterYAnchor?.constant = 0
         UIView.animate(withDuration: 1.3, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             self.avatarImageView.alpha = 1
@@ -268,8 +267,6 @@ class WelcomeCell: TableCell {
         setupAnimatingLogos()
         
         ticketsSoldView.addSubview(welcomeLabel)
-        ticketsSoldView.addSubview(ticketsSoldImageView)
-        ticketsSoldView.addSubview(ticketCountLabel)
         ticketsSoldView.addSubview(awesomeLabel)
         
         //x,y,w,h
@@ -279,22 +276,10 @@ class WelcomeCell: TableCell {
         welcomeLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         //x,y,w,h
-        ticketsSoldImageView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor).isActive = true
-        ticketsSoldImageView.leftAnchor.constraint(equalTo: ticketsSoldView.leftAnchor).isActive = true
-        ticketsSoldImageView.rightAnchor.constraint(equalTo: ticketsSoldView.rightAnchor).isActive = true
-        ticketsSoldImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        //x,y,w,h
-        ticketCountLabel.centerXAnchor.constraint(equalTo: ticketsSoldImageView.centerXAnchor, constant: -3).isActive = true
-        ticketCountLabel.centerYAnchor.constraint(equalTo: ticketsSoldImageView.centerYAnchor).isActive = true
-        ticketCountLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        ticketCountLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
-        //x,y,w,h
-        awesomeLabel.topAnchor.constraint(equalTo: ticketsSoldImageView.bottomAnchor).isActive = true
+        awesomeLabel.bottomAnchor.constraint(equalTo: ticketsSoldView.bottomAnchor).isActive = true
         awesomeLabel.leftAnchor.constraint(equalTo: ticketsSoldView.leftAnchor).isActive = true
         awesomeLabel.rightAnchor.constraint(equalTo: ticketsSoldView.rightAnchor).isActive = true
-        awesomeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        awesomeLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         
         //MARK: views when no tickets sold
@@ -334,25 +319,25 @@ class WelcomeCell: TableCell {
         ticketsSoldView.addSubview(thirdLogoAnimationImageView)
         ticketsSoldView.addSubview(fourthLogoAnimationImageView)
         
-        firstAnimatingLogoLeftAnchor = firstLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: -35)
+        firstAnimatingLogoLeftAnchor = firstLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 35)
         firstAnimatingLogoLeftAnchor?.isActive = true
         firstLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 55).isActive = true
         firstLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
         firstLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        secondAnimatingLogoLeftAnchor = secondLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: -35)
+        secondAnimatingLogoLeftAnchor = secondLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 200)
         secondAnimatingLogoLeftAnchor?.isActive = true
         secondLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 74).isActive = true
         secondLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
         secondLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        thirdAnimatingLogoLeftAnchor = thirdLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: -35)
+        thirdAnimatingLogoLeftAnchor = thirdLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 85)
         thirdAnimatingLogoLeftAnchor?.isActive = true
         thirdLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 89).isActive = true
         thirdLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
         thirdLogoAnimationImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        fourthAnimatingLogoLeftAnchor = fourthLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: -35)
+        fourthAnimatingLogoLeftAnchor = fourthLogoAnimationImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 120)
         fourthAnimatingLogoLeftAnchor?.isActive = true
         fourthLogoAnimationImageView.topAnchor.constraint(equalTo: topAnchor, constant: 105).isActive = true
         fourthLogoAnimationImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
@@ -368,8 +353,6 @@ class WelcomeCell: TableCell {
         
         if ticketsSoldForUser == 0 {
             
-            ticketsSoldImageView.isHidden = true
-            ticketCountLabel.isHidden = true
             awesomeLabel.text = "Press that Button"
             
             noTicketsSoldLeftImageView.isHidden = false
@@ -378,8 +361,6 @@ class WelcomeCell: TableCell {
             
         } else if ticketsSoldForUser == 1 {
             
-            ticketsSoldImageView.isHidden = false
-            ticketCountLabel.isHidden = false
             awesomeLabel.text = "That's awesome! Keep going"
             
             noTicketsSoldLeftImageView.isHidden = true
@@ -388,8 +369,6 @@ class WelcomeCell: TableCell {
             
         } else {
             
-            ticketsSoldImageView.isHidden = false
-            ticketCountLabel.isHidden = false
             awesomeLabel.text = "That's awesome! Congrats"
             
             noTicketsSoldLeftImageView.isHidden = true
@@ -398,12 +377,9 @@ class WelcomeCell: TableCell {
             
         }
         
-        let ticketsSoldString = String(ticketsSoldForUser)
-        ticketCountLabel.text = ticketsSoldString
-        
     }
     
-    func handleSelectProfileImage() {
+    @objc func handleSelectProfileImage() {
         homeController?.handleSelectProfileImage()
         
         

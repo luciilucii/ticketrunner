@@ -159,7 +159,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.titleView = titleView
     }
     
-    func twitterSwitchValueDidChange() {
+    @objc func twitterSwitchValueDidChange() {
         
         if twitterSwitchController.isOn == true {
             twitterImageView.tintColor = UIColor(red:0.11, green:0.63, blue:0.95, alpha:1.0)
@@ -168,7 +168,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func facebookSwitchValueDidChange() {
+    @objc func facebookSwitchValueDidChange() {
         if facebookSwitchController.isOn == true {
             facebookImageView.tintColor = UIColor(red:0.07, green:0.21, blue:0.49, alpha:1.0)
         } else {
@@ -176,7 +176,7 @@ class ConnectedAccountsController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func whatsappSwitchValueDidChange() {
+    @objc func whatsappSwitchValueDidChange() {
         if whatsappSwitchController.isOn == true {
             whatsappImageView.tintColor = UIColor(red:0.09, green:0.62, blue:0.05, alpha:1.0)
         } else {

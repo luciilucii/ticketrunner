@@ -144,7 +144,7 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         
     }
     
-    func handleSliderChange(sender: UISlider) {
+    @objc func handleSliderChange(sender: UISlider) {
         
         let radius = Int(sender.value)
         radiusLabel.text = "  \(radius)km"
@@ -184,11 +184,11 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
         navigationItem.rightBarButtonItem = filterButton
     }
     
-    func handleClose() {
+    @objc func handleClose() {
         dismiss(animated: true, completion: nil)
     }
     
-    func handleSearch() {
+    @objc func handleSearch() {
         
         guard let searchText = eventNameTextField.text else {
             eventController?.filteredEvents = nil
