@@ -114,8 +114,9 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
     }
     
     func didTapRedeem(reward: Reward) {
+        redeemRewardModelViewController.reward = reward
         self.eventRewardsController?.present(redeemRewardModelViewController, animated: true, completion: {
-            //completion here
+            // completion here
         })
     }
     
@@ -131,7 +132,6 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
         } else {
             openedRewards.append(rewardId)
         }
-        
         updateContainerHeightInController()
     }
     
@@ -141,8 +141,33 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
         controller.eventRewardsTableContainerHeight = getContainerHeight()
     }
     
-    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController) {
-        print("final redeem")
+    
+    @objc func reduceTicketPoints() {
+        let minusInt = 150
+        guard let currentInt = eventRewardsController?.rewardsContainer.ticketPoints else { return }
+        
+        eventRewardsController?.rewardsContainer.soldTicketsLabel.count(fromValue: Float(currentInt), to: Float(currentInt - minusInt), withDuration: 3.0, animationType: .EaseOut, counterType: .TicketPoints)
+        
+    }
+    
+    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController, reward: Reward) {
+        let index = rewards.index { (containedReward) -> Bool in
+            return containedReward.id == reward.id
+        }
+        
+        guard let indexInt = index else { return }
+        let indexPath = IndexPath(row: indexInt, section: 0)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? RewardTableCell else { return }
+        cell.redeemButton.isHidden = true
+        cell.checkmarkImageView.isHidden = false
+        
+        let toIndexPath = IndexPath(row: (self.rewards.count - 1), section: 0)
+        
+        tableView.moveRow(at: indexPath, to: toIndexPath)
+        
+        
+        _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(reduceTicketPoints), userInfo: nil, repeats: false)
     }
     
     func didTapCancel(redeemRewardModelViewController: RedeemRewardModelViewController) {

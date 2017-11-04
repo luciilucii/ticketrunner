@@ -13,6 +13,12 @@ enum ButtonState {
     case down
 }
 
+enum TicketLabelState {
+    case plus
+    case normal
+    case less
+}
+
 protocol StatisticsCellDelegate {
     func handleUpDown(buttonState: ButtonState)
 }
@@ -28,23 +34,24 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     var downButtonState: ButtonState = .up
     
-    let ticketsSoldLabel: UILabel = {
-        let label = UILabel()
+    let ticketsSoldLabel: CountingLabel = {
+        let label = CountingLabel()
         label.textAlignment = .center
         label.text = "1728"
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.font = UIFont.sourceSansPro(ofSize: 40)
+//        boldSourceSansPro(ofSize: 50)
         return label
     }()
     
-    let plusTicketsLabel: UILabel = {
-        let label = UILabel()
+    let plusTicketsLabel: CountingLabel = {
+        let label = CountingLabel()
         label.text = "+5"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 7
+        label.layer.cornerRadius = 9
         label.backgroundColor = ColorCodes.ticketrunnerGreen
         return label
     }()
@@ -84,10 +91,17 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         view.backgroundColor = .white
         
-        let ticketsSoldLabelText = "1725"
+        let ticketsSoldLabelText = "\(currentTicketPoints)"
         ticketsSoldLabel.text = ticketsSoldLabelText
-        ticketsSoldLabelWidthAnchor?.constant = estimateFrameForText(text: ticketsSoldLabelText).width
+        let width = estimateFrameForText(text: ticketsSoldLabelText, font: ticketsSoldLabel.font).width
+        ticketsSoldLabelWidthAnchor = ticketsSoldLabel.widthAnchor.constraint(equalToConstant: width + 25)
         ticketsSoldLabelWidthAnchor?.isActive = true
+        
+        let plusText = "+\(plusInt)"
+        plusTicketsLabel.text = plusText
+        let plusWidth = estimateFrameForText(text: plusText, font: plusTicketsLabel.font).width + 18
+        plusTicketLabelWidthAnchor = plusTicketsLabel.widthAnchor.constraint(equalToConstant: plusWidth)
+        plusTicketLabelWidthAnchor?.isActive = true
         
         setupAnchors()
         
@@ -96,6 +110,26 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleStartStatisticsCV), userInfo: nil, repeats: false)
         
+        self.ticketLabelState = .plus
+        
+    }
+    
+    var plusInt = 150
+    var currentTicketPoints = 1725
+    
+    var ticketLabelState: TicketLabelState? {
+        didSet {
+            
+            
+            _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(handleAnimatePointsLabel), userInfo: nil, repeats: false)
+        }
+    }
+    
+    @objc func handleAnimatePointsLabel() {
+        
+        ticketsSoldLabel.count(fromValue: Float(currentTicketPoints), to: Float(plusInt + currentTicketPoints), withDuration: 3, animationType: .EaseOut, counterType: .TicketPoints)
+        
+        plusTicketsLabel.count(fromValue: Float(plusInt), to: 0, withDuration: 3, animationType: .EaseOut, counterType: .Int)
         
     }
     
@@ -105,11 +139,11 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         statisticCollectionView.scrollToItem(at: selectedIndexPath, at: [], animated: true)
     }
     
-    private func estimateFrameForText(text: String) -> CGRect {
+    private func estimateFrameForText(text: String, font: UIFont) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: font], context: nil)
     }
     
     @objc func handleDownUp() {
@@ -140,6 +174,7 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     var ticketsSoldLabelWidthAnchor: NSLayoutConstraint?
+    var plusTicketLabelWidthAnchor: NSLayoutConstraint?
     
     func setupAnchors() {
         view.addSubview(ticketsSoldLabel)
@@ -150,10 +185,10 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         view.addSubview(menuBarCollectionView)
         view.addSubview(statisticCollectionView)
         
-        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
+        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         ticketsSoldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        plusTicketsLabel.anchor(top: nil, left: ticketsSoldLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 35, height: 14)
+        plusTicketsLabel.anchor(top: nil, left: ticketsSoldLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 18)
         plusTicketsLabel.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
         
         downButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 25, height: 25)

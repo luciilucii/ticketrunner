@@ -79,6 +79,14 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         return button
     }()
     
+    let checkmarkImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "Checkmark")
+        iv.contentMode = .scaleAspectFit
+        iv.isHidden = true
+        return iv
+    }()
+    
     lazy var progressBarContainer: ProgressBarContainer = {
         let container = ProgressBarContainer()
         container.delegate = self
@@ -110,6 +118,12 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         return iv
     }()
     
+    let whereToGetLabel: SmallTextLabel = {
+        let label = SmallTextLabel()
+        label.text = "Where to get? - Here!"
+        return label
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
@@ -125,10 +139,12 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         addSubview(seperatorView)
         addSubview(bottomSeperatorView)
         addSubview(redeemButton)
+        addSubview(checkmarkImageView)
         addSubview(progressBarContainer)
         
         addSubview(detailRewardTextView)
         addSubview(rewardImageView)
+        addSubview(whereToGetLabel)
         
         iconImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 7, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 36)
         
@@ -142,11 +158,17 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
         
         redeemButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 100, height: 42)
         
+        checkmarkImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 42, height: 42)
+        checkmarkImageView.centerXAnchor.constraint(equalTo: redeemButton.centerXAnchor).isActive = true
+        checkmarkImageView.centerYAnchor.constraint(equalTo: redeemButton.centerYAnchor).isActive = true
+        
         progressBarContainer.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 9, paddingLeft: 0, paddingBottom: 9, paddingRight: 8, width: 100, height: 0)
         
         rewardImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 52, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 98, height: 98)
         
         detailRewardTextView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 52, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        whereToGetLabel.anchor(top: detailRewardTextView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20)
         
         
     }
@@ -182,7 +204,7 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
     }
     
     func getCellHeight() -> CGFloat {
-        let textViewHeight = detailRewardTextView.frame.height
+        let textViewHeight = detailRewardTextView.frame.height + 20
         
         return textViewHeight + 56
     }

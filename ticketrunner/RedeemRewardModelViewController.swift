@@ -9,13 +9,15 @@
 import UIKit
 
 protocol RedeemRewardModelViewControllerDelegate {
-    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController)
+    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController, reward: Reward)
     func didTapCancel(redeemRewardModelViewController: RedeemRewardModelViewController)
 }
 
 class RedeemRewardModelViewController: UIViewController {
     
     var delegate: RedeemRewardModelViewControllerDelegate?
+    
+    var reward: Reward?
     
     let whiteView: UIView = {
         let view = UIView()
@@ -198,6 +200,8 @@ class RedeemRewardModelViewController: UIViewController {
     }
     
     @objc func redeemReward() {
+        guard let reward = self.reward else { return }
+        
         UIView.transition(with: whiteView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             //completion here
         }) { (completed) in
@@ -209,7 +213,9 @@ class RedeemRewardModelViewController: UIViewController {
                 _ = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
             }
         }
-        delegate?.didTapRedeem(redeemRewardModelViewController: self)
+        
+        
+        delegate?.didTapRedeem(redeemRewardModelViewController: self, reward: reward)
     }
     
     @objc func handleCancel() {

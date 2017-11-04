@@ -19,7 +19,7 @@ class LeaderboardCell: BaseCell {
     let placementLabel: UILabel = {
         let label = UILabel()
         label.text = "1."
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSourceSansPro(ofSize: 20)
         label.textAlignment = .center
         label.textColor = ColorCodes.inactiveElementsGrey
         return label
@@ -37,18 +37,9 @@ class LeaderboardCell: BaseCell {
         let label = UILabel()
         label.textColor = ColorCodes.textColorGrey
         label.text = "Max Gonzales Mustermann"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         label.textAlignment = .center
         label.numberOfLines = 2
-        return label
-    }()
-    
-    let reachLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = ColorCodes.textColorGrey
-        label.text = "583"
-        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -57,7 +48,7 @@ class LeaderboardCell: BaseCell {
         label.textAlignment = .center
         label.textColor = ColorCodes.textColorGrey
         label.text = "27"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSourceSansPro(ofSize: 14)
         return label
     }()
     
@@ -72,7 +63,6 @@ class LeaderboardCell: BaseCell {
         addSubview(profileImageView)
         
         addSubview(ticketsSoldLabel)
-        addSubview(reachLabel)
         
         
         addSubview(usernameLabel)
@@ -85,10 +75,8 @@ class LeaderboardCell: BaseCell {
         
         ticketsSoldLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 50, height: 0)
         
-        reachLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: ticketsSoldLabel.leftAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 50, height: 0)
-        
         //width dif.
-        usernameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: reachLabel.leftAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: ticketsSoldLabel.leftAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
         
         
     }
@@ -101,24 +89,20 @@ class LeaderboardCell: BaseCell {
         case .firstThree:
             backgroundColor = ColorCodes.leaderboardYellow
             placementLabel.textColor = UIColor.white
-            placementLabel.font = UIFont.boldSystemFont(ofSize: 22)
-            usernameLabel.font = UIFont.boldSystemFont(ofSize: 12)
-            reachLabel.font = UIFont.boldSystemFont(ofSize: 14)
-            ticketsSoldLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            placementLabel.font = UIFont.boldSourceSansPro(ofSize: 22)
+            usernameLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
+            ticketsSoldLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
             
             usernameLabel.textColor = UIColor.white
             ticketsSoldLabel.textColor = UIColor.white
-            reachLabel.textColor = UIColor.white
         case .user:
-            placementLabel.font = UIFont.boldSystemFont(ofSize: 22)
-            usernameLabel.font = UIFont.boldSystemFont(ofSize: 12)
-            reachLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            placementLabel.font = UIFont.boldSourceSansPro(ofSize: 22)
+            usernameLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
             backgroundColor = ColorCodes.ticketrunnerPurple
-            ticketsSoldLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            ticketsSoldLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
             
             usernameLabel.textColor = UIColor.white
             ticketsSoldLabel.textColor = UIColor.white
-            reachLabel.textColor = UIColor.white
             placementLabel.textColor = UIColor.white
         }
     }

@@ -15,12 +15,47 @@ class Reward {
     var iconName: String?
     var rewardDescription: String?
     
-    var ticketsToSell: Int?
+    var redeemed = false
+    
+    var ticketsToSell: Int? {
+        didSet {
+            setupCurrentRewardState()
+        }
+    }
     
     var claimed = false
     
+    var currentRewardState: RewardState?
+    
+    
     init(id: Int) {        
         self.id = id
+        
+        setupOtherStuff()
     }
     
+    fileprivate func setupOtherStuff() {
+        
+    }
+    
+    func setupCurrentRewardState() {
+        //TODO: Dont hardcode the 8, get the ticketpoints of the user
+        
+        guard let pointsToUnlock = ticketsToSell else { return }
+        
+        if pointsToUnlock >= 8 && redeemed == false {
+            self.currentRewardState = .inProgress
+        } else if pointsToUnlock < 8 && redeemed == false {
+            self.currentRewardState = .unlocked
+        } else {
+            self.currentRewardState = .redeemed
+        }
+    }
+    
+}
+
+enum RewardState {
+    case inProgress
+    case unlocked
+    case redeemed
 }

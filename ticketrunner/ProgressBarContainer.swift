@@ -306,7 +306,7 @@ class ProgressBarContainer: UIView {
                 width = widthAnchor / ticketsToSell * ticketsSold
                 setupPromoteBar(forWidth: width)
             }
-        }
+        } 
     }
     
     let greenBar: UIView = {

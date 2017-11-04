@@ -21,6 +21,7 @@
 		190C191E1EDE7543003BC179 /* EventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C191D1EDE7543003BC179 /* EventResource.swift */; };
 		190C19251EDF0A38003BC179 /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C19241EDF0A38003BC179 /* UserResource.swift */; };
 		190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */; };
+		19117A1C1FA98AA500B69F17 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19117A1B1FA98AA500B69F17 /* CountingLabel.swift */; };
 		191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191253A61EF4FFEC000839B1 /* ApiService.swift */; };
 		1913C7A41F333968000B4710 /* FixedPromoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7A31F333968000B4710 /* FixedPromoteButton.swift */; };
 		1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1913C7A61F33557E000B4710 /* LeaderboardController.swift */; };
@@ -145,6 +146,7 @@
 		190C191D1EDE7543003BC179 /* EventResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventResource.swift; sourceTree = "<group>"; };
 		190C19241EDF0A38003BC179 /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
 		190FDEB91EF83E2400E7EC0B /* ExampleMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMessages.swift; sourceTree = "<group>"; };
+		19117A1B1FA98AA500B69F17 /* CountingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		191253A61EF4FFEC000839B1 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		1913C7A31F333968000B4710 /* FixedPromoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedPromoteButton.swift; sourceTree = "<group>"; };
 		1913C7A61F33557E000B4710 /* LeaderboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardController.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				19C35F711F13E79A0056479F /* CustomTextField.swift */,
 				19F716811F8BC60A003710F1 /* HeadlineLabel.swift */,
 				1986E5A11F973132002A6552 /* TextLabels.swift */,
+				19117A1B1FA98AA500B69F17 /* CountingLabel.swift */,
 				1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */,
 				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
 				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
@@ -695,7 +698,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = LucaKiedrowski;
 				TargetAttributes = {
 					19C20AF31ED8A9EF00C6FF17 = {
@@ -850,6 +853,7 @@
 				192AE8DD1F548E03006E0B2A /* LeaderboardHomeCell.swift in Sources */,
 				19E64B681EDB13920085624C /* User.swift in Sources */,
 				1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */,
+				19117A1C1FA98AA500B69F17 /* CountingLabel.swift in Sources */,
 				190C191E1EDE7543003BC179 /* EventResource.swift in Sources */,
 				19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */,
 				19F716821F8BC60A003710F1 /* HeadlineLabel.swift in Sources */,
@@ -942,7 +946,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -950,7 +956,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -993,7 +1003,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1001,7 +1013,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

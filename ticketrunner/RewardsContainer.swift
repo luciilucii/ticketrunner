@@ -38,9 +38,13 @@ class RewardsContainer: CustomUIView, ProgressBarContainerDelegate {
         return container
     }()
     
-    let soldTicketsLabel: TicketrunnerPointsLabel = {
-        let label = TicketrunnerPointsLabel()
-        label.text = "9.542°"
+    var ticketPoints = 9542
+    
+    let soldTicketsLabel: CountingLabel = {
+        let label = CountingLabel()
+        label.textColor = ColorCodes.ticketrunnerGreen
+        label.textAlignment = .center
+        label.font = UIFont.boldSourceSansPro(ofSize: 18)
         return label
     }()
     
@@ -69,7 +73,16 @@ class RewardsContainer: CustomUIView, ProgressBarContainerDelegate {
         
         progressBar.anchor(top: rewardsUnlockedLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         
+        setupPointsText()
+    }
+    
+    func setupPointsText() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.groupingSeparator = "."
+        guard let formattedNumber = numberFormatter.string(from: NSNumber(value: ticketPoints)) else { return }
         
+        soldTicketsLabel.text = "\(formattedNumber)°"
     }
     
     func shouldShowTriangles() -> Bool {

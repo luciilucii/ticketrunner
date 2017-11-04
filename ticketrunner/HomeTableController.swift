@@ -35,7 +35,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     var avatarImage: UIImage?
     
-    var statisticsCellHeight: CGFloat = 64 {
+    var statisticsCellHeight: CGFloat = 74 {
         didSet {
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -279,7 +279,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         if buttonState == .down {
             self.statisticsCellHeight = 205
         } else {
-            self.statisticsCellHeight = 64
+            self.statisticsCellHeight = 74
         }
     }
     
