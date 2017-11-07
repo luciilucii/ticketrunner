@@ -16,6 +16,12 @@ enum LeaderboardCellType {
 
 class LeaderboardCell: BaseCell {
     
+    var user: User? {
+        didSet {
+            
+        }
+    }
+    
     let placementLabel: UILabel = {
         let label = UILabel()
         label.text = "1."
@@ -47,7 +53,7 @@ class LeaderboardCell: BaseCell {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = ColorCodes.textColorGrey
-        label.text = "27"
+        label.text = "1.7k"
         label.font = UIFont.boldSourceSansPro(ofSize: 14)
         return label
     }()
@@ -82,6 +88,10 @@ class LeaderboardCell: BaseCell {
     }
     
     func setupCell(cellType: LeaderboardCellType) {
+        
+        let int = 1956
+        self.ticketsSoldLabel.text = getPointString(int: int)
+        
         switch cellType {
         case .normal:
             //do norhing
@@ -107,4 +117,40 @@ class LeaderboardCell: BaseCell {
         }
     }
     
+    func getPointString(int: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = NSLocale.current
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.groupingSeparator = "."
+        guard var formattedNumber = numberFormatter.string(from: NSNumber(value: int)) else { return "" }
+        
+        if int > 9999999 {
+            formattedNumber.removeLast(8)
+            
+            return "\(formattedNumber)m"
+        } else if int > 999999 {
+            formattedNumber.removeLast(6)
+            
+            return "\(formattedNumber)m"
+            
+        } else if int > 99999 {
+            var string = String(int)
+            string.removeLast(3)
+            
+            return "\(string)k"
+        } else if int > 999 {
+            formattedNumber.removeLast(2)
+            
+            return "\(formattedNumber)k"
+        } else {
+            return String(int)
+        }
+        
+    }
+    
 }
+
+
+
+
+

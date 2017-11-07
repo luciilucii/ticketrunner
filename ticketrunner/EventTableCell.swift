@@ -168,11 +168,11 @@ class EventTableCell: TableCell, RewardsContainerEventCellDelegate {
     }
     
     fileprivate func setupViewsInCell() {
-        
+        guard let cellWidth = cellWidth else { return }
         addSubview(eventInfoView)
         addSubview(rewardsContainer)
         
-        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 230)
+        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 108 + (cellWidth / 2.7))
         
         rewardsContainer.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 128)
         
@@ -189,7 +189,7 @@ class EventTableCell: TableCell, RewardsContainerEventCellDelegate {
         addSubview(leaderboardButton)
         
         //x,y,w,h
-        guard let cellWidth = cellWidth else { return }
+        
         eventImageView.anchor(top: eventInfoView.topAnchor, left: eventInfoView.leftAnchor, bottom: nil, right: eventInfoView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: cellWidth / 2.7)
         
         //x,y,w,h

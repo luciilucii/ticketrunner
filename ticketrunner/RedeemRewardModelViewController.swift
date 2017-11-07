@@ -210,10 +210,11 @@ class RedeemRewardModelViewController: UIViewController {
                 
                 self.redeemWhiteView.isHidden = false
                 
-                _ = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
+                self.handleAnimateConfetti()
+                
+                _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
             }
         }
-        
         
         delegate?.didTapRedeem(redeemRewardModelViewController: self, reward: reward)
     }
@@ -222,5 +223,80 @@ class RedeemRewardModelViewController: UIViewController {
         delegate?.didTapCancel(redeemRewardModelViewController: self)
     }
     
+    fileprivate func handleAnimateConfetti() {
+        
+        for _ in 0...100 {
+            let randomDelay = Double(randomNumber(lowerInt: 1, upperInt: 7) / 10)
+            let randomImageInt = randomNumber(lowerInt: 0, upperInt: 2)
+            
+            var image: UIImage
+            
+            switch Int(randomImageInt) {
+            case 0:
+                image = #imageLiteral(resourceName: "ticket-red")
+            case 1:
+                image = #imageLiteral(resourceName: "ticketrunner_logo_short")
+            default:
+                image = #imageLiteral(resourceName: "ticketrunner_logo_grau")
+            }
+            animateSingleConfetti(withDelay: randomDelay, image: image)
+        }
+    }
+    
+    func animateSingleConfetti(withDelay: TimeInterval, image: UIImage) {
+        let imageView = UIImageView()
+        imageView.image = image.withRenderingMode(.alwaysOriginal)
+        
+        view.addSubview(imageView)
+        
+        var imageViewTopAnchor: NSLayoutConstraint
+        
+        let leftAnchorFloat = randomNumber(lowerInt: 0, upperInt: Double(view.frame.width))
+        
+        let topAnchorConstant = randomNumber(lowerInt: 0, upperInt: 30) - 30
+        
+        imageView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: leftAnchorFloat, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
+        imageViewTopAnchor = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: -150)
+        imageViewTopAnchor.isActive = true
+        
+        UIView.animate(withDuration: withDelay, animations: {
+            imageViewTopAnchor.constant = topAnchorConstant - 30
+            self.view.layoutIfNeeded()
+        }) { _ in
+            imageViewTopAnchor.constant = self.view.frame.height + topAnchorConstant
+            
+            print(self.view.frame.height, imageViewTopAnchor.constant)
+            
+            UIView.animate(withDuration: 1.5, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
+    func randomNumber(lowerInt: Double, upperInt: Double) -> CGFloat {
+        let lower : UInt32 = UInt32(lowerInt)
+        let upper : UInt32 = UInt32(upperInt)
+        let randomNumber = arc4random_uniform(upper - lower) + lower
+        
+        return CGFloat(randomNumber)
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

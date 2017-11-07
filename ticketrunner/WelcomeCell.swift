@@ -113,9 +113,10 @@ class WelcomeCell: TableCell {
     }()
     
     override func setupViews() {
+        view.backgroundColor = UIColor.white
         addSubview(view)
-        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
+        view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 0, width: 0, height: 0)
         
         user = UserResource().getUser()
         
@@ -261,8 +262,6 @@ class WelcomeCell: TableCell {
     var avatarImageViewCenterYAnchor: NSLayoutConstraint?
     
     func setupTicketsSoldView() {
-        
-        
         
         setupAnimatingLogos()
         

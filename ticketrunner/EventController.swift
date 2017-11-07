@@ -60,7 +60,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func setupCollectionView() {
-        collectionView?.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.0)
+        collectionView?.backgroundColor = ColorCodes.controllerBackground
         collectionView?.register(EventCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.dataSource = self
         collectionView?.delegate = self
@@ -125,7 +125,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
+        let height = CGFloat(497) + ((view.frame.width - 16) / 2.7)
         let width = view.frame.width - 16
         
         let size = CGSize(width: width, height: height)
@@ -170,7 +170,11 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     func didTapRewards(event: Event) {
         let eventRewardsController = EventRewardsController()
         eventRewardsController.event = event
-        self.show(eventRewardsController, sender: self)
+        
+        let newController = EventRewardsTableController(style: .grouped)
+        newController.event = event
+        
+        self.show(newController, sender: self)
     }
     
     func didTapEventInfo(event: Event) {

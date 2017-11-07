@@ -34,13 +34,16 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     var downButtonState: ButtonState = .up
     
-    let ticketsSoldLabel: CountingLabel = {
+    var homeController: HomeTableController?
+    
+    lazy var ticketsSoldLabel: CountingLabel = {
         let label = CountingLabel()
         label.textAlignment = .center
-        label.text = "1728"
+        label.text = "1.728°"
         label.textColor = ColorCodes.textColorGrey
         label.font = UIFont.sourceSansPro(ofSize: 40)
-//        boldSourceSansPro(ofSize: 50)
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapPointsLabel)))
         return label
     }()
     
@@ -91,17 +94,9 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         view.backgroundColor = .white
         
-        let ticketsSoldLabelText = "\(currentTicketPoints)"
-        ticketsSoldLabel.text = ticketsSoldLabelText
-        let width = estimateFrameForText(text: ticketsSoldLabelText, font: ticketsSoldLabel.font).width
-        ticketsSoldLabelWidthAnchor = ticketsSoldLabel.widthAnchor.constraint(equalToConstant: width + 25)
-        ticketsSoldLabelWidthAnchor?.isActive = true
+        setupCurrentPointLabel()
         
-        let plusText = "+\(plusInt)"
-        plusTicketsLabel.text = plusText
-        let plusWidth = estimateFrameForText(text: plusText, font: plusTicketsLabel.font).width + 18
-        plusTicketLabelWidthAnchor = plusTicketsLabel.widthAnchor.constraint(equalToConstant: plusWidth)
-        plusTicketLabelWidthAnchor?.isActive = true
+        
         
         setupAnchors()
         
@@ -111,6 +106,29 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleStartStatisticsCV), userInfo: nil, repeats: false)
         
         self.ticketLabelState = .plus
+        
+    }
+    
+    fileprivate func setupCurrentPointLabel() {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = NSLocale.current
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.groupingSeparator = "."
+        guard let formattedNumber = numberFormatter.string(from: NSNumber(value: currentTicketPoints)) else { return }
+        
+        let ticketsSoldLabelText = "\(formattedNumber)°"
+        ticketsSoldLabel.text = ticketsSoldLabelText
+        
+        let width = estimateFrameForText(text: ticketsSoldLabelText, font: ticketsSoldLabel.font).width
+        ticketsSoldLabelWidthAnchor = ticketsSoldLabel.widthAnchor.constraint(equalToConstant: width + 25)
+        ticketsSoldLabelWidthAnchor?.isActive = true
+        
+        let plusText = "+\(plusInt)"
+        plusTicketsLabel.text = plusText
+        let plusWidth = estimateFrameForText(text: plusText, font: plusTicketsLabel.font).width + 18
+        plusTicketLabelWidthAnchor = plusTicketsLabel.widthAnchor.constraint(equalToConstant: plusWidth)
+        plusTicketLabelWidthAnchor?.isActive = true
         
     }
     
@@ -126,11 +144,17 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     @objc func handleAnimatePointsLabel() {
-        
         ticketsSoldLabel.count(fromValue: Float(currentTicketPoints), to: Float(plusInt + currentTicketPoints), withDuration: 3, animationType: .EaseOut, counterType: .TicketPoints)
         
         plusTicketsLabel.count(fromValue: Float(plusInt), to: 0, withDuration: 3, animationType: .EaseOut, counterType: .Int)
         
+        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(deletePlusLabel), userInfo: nil, repeats: false)
+        
+    }
+    
+    @objc func deletePlusLabel() {
+        plusTicketsLabel.removeFromSuperview()
+        ticketsSoldLabel.textColor = ColorCodes.ticketrunnerGreen
     }
     
     @objc func handleStartStatisticsCV() {
@@ -192,7 +216,7 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         plusTicketsLabel.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
         
         downButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 25, height: 25)
-        downButton.centerYAnchor.constraint(equalTo: plusTicketsLabel.centerYAnchor).isActive = true
+        downButton.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
         
         menuBarCollectionView.anchor(top: ticketsSoldLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 25)
         
@@ -207,6 +231,14 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         statisticCollectionView.register(StatisticsScrollCell.self, forCellWithReuseIdentifier: statisticsId)
         statisticCollectionView.backgroundColor = .white
+    }
+    
+    @objc func handleTapPointsLabel() {
+        let controller = UIViewController()
+        controller.view.backgroundColor = ColorCodes.controllerBackground
+        controller.setupWhiteTitle(title: "Points")
+        
+        self.homeController?.navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -224,7 +256,6 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return 0
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

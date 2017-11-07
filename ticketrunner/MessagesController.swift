@@ -24,9 +24,20 @@ class MessagesController: UITableViewController {
         setupWhiteTitle(title: "Messages")
         setupMenuBar()
         
+        setupSearchButton()
+        
         view.backgroundColor = ColorCodes.controllerBackground
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    private func setupSearchButton() {
+        let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(handleSearch))
+        self.navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    @objc func handleSearch() {
+        print("search")
     }
     
     func setupMenuBar() {

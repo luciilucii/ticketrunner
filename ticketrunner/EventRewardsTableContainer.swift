@@ -44,13 +44,13 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
         }
     }
     
-    lazy var redeemRewardModelViewController: RedeemRewardModelViewController = {
-        let controller = RedeemRewardModelViewController()
-        controller.delegate = self
-        controller.modalTransitionStyle = .crossDissolve
-        controller.modalPresentationStyle = .overCurrentContext
-        return controller
-    }()
+//    lazy var redeemRewardModelViewController: RedeemRewardModelViewController = {
+//        let controller = RedeemRewardModelViewController()
+//        controller.delegate = self
+//        controller.modalTransitionStyle = .crossDissolve
+//        controller.modalPresentationStyle = .overCurrentContext
+//        return controller
+//    }()
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: UITableViewStyle.plain)
@@ -78,7 +78,6 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
         addSubview(tableView)
         
         tableView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,7 +95,6 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         let reward = rewards[indexPath.row]
         let rewardId = reward.id
         
@@ -114,8 +112,13 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
     }
     
     func didTapRedeem(reward: Reward) {
-        redeemRewardModelViewController.reward = reward
-        self.eventRewardsController?.present(redeemRewardModelViewController, animated: true, completion: {
+        let controller = RedeemRewardModelViewController()
+        controller.delegate = self
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .overCurrentContext
+        controller.reward = reward
+        
+        self.eventRewardsController?.present(controller, animated: true, completion: {
             // completion here
         })
     }
@@ -168,6 +171,7 @@ class EventRewardsTableContainer: CustomUIView, UITableViewDelegate, UITableView
         
         
         _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(reduceTicketPoints), userInfo: nil, repeats: false)
+        
     }
     
     func didTapCancel(redeemRewardModelViewController: RedeemRewardModelViewController) {

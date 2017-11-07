@@ -15,15 +15,17 @@ class Reward {
     var iconName: String?
     var rewardDescription: String?
     
-    var redeemed = false
+    var redeemed = false {
+        didSet {
+            setupCurrentRewardState()
+        }
+    }
     
     var ticketsToSell: Int? {
         didSet {
             setupCurrentRewardState()
         }
     }
-    
-    var claimed = false
     
     var currentRewardState: RewardState?
     

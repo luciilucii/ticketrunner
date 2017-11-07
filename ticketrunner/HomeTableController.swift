@@ -26,6 +26,8 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     let leaderboardId = "leaderboardId"
     let eventId = "eventId"
     let noEventCell = "noEventCell"
+    let expiredEventHeaderId = "expireEventHeaderId"
+    
     
     var homeController: HomeController? {
         didSet {
@@ -70,6 +72,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             userEvents.forEach { (event) in
                 self.homeCells.append(EventTableCell.self)
             }
+            self.homeCells.append(ExpiredEventHeaderCell.self)
             tableView.reloadData()
         }
     }
@@ -85,6 +88,8 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         setupMenuBar()
         
         userEvents = EventResource().getEvents()
+        
+        
     }
     
     func checkIfMenuIsSet() {
@@ -110,7 +115,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         setupTableView()
         
         tableView.backgroundColor = ColorCodes.controllerBackground
-        
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
     }
     
     func setupTableView() {
@@ -126,6 +131,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         tableView.register(LeaderboardHomeCell.self, forCellReuseIdentifier: leaderboardId)
         tableView.register(EventTableCell.self, forCellReuseIdentifier: eventId)
         tableView.register(HomeNoEventCell.self, forCellReuseIdentifier: noEventCell)
+        tableView.register(ExpiredEventHeaderCell.self, forCellReuseIdentifier: expiredEventHeaderId)
         
     }
     
@@ -147,7 +153,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 return 162
             case _ where type == EventInvitationCell.self:
                 guard let controller = homeController else { return 0 }
-                let imageHeight = (controller.view.frame.width - 32) / 2.7
+                let imageHeight = (controller.view.frame.width - 16) / 2.7
                 let height = 264 + imageHeight
                 return height
             case _ where type == LeaderboardHomeCell.self:
@@ -155,6 +161,8 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == EventTableCell.self:
                 let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
                 return height
+            case _ where type == ExpiredEventHeaderCell.self:
+                return 50
             default:
                 return 0
             }
@@ -211,6 +219,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 let cell = tableView.dequeueReusableCell(withIdentifier: statisticsId, for: indexPath) as! StatisticsCell
                 
                 cell.delegate = self
+                cell.homeController = self
                 
                 return cell
             case _ where type == NewRewardsCell.self:
@@ -232,13 +241,17 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 
                 checkIfAnimated(cell: cell, int: indexPath.row)
                 
-                let difference = homeCells.count - self.userEvents.count
+                let difference = homeCells.count - self.userEvents.count - 1
                 let event = userEvents[indexPath.row - difference]
                 
                 cell.currentEvent = event
                 cell.homeController = self
                 
                 cell.delegate = self
+                
+                return cell
+            case _ where type == ExpiredEventHeaderCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: expiredEventHeaderId, for: indexPath) as! ExpiredEventHeaderCell
                 
                 return cell
             default:
@@ -290,9 +303,9 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     }
     
     func didTapRewards(event: Event) {
-        let rewardsController = EventRewardsController()
-        rewardsController.event = event
-        self.show(rewardsController, sender: self)
+        let newController = EventRewardsTableController(style: .grouped)
+        newController.event = event
+        self.show(newController, sender: self)
     }
     
     func didTapEventInfo(event: Event) {

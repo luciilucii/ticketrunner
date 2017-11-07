@@ -177,10 +177,16 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
     }
     
     func setupViews() {
+        
+        guard let cellWidth = cellWidth else { return }
+        
+        
         addSubview(eventInfoView)
         addSubview(rewardsContainer)
         
-        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230)
+        
+        //132
+        eventInfoView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 108 + (cellWidth / 2.7))
         
         rewardsContainer.anchor(top: eventInfoView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 128)
         
@@ -197,11 +203,8 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         addSubview(leaderboardButton)
         
         //x,y,w,h
-        guard let cellWidth = cellWidth else { return }
+        
         eventImageView.anchor(top: eventInfoView.topAnchor, left: eventInfoView.leftAnchor, bottom: nil, right: eventInfoView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: cellWidth / 2.7)
-        
-        
-        
         
         //x,y,w,h
         titleLabel.leftAnchor.constraint(equalTo: eventInfoView.leftAnchor, constant: 8).isActive = true
@@ -226,8 +229,6 @@ class EventCell: UICollectionViewCell, RewardsContainerEventCellDelegate {
         locationLabel.topAnchor.constraint(equalTo: streetLabel.bottomAnchor).isActive = true
         locationLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
         locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        
         
         //x,y,w,h
         promoteButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true

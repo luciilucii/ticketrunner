@@ -25,7 +25,6 @@ class LeaderboardHomeCVCell: BaseCell {
             default:
                 backgroundColor = UIColor.white
             }
-            
         }
     }
 

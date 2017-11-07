@@ -41,6 +41,7 @@
 		192C568A1F3E262300C77D34 /* StatisticsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */; };
 		19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */; };
 		1936ACF21F9A7EC600318577 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */; };
+		1949354D1FADABB200AADC1D /* ExpiredEventHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1949354C1FADABB200AADC1D /* ExpiredEventHeaderCell.swift */; };
 		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
 		195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466A1F0D22D800E59777 /* EventCategoryResource.swift */; };
 		195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */; };
@@ -80,6 +81,8 @@
 		19B5DF5D1EDCA85E00739A49 /* TemplateForController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */; };
 		19BB087E1F8A58F4001D8715 /* FixedPromoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */; };
 		19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */; };
+		19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */; };
+		19C0FF4D1FAE5201007B3B9A /* EventRewardsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */; };
 		19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */; };
 		19C20AFD1ED8A9F000C6FF17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFB1ED8A9F000C6FF17 /* Main.storyboard */; };
 		19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFE1ED8A9F000C6FF17 /* Assets.xcassets */; };
@@ -166,6 +169,7 @@
 		192C56891F3E262200C77D34 /* StatisticsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTitleCell.swift; sourceTree = "<group>"; };
 		19314B471F3F466000B6D9F7 /* StatisticsEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsEventCell.swift; sourceTree = "<group>"; };
 		1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
+		1949354C1FADABB200AADC1D /* ExpiredEventHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiredEventHeaderCell.swift; sourceTree = "<group>"; };
 		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
 		195D466A1F0D22D800E59777 /* EventCategoryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoryResource.swift; sourceTree = "<group>"; };
 		195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 		19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateForController.swift; sourceTree = "<group>"; };
 		19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedPromoteController.swift; sourceTree = "<group>"; };
 		19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardModelViewController.swift; sourceTree = "<group>"; };
+		19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsTableController.swift; sourceTree = "<group>"; };
+		19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsHeaderCell.swift; sourceTree = "<group>"; };
 		19C20AF41ED8A9EF00C6FF17 /* ticketrunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ticketrunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C20AFC1ED8A9F000C6FF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -406,8 +412,18 @@
 				19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */,
 				19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */,
 				19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */,
+				19C0FF491FAE5098007B3B9A /* New Controller */,
 			);
 			name = EventRewardsController;
+			sourceTree = "<group>";
+		};
+		19C0FF491FAE5098007B3B9A /* New Controller */ = {
+			isa = PBXGroup;
+			children = (
+				19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */,
+				19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */,
+			);
+			name = "New Controller";
 			sourceTree = "<group>";
 		};
 		19C20AEB1ED8A9EF00C6FF17 = {
@@ -605,6 +621,7 @@
 				19953DD61F42B13A00409195 /* EventInvitationCell.swift */,
 				192AE8DC1F548E03006E0B2A /* LeaderboardHomeCell.swift */,
 				192AE8E01F54907B006E0B2A /* LeaderboardHomeCVCell */,
+				1949354C1FADABB200AADC1D /* ExpiredEventHeaderCell.swift */,
 			);
 			name = HomeHeader;
 			sourceTree = "<group>";
@@ -809,6 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */,
+				19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */,
 				1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */,
 				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
 				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
@@ -819,6 +837,7 @@
 				1998D2901F8B9922004C8334 /* ScrollController.swift in Sources */,
 				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
 				1913C7A41F333968000B4710 /* FixedPromoteButton.swift in Sources */,
+				1949354D1FADABB200AADC1D /* ExpiredEventHeaderCell.swift in Sources */,
 				19E7865E1F06D31700956958 /* FilterSearchController.swift in Sources */,
 				19F5331F1F9B9CC100775192 /* HomeTableController.swift in Sources */,
 				19CFB4541EF0F76F00AB557E /* HomeHeader.swift in Sources */,
@@ -826,6 +845,7 @@
 				19953DD71F42B13A00409195 /* EventInvitationCell.swift in Sources */,
 				1907757B1EF6B5B900C166CD /* ChatLogController.swift in Sources */,
 				19EE5CB81EF2786A0003F24E /* PersonalSettingsController.swift in Sources */,
+				19C0FF4D1FAE5201007B3B9A /* EventRewardsHeaderCell.swift in Sources */,
 				19D2BD4E1ED9543400529F7F /* Menu.swift in Sources */,
 				19086CE71EFCCE110024F7D0 /* EventCategory.swift in Sources */,
 				19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */,

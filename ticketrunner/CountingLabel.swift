@@ -68,6 +68,27 @@ class CountingLabel: UILabel {
         
     }
     
+    func count(fromValue: Float, to toValue: Float, withDuration duration: TimeInterval, animationType: CounterAnimationType, counterType: CounterType, completion: @escaping () -> ()) {
+        self.startNumber = fromValue
+        self.endNumber = toValue
+        self.duration = duration
+        
+        self.counterType = counterType
+        self.counterAnimationType = animationType
+        self.progress = 0
+        self.lastUpdate = Date.timeIntervalSinceReferenceDate
+        
+        invalidateTimer()
+        
+        if duration == 0 {
+            updateText(value: toValue)
+            return
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateValue), userInfo: nil, repeats: true)
+        
+    }
+    
     @objc func updateValue() {
         let now = Date.timeIntervalSinceReferenceDate
         progress = progress + (now - lastUpdate)

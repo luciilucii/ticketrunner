@@ -23,6 +23,7 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
     
     var eventRewardsTableContainerHeightAnchor: NSLayoutConstraint?
     var testViewHeightAnchor: NSLayoutConstraint?
+    var testViewBottomAnchor: NSLayoutConstraint?
     
     var eventRewardsTableContainerHeight: CGFloat? {
         didSet {
@@ -33,9 +34,8 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
     func updateEventRewardsContainer() {
         guard let height = eventRewardsTableContainerHeight else { return }
         
-//        self.testViewHeightAnchor?.constant = height
-        
         testViewHeightAnchor?.constant = height / 10
+        testViewBottomAnchor?.constant = height / 10
         
         print(height / 10)
         
@@ -58,7 +58,7 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         return container
     }()
     
-    let testView: UIView = {
+    lazy var testView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
@@ -75,14 +75,6 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         let view = UIView()
         view.backgroundColor = ColorCodes.controllerBackground
         return view
-    }()
-    
-    lazy var redeemRewardModelViewController: RedeemRewardModelViewController = {
-        let controller = RedeemRewardModelViewController()
-//        controller.delegate = self
-        controller.modalTransitionStyle = .crossDissolve
-        controller.modalPresentationStyle = .overCurrentContext
-        return controller
     }()
     
     override func viewDidLoad() {
@@ -108,7 +100,7 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         view.addSubview(testView)
         
         
-        rewardsContainer.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 128)
+        rewardsContainer.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 128)
         
         let tableContainerHeight = eventRewardsTableContainer.getContainerHeight()
         
@@ -118,11 +110,6 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         
         eventRewardsTableContainerHeightAnchor = eventRewardsTableContainer.heightAnchor.constraint(equalToConstant: tableContainerHeight)
         eventRewardsTableContainerHeightAnchor?.isActive = true
-        
-//        testView.anchor(top: eventRewardsTableContainer.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-//        self.testViewHeightAnchor = testView.heightAnchor.constraint(equalToConstant: 250)
-//        self.testViewHeightAnchor?.isActive = true
-        
         
         
         if #available(iOS 11.0, *) {
@@ -134,15 +121,16 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
         
         promoteHelperView.anchor(top: promoteButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: -5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        testView.anchor(top: nil, left: view.leftAnchor, bottom: promoteButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
+        testView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
         
         
         
-        testViewHeightAnchor = testView.heightAnchor.constraint(equalToConstant: tableContainerHeight / 10)
-        testViewHeightAnchor?.isActive = true
+//        testViewHeightAnchor = testView.heightAnchor.constraint(equalToConstant: tableContainerHeight / 10)
+//        testViewHeightAnchor?.isActive = true
         
+        testViewBottomAnchor = testView.bottomAnchor.constraint(equalTo: promoteButton.topAnchor, constant: -(tableContainerHeight / 10))
+        testViewBottomAnchor?.isActive = true
         
-//        setupRewardsForEvent()
     }
     
     func shouldShowTriangles() -> Bool {
