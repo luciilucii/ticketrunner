@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ExpiredEventHeaderCellDelegate {
+    func didTapUpDown(withButtonState buttonState: ButtonState)
+}
+
 class ExpiredEventHeaderCell: TableCell {
+    
+    var delegate: ExpiredEventHeaderCellDelegate?
     
     var downButtonState = ButtonState.down
     
@@ -52,6 +58,8 @@ class ExpiredEventHeaderCell: TableCell {
             self.downButtonState = .down
 //            delegate?.handleUpDown(buttonState: .down)
             
+            delegate?.didTapUpDown(withButtonState: .down)
+            
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.downButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 self.layoutIfNeeded()
@@ -64,6 +72,7 @@ class ExpiredEventHeaderCell: TableCell {
             self.downButtonState = .up
 //            delegate?.handleUpDown(buttonState: .up)
             
+            delegate?.didTapUpDown(withButtonState: .up)
             
             UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.downButton.transform = CGAffineTransform(rotationAngle: CGFloat(0))

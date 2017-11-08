@@ -34,6 +34,11 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
                 self.checkmarkImageView.isHidden = true
             }
             
+            if reward.redeemed {
+                self.progressBarContainer.isHidden = true
+                self.redeemButton.isHidden = true
+                self.checkmarkImageView.isHidden = false
+            }
             
             guard let rewardName = reward.name else { return }
             self.titleLabel.text = rewardName

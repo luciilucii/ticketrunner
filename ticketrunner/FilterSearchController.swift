@@ -189,7 +189,6 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
     }
     
     @objc func handleSearch() {
-        
         guard let searchText = eventNameTextField.text else {
             eventController?.filteredEvents = nil
             dismiss(animated: true, completion: { 
@@ -241,6 +240,15 @@ class FilterSearchController: UIViewController, UIScrollViewDelegate, UIPickerVi
 }
 
 class RadiusSlider: UISlider {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: 20))

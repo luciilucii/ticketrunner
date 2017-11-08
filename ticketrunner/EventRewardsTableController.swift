@@ -21,6 +21,13 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         }
     }
     
+    var openedIndexPathRow: Int? {
+        didSet {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+    }
+    
     var rewards = [Reward]() {
         didSet {
             tableView.reloadData()
@@ -35,7 +42,6 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavBarButtons()
         
         setupWhiteTitle(title: "Rewards")
@@ -58,19 +64,14 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let reward = rewards[indexPath.row]
-        let rewardId = reward.id
-        
-        let isContained = openedRewards.contains { (containedInt) -> Bool in
-            return containedInt == rewardId
-        }
-        
-        if isContained {
+        if indexPath.row == self.openedIndexPathRow {
             guard let cell = tableView.cellForRow(at: indexPath) as? RewardTableCell else { return 0 }
             return cell.getCellHeight()
+            
         } else {
             return 50
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -103,25 +104,14 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         return true
     }
     
-    var openedRewards = [Int]() {
-        didSet {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
-    }
-    
     func didTapCell(reward: Reward, indexPath: IndexPath) {
-        let rewardId = reward.id
-        
-        let containedIndex = openedRewards.index { (containedId) -> Bool in
-            return rewardId == containedId
+        if let nowOpenendInt = self.openedIndexPathRow {
+            if indexPath.row == openedIndexPathRow {
+                self.openedIndexPathRow = nil
+                return
+            }
         }
-        
-        if let index = containedIndex {
-            openedRewards.remove(at: index)
-        } else {
-            openedRewards.append(rewardId)
-        }
+        openedIndexPathRow = indexPath.row
     }
     
     func didTapRedeem(reward: Reward) {
@@ -185,22 +175,20 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         guard let indexInt = index else { return }
         reward.redeemed = true
         rewards.remove(at: indexInt)
-        
+
         rewards.append(reward)
-        
         
         tableView.reloadData()
         
-        let indexPath = IndexPath(row: rewards.count, section: 0)
+        let indexPath = IndexPath(row: (rewards.count - 1), section: 0)
         
         guard let cell = tableView.cellForRow(at: indexPath) as? RewardTableCell else { return }
+
+        cell.reward = nil
+
         cell.redeemButton.isHidden = true
-//        cell.checkmarkImageView.isHidden = false
-        
-//        let toIndexPath = IndexPath(row: (self.rewards.count - 1), section: 0)
-//
-//        tableView.moveRow(at: indexPath, to: toIndexPath)
-        
+        cell.checkmarkImageView.isHidden = false
+        cell.progressBarContainer.isHidden = true
         
         _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(reduceTicketPoints), userInfo: nil, repeats: false)
     }

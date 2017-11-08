@@ -48,6 +48,8 @@
 		195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466E1F0DEF4600E59777 /* ConfirmationController.swift */; };
 		195D46711F0DF79500E59777 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46701F0DF79500E59777 /* GifExtension.swift */; };
 		195D46741F0DF7D500E59777 /* Verification-email.gif in Resources */ = {isa = PBXBuildFile; fileRef = 195D46731F0DF7D500E59777 /* Verification-email.gif */; };
+		196097B81FB231FA0064C54A /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097B71FB231FA0064C54A /* MessagesCell.swift */; };
+		196097BC1FB237230064C54A /* NewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097BB1FB237230064C54A /* NewChatCell.swift */; };
 		1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */; };
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
@@ -176,6 +178,8 @@
 		195D466E1F0DEF4600E59777 /* ConfirmationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
 		195D46701F0DF79500E59777 /* GifExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
 		195D46731F0DF7D500E59777 /* Verification-email.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Verification-email.gif"; sourceTree = "<group>"; };
+		196097B71FB231FA0064C54A /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		196097BB1FB237230064C54A /* NewChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatCell.swift; sourceTree = "<group>"; };
 		1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoVideoContainer.swift; sourceTree = "<group>"; };
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
@@ -384,6 +388,15 @@
 			name = Confirmation;
 			sourceTree = "<group>";
 		};
+		196097B61FB231DE0064C54A /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				196097B71FB231FA0064C54A /* MessagesCell.swift */,
+				196097BB1FB237230064C54A /* NewChatCell.swift */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
 		19953DD31F42AB5200409195 /* New Rewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,6 +599,7 @@
 				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
 				19E98E2B1F8DCFBF00E62DB5 /* RewardsContainer.swift */,
 				1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */,
+				196097B61FB231DE0064C54A /* Messages */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -831,6 +845,7 @@
 				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
 				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
+				196097B81FB231FA0064C54A /* MessagesCell.swift in Sources */,
 				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
 				1913C7A91F3355DA000B4710 /* LeaderboardCell.swift in Sources */,
 				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
@@ -850,6 +865,7 @@
 				19086CE71EFCCE110024F7D0 /* EventCategory.swift in Sources */,
 				19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */,
 				192AE8DF1F549076006E0B2A /* LeaderboardHomeCVCell.swift in Sources */,
+				196097BC1FB237230064C54A /* NewChatCell.swift in Sources */,
 				1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */,
 				19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */,
 				1907D5B41EED4B8000E603A6 /* UserRegistrationController.swift in Sources */,

@@ -15,6 +15,8 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
     let cellId = "cellId"
     let headerId  = "headerId"
     
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,21 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         
         setupCollectionView()
         setupNavBarButtons()
+        
+        _ = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(scrollToCurrentUser), userInfo: nil, repeats: false)
+    }
+    
+    @objc func scrollToCurrentUser() {
+        let currentUserId = ""
+        
+//        let index = users.index { (user) -> Bool in
+//            return user.uid! == currentUserId
+//        }
+        
+        let testIndex = 17
+        let indexPath = IndexPath(item: testIndex, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
+        
     }
     
     func setupCollectionView() {
@@ -78,7 +95,7 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -88,11 +105,9 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
         
         return header
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

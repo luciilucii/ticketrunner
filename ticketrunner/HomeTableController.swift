@@ -11,8 +11,7 @@ import MobileCoreServices
 import Intercom
 import Alamofire
 
-class HomeTableController: UITableViewController, SystemMessageCellDelegate, NewMessagesCellDelegate, StatisticsCellDelegate, EventCellDelegate {
-    
+class HomeTableController: UITableViewController, SystemMessageCellDelegate, NewMessagesCellDelegate, StatisticsCellDelegate, EventCellDelegate, ExpiredEventHeaderCellDelegate {
     
     var homeCells = [WelcomeCell.self, SystemMessageCell.self, NewMessagesCell.self, StatisticsCell.self, NewRewardsCell.self, EventInvitationCell.self, LeaderboardHomeCell.self]
     
@@ -27,6 +26,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     let eventId = "eventId"
     let noEventCell = "noEventCell"
     let expiredEventHeaderId = "expireEventHeaderId"
+    let expiredId = "expiredId"
     
     
     var homeController: HomeController? {
@@ -132,6 +132,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         tableView.register(EventTableCell.self, forCellReuseIdentifier: eventId)
         tableView.register(HomeNoEventCell.self, forCellReuseIdentifier: noEventCell)
         tableView.register(ExpiredEventHeaderCell.self, forCellReuseIdentifier: expiredEventHeaderId)
+        tableView.register(ExpiredEventTableCell.self, forCellReuseIdentifier: expiredId)
         
     }
     
@@ -163,6 +164,9 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 return height
             case _ where type == ExpiredEventHeaderCell.self:
                 return 50
+            case _ where type == ExpiredEventTableCell.self:
+                let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
+                return height
             default:
                 return 0
             }
@@ -250,8 +254,25 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 cell.delegate = self
                 
                 return cell
+                
+            case _ where type == ExpiredEventTableCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: expiredId, for: indexPath) as! ExpiredEventTableCell
+                
+                checkIfAnimated(cell: cell, int: indexPath.row)
+                
+                let difference = homeCells.count - self.userEvents.count
+                let event = userEvents[indexPath.item - difference]
+                
+                cell.currentEvent = event
+                cell.homeController = self
+                
+                cell.delegate = self
+                
+                return cell
             case _ where type == ExpiredEventHeaderCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: expiredEventHeaderId, for: indexPath) as! ExpiredEventHeaderCell
+                
+                cell.delegate = self
                 
                 return cell
             default:
@@ -273,6 +294,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     func didTapCancel(indexPath: IndexPath) {
         self.homeCells.remove(at: indexPath.item)
+        
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
@@ -286,6 +308,29 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     func didTapOnCell() {
         self.menu?.showMessagesController()
+    }
+    
+    func didTapUpDown(withButtonState buttonState: ButtonState) {
+        switch buttonState {
+        case .up:
+            self.homeCells.append(ExpiredEventHeaderCell.self)
+            self.homeCells.append(ExpiredEventHeaderCell.self)
+            self.homeCells.append(ExpiredEventHeaderCell.self)
+            
+            self.tableView.reloadData()
+            
+//            self.tableView.beginUpdates()
+//            self.tableView.endUpdates()
+        case .down:
+            self.homeCells.removeLast()
+            self.homeCells.removeLast()
+            self.homeCells.removeLast()
+            
+            self.tableView.reloadData()
+            
+//            self.tableView.beginUpdates()
+//            self.tableView.endUpdates()
+        }
     }
     
     func handleUpDown(buttonState: ButtonState) {

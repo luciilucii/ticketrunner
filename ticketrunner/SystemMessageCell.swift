@@ -55,7 +55,6 @@ class SystemMessageCell: TableCell {
         super.setupViews()
         
         layer.cornerRadius = 5
-//        view.backgroundColor = ColorCodes.homeYellow
         view.backgroundColor = ColorCodes.ticketrunnerRed
         
         view.addSubview(alertImageView)
@@ -70,8 +69,6 @@ class SystemMessageCell: TableCell {
         
         view.addSubview(cancelButton)
         cancelButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 35, height: 35)
-        
-        
     }
     
     @objc func handleDeleteCell() {
