@@ -96,6 +96,26 @@ class SmallTextLabel: UILabel {
     
 }
 
+class TicketrunnerTextField: UITextField {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.setLeftPaddingPoints(8)
+        self.setRightPaddingPoints(8)
+        self.textColor = ColorCodes.textColorGrey
+        self.layer.borderColor = ColorCodes.lightGrayText.cgColor
+        self.font = UIFont.boldSourceSansPro(ofSize: 14)
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 1
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 extension UIFont {
     class func sourceSansPro(ofSize: CGFloat) -> UIFont {
         return UIFont(name: "SourceSansPro-Regular", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)

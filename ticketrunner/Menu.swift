@@ -132,12 +132,12 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         }
         
         if menuPoint.name == MenuName.Rewards {
-            let layout = UICollectionViewFlowLayout()
-            let controller = RewardsController(collectionViewLayout: layout)
-            let rewardsController = UINavigationController(rootViewController: controller)
-            controller.menu = self
-            self.showMenuController(controller: rewardsController)
-            controller.menu.startController = controller
+            let tableController = RewardsTableController(style: .grouped)
+            tableController.menu = self
+            let navController = UINavigationController(rootViewController: tableController)
+            
+            self.showMenuController(controller: navController)
+            tableController.menu.startController = tableController
         }
         
         if menuPoint.name == MenuName.Events {

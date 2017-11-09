@@ -50,6 +50,9 @@
 		195D46741F0DF7D500E59777 /* Verification-email.gif in Resources */ = {isa = PBXBuildFile; fileRef = 195D46731F0DF7D500E59777 /* Verification-email.gif */; };
 		196097B81FB231FA0064C54A /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097B71FB231FA0064C54A /* MessagesCell.swift */; };
 		196097BC1FB237230064C54A /* NewChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097BB1FB237230064C54A /* NewChatCell.swift */; };
+		196097E31FB3887E0064C54A /* RewardsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E21FB3887E0064C54A /* RewardsTableController.swift */; };
+		196097E61FB4DE860064C54A /* SellTicketsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E51FB4DE860064C54A /* SellTicketsController.swift */; };
+		196097E81FB4DEF60064C54A /* PersonalShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E71FB4DEF60064C54A /* PersonalShareView.swift */; };
 		1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */; };
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
@@ -180,6 +183,9 @@
 		195D46731F0DF7D500E59777 /* Verification-email.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Verification-email.gif"; sourceTree = "<group>"; };
 		196097B71FB231FA0064C54A /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		196097BB1FB237230064C54A /* NewChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatCell.swift; sourceTree = "<group>"; };
+		196097E21FB3887E0064C54A /* RewardsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTableController.swift; sourceTree = "<group>"; };
+		196097E51FB4DE860064C54A /* SellTicketsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellTicketsController.swift; sourceTree = "<group>"; };
+		196097E71FB4DEF60064C54A /* PersonalShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalShareView.swift; sourceTree = "<group>"; };
 		1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoVideoContainer.swift; sourceTree = "<group>"; };
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
@@ -397,6 +403,15 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		196097E41FB4DE690064C54A /* New Controller */ = {
+			isa = PBXGroup;
+			children = (
+				196097E51FB4DE860064C54A /* SellTicketsController.swift */,
+				196097E71FB4DEF60064C54A /* PersonalShareView.swift */,
+			);
+			name = "New Controller";
+			sourceTree = "<group>";
+		};
 		19953DD31F42AB5200409195 /* New Rewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +583,7 @@
 				19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */,
 				19F5331E1F9B9CC100775192 /* HomeTableController.swift */,
 				19B5DF511EDBDF7D00739A49 /* RewardsController.swift */,
+				196097E21FB3887E0064C54A /* RewardsTableController.swift */,
 				190C191F1EDE7E1A003BC179 /* EventController */,
 				190775791EF6B59800C166CD /* MessagesController */,
 				19EE5CB61EF2784A0003F24E /* SettingController */,
@@ -686,6 +702,7 @@
 				19F7167D1F8BC0C4003710F1 /* EventPromoteController.swift */,
 				19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */,
 				1907D5AA1EED12D800E603A6 /* LandingPagePreviewContainer.swift */,
+				196097E41FB4DE690064C54A /* New Controller */,
 			);
 			name = EventPromoteController;
 			sourceTree = "<group>";
@@ -839,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196097E31FB3887E0064C54A /* RewardsTableController.swift in Sources */,
 				19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */,
 				19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */,
 				1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */,
@@ -886,6 +904,7 @@
 				19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */,
 				19CD6FFF1EF464A7006D9E7C /* ConnectedAccountsController.swift in Sources */,
 				19E64B701EDB48DC0085624C /* EventCell.swift in Sources */,
+				196097E81FB4DEF60064C54A /* PersonalShareView.swift in Sources */,
 				192AE8DD1F548E03006E0B2A /* LeaderboardHomeCell.swift in Sources */,
 				19E64B681EDB13920085624C /* User.swift in Sources */,
 				1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */,
@@ -911,6 +930,7 @@
 				19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */,
 				1907D5B21EED4B4000E603A6 /* UserLoginController.swift in Sources */,
 				192C56851F3E134B00C77D34 /* NewMessagesCell.swift in Sources */,
+				196097E61FB4DE860064C54A /* SellTicketsController.swift in Sources */,
 				190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */,
 				19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,

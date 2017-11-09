@@ -17,6 +17,7 @@ class PromoteShareLinkView: CustomUIView {
     }
     
     var promoteController: EventPromoteController?
+    var sellTicketsController: SellTicketsController?
     
     let shareLinkHeadlineLabel: HeadlineLabel = {
         let label = HeadlineLabel(title: "Share Link")

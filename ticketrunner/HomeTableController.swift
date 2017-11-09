@@ -77,6 +77,15 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         }
     }
     
+    var expiredEvents = [Event]() {
+        didSet {
+            expiredEvents.forEach { (event) in
+                self.homeCells.append(ExpiredEventTableCell.self)
+            }
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -240,12 +249,18 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 let cell = tableView.dequeueReusableCell(withIdentifier: leaderboardId, for: indexPath) as! LeaderboardHomeCell
                 
                 return cell
+            case _ where type == ExpiredEventHeaderCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: expiredEventHeaderId, for: indexPath) as! ExpiredEventHeaderCell
+                
+                cell.delegate = self
+                
+                return cell
             case _ where type == EventTableCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: eventId, for: indexPath) as! EventTableCell
                 
                 checkIfAnimated(cell: cell, int: indexPath.row)
                 
-                let difference = homeCells.count - self.userEvents.count - 1
+                let difference = homeCells.count - self.userEvents.count - 1 - expiredEvents.count
                 let event = userEvents[indexPath.row - difference]
                 
                 cell.currentEvent = event
@@ -254,7 +269,6 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 cell.delegate = self
                 
                 return cell
-                
             case _ where type == ExpiredEventTableCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: expiredId, for: indexPath) as! ExpiredEventTableCell
                 
@@ -269,12 +283,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 cell.delegate = self
                 
                 return cell
-            case _ where type == ExpiredEventHeaderCell.self:
-                let cell = tableView.dequeueReusableCell(withIdentifier: expiredEventHeaderId, for: indexPath) as! ExpiredEventHeaderCell
-                
-                cell.delegate = self
-                
-                return cell
+            
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: defaultId, for: indexPath)
                 
@@ -313,11 +322,11 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     func didTapUpDown(withButtonState buttonState: ButtonState) {
         switch buttonState {
         case .up:
-            self.homeCells.append(ExpiredEventHeaderCell.self)
-            self.homeCells.append(ExpiredEventHeaderCell.self)
-            self.homeCells.append(ExpiredEventHeaderCell.self)
             
-            self.tableView.reloadData()
+            let expiredEvents = EventResource().getEvents()
+            
+            self.expiredEvents = expiredEvents
+            
             
 //            self.tableView.beginUpdates()
 //            self.tableView.endUpdates()

@@ -199,7 +199,7 @@ class RewardTableCell: TableCell, ProgressBarContainerDelegate {
     }
     
     func shouldShowTriangles() -> Bool {
-        return true
+        return false
     }
     
     func progressBarBackgroundWidth() -> CGFloat {

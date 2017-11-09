@@ -46,7 +46,7 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         
         setupWhiteTitle(title: "Rewards")
         
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.register(RewardTableCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = ColorCodes.controllerBackground
         tableView.separatorStyle = .none
