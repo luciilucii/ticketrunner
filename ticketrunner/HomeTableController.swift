@@ -351,9 +351,11 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     }
     
     func didTapPromote(event: Event) {
-        let promoteController = EventPromoteController()
-        promoteController.event = event
-        self.show(promoteController, sender: self)
+        
+        let controller = SellTicketsController()
+        controller.event = event
+        
+        self.show(controller, sender: self)
     }
     
     func didTapRewards(event: Event) {

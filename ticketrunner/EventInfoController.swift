@@ -214,10 +214,10 @@ class EventInfoController: ScrollController {
         return menu
     }()
 
-    
     @objc func handlePromote() {
-        let promoteController = EventPromoteController()
-        self.show(promoteController, sender: self)
+        let sellTicketsController = SellTicketsController()
+        sellTicketsController.event = self.event
+        self.show(sellTicketsController, sender: self)
     }
     
     @objc func handleShowInFacebook() {

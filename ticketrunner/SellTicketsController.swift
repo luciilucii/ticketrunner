@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SellTicketsController: ScrollController {
+class SellTicketsController: ScrollController, PersonalShareViewDelegate {
     
     var event: Event? {
         didSet {
-            
+            self.personalShareView.event = event
         }
     }
     
@@ -29,6 +29,7 @@ class SellTicketsController: ScrollController {
     
     lazy var personalShareView: PersonalShareView = {
         let view = PersonalShareView()
+        view.delegate = self
         return view
     }()
     
@@ -74,7 +75,7 @@ class SellTicketsController: ScrollController {
         
         promoteShareLinkView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 258)
         
-        personalShareView.anchor(top: promoteShareLinkView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 750)
+        personalShareView.anchor(top: promoteShareLinkView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 458)
         
         landingPagePreviewContainer.anchor(top: personalShareView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 460)
         
@@ -82,12 +83,11 @@ class SellTicketsController: ScrollController {
         
         linkCopiedLabel.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 25, paddingBottom: 0, paddingRight: 25, width: 0, height: 35)
         
-        
-        
-        
         linkCopiedLabelBottomAnchor = linkCopiedLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 35)
         linkCopiedLabelBottomAnchor?.isActive = true
     }
+    
+    
     
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -189,6 +189,14 @@ class SellTicketsController: ScrollController {
             self.view.layoutIfNeeded()
             
         }, completion: nil)
+    }
+    
+    func didTapShare(event: Event, isPersonal: Bool) {
+        let controller = isPersonal ? ShareLinkController(controllerMode: .privateMode) : ShareLinkController(controllerMode: .publicMode)
+        
+        controller.event = event
+        self.navigationController?.pushViewController(controller, animated: true)
+        
     }
     
 }

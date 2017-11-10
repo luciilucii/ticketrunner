@@ -16,8 +16,9 @@ class PromoteShareLinkView: CustomUIView {
         }
     }
     
-    var promoteController: EventPromoteController?
+//    var promoteController: EventPromoteController?
     var sellTicketsController: SellTicketsController?
+    var shareGetLinkController: ShareGetLinkController?
     
     let shareLinkHeadlineLabel: HeadlineLabel = {
         let label = HeadlineLabel(title: "Share Link")
@@ -89,8 +90,8 @@ class PromoteShareLinkView: CustomUIView {
     @objc func handleCopy() {
         UIPasteboard.general.string = linkTextField.text
         
-        promoteController?.handleCopy()
-        
+//        sellTicketsController?.handleCopy()
+        shareGetLinkController?.handleCopy()
     }
     
     @objc func handleShare() {
@@ -100,9 +101,9 @@ class PromoteShareLinkView: CustomUIView {
         let activityVC = UIActivityViewController(activityItems: ["\(eventShareText)\(eventLink)"], applicationActivities: nil)
         activityVC.navigationController?.navigationBar.tintColor = UIColor.white
         
-        activityVC.popoverPresentationController?.sourceView = promoteController?.view
+        activityVC.popoverPresentationController?.sourceView = sellTicketsController?.view
         
-        promoteController?.present(activityVC, animated: true, completion: nil)
+        sellTicketsController?.present(activityVC, animated: true, completion: nil)
     }
     
 }

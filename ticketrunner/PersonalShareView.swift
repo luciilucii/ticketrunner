@@ -8,7 +8,19 @@
 
 import UIKit
 
+protocol PersonalShareViewDelegate {
+    func didTapShare(event: Event, isPersonal: Bool)
+}
+
 class PersonalShareView: CustomUIView {
+    
+    var event: Event? {
+        didSet {
+            
+        }
+    }
+    
+    var delegate: PersonalShareViewDelegate?
     
     let titleLabel: HeadlineLabel = {
         let label = HeadlineLabel(title: "Personal Share")
@@ -84,6 +96,7 @@ class PersonalShareView: CustomUIView {
         let label = NormalToSmallTextLabel()
         label.text = "I assure to only share this link with people that agreed to receive event recommendations from me."
         label.textColor = ColorCodes.textColorGrey
+        label.numberOfLines = 3
         return label
     }()
     
@@ -113,7 +126,7 @@ class PersonalShareView: CustomUIView {
         
         titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        descriptionLabel.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
+        descriptionLabel.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 70)
         
         firstnameLabel.anchor(top: descriptionLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
@@ -132,13 +145,14 @@ class PersonalShareView: CustomUIView {
         
         shareButton.anchor(top: switchLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
-        disclaimerLabel.anchor(top: shareButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 60)
+        disclaimerLabel.anchor(top: shareButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
         
     }
     
     @objc func handleShare() {
-        print("share")
+        guard let event = event else { return }
+        delegate?.didTapShare(event: event, isPersonal: switchController.isOn)
     }
     
     @objc func switchValueDidChange() {

@@ -146,8 +146,9 @@ class EventRewardsController: ScrollController, RewardsContainerEventCellDelegat
     }
     
     @objc func handlePromote() {
-        let promoteController = EventPromoteController()
-        self.show(promoteController, sender: self)
+        let sellTicketsController = SellTicketsController()
+        sellTicketsController.event = self.event
+        self.show(sellTicketsController, sender: self)
     }
     
     func setupNavBarButtons() {

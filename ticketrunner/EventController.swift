@@ -162,8 +162,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func didTapPromote(event: Event) {
-        let promoteController = EventPromoteController()
-        promoteController.event = event
         
         let sellController = SellTicketsController()
         sellController.event = event

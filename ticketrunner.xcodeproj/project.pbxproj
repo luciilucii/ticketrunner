@@ -53,6 +53,14 @@
 		196097E31FB3887E0064C54A /* RewardsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E21FB3887E0064C54A /* RewardsTableController.swift */; };
 		196097E61FB4DE860064C54A /* SellTicketsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E51FB4DE860064C54A /* SellTicketsController.swift */; };
 		196097E81FB4DEF60064C54A /* PersonalShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097E71FB4DEF60064C54A /* PersonalShareView.swift */; };
+		196097EB1FB569BC0064C54A /* ShareLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097EA1FB569BC0064C54A /* ShareLinkController.swift */; };
+		196097ED1FB56C340064C54A /* ShareLinkPublicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097EC1FB56C340064C54A /* ShareLinkPublicView.swift */; };
+		196097F01FB570B70064C54A /* ShareFacebookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097EF1FB570B70064C54A /* ShareFacebookController.swift */; };
+		196097F31FB5717B0064C54A /* ShareTwitterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097F21FB5717B0064C54A /* ShareTwitterController.swift */; };
+		196097F71FB5EF060064C54A /* ShareLinkPersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097F61FB5EF060064C54A /* ShareLinkPersonalView.swift */; };
+		196097FA1FB62D300064C54A /* ShareEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097F91FB62D300064C54A /* ShareEmailController.swift */; };
+		196097FD1FB62DBB0064C54A /* ShareGetLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097FC1FB62DBB0064C54A /* ShareGetLinkController.swift */; };
+		196098001FB62DF20064C54A /* ShareWhatsappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196097FF1FB62DF20064C54A /* ShareWhatsappController.swift */; };
 		1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */; };
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
@@ -130,7 +138,6 @@
 		19F533211F9BA26E00775192 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F533201F9BA26E00775192 /* EventTableCell.swift */; };
 		19F716791F8BB043003710F1 /* EventInfoDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F716781F8BB043003710F1 /* EventInfoDescriptionView.swift */; };
 		19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */; };
-		19F7167E1F8BC0C4003710F1 /* EventPromoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7167D1F8BC0C4003710F1 /* EventPromoteController.swift */; };
 		19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */; };
 		19F716821F8BC60A003710F1 /* HeadlineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F716811F8BC60A003710F1 /* HeadlineLabel.swift */; };
 		19FDD14C1EE2E53000502BC6 /* EventRewardsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDD14B1EE2E53000502BC6 /* EventRewardsContainer.swift */; };
@@ -186,6 +193,14 @@
 		196097E21FB3887E0064C54A /* RewardsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTableController.swift; sourceTree = "<group>"; };
 		196097E51FB4DE860064C54A /* SellTicketsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellTicketsController.swift; sourceTree = "<group>"; };
 		196097E71FB4DEF60064C54A /* PersonalShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalShareView.swift; sourceTree = "<group>"; };
+		196097EA1FB569BC0064C54A /* ShareLinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkController.swift; sourceTree = "<group>"; };
+		196097EC1FB56C340064C54A /* ShareLinkPublicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkPublicView.swift; sourceTree = "<group>"; };
+		196097EF1FB570B70064C54A /* ShareFacebookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFacebookController.swift; sourceTree = "<group>"; };
+		196097F21FB5717B0064C54A /* ShareTwitterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTwitterController.swift; sourceTree = "<group>"; };
+		196097F61FB5EF060064C54A /* ShareLinkPersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkPersonalView.swift; sourceTree = "<group>"; };
+		196097F91FB62D300064C54A /* ShareEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareEmailController.swift; sourceTree = "<group>"; };
+		196097FC1FB62DBB0064C54A /* ShareGetLinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareGetLinkController.swift; sourceTree = "<group>"; };
+		196097FF1FB62DF20064C54A /* ShareWhatsappController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareWhatsappController.swift; sourceTree = "<group>"; };
 		1975B54C1F9B173100ADFA3A /* EventInfoVideoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoVideoContainer.swift; sourceTree = "<group>"; };
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
@@ -265,7 +280,6 @@
 		19F533201F9BA26E00775192 /* EventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
 		19F716781F8BB043003710F1 /* EventInfoDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoDescriptionView.swift; sourceTree = "<group>"; };
 		19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoMapView.swift; sourceTree = "<group>"; };
-		19F7167D1F8BC0C4003710F1 /* EventPromoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPromoteController.swift; sourceTree = "<group>"; };
 		19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteShareLinkView.swift; sourceTree = "<group>"; };
 		19F716811F8BC60A003710F1 /* HeadlineLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabel.swift; sourceTree = "<group>"; };
 		19FDD14B1EE2E53000502BC6 /* EventRewardsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRewardsContainer.swift; sourceTree = "<group>"; };
@@ -403,13 +417,54 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
-		196097E41FB4DE690064C54A /* New Controller */ = {
+		196097E91FB569A30064C54A /* Share Link */ = {
 			isa = PBXGroup;
 			children = (
-				196097E51FB4DE860064C54A /* SellTicketsController.swift */,
-				196097E71FB4DEF60064C54A /* PersonalShareView.swift */,
+				196097EA1FB569BC0064C54A /* ShareLinkController.swift */,
+				196097EC1FB56C340064C54A /* ShareLinkPublicView.swift */,
+				196097F61FB5EF060064C54A /* ShareLinkPersonalView.swift */,
 			);
-			name = "New Controller";
+			name = "Share Link";
+			sourceTree = "<group>";
+		};
+		196097EE1FB570940064C54A /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				196097EF1FB570B70064C54A /* ShareFacebookController.swift */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		196097F11FB571680064C54A /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				196097F21FB5717B0064C54A /* ShareTwitterController.swift */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
+		196097F81FB62D190064C54A /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				196097F91FB62D300064C54A /* ShareEmailController.swift */,
+			);
+			name = Email;
+			sourceTree = "<group>";
+		};
+		196097FB1FB62D9B0064C54A /* Get Link */ = {
+			isa = PBXGroup;
+			children = (
+				196097FC1FB62DBB0064C54A /* ShareGetLinkController.swift */,
+			);
+			name = "Get Link";
+			sourceTree = "<group>";
+		};
+		196097FE1FB62DDC0064C54A /* Whatsapp */ = {
+			isa = PBXGroup;
+			children = (
+				196097FF1FB62DF20064C54A /* ShareWhatsappController.swift */,
+			);
+			name = Whatsapp;
 			sourceTree = "<group>";
 		};
 		19953DD31F42AB5200409195 /* New Rewards */ = {
@@ -699,10 +754,16 @@
 		19F7167C1F8BC0A6003710F1 /* EventPromoteController */ = {
 			isa = PBXGroup;
 			children = (
-				19F7167D1F8BC0C4003710F1 /* EventPromoteController.swift */,
+				196097E51FB4DE860064C54A /* SellTicketsController.swift */,
+				196097E71FB4DEF60064C54A /* PersonalShareView.swift */,
 				19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */,
 				1907D5AA1EED12D800E603A6 /* LandingPagePreviewContainer.swift */,
-				196097E41FB4DE690064C54A /* New Controller */,
+				196097E91FB569A30064C54A /* Share Link */,
+				196097F11FB571680064C54A /* Twitter */,
+				196097EE1FB570940064C54A /* Facebook */,
+				196097F81FB62D190064C54A /* Email */,
+				196097FB1FB62D9B0064C54A /* Get Link */,
+				196097FE1FB62DDC0064C54A /* Whatsapp */,
 			);
 			name = EventPromoteController;
 			sourceTree = "<group>";
@@ -893,6 +954,7 @@
 				1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */,
 				19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */,
 				19C390571EE1E82300954E64 /* RewardCell.swift in Sources */,
+				196097FD1FB62DBB0064C54A /* ShareGetLinkController.swift in Sources */,
 				19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
@@ -902,6 +964,7 @@
 				19F533211F9BA26E00775192 /* EventTableCell.swift in Sources */,
 				19FDD14E1EE2EF7C00502BC6 /* AllArtistsForEventController.swift in Sources */,
 				19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */,
+				196097EB1FB569BC0064C54A /* ShareLinkController.swift in Sources */,
 				19CD6FFF1EF464A7006D9E7C /* ConnectedAccountsController.swift in Sources */,
 				19E64B701EDB48DC0085624C /* EventCell.swift in Sources */,
 				196097E81FB4DEF60064C54A /* PersonalShareView.swift in Sources */,
@@ -917,7 +980,6 @@
 				19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */,
 				19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */,
 				19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */,
-				19F7167E1F8BC0C4003710F1 /* EventPromoteController.swift in Sources */,
 				19BB087E1F8A58F4001D8715 /* FixedPromoteController.swift in Sources */,
 				192C56871F3E16B400C77D34 /* StatisticsCell.swift in Sources */,
 				195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */,
@@ -931,6 +993,7 @@
 				1907D5B21EED4B4000E603A6 /* UserLoginController.swift in Sources */,
 				192C56851F3E134B00C77D34 /* NewMessagesCell.swift in Sources */,
 				196097E61FB4DE860064C54A /* SellTicketsController.swift in Sources */,
+				196097F31FB5717B0064C54A /* ShareTwitterController.swift in Sources */,
 				190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */,
 				19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,
@@ -946,8 +1009,10 @@
 				19EE5CB51EF25D190003F24E /* SettingCell.swift in Sources */,
 				19E35A091F3D819900F91BB5 /* WelcomeCell.swift in Sources */,
 				19CFB4561EF159FF00AB557E /* RewardsHeader.swift in Sources */,
+				196097ED1FB56C340064C54A /* ShareLinkPublicView.swift in Sources */,
 				19E98E2C1F8DCFBF00E62DB5 /* RewardsContainer.swift in Sources */,
 				1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */,
+				196097F01FB570B70064C54A /* ShareFacebookController.swift in Sources */,
 				19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */,
 				19F3B0C31F4025F400568387 /* NewRewardsCell.swift in Sources */,
 				19FDD14C1EE2E53000502BC6 /* EventRewardsContainer.swift in Sources */,
@@ -961,11 +1026,14 @@
 				190C19251EDF0A38003BC179 /* UserResource.swift in Sources */,
 				19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */,
 				19E8DC881EE282EC000F216D /* ProgressBarContainer.swift in Sources */,
+				196098001FB62DF20064C54A /* ShareWhatsappController.swift in Sources */,
 				1936ACF21F9A7EC600318577 /* ShowMoreButton.swift in Sources */,
 				19086CE91EFCD0BE0024F7D0 /* SettingsEventSubCell.swift in Sources */,
 				1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */,
 				19C3CFBC1EDFC737006BF04B /* ArtistLineUpContainerCell.swift in Sources */,
+				196097FA1FB62D300064C54A /* ShareEmailController.swift in Sources */,
 				1998D28B1F8B93C9004C8334 /* EventRewardContainerView.swift in Sources */,
+				196097F71FB5EF060064C54A /* ShareLinkPersonalView.swift in Sources */,
 				19CFB4511EF0F6E700AB557E /* EventRewardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
