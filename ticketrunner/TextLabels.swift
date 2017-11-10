@@ -105,9 +105,32 @@ class TicketrunnerTextField: UITextField {
         self.setRightPaddingPoints(8)
         self.textColor = ColorCodes.textColorGrey
         self.layer.borderColor = ColorCodes.lightGrayText.cgColor
-        self.font = UIFont.boldSourceSansPro(ofSize: 14)
+        self.font = UIFont.sourceSansPro(ofSize: 14)
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class TicketrunnerTextView: UITextView {
+    
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        
+        
+        
+        self.font = UIFont.sourceSansPro(ofSize: 14)
+        self.backgroundColor = UIColor.white
+        
+        self.layer.borderWidth = 1
+        self.layer.borderColor = ColorCodes.lightGrayText.cgColor
+        self.layer.cornerRadius = 5
+        self.textColor = ColorCodes.textColorGrey
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

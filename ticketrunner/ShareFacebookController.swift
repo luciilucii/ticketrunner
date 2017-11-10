@@ -12,9 +12,14 @@ class ShareFacebookController: ScrollController {
     
     var event: Event? {
         didSet {
-            
+            self.facebookShareView.event = event
         }
     }
+    
+    lazy var facebookShareView: FacebookShareView = {
+        let view = FacebookShareView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +30,17 @@ class ShareFacebookController: ScrollController {
         
         setupNavBarButtons()
         
+        hideKeyboardWhenTappedAround(views: [view, scrollContainerView, scrollView])
+        
         setupWhiteTitle(title: "Share through Facebook")
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        scrollContainerView.addSubview(facebookShareView)
+        
+        facebookShareView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 500)
     }
     
     func setupNavBarButtons() {

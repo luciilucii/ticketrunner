@@ -156,7 +156,7 @@ class PersonalShareView: CustomUIView {
     }
     
     @objc func switchValueDidChange() {
-        print("hello you")
+        
     }
     
 }

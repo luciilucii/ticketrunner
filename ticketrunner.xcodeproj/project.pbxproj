@@ -136,6 +136,7 @@
 		19F3B0C31F4025F400568387 /* NewRewardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F3B0C21F4025F400568387 /* NewRewardsCell.swift */; };
 		19F5331F1F9B9CC100775192 /* HomeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5331E1F9B9CC100775192 /* HomeTableController.swift */; };
 		19F533211F9BA26E00775192 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F533201F9BA26E00775192 /* EventTableCell.swift */; };
+		19F611A11FB64DF6005F8458 /* FacebookShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F611A01FB64DF6005F8458 /* FacebookShareView.swift */; };
 		19F716791F8BB043003710F1 /* EventInfoDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F716781F8BB043003710F1 /* EventInfoDescriptionView.swift */; };
 		19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */; };
 		19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */; };
@@ -278,6 +279,7 @@
 		19F3B0C21F4025F400568387 /* NewRewardsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRewardsCell.swift; sourceTree = "<group>"; };
 		19F5331E1F9B9CC100775192 /* HomeTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableController.swift; sourceTree = "<group>"; };
 		19F533201F9BA26E00775192 /* EventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
+		19F611A01FB64DF6005F8458 /* FacebookShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookShareView.swift; sourceTree = "<group>"; };
 		19F716781F8BB043003710F1 /* EventInfoDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoDescriptionView.swift; sourceTree = "<group>"; };
 		19F7167A1F8BB7E8003710F1 /* EventInfoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoMapView.swift; sourceTree = "<group>"; };
 		19F7167F1F8BC595003710F1 /* PromoteShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteShareLinkView.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				196097EF1FB570B70064C54A /* ShareFacebookController.swift */,
+				19F611A01FB64DF6005F8458 /* FacebookShareView.swift */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				190775781EF6B2CA00C166CD /* ChatMessageCell.swift in Sources */,
 				19E64B6C1EDB3CAA0085624C /* EventController.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,
+				19F611A11FB64DF6005F8458 /* FacebookShareView.swift in Sources */,
 				191B031D1F154D3F00CE8ED4 /* KeychainAccess.swift in Sources */,
 				19CD70021EF46ABA006D9E7C /* DeactivateAccountController.swift in Sources */,
 				19CD6FFC1EF39EF1006D9E7C /* ChangePasswordController.swift in Sources */,
