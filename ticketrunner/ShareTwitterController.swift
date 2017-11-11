@@ -12,9 +12,14 @@ class ShareTwitterController: ScrollController {
     
     var event: Event? {
         didSet {
-            
+            twitterShareView.event = event
         }
     }
+    
+    lazy var twitterShareView: TwitterShareView = {
+        let view = TwitterShareView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,15 @@ class ShareTwitterController: ScrollController {
         setupNavBarButtons()
         
         setupWhiteTitle(title: "Share through Twitter")
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        scrollContainerView.addSubview(twitterShareView)
+        
+        twitterShareView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 260)
+        
     }
     
     func setupNavBarButtons() {

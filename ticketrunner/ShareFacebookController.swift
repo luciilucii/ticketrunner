@@ -40,7 +40,7 @@ class ShareFacebookController: ScrollController {
         
         scrollContainerView.addSubview(facebookShareView)
         
-        facebookShareView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 500)
+        facebookShareView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 298)
     }
     
     func setupNavBarButtons() {

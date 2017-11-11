@@ -19,6 +19,8 @@ class ShareGetLinkController: ScrollController {
     lazy var promoteShareLinkView: PromoteShareLinkView = {
         let view = PromoteShareLinkView()
         view.shareGetLinkController = self
+        view.shareButton.isHidden = true
+        view.shareButton.isEnabled = true
         return view
     }()
     
@@ -52,7 +54,7 @@ class ShareGetLinkController: ScrollController {
         
         scrollContainerView.addSubview(promoteShareLinkView)
         
-        promoteShareLinkView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 258)
+        promoteShareLinkView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 200)
         
         view.addSubview(linkCopiedLabel)
         

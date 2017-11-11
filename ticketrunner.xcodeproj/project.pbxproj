@@ -65,6 +65,8 @@
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
 		1978B9921F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */; };
+		198476181FB6DB8600A98ED6 /* TwitterShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198476171FB6DB8600A98ED6 /* TwitterShareView.swift */; };
+		1984761A1FB6DF4500A98ED6 /* EmailShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198476191FB6DF4500A98ED6 /* EmailShareView.swift */; };
 		1986E5A21F973132002A6552 /* TextLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986E5A11F973132002A6552 /* TextLabels.swift */; };
 		1986E5A31F973184002A6552 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903B1EE11D3E00954E64 /* SourceSansPro-Black.ttf */; };
 		1986E5A41F97318A002A6552 /* SourceSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C3903C1EE11D3E00954E64 /* SourceSansPro-BlackItalic.ttf */; };
@@ -84,10 +86,7 @@
 		1998D28E1F8B98F2004C8334 /* EventInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28D1F8B98F2004C8334 /* EventInfoController.swift */; };
 		1998D2901F8B9922004C8334 /* ScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D28F1F8B9922004C8334 /* ScrollController.swift */; };
 		1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */; };
-		19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */; };
-		19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */; };
 		19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B001C71F90CBD600684B48 /* RewardTableCell.swift */; };
-		19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF511EDBDF7D00739A49 /* RewardsController.swift */; };
 		19B5DF561EDCA20300739A49 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF551EDCA20300739A49 /* MessagesController.swift */; };
 		19B5DF581EDCA38E00739A49 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF571EDCA38E00739A49 /* SettingsController.swift */; };
 		19B5DF5B1EDCA3CC00739A49 /* LanguageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */; };
@@ -95,12 +94,10 @@
 		19BB087E1F8A58F4001D8715 /* FixedPromoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */; };
 		19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */; };
 		19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */; };
-		19C0FF4D1FAE5201007B3B9A /* EventRewardsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */; };
 		19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */; };
 		19C20AFD1ED8A9F000C6FF17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFB1ED8A9F000C6FF17 /* Main.storyboard */; };
 		19C20AFF1ED8A9F000C6FF17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19C20AFE1ED8A9F000C6FF17 /* Assets.xcassets */; };
 		19C20B021ED8A9F000C6FF17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C20B001ED8A9F000C6FF17 /* LaunchScreen.storyboard */; };
-		19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */; };
 		19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C35F711F13E79A0056479F /* CustomTextField.swift */; };
 		19C390491EE11D7B00954E64 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19C390481EE11D7B00954E64 /* OFL.txt */; };
 		19C390551EE1E7D300954E64 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C390541EE1E7D300954E64 /* Reward.swift */; };
@@ -206,6 +203,8 @@
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
 		1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerPointsLabel.swift; sourceTree = "<group>"; };
+		198476171FB6DB8600A98ED6 /* TwitterShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterShareView.swift; sourceTree = "<group>"; };
+		198476191FB6DF4500A98ED6 /* EmailShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailShareView.swift; sourceTree = "<group>"; };
 		1986E5A11F973132002A6552 /* TextLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabels.swift; sourceTree = "<group>"; };
 		19953DD41F42ABE700409195 /* NewRewardsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRewardsCVCell.swift; sourceTree = "<group>"; };
 		19953DD61F42B13A00409195 /* EventInvitationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInvitationCell.swift; sourceTree = "<group>"; };
@@ -213,10 +212,7 @@
 		1998D28D1F8B98F2004C8334 /* EventInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoController.swift; sourceTree = "<group>"; };
 		1998D28F1F8B9922004C8334 /* ScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollController.swift; sourceTree = "<group>"; };
 		1998D2911F8B9C59004C8334 /* EventInfoHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoHeadlineView.swift; sourceTree = "<group>"; };
-		19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsController.swift; sourceTree = "<group>"; };
-		19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsTableContainer.swift; sourceTree = "<group>"; };
 		19B001C71F90CBD600684B48 /* RewardTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTableCell.swift; sourceTree = "<group>"; };
-		19B5DF511EDBDF7D00739A49 /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		19B5DF551EDCA20300739A49 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		19B5DF571EDCA38E00739A49 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageController.swift; sourceTree = "<group>"; };
@@ -224,14 +220,12 @@
 		19BB087D1F8A58F4001D8715 /* FixedPromoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedPromoteController.swift; sourceTree = "<group>"; };
 		19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardModelViewController.swift; sourceTree = "<group>"; };
 		19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsTableController.swift; sourceTree = "<group>"; };
-		19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardsHeaderCell.swift; sourceTree = "<group>"; };
 		19C20AF41ED8A9EF00C6FF17 /* ticketrunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ticketrunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C20AF71ED8A9F000C6FF17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C20AFC1ED8A9F000C6FF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19C20AFE1ED8A9F000C6FF17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19C20B011ED8A9F000C6FF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19C20B031ED8A9F000C6FF17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		19C35F711F13E79A0056479F /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		19C3903B1EE11D3E00954E64 /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
 		19C3903C1EE11D3E00954E64 /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -367,6 +361,29 @@
 			name = EventController;
 			sourceTree = "<group>";
 		};
+		190EDB521FB761C90092A846 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */,
+				19C35F711F13E79A0056479F /* CustomTextField.swift */,
+				19F716811F8BC60A003710F1 /* HeadlineLabel.swift */,
+				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
+				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
+				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
+				1986E5A11F973132002A6552 /* TextLabels.swift */,
+				19117A1B1FA98AA500B69F17 /* CountingLabel.swift */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		190EDB531FB761FC0092A846 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				19FF8C231EEBC41800C40175 /* CustomPointAnnotation.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		1913C7A21F33393D000B4710 /* PromoteButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				196097F21FB5717B0064C54A /* ShareTwitterController.swift */,
+				198476171FB6DB8600A98ED6 /* TwitterShareView.swift */,
 			);
 			name = Twitter;
 			sourceTree = "<group>";
@@ -450,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				196097F91FB62D300064C54A /* ShareEmailController.swift */,
+				198476191FB6DF4500A98ED6 /* EmailShareView.swift */,
 			);
 			name = Email;
 			sourceTree = "<group>";
@@ -495,21 +514,10 @@
 		19A6E25A1F8BFFC700A3F880 /* EventRewardsController */ = {
 			isa = PBXGroup;
 			children = (
-				19A6E25B1F8BFFE600A3F880 /* EventRewardsController.swift */,
-				19B001C51F90CAB200684B48 /* EventRewardsTableContainer.swift */,
 				19C01D901F91048700969109 /* RedeemRewardModelViewController.swift */,
-				19C0FF491FAE5098007B3B9A /* New Controller */,
+				19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */,
 			);
 			name = EventRewardsController;
-			sourceTree = "<group>";
-		};
-		19C0FF491FAE5098007B3B9A /* New Controller */ = {
-			isa = PBXGroup;
-			children = (
-				19C0FF4A1FAE50AF007B3B9A /* EventRewardsTableController.swift */,
-				19C0FF4C1FAE5201007B3B9A /* EventRewardsHeaderCell.swift */,
-			);
-			name = "New Controller";
 			sourceTree = "<group>";
 		};
 		19C20AEB1ED8A9EF00C6FF17 = {
@@ -638,9 +646,7 @@
 			children = (
 				1907D5AC1EED4A7C00E603A6 /* Start */,
 				19D2BD4D1ED9543400529F7F /* Menu.swift */,
-				19C20B0B1ED8AA5800C6FF17 /* HomeController.swift */,
 				19F5331E1F9B9CC100775192 /* HomeTableController.swift */,
-				19B5DF511EDBDF7D00739A49 /* RewardsController.swift */,
 				196097E21FB3887E0064C54A /* RewardsTableController.swift */,
 				190C191F1EDE7E1A003BC179 /* EventController */,
 				190775791EF6B59800C166CD /* MessagesController */,
@@ -661,18 +667,11 @@
 				19CFB4521EF0F75C00AB557E /* Headers */,
 				19E8DC861EE27EC5000F216D /* CollectionViewCells */,
 				19FDD14B1EE2E53000502BC6 /* EventRewardsContainer.swift */,
-				19FF8C231EEBC41800C40175 /* CustomPointAnnotation.swift */,
 				19E8DC871EE282EC000F216D /* ProgressBarContainer.swift */,
-				19C35F711F13E79A0056479F /* CustomTextField.swift */,
-				19F716811F8BC60A003710F1 /* HeadlineLabel.swift */,
-				1986E5A11F973132002A6552 /* TextLabels.swift */,
-				19117A1B1FA98AA500B69F17 /* CountingLabel.swift */,
-				1936ACF11F9A7EC600318577 /* ShowMoreButton.swift */,
-				1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */,
-				1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */,
-				1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */,
 				19E98E2B1F8DCFBF00E62DB5 /* RewardsContainer.swift */,
 				1998D28A1F8B93C9004C8334 /* EventRewardContainerView.swift */,
+				190EDB531FB761FC0092A846 /* Map */,
+				190EDB521FB761C90092A846 /* Global */,
 				196097B61FB231DE0064C54A /* Messages */,
 			);
 			name = View;
@@ -922,6 +921,7 @@
 			files = (
 				196097E31FB3887E0064C54A /* RewardsTableController.swift in Sources */,
 				19F7167B1F8BB7E8003710F1 /* EventInfoMapView.swift in Sources */,
+				198476181FB6DB8600A98ED6 /* TwitterShareView.swift in Sources */,
 				19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */,
 				1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */,
 				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
@@ -942,7 +942,6 @@
 				19953DD71F42B13A00409195 /* EventInvitationCell.swift in Sources */,
 				1907757B1EF6B5B900C166CD /* ChatLogController.swift in Sources */,
 				19EE5CB81EF2786A0003F24E /* PersonalSettingsController.swift in Sources */,
-				19C0FF4D1FAE5201007B3B9A /* EventRewardsHeaderCell.swift in Sources */,
 				19D2BD4E1ED9543400529F7F /* Menu.swift in Sources */,
 				19086CE71EFCCE110024F7D0 /* EventCategory.swift in Sources */,
 				19314B481F3F466000B6D9F7 /* StatisticsEventCell.swift in Sources */,
@@ -955,10 +954,8 @@
 				195D46711F0DF79500E59777 /* GifExtension.swift in Sources */,
 				19953DD51F42ABE700409195 /* NewRewardsCVCell.swift in Sources */,
 				1998D2921F8B9C59004C8334 /* EventInfoHeadlineView.swift in Sources */,
-				19B001C61F90CAB200684B48 /* EventRewardsTableContainer.swift in Sources */,
 				19C390571EE1E82300954E64 /* RewardCell.swift in Sources */,
 				196097FD1FB62DBB0064C54A /* ShareGetLinkController.swift in Sources */,
-				19A6E25C1F8BFFE600A3F880 /* EventRewardsController.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
 				19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */,
@@ -980,7 +977,6 @@
 				19F716821F8BC60A003710F1 /* HeadlineLabel.swift in Sources */,
 				190775751EF6B16200C166CD /* Message.swift in Sources */,
 				1907D5AE1EED4AAD00E603A6 /* StartCell.swift in Sources */,
-				19C20B0C1ED8AA5800C6FF17 /* HomeController.swift in Sources */,
 				19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */,
 				19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */,
 				19BB087E1F8A58F4001D8715 /* FixedPromoteController.swift in Sources */,
@@ -1025,7 +1021,6 @@
 				19C35F721F13E79A0056479F /* CustomTextField.swift in Sources */,
 				192C568A1F3E262300C77D34 /* StatisticsTitleCell.swift in Sources */,
 				1907757D1EF6B8AE00C166CD /* UserCell.swift in Sources */,
-				19B5DF521EDBDF7D00739A49 /* RewardsController.swift in Sources */,
 				191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */,
 				190C19251EDF0A38003BC179 /* UserResource.swift in Sources */,
 				19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */,
@@ -1034,6 +1029,7 @@
 				1936ACF21F9A7EC600318577 /* ShowMoreButton.swift in Sources */,
 				19086CE91EFCD0BE0024F7D0 /* SettingsEventSubCell.swift in Sources */,
 				1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */,
+				1984761A1FB6DF4500A98ED6 /* EmailShareView.swift in Sources */,
 				19C3CFBC1EDFC737006BF04B /* ArtistLineUpContainerCell.swift in Sources */,
 				196097FA1FB62D300064C54A /* ShareEmailController.swift in Sources */,
 				1998D28B1F8B93C9004C8334 /* EventRewardContainerView.swift in Sources */,

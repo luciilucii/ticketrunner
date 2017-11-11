@@ -11,7 +11,6 @@ import UIKit
 class EventRewardsTableController: UITableViewController, RewardsContainerEventCellDelegate, RewardTableCellDelegate, RedeemRewardModelViewControllerDelegate {
     
     let cellId = "cellId"
-    let headerId = "headerId"
     
     var event: Event? {
         didSet {
@@ -46,11 +45,10 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         
         setupWhiteTitle(title: "Rewards")
         
-        tableView.allowsSelection = true
+        tableView.allowsSelection = false
         tableView.register(RewardTableCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = ColorCodes.controllerBackground
         tableView.separatorStyle = .none
-        tableView.register(EventRewardsHeaderCell.self, forCellReuseIdentifier: headerId)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +69,6 @@ class EventRewardsTableController: UITableViewController, RewardsContainerEventC
         } else {
             return 50
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

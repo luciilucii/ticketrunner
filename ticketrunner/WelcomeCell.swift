@@ -10,7 +10,7 @@ import UIKit
 
 class WelcomeCell: TableCell {
     
-    var homeController: HomeController?
+//    var homeController: HomeController?
     
     var user: User?
     
@@ -379,7 +379,7 @@ class WelcomeCell: TableCell {
     }
     
     @objc func handleSelectProfileImage() {
-        homeController?.handleSelectProfileImage()
+//        homeController?.handleSelectProfileImage()
         
         
         

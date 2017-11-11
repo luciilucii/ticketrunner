@@ -29,11 +29,11 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     let expiredId = "expiredId"
     
     
-    var homeController: HomeController? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+//    var homeController: HomeController? {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
     
     var avatarImage: UIImage?
     
@@ -162,8 +162,8 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == NewRewardsCell.self:
                 return 162
             case _ where type == EventInvitationCell.self:
-                guard let controller = homeController else { return 0 }
-                let imageHeight = (controller.view.frame.width - 16) / 2.7
+//                guard let controller = homeController else { return 0 }
+                let imageHeight = (self.view.frame.width - 16) / 2.7
                 let height = 264 + imageHeight
                 return height
             case _ where type == LeaderboardHomeCell.self:
@@ -212,7 +212,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == WelcomeCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WelcomeCell
                 
-                cell.homeController = self.homeController
+                
                 
                 return cell
             case _ where type == SystemMessageCell.self:
@@ -326,19 +326,12 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             let expiredEvents = EventResource().getEvents()
             
             self.expiredEvents = expiredEvents
-            
-            
-//            self.tableView.beginUpdates()
-//            self.tableView.endUpdates()
         case .down:
             self.homeCells.removeLast()
             self.homeCells.removeLast()
             self.homeCells.removeLast()
             
             self.tableView.reloadData()
-            
-//            self.tableView.beginUpdates()
-//            self.tableView.endUpdates()
         }
     }
     

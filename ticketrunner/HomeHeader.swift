@@ -21,11 +21,11 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     let eventInvitationId = "eventInvitationId"
     let leaderboardId = "leaderboardId"
     
-    var homeController: HomeController? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+//    var homeController: HomeController? {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
     var avatarImage: UIImage?
     
     var statisticsCellHeight: CGFloat = 64 {
@@ -82,9 +82,9 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         case _ where type == NewRewardsCell.self:
             return 162
         case _ where type == EventInvitationCell.self:
-            guard let controller = homeController else { return 0 }
-            let imageHeight = (controller.view.frame.width - 32) / 2.7
-            let height = 264 + imageHeight
+//            guard let controller = homeController else { return 0 }
+//            let imageHeight = (controller.view.frame.width - 32) / 2.7
+            let height: CGFloat = 264 //+ imageHeight
             return height
         case _ where type == LeaderboardHomeCell.self:
             return 207
@@ -111,7 +111,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         case _ where type == WelcomeCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WelcomeCell
             
-            cell.homeController = self.homeController
+//            cell.homeController = self.homeController
             
             return cell
         case _ where type == SystemMessageCell.self:
@@ -168,7 +168,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
     }
     
     func didTapOnCell() {
-        self.homeController?.menu?.showMessagesController()
+//        self.homeController?.menu?.showMessagesController()
     }
     
     func handleUpDown(buttonState: ButtonState) {

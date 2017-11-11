@@ -12,9 +12,14 @@ class ShareEmailController: ScrollController {
     
     var event: Event? {
         didSet {
-            
+            emailShareView.event = event
         }
     }
+    
+    lazy var emailShareView: EmailShareView = {
+        let view = EmailShareView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,14 @@ class ShareEmailController: ScrollController {
         setupNavBarButtons()
         
         setupWhiteTitle(title: "Share via Email")
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        scrollContainerView.addSubview(emailShareView)
+        
+        emailShareView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 320)
     }
     
     func setupNavBarButtons() {

@@ -13,8 +13,6 @@ class CustomPointAnnotation: MKPointAnnotation {
     
     var pinCustomImageName: String!
     
-    
-    
 }
 
 class CustomAnnotationView: MKPinAnnotationView {

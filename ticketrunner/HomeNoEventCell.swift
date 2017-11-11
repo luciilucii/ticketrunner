@@ -16,7 +16,7 @@ enum HomeControllerMode {
 class HomeNoEventCell: TableCell {
     
     var homeController: HomeTableController?
-    var rewardsController: RewardsController?
+//    var rewardsController: RewardsController?
     
     var homeControllerMode: HomeControllerMode? {
         didSet {
@@ -156,8 +156,6 @@ class HomeNoEventCell: TableCell {
     @objc func handlePromote() {
         if homeController != nil {
             homeController?.menu?.showEventController()
-        } else if rewardsController != nil {
-            rewardsController?.menu.showEventController()
         }
     }
     

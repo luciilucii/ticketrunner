@@ -169,9 +169,6 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func didTapRewards(event: Event) {
-        let eventRewardsController = EventRewardsController()
-        eventRewardsController.event = event
-        
         let newController = EventRewardsTableController(style: .grouped)
         newController.event = event
         
