@@ -1,16 +1,14 @@
 //
-//  EventInvitationCell.swift
+//  PendingEventsCell.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 15.08.17.
+//  Created by Luca Kiedrowski on 24.12.17.
 //  Copyright © 2017 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 
-class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, EventCellDelegate {
-    
-    let titleLabel = HomeTableCellLabel(title: "Invitations", icon: #imageLiteral(resourceName: "Icon Merchandise"))
+class PendingEventsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var events = [Event]() {
         didSet {
@@ -29,6 +27,12 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     var delegate: EventCellDelegate?
     
     let cellId = "cellId"
+    
+    let titleLabel: HomeTableCellLabel = {
+        let label = HomeTableCellLabel(title: "Pending Events", icon: #imageLiteral(resourceName: "Icon Ticket"))
+//        label.title = "Active Events"
+        return label
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -64,33 +68,17 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     }
     
     fileprivate func setupCollectionView() {
-        collectionView.register(EventInvitationSingleCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(PendingEventsCVCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
     }
-    
-    func didTapPromote(event: Event) {
-        delegate?.didTapPromote(event: event)
-    }
-    
-    func didTapRewards(event: Event) {
-        delegate?.didTapRewards(event: event)
-    }
-    
-    func didTapEventInfo(event: Event) {
-        delegate?.didTapEventInfo(event: event)
-    }
-    
-    func didTapLeaderboards(event: Event) {
-        delegate?.didTapLeaderboards(event: event)
-    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return events.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventInvitationSingleCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PendingEventsCVCell
         
         let event = events[indexPath.item]
         cell.event = event
@@ -100,7 +88,7 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 358
+        let height: CGFloat = 472
         let width: CGFloat = cellWidth ?? 0
         //view.frame.width
         
@@ -117,13 +105,6 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     }
     
 }
-
-
-
-
-
-
-
 
 
 

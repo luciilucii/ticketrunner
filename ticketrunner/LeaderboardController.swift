@@ -56,7 +56,7 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.tintColor = UIColor.white
+        button.tintColor = ColorCodes.ticketrunnerPurple
         button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
         
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 45)
@@ -67,7 +67,7 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         let menuCustomView = UIButton()
         menuCustomView.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
         menuCustomView.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
-        menuCustomView.tintColor = UIColor.white
+        menuCustomView.tintColor = ColorCodes.ticketrunnerPurple
         
         menuCustomView.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
         let menuButton = UIBarButtonItem(customView: menuCustomView)

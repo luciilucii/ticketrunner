@@ -13,11 +13,11 @@ class StatisticsTitleCell: BaseCell {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                titleLabel.backgroundColor = ColorCodes.textColorGrey
-                titleLabel.textColor = .white
-            } else {
-                titleLabel.backgroundColor = UIColor.white
                 titleLabel.textColor = ColorCodes.textColorGrey
+                titleLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
+            } else {
+                titleLabel.textColor = ColorCodes.lightGrayText
+                titleLabel.font = UIFont.sourceSansPro(ofSize: 14)
             }
             
         }
@@ -26,22 +26,21 @@ class StatisticsTitleCell: BaseCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                titleLabel.backgroundColor = ColorCodes.textColorGrey
-                titleLabel.textColor = .white
-            } else {
-                titleLabel.backgroundColor = UIColor.white
                 titleLabel.textColor = ColorCodes.textColorGrey
+                titleLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
+            } else {
+                titleLabel.textColor = ColorCodes.lightGrayText
+                titleLabel.font = UIFont.sourceSansPro(ofSize: 14)
             }
         }
     }
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Last week"
-        label.textColor = ColorCodes.textColorGrey
+        label.textColor = ColorCodes.lightGrayText
         label.textAlignment = .center
         label.layer.masksToBounds = true
-        label.font = UIFont.boldSourceSansPro(ofSize: 10)
+        label.font = UIFont.sourceSansPro(ofSize: 14)
         label.layer.cornerRadius = 10
         return label
     }()

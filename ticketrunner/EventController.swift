@@ -40,6 +40,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     fileprivate func setupNavBarButton() {
         let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(handleSearch))
+        searchButton.tintColor = ColorCodes.ticketrunnerPurple
         
         navigationItem.rightBarButtonItem = searchButton
     }
@@ -54,7 +55,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     func setupMenuBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon_3")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
-        menuButton.tintColor = UIColor.white
+        menuButton.tintColor = ColorCodes.ticketrunnerPurple
         navigationItem.leftBarButtonItem = menuButton
         
     }

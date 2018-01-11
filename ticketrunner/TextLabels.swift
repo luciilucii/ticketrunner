@@ -54,6 +54,50 @@ class H3: UILabel {
     
 }
 
+class HomeTableCellLabel: CustomUIView {
+    
+    var title: String
+    var icon: UIImage
+    
+    lazy var headlineLabel: H1 = {
+        let label = H1()
+        label.text = title
+        label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var iconImageView: CustomImageView = {
+        let imageView = CustomImageView()
+        imageView.image = icon
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    init(title: String, icon: UIImage) {
+        self.title = title
+        self.icon = icon
+        
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        addSubview(iconImageView)
+        addSubview(headlineLabel)
+        
+        iconImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 0)
+        
+        headlineLabel.anchor(top: topAnchor, left: iconImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+    }
+    
+}
+
 class NormalTextLabel: UILabel {
     
     init() {
@@ -121,8 +165,6 @@ class TicketrunnerTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
-        
-        
         self.font = UIFont.sourceSansPro(ofSize: 14)
         self.backgroundColor = UIColor.white
         
@@ -130,7 +172,6 @@ class TicketrunnerTextView: UITextView {
         self.layer.borderColor = ColorCodes.lightGrayText.cgColor
         self.layer.cornerRadius = 5
         self.textColor = ColorCodes.textColorGrey
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

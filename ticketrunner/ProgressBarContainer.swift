@@ -38,11 +38,9 @@ class ProgressBarContainer: UIView {
             }
             
             if reward != nil {
-                
                 guard let reward = reward else {
                     return
                 }
-                
                 ticketProgressLabelForReward.isHidden = false
                 setupPromoteBarProgress(forReward: reward)
             }
@@ -281,7 +279,6 @@ class ProgressBarContainer: UIView {
                 
                 setupPromoteBar(forWidth: width)
             } else {
-                
                 isHidden = false
                 cell.redeemButton.isHidden = true
                 
@@ -312,19 +309,37 @@ class ProgressBarContainer: UIView {
     let greenBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+        view.backgroundColor = ColorCodes.ticketrunnerGreen
+        view.clipsToBounds = true
         return view
     }()
     
     var greenBarWidthAnchor: NSLayoutConstraint?
+    var gl: CAGradientLayer?
+    
+    var isProgressBarGradient = false
     
     func setupPromoteBar(forWidth: CGFloat) {
-        
         promoteBackgroundBarView.addSubview(greenBar)
         
         greenBar.leftAnchor.constraint(equalTo: promoteBackgroundBarView.leftAnchor).isActive = true
         greenBar.topAnchor.constraint(equalTo: promoteBackgroundBarView.topAnchor).isActive = true
         greenBar.bottomAnchor.constraint(equalTo: promoteBackgroundBarView.bottomAnchor).isActive = true
+        
+        
+        let colorTop = ColorCodes.ticketrunnerBlue.cgColor
+        let colorBottom = ColorCodes.ticketrunnerGreen.cgColor
+        
+        self.gl = CAGradientLayer()
+        self.gl?.colors = [colorTop, colorBottom]
+        self.gl?.locations = [0.0, 1.0]
+        
+        gl?.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gl?.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        if let shouldAnimate = delegate?.shouldProgressBarAnimate() {
+            self.animateProgressBar = shouldAnimate
+        }
         
         if animateProgressBar {
             greenBarWidthAnchor = greenBar.widthAnchor.constraint(equalToConstant: 0)
@@ -339,6 +354,13 @@ class ProgressBarContainer: UIView {
             
             promoteBackgroundBarView.clipsToBounds = true
         }
+        
+        if isProgressBarGradient {
+            gl?.frame = greenBar.frame
+            
+            guard let gradientLayer = gl else { return }
+            greenBar.layer.addSublayer(gradientLayer)
+        }
     }
     
     @objc func animateGreenBar() {
@@ -352,7 +374,7 @@ class ProgressBarContainer: UIView {
     
     func getTicketsSoldCount(/*forEvent: Event*/) -> Int {
         //TODO: Here the code to get the sold tickets for the event
-        return 8
+        return 39
     }
     
     func getTicketsToSellForAllRewardsCount(forEvent: Event) -> Int {
@@ -365,8 +387,32 @@ class ProgressBarContainer: UIView {
         return tickets
     }
     
+    func setGradientBackground(view: UIView) {
+        let colorTop = ColorCodes.ticketrunnerBlue.cgColor
+        let colorBottom = ColorCodes.ticketrunnerGreen.cgColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ colorTop, colorBottom]
+        gradientLayer.locations = [ 0.0, 1.0]
+        gradientLayer.frame = view.bounds
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+//        view.layer.insertSublayer(gradientLayer)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
+
+
+
+
+
+
+
+
+
+

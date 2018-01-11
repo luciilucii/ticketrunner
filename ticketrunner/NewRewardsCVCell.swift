@@ -18,9 +18,9 @@ class NewRewardsCVCell: BaseCell {
         return iv
     }()
     
-    let titleLabel: NormalToSmallTextLabel = {
-        let label = NormalToSmallTextLabel()
-        label.font = UIFont.boldSourceSansPro(ofSize: 14)
+    let titleLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
         label.text = "Bungee Jump"
         label.textColor = ColorCodes.textColorGrey
         return label
@@ -33,11 +33,16 @@ class NewRewardsCVCell: BaseCell {
         return label
     }()
     
-    let checkImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "Checkmark")
-        iv.contentMode = .scaleAspectFit
-        return iv
+    lazy var promoteButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Redeem")
+        button.addTarget(self, action: #selector(handleRedeem), for: .touchUpInside)
+        return button
+    }()
+    
+    let seperatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ColorCodes.lightGrayText
+        return view
     }()
     
     override func setupViews() {
@@ -48,18 +53,36 @@ class NewRewardsCVCell: BaseCell {
         addSubview(rewardImageView)
         addSubview(titleLabel)
         addSubview(subtitleLabel)
-        addSubview(checkImageView)
+        addSubview(promoteButton)
+        addSubview(seperatorView)
         
-        rewardImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 32, height: 32)
+        rewardImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 32, height: 32)
         rewardImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        titleLabel.anchor(top: topAnchor, left: rewardImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
+        titleLabel.anchor(top: nil, left: rewardImageView.rightAnchor, bottom: centerYAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 116, width: 0, height: 25)
         
-        subtitleLabel.anchor(top: titleLabel.bottomAnchor, left: titleLabel.leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        subtitleLabel.anchor(top: centerYAnchor, left: rewardImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 116, width: 0, height: 25)
         
-        checkImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 36, height: 36)
-        checkImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        promoteButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 40)
+        promoteButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        seperatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+    }
+    
+    @objc func handleRedeem() {
+        print("Redeem")
         
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+

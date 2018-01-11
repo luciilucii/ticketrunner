@@ -41,6 +41,8 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     var homeController: HomeTableController?
     
+    public var selectedIndex: Int = 0
+    
     let menuView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -58,10 +60,8 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let languageMenuPoint = MenuPoint(name: .Language, imageName: "british-flag")
         let logoutMenuPoint = MenuPoint(name: .Logout, imageName: "")
         
-        
-        return [homeMenuPoint, eventMenuPoint, rewardsMenuPoint, messagesMenuPoint, settingsMenuPoint, languageMenuPoint, logoutMenuPoint]
+        return [homeMenuPoint, eventMenuPoint, rewardsMenuPoint, messagesMenuPoint, settingsMenuPoint/*, languageMenuPoint*/, logoutMenuPoint]
     }()
-    
     
     func showMenu() {
         if let window = UIApplication.shared.keyWindow {
@@ -106,6 +106,11 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let menuPoint = menuPoints[indexPath.item]
         cell.menuPoint = menuPoint
         
+        if indexPath.item == selectedIndex {
+//            cell.menuLabel.textColor = ColorCodes.darkPurple
+            cell.isMenuSelected = true
+        }
+        
         return cell
     }
     
@@ -126,6 +131,8 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let menuPoint = menuPoints[indexPath.item]
+        
+        self.selectedIndex = indexPath.item
         
         if menuPoint.name == MenuName.Home {
             setupHomeController()
@@ -266,9 +273,24 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
     let cellId = "cellId"
     
     func setupMenu() {
+        let shadowHelperView = UIView()
+        shadowHelperView.backgroundColor = UIColor.white
+        shadowHelperView.layer.cornerRadius = 50
+        shadowHelperView.translatesAutoresizingMaskIntoConstraints = false
+       
         
+        
+        menuView.addSubview(shadowHelperView)
         menuView.addSubview(profileImageView)
+        
         menuView.addSubview(collectionView)
+        
+        shadowHelperView.centerXAnchor.constraint(equalTo: menuView.centerXAnchor).isActive = true
+        shadowHelperView.topAnchor.constraint(equalTo: menuView.topAnchor, constant: 35).isActive = true
+        shadowHelperView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        shadowHelperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        shadowHelperView.setupShadows()
         
         //x,y,w,h
         profileImageView.centerXAnchor.constraint(equalTo: menuView.centerXAnchor).isActive = true
@@ -281,6 +303,7 @@ class Menu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICo
         collectionView.leftAnchor.constraint(equalTo: menuView.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: menuView.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: menuView.bottomAnchor).isActive = true
+        
         
     }
     

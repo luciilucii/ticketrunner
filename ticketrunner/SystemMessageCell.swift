@@ -14,6 +14,12 @@ protocol SystemMessageCellDelegate {
 
 class SystemMessageCell: TableCell {
     
+    override var bounds: CGRect {
+        didSet {
+            view.dropShadow()
+        }
+    }
+    
     var indexPath: IndexPath?
     
     var delegate: SystemMessageCellDelegate?
@@ -53,6 +59,8 @@ class SystemMessageCell: TableCell {
     
     override func setupViews() {
         super.setupViews()
+        
+//        view.dropShadow()
         
         layer.cornerRadius = 5
         view.backgroundColor = ColorCodes.ticketrunnerRed

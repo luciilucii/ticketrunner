@@ -52,6 +52,54 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
+    
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offSet
+        self.layer.shadowRadius = radius
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    func dropShadow(scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowRadius = 1
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    func applyGradient(colours: [CGColor]) -> Void {
+        self.applyGradient(colours: colours, locations: [0.0, 1.0])
+    }
+    
+    func applyGradient(colours: [CGColor], locations: [NSNumber]?) -> Void {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = colours
+        gradient.locations = locations
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func setupShadows() {
+        self.clipsToBounds = false
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowRadius = 5.0
+    }
+    
 }
 
 extension UIViewController {
@@ -73,9 +121,8 @@ extension UIViewController {
     }
     
     func setupWhiteTitle(title: String) {
-        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 20)]
+        let textAttributes = [NSAttributedStringKey.foregroundColor: ColorCodes.textColorGrey /*UIColor.white*/, NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 20)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
         
         navigationItem.title = title
     }

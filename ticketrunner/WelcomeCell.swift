@@ -113,7 +113,7 @@ class WelcomeCell: TableCell {
     }()
     
     override func setupViews() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.clear
         addSubview(view)
         
         view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 4, paddingRight: 0, width: 0, height: 0)
@@ -139,6 +139,7 @@ class WelcomeCell: TableCell {
         _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(handleAnimations), userInfo: nil, repeats: false)
         
         setupRotations()
+        
     }
     
     fileprivate func setupRotations() {
@@ -388,6 +389,14 @@ class WelcomeCell: TableCell {
 
 class TableCell: UITableViewCell {
     
+    let shadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 5
+        
+        return view
+    }()
+    
     let view: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -401,7 +410,6 @@ class TableCell: UITableViewCell {
         backgroundColor = .clear
         setupViews()
         
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -409,9 +417,17 @@ class TableCell: UITableViewCell {
     }
     
     func setupViews() {
+        
+        
+        addSubview(shadowView)
         addSubview(view)
+        shadowView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
         view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 4, paddingRight: 8, width: 0, height: 0)
         
+        shadowView.layer.shadowOpacity = 0.4
+        shadowView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        shadowView.layer.shadowColor = UIColor.darkGray.cgColor
+        shadowView.layer.shadowRadius = 5.0
     }
     
 }

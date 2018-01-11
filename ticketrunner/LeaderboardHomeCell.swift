@@ -12,9 +12,15 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     
     let cellId = "cellId"
     
-    let leaderboardLabel: H2 = {
-        let label = H2()
-        label.text = "Leaderboard"
+    let leaderboardLabel: HomeTableCellLabel = {
+        let label = HomeTableCellLabel(title: "Leaderboard", icon: #imageLiteral(resourceName: "Icon Ticket"))
+        return label
+    }()
+    
+    let overallLabel: H1 = {
+        let label = H1()
+        label.text = "Overall"
+        label.textAlignment = .left
         return label
     }()
     
@@ -29,8 +35,6 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     }()
     
     override func setupViews() {
-        super.setupViews()
-        
         view.backgroundColor = .white
         self.layer.cornerRadius = 5
         
@@ -44,23 +48,38 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func setupCellViews() {
+        addSubview(leaderboardLabel)
+        addSubview(shadowView)
+        addSubview(view)
         
-        view.addSubview(leaderboardLabel)
+        leaderboardLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        shadowView.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        
+        view.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        
+        shadowView.layer.shadowOpacity = 0.4
+        shadowView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        shadowView.layer.shadowColor = UIColor.darkGray.cgColor
+        shadowView.layer.shadowRadius = 5.0
+        
+        view.addSubview(overallLabel)
         view.addSubview(collectionView)
         
-        leaderboardLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 25)
-        collectionView.anchor(top: leaderboardLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
+        overallLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        
+        collectionView.anchor(top: overallLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 50
+        let height: CGFloat = 90
         
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

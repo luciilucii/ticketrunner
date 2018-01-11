@@ -1,31 +1,18 @@
 //
-//  NewMessagesCell.swift
+//  QuickTipsCell.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 11.08.17.
+//  Created by Luca Kiedrowski on 23.12.17.
 //  Copyright © 2017 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 
-protocol NewMessagesCellDelegate {
-    func didTapOnCell()
-}
-
-class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    var delegate: NewMessagesCellDelegate?
+class QuickTipsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let cellId = "celldId"
     
-    let titleLabel = HomeTableCellLabel(title: "Messages", icon: #imageLiteral(resourceName: "Icon Experience"))
-    
-    let messageTitleLabel: H1 = {
-        let label = H1()
-        label.textAlignment = .left
-        label.text = "You have 3 messages"
-        return label
-    }()
+    let titleLabel = HomeTableCellLabel(title: "Quick Tips", icon: #imageLiteral(resourceName: "Icon Experience"))
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +21,7 @@ class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewData
         cv.dataSource = self
         cv.alwaysBounceVertical = false
         cv.backgroundColor = .white
-        cv.register(NewMessageCVCell.self, forCellWithReuseIdentifier: cellId)
+        cv.register(QuickTipsTVCell.self, forCellWithReuseIdentifier: cellId)
         return cv
     }()
     
@@ -60,8 +47,6 @@ class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewData
         viewAllButton.layer.shadowColor = UIColor.darkGray.cgColor
         viewAllButton.layer.shadowRadius = 5.0
         
-        
-        
         addSubview(shadowView)
         shadowView.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: viewAllButton.topAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 16, paddingRight: 8, width: 0, height: 0)
         
@@ -73,21 +58,16 @@ class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewData
         addSubview(view)
         view.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: viewAllButton.topAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 16, paddingRight: 8, width: 0, height: 0)
         
-        
-        view.addSubview(messageTitleLabel)
-        messageTitleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
-        
-        
         view.addSubview(collectionView)
-        collectionView.anchor(top: messageTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewMessageCVCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! QuickTipsTVCell
         
-        if indexPath.item == 3 - 1 {
+        if indexPath.item == 4 - 1 {
             cell.seperatorView.isHidden = true
         }
         
@@ -95,7 +75,7 @@ class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -109,8 +89,10 @@ class NewMessagesCell: TableCell, UICollectionViewDelegate, UICollectionViewData
         return 0
     }
     
-    
 }
+
+
+
 
 
 

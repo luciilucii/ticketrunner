@@ -63,6 +63,8 @@ class RewardsTableController: UITableViewController, RewardTableCellDelegate, Re
         super.viewDidLoad()
         
         setupMenuBar()
+        
+        self.navigationController?.navigationBar.isTranslucent = false
         setupWhiteTitle(title: "My Rewards")
         
         self.events = EventResource().getEvents()
@@ -76,7 +78,7 @@ class RewardsTableController: UITableViewController, RewardTableCellDelegate, Re
     
     func setupMenuBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon_3")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
-        menuButton.tintColor = UIColor.white
+        menuButton.tintColor = ColorCodes.ticketrunnerPurple
         navigationItem.leftBarButtonItem = menuButton
     }
     
@@ -97,6 +99,10 @@ class RewardsTableController: UITableViewController, RewardTableCellDelegate, Re
             cell.delegate = self
             cell.indexPath = indexPath
             
+            cell.checkmarkImageView.isHidden = true
+            cell.redeemButton.isHidden = false
+            cell.progressBarContainer.isHidden = true
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RewardTableCell
@@ -107,6 +113,10 @@ class RewardsTableController: UITableViewController, RewardTableCellDelegate, Re
             cell.delegate = self
             cell.indexPath = indexPath
             
+            cell.checkmarkImageView.isHidden = true
+            cell.redeemButton.isHidden = true
+            cell.progressBarContainer.isHidden = false
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RewardTableCell
@@ -116,6 +126,10 @@ class RewardsTableController: UITableViewController, RewardTableCellDelegate, Re
             
             cell.delegate = self
             cell.indexPath = indexPath
+            
+            cell.checkmarkImageView.isHidden = false
+            cell.redeemButton.isHidden = true
+            cell.progressBarContainer.isHidden = true
             
             return cell
         }

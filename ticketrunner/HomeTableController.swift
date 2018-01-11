@@ -13,7 +13,7 @@ import Alamofire
 
 class HomeTableController: UITableViewController, SystemMessageCellDelegate, NewMessagesCellDelegate, StatisticsCellDelegate, EventCellDelegate, ExpiredEventHeaderCellDelegate {
     
-    var homeCells = [WelcomeCell.self, SystemMessageCell.self, NewMessagesCell.self, StatisticsCell.self, NewRewardsCell.self, EventInvitationCell.self, LeaderboardHomeCell.self]
+    var homeCells = [WelcomeStatisticsCell.self/*, SystemMessageCell.self, NewMessagesCell.self*/, EventMessageCell.self, EventMessageCell.self, NewRewardsCell.self, QuickTipsCell.self, LeaderboardHomeCell.self]
     
     let defaultId = "defaultId"
     let cellId = "cellId"
@@ -27,17 +27,16 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     let noEventCell = "noEventCell"
     let expiredEventHeaderId = "expireEventHeaderId"
     let expiredId = "expiredId"
+    let showId = "showId"
+    let eventMessageId = "eventMessageId"
+    let quickTipsId = "quickTipsId"
+    let pendingId = "pendingId"
     
-    
-//    var homeController: HomeController? {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
+    lazy var viewFrameWidth = view.frame.width
     
     var avatarImage: UIImage?
     
-    var statisticsCellHeight: CGFloat = 74 {
+    var statisticsCellHeight: CGFloat = 321 {
         didSet {
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -48,13 +47,9 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     var currentUser: User? {
         didSet {
-            guard let user = currentUser else {
-                return
-            }
+            guard let user = currentUser else { return }
             
-            guard let userName = user.firstname else {
-                return
-            }
+            guard let userName = user.firstname else { return }
         }
     }
     
@@ -69,10 +64,12 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     var userEvents = [Event]() {
         didSet {
-            userEvents.forEach { (event) in
-                self.homeCells.append(EventTableCell.self)
+            if userEvents.count != 0 {
+                self.homeCells.append(HomeEventsShowCell.self)
+                self.homeCells.append(EventInvitationCell.self)
+                self.homeCells.append(NewMessagesCell.self)
+                self.homeCells.append(PendingEventsCell.self)
             }
-            self.homeCells.append(ExpiredEventHeaderCell.self)
             tableView.reloadData()
         }
     }
@@ -88,7 +85,6 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isTranslucent = false
         
         setupViews()
@@ -97,8 +93,6 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         setupMenuBar()
         
         userEvents = EventResource().getEvents()
-        
-        
     }
     
     func checkIfMenuIsSet() {
@@ -110,7 +104,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     func setupMenuBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon_3")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
-        menuButton.tintColor = UIColor.white
+        menuButton.tintColor = ColorCodes.ticketrunnerPurple //UIColor.white
         
         navigationItem.leftBarButtonItem = menuButton
     }
@@ -125,16 +119,17 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         
         tableView.backgroundColor = ColorCodes.controllerBackground
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 8, 0)
+        tableView.layer.zPosition = 1
+        
     }
     
     func setupTableView() {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: defaultId)
-        tableView.register(WelcomeCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(WelcomeStatisticsCell.self, forCellReuseIdentifier: cellId)
         tableView.register(SystemMessageCell.self, forCellReuseIdentifier: notificationId)
         tableView.register(NewMessagesCell.self, forCellReuseIdentifier: messageId)
-        tableView.register(StatisticsCell.self, forCellReuseIdentifier: statisticsId)
         tableView.register(NewRewardsCell.self, forCellReuseIdentifier: newRewardsId)
         tableView.register(EventInvitationCell.self, forCellReuseIdentifier: eventInvitationId)
         tableView.register(LeaderboardHomeCell.self, forCellReuseIdentifier: leaderboardId)
@@ -142,7 +137,10 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         tableView.register(HomeNoEventCell.self, forCellReuseIdentifier: noEventCell)
         tableView.register(ExpiredEventHeaderCell.self, forCellReuseIdentifier: expiredEventHeaderId)
         tableView.register(ExpiredEventTableCell.self, forCellReuseIdentifier: expiredId)
-        
+        tableView.register(HomeEventsShowCell.self, forCellReuseIdentifier: showId)
+        tableView.register(EventMessageCell.self, forCellReuseIdentifier: eventMessageId)
+        tableView.register(QuickTipsCell.self, forCellReuseIdentifier: quickTipsId)
+        tableView.register(PendingEventsCell.self, forCellReuseIdentifier: pendingId)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -151,23 +149,20 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         } else {
             let type = homeCells[indexPath.row]
             switch type {
-            case _ where type == WelcomeCell.self:
-                return 188
+            case _ where type == WelcomeStatisticsCell.self:
+                return statisticsCellHeight
             case _ where type == SystemMessageCell.self:
                 return 108
             case _ where type == NewMessagesCell.self:
-                return 83
+                return 450
             case _ where type == StatisticsCell.self:
                 return statisticsCellHeight
             case _ where type == NewRewardsCell.self:
-                return 162
+                return 382
             case _ where type == EventInvitationCell.self:
-//                guard let controller = homeController else { return 0 }
-                let imageHeight = (self.view.frame.width - 16) / 2.7
-                let height = 264 + imageHeight
-                return height
+                return 436
             case _ where type == LeaderboardHomeCell.self:
-                return 207
+                return 570
             case _ where type == EventTableCell.self:
                 let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
                 return height
@@ -176,6 +171,15 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == ExpiredEventTableCell.self:
                 let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
                 return height
+            case _ where type == HomeEventsShowCell.self:
+                let height = CGFloat(590)
+                return height
+            case _ where type == EventMessageCell.self:
+                return 158
+            case _ where type == QuickTipsCell.self:
+                return 482
+            case _ where type == PendingEventsCell.self:
+                return 560
             default:
                 return 0
             }
@@ -209,10 +213,11 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             let type = homeCells[indexPath.row]
             
             switch type {
-            case _ where type == WelcomeCell.self:
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WelcomeCell
+            case _ where type == WelcomeStatisticsCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WelcomeStatisticsCell
                 
-                
+                cell.homeView = self.view
+                cell.delegate = self
                 
                 return cell
             case _ where type == SystemMessageCell.self:
@@ -228,13 +233,13 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 cell.delegate = self
                 
                 return cell
-            case _ where type == StatisticsCell.self:
-                let cell = tableView.dequeueReusableCell(withIdentifier: statisticsId, for: indexPath) as! StatisticsCell
-                
-                cell.delegate = self
-                cell.homeController = self
-                
-                return cell
+//            case _ where type == StatisticsCell.self:
+//                let cell = tableView.dequeueReusableCell(withIdentifier: statisticsId, for: indexPath) as! StatisticsCell
+//
+//                cell.delegate = self
+//                cell.homeController = self
+//
+//                return cell
             case _ where type == NewRewardsCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: newRewardsId, for: indexPath) as! NewRewardsCell
                 
@@ -242,7 +247,9 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == EventInvitationCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: eventInvitationId, for: indexPath) as! EventInvitationCell
                 
-                cell.homeController = self
+//                cell.homeController = self
+                cell.events = userEvents
+                cell.cellWidth = self.viewFrameWidth
                 
                 return cell
             case _ where type == LeaderboardHomeCell.self:
@@ -283,13 +290,49 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
                 cell.delegate = self
                 
                 return cell
-            
+            case _ where type == HomeEventsShowCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: showId, for: indexPath) as! HomeEventsShowCell
+                
+                cell.delegate = self
+                cell.events = userEvents
+                
+                cell.cellWidth = self.viewFrameWidth
+                
+                return cell
+            case _ where type == EventMessageCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: eventMessageId, for: indexPath) as! EventMessageCell
+                
+                if indexPath.item % 2 == 0 {
+                    cell.cellType = .accepted
+                } else {
+                    cell.cellType = .notMuchTimeLeft
+                }
+                
+                return cell
+            case _ where type == QuickTipsCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: quickTipsId, for: indexPath) as! QuickTipsCell
+                
+                
+                
+                return cell
+            case _ where type == PendingEventsCell.self:
+                let cell = tableView.dequeueReusableCell(withIdentifier: pendingId, for: indexPath) as! PendingEventsCell
+                
+                cell.events = userEvents
+                cell.cellWidth = self.viewFrameWidth
+                
+                return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: defaultId, for: indexPath)
                 
                 return cell
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.set(false, forKey: WelcomeStatisticsCell.welcomeCellLoadedString)
     }
     
     func checkIfAnimated(cell: EventTableCell, int: Int) {
@@ -322,11 +365,11 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     func didTapUpDown(withButtonState buttonState: ButtonState) {
         switch buttonState {
         case .up:
-            
             let expiredEvents = EventResource().getEvents()
             
             self.expiredEvents = expiredEvents
         case .down:
+            self.expiredEvents = [Event]()
             self.homeCells.removeLast()
             self.homeCells.removeLast()
             self.homeCells.removeLast()
@@ -337,14 +380,13 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     func handleUpDown(buttonState: ButtonState) {
         if buttonState == .down {
-            self.statisticsCellHeight = 205
+            self.statisticsCellHeight = 635
         } else {
-            self.statisticsCellHeight = 74
+            self.statisticsCellHeight = 321
         }
     }
     
     func didTapPromote(event: Event) {
-        
         let controller = SellTicketsController()
         controller.event = event
         

@@ -100,6 +100,74 @@ class PersonalShareView: CustomUIView {
         return label
     }()
     
+    let landingPageBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 16
+        return view
+    }()
+    
+    let landingPageProfileImageSwitchController: UISwitch = {
+        let switchView = UISwitch()
+        switchView.isOn = true
+        switchView.translatesAutoresizingMaskIntoConstraints = false
+        switchView.onTintColor = UIColor(red:0.25, green:0.89, blue:0.56, alpha:1.0)
+//        switchView.addTarget(self, action: #selector(profileSwitchValueDidChange), for: .valueChanged)
+        return switchView
+    }()
+    
+    let landingPageProfileImageLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.text = "Show my profile picture"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.textColor = ColorCodes.textColorGrey
+        return label
+    }()
+    
+    let customTextLabel: HeadlineLabel = {
+        let label = HeadlineLabel(title: "Custom Landing Page Message")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let customTextSubtitleLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Tell everyone what you personally love about the event."
+        label.textColor = ColorCodes.textColorGrey
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    lazy var customMessageTextView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont.sourceSansPro(ofSize: 14)
+        textView.backgroundColor = UIColor.white
+//        textView.delegate = self
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = ColorCodes.lightGrayText.cgColor
+        textView.layer.cornerRadius = 5
+        textView.textColor = ColorCodes.textColorGrey
+        return textView
+    }()
+    
+    let previewLandingPageButton: TicketrunnerBlueButton = {
+        let button = TicketrunnerBlueButton(title: "Preview")
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(handlePreview), for: .touchUpInside)
+        return button
+    }()
+    
+    let updateLandingPageButton: TicketrunnerGreenButton = {
+        let button = TicketrunnerGreenButton(title: "Update")
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(handleUpdateLandingPage), for: .touchUpInside)
+        return button
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
@@ -121,8 +189,13 @@ class PersonalShareView: CustomUIView {
         addSubview(personalizedLabel)
         addSubview(switchController)
         addSubview(switchLabel)
+        
         addSubview(shareButton)
         addSubview(disclaimerLabel)
+        
+        addSubview(landingPageBackgroundView)
+        addSubview(landingPageProfileImageSwitchController)
+        addSubview(landingPageProfileImageLabel)
         
         titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
@@ -143,10 +216,61 @@ class PersonalShareView: CustomUIView {
         switchLabel.anchor(top: nil, left: switchController.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         switchLabel.centerYAnchor.constraint(equalTo: switchController.centerYAnchor).isActive = true
         
-        shareButton.anchor(top: switchLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        disclaimerLabel.anchor(top: switchLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
-        disclaimerLabel.anchor(top: shareButton.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        shareButton.anchor(top: disclaimerLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
+        landingPageProfileImageSwitchController.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        landingPageProfileImageSwitchController.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        landingPageProfileImageSwitchController.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: 16).isActive = true
+        landingPageProfileImageSwitchController.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        landingPageBackgroundView.topAnchor.constraint(equalTo: landingPageProfileImageSwitchController.topAnchor).isActive = true
+        landingPageBackgroundView.leftAnchor.constraint(equalTo: landingPageProfileImageSwitchController.leftAnchor).isActive = true
+        landingPageBackgroundView.rightAnchor.constraint(equalTo: landingPageProfileImageSwitchController.rightAnchor).isActive = true
+        landingPageBackgroundView.bottomAnchor.constraint(equalTo: landingPageProfileImageSwitchController.bottomAnchor, constant: -1).isActive = true
+        
+        
+        landingPageProfileImageLabel.leftAnchor.constraint(equalTo: landingPageProfileImageSwitchController.rightAnchor, constant: 8).isActive = true
+        landingPageProfileImageLabel.topAnchor.constraint(equalTo: landingPageProfileImageSwitchController.topAnchor).isActive = true
+        landingPageProfileImageLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        landingPageProfileImageLabel.bottomAnchor.constraint(equalTo: landingPageProfileImageSwitchController.bottomAnchor).isActive = true
+        
+        setupCustomTextViews()
+    }
+    
+    func setupCustomTextViews() {
+        
+        addSubview(customTextLabel)
+        addSubview(customTextSubtitleLabel)
+        addSubview(customMessageTextView)
+        addSubview(previewLandingPageButton)
+        addSubview(updateLandingPageButton)
+        
+        customTextLabel.topAnchor.constraint(equalTo: landingPageProfileImageLabel.bottomAnchor, constant: 24).isActive = true
+        customTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        customTextLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        customTextLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        customTextSubtitleLabel.topAnchor.constraint(equalTo: customTextLabel.bottomAnchor).isActive = true
+        customTextSubtitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        customTextSubtitleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        customTextSubtitleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        customMessageTextView.topAnchor.constraint(equalTo: customTextSubtitleLabel.bottomAnchor, constant: 8).isActive = true
+        customMessageTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        customMessageTextView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        customMessageTextView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        previewLandingPageButton.topAnchor.constraint(equalTo: customMessageTextView.bottomAnchor, constant: 8).isActive = true
+        previewLandingPageButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        previewLandingPageButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        previewLandingPageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        updateLandingPageButton.topAnchor.constraint(equalTo: previewLandingPageButton.bottomAnchor, constant: 8).isActive = true
+        updateLandingPageButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        updateLandingPageButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        updateLandingPageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }
     

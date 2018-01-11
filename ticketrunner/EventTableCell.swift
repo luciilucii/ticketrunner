@@ -11,6 +11,7 @@ import UIKit
 class EventTableCell: TableCell, RewardsContainerEventCellDelegate {
     
     var delegate: EventCellDelegate?
+    
     var homeController: HomeTableController? {
         didSet {
             self.cellWidth = self.frame.width
@@ -163,7 +164,6 @@ class EventTableCell: TableCell, RewardsContainerEventCellDelegate {
     var cellWidth: CGFloat?
     
     override func setupViews() {
-        
         
     }
     

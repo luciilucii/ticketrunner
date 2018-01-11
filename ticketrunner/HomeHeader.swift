@@ -140,7 +140,7 @@ class HomeHeader: BaseCell, UITableViewDelegate, UITableViewDataSource, Statisti
         case _ where type == EventInvitationCell.self:
             let cell = tableView.dequeueReusableCell(withIdentifier: eventInvitationId, for: indexPath) as! EventInvitationCell
             
-            cell.homeHeader = self
+//            cell.homeHeader = self
             
             return cell
         case _ where type == LeaderboardHomeCell.self:

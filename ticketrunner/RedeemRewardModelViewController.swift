@@ -27,7 +27,7 @@ class RedeemRewardModelViewController: UIViewController {
         return view
     }()
     
-    lazy var joinButton: TicketrunnerGreenButton = {
+    lazy var redeemButton: TicketrunnerGreenButton = {
         let button = TicketrunnerGreenButton(title: "Redeem")
         button.addTarget(self, action: #selector(redeemReward), for: .touchUpInside)
         return button
@@ -105,10 +105,14 @@ class RedeemRewardModelViewController: UIViewController {
         
         view.addSubview(whiteView)
         
-        whiteView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 228)
-        whiteView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            whiteView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        } else {
+            // Fallback on earlier versions
+            whiteView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: bottomLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        }
         
-        whiteView.addSubview(joinButton)
+        whiteView.addSubview(redeemButton)
         whiteView.addSubview(cancelButton)
         whiteView.addSubview(titleLabel)
         
@@ -120,19 +124,17 @@ class RedeemRewardModelViewController: UIViewController {
         whiteView.addSubview(textLabel)
         whiteView.addSubview(pointsLabel)
         
-        joinButton.anchor(top: nil, left: whiteView.centerXAnchor, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 8, paddingRight: 8, width: 0, height: 45)
+        redeemButton.anchor(top: nil, left: whiteView.centerXAnchor, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 8, paddingRight: 8, width: 0, height: 45)
         
         cancelButton.anchor(top: nil, left: whiteView.leftAnchor, bottom: whiteView.bottomAnchor, right: whiteView.centerXAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 4, width: 0, height: 45)
         
         titleLabel.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
         rewardsImageView.anchor(top: nil, left: rewardContainerView.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45)
-        rewardsImageView.centerYAnchor.constraint(equalTo: rewardContainerView.centerYAnchor).isActive = true
-        
+        rewardsImageView.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor).isActive = true
         rewardsImageView.layer.cornerRadius = 45 / 2
         
         rewardTitleLabel.anchor(top: rewardsImageView.topAnchor, left: rewardsImageView.rightAnchor, bottom: rewardsImageView.bottomAnchor, right: rewardContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
         
         rewardContainerView.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor).isActive = true
         rewardContainerView.centerYAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 29).isActive = true
@@ -143,9 +145,12 @@ class RedeemRewardModelViewController: UIViewController {
         
         view.addSubview(redeemWhiteView)
         
-        redeemWhiteView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 228)
-        redeemWhiteView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
+        if #available(iOS 11.0, *) {
+            redeemWhiteView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        } else {
+            // Fallback on earlier versions
+            redeemWhiteView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: bottomLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        }
         setupRedeemWhiteView()
         
     }
@@ -207,9 +212,7 @@ class RedeemRewardModelViewController: UIViewController {
         }) { (completed) in
             if completed {
                 self.whiteView.isHidden = true
-                
                 self.redeemWhiteView.isHidden = false
-                
                 self.handleAnimateConfetti()
                 
                 _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
@@ -224,7 +227,6 @@ class RedeemRewardModelViewController: UIViewController {
     }
     
     fileprivate func handleAnimateConfetti() {
-        
         for _ in 0...100 {
             let randomDelay = Double(randomNumber(lowerInt: 1, upperInt: 7) / 10)
             let randomImageInt = randomNumber(lowerInt: 0, upperInt: 2)
@@ -252,7 +254,6 @@ class RedeemRewardModelViewController: UIViewController {
         var imageViewTopAnchor: NSLayoutConstraint
         
         let leftAnchorFloat = randomNumber(lowerInt: 0, upperInt: Double(view.frame.width))
-        
         let topAnchorConstant = randomNumber(lowerInt: 0, upperInt: 30) - 30
         
         imageView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: leftAnchorFloat, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
@@ -263,11 +264,9 @@ class RedeemRewardModelViewController: UIViewController {
             imageViewTopAnchor.constant = topAnchorConstant - 30
             self.view.layoutIfNeeded()
         }) { _ in
-            imageViewTopAnchor.constant = self.view.frame.height + topAnchorConstant
+            imageViewTopAnchor.constant = self.view.frame.height + topAnchorConstant + 50
             
-            print(self.view.frame.height, imageViewTopAnchor.constant)
-            
-            UIView.animate(withDuration: 1.5, animations: {
+            UIView.animate(withDuration: 2.5, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }

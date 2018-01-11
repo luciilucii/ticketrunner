@@ -16,6 +16,12 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         }
     }
     
+    let stepsView: StepsView = {
+        let view = StepsView()
+        view.setupFirstStep()
+        return view
+    }()
+    
     lazy var promoteShareLinkView: PromoteShareLinkView = {
         let view = PromoteShareLinkView()
         view.sellTicketsController = self
@@ -51,7 +57,7 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.setupScrollView(height: 1500)
+        super.setupScrollView(height: 1028)
         
         super.setupController()
         
@@ -68,16 +74,15 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
     override func setupViews() {
         super.setupViews()
         
-        
-        scrollContainerView.addSubview(promoteShareLinkView)
+        scrollContainerView.addSubview(stepsView)
         scrollContainerView.addSubview(personalShareView)
-        scrollContainerView.addSubview(landingPagePreviewContainer)
         
-        promoteShareLinkView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 258)
         
-        personalShareView.anchor(top: promoteShareLinkView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 458)
         
-        landingPagePreviewContainer.anchor(top: personalShareView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 460)
+        stepsView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
+        
+//
+        personalShareView.anchor(top: stepsView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 790)
         
         view.addSubview(linkCopiedLabel)
         
@@ -86,8 +91,6 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         linkCopiedLabelBottomAnchor = linkCopiedLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 35)
         linkCopiedLabelBottomAnchor?.isActive = true
     }
-    
-    
     
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -100,9 +103,7 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         guard let duration = keyboardDuration else { return }
         
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             self.scrollView.contentOffset.y = self.landingPagePreviewContainer.customMessageTextView.frame.minY + 228
-            
         }, completion: nil)
     }
     
@@ -123,7 +124,7 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.tintColor = UIColor.white
+        button.tintColor = ColorCodes.ticketrunnerPurple
         button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
         
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 45)
@@ -134,7 +135,7 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         let menuCustomView = UIButton()
         menuCustomView.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
         menuCustomView.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
-        menuCustomView.tintColor = UIColor.white
+        menuCustomView.tintColor = ColorCodes.ticketrunnerPurple
         
         menuCustomView.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
         let menuButton = UIBarButtonItem(customView: menuCustomView)
@@ -170,7 +171,6 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
     var dismissTimer: Timer?
     
     @objc func handleShowLinkCopied() {
-        
         linkCopiedLabelBottomAnchor?.constant = -8
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -178,7 +178,6 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
             self.view.layoutIfNeeded()
             
         }, completion: nil)
-        
     }
     
     @objc func handleDismissLinkCopied() {
@@ -196,7 +195,6 @@ class SellTicketsController: ScrollController, PersonalShareViewDelegate {
         
         controller.event = event
         self.navigationController?.pushViewController(controller, animated: true)
-        
     }
     
 }

@@ -22,6 +22,12 @@ class ShareLinkController: UIViewController, ShareLinkViewDelegate {
         }
     }
     
+    let stepView: StepsView = {
+        let view = StepsView()
+        view.setupSecondStep()
+        return view
+    }()
+    
     lazy var shareLinkPublicView: ShareLinkPublicView = {
         let view = ShareLinkPublicView()
         view.controller = self
@@ -63,32 +69,40 @@ class ShareLinkController: UIViewController, ShareLinkViewDelegate {
     }
     
     fileprivate func setupPersonalController() {
+        view.addSubview(stepView)
         view.addSubview(shareLinkPersonalView)
         
         if #available(iOS 11.0, *) {
-            shareLinkPersonalView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 278)
+            stepView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
         } else {
             // Fallback on earlier versions
-            shareLinkPersonalView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 278)
+            stepView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
         }
+        
+        shareLinkPersonalView.anchor(top: stepView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 278)
+        
     }
     
     fileprivate func setupPublicController() {
+        view.addSubview(stepView)
         view.addSubview(shareLinkPublicView)
         
         if #available(iOS 11.0, *) {
-            shareLinkPublicView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 220)
+            stepView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
         } else {
             // Fallback on earlier versions
-            shareLinkPublicView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 220)
+            stepView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
         }
+        
+        shareLinkPublicView.anchor(top: stepView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 220)
+        
     }
     
     func setupNavBarButtons() {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "icon_back").withRenderingMode(.alwaysTemplate), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.tintColor = UIColor.white
+        button.tintColor = ColorCodes.ticketrunnerPurple
         button.addTarget(self, action: #selector(handlePopView), for: .touchUpInside)
         
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 45)
@@ -99,7 +113,7 @@ class ShareLinkController: UIViewController, ShareLinkViewDelegate {
         let menuCustomView = UIButton()
         menuCustomView.setImage(#imageLiteral(resourceName: "menu_icon_3").withRenderingMode(.alwaysTemplate), for: .normal)
         menuCustomView.addTarget(self, action: #selector(handleNavigationMenu), for: .touchUpInside)
-        menuCustomView.tintColor = UIColor.white
+        menuCustomView.tintColor = ColorCodes.ticketrunnerPurple
         
         menuCustomView.frame = CGRect(x: 0, y: 0, width: 35, height: 45)
         let menuButton = UIBarButtonItem(customView: menuCustomView)

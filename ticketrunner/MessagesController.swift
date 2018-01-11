@@ -37,7 +37,7 @@ class MessagesController: UITableViewController, UISearchBarDelegate, UISearchRe
     
     func setupMenuBar() {
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon_3")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleMenu))
-        menuButton.tintColor = UIColor.white
+        menuButton.tintColor = ColorCodes.ticketrunnerPurple
         navigationItem.leftBarButtonItem = menuButton
         
     }

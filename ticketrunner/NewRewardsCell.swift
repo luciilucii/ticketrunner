@@ -14,10 +14,8 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     let cellId = "cellId"
     
-    let rewardsTitleLabel: H2 = {
-        let label = H2()
-        label.text = "Congrats new rewards unlocked!"
-        label.textColor = ColorCodes.homeYellow
+    let rewardsTitleLabel: HomeTableCellLabel = {
+        let label = HomeTableCellLabel(title: "Earned Reweards", icon: #imageLiteral(resourceName: "Icon Merchandise"))
         return label
     }()
     
@@ -31,23 +29,31 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     }()
     
     override func setupViews() {
-        super.setupViews()
+        addSubview(rewardsTitleLabel)
+        rewardsTitleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        addSubview(shadowView)
+        shadowView.anchor(top: rewardsTitleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        
+        addSubview(view)
+        view.anchor(top: rewardsTitleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        
+        shadowView.layer.shadowOpacity = 0.4
+        shadowView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        shadowView.layer.shadowColor = UIColor.darkGray.cgColor
+        shadowView.layer.shadowRadius = 5.0
         
         setupCollectionView()
         
         view.backgroundColor = .white
         self.layer.cornerRadius = 5
         
-        view.addSubview(rewardsTitleLabel)
         view.addSubview(rewardsCollectionView)
-        
-        rewardsTitleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
-        
-        rewardsCollectionView.anchor(top: rewardsTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
+        rewardsCollectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func setupCollectionView() {
@@ -57,12 +63,16 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewRewardsCVCell
         
+        if indexPath.item == 4 - 1 {
+            cell.seperatorView.isHidden = true
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = rewardsCollectionView.frame.width
-        let height: CGFloat = 50
+        let height: CGFloat = 80
         
         return CGSize(width: width, height: height)
     }

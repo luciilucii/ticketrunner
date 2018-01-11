@@ -36,12 +36,20 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     var homeController: HomeTableController?
     
+    let ticketsTitleLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
+        label.text = "You have earned"
+        label.textAlignment = .right
+        label.font = UIFont.sourceSansPro(ofSize: 22)
+        return label
+    }()
+    
     lazy var ticketsSoldLabel: CountingLabel = {
         let label = CountingLabel()
         label.textAlignment = .center
         label.text = "1.728°"
         label.textColor = ColorCodes.textColorGrey
-        label.font = UIFont.sourceSansPro(ofSize: 40)
+        label.font = UIFont.boldSourceSansPro(ofSize: 24)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapPointsLabel)))
         return label
@@ -96,8 +104,6 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         
         setupCurrentPointLabel()
         
-        
-        
         setupAnchors()
         
         setupCollectionView()
@@ -137,8 +143,6 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     
     var ticketLabelState: TicketLabelState? {
         didSet {
-            
-            
             _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(handleAnimatePointsLabel), userInfo: nil, repeats: false)
         }
     }
@@ -149,11 +153,10 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         plusTicketsLabel.count(fromValue: Float(plusInt), to: 0, withDuration: 3, animationType: .EaseOut, counterType: .Int)
         
         _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(deletePlusLabel), userInfo: nil, repeats: false)
-        
     }
     
     @objc func deletePlusLabel() {
-        plusTicketsLabel.removeFromSuperview()
+        plusTicketsLabel.isHidden = true
         ticketsSoldLabel.textColor = ColorCodes.ticketrunnerGreen
     }
     
@@ -201,22 +204,27 @@ class StatisticsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
     var plusTicketLabelWidthAnchor: NSLayoutConstraint?
     
     func setupAnchors() {
-        view.addSubview(ticketsSoldLabel)
-        view.addSubview(plusTicketsLabel)
-        
         view.addSubview(downButton)
+        view.addSubview(plusTicketsLabel)
+        view.addSubview(ticketsSoldLabel)
+        view.addSubview(ticketsTitleLabel)
+        
         
         view.addSubview(menuBarCollectionView)
         view.addSubview(statisticCollectionView)
         
-        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        ticketsSoldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        plusTicketsLabel.anchor(top: nil, left: ticketsSoldLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 18)
-        plusTicketsLabel.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
-        
         downButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 25, height: 25)
         downButton.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
+        
+        plusTicketsLabel.anchor(top: nil, left: nil, bottom: nil, right: downButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 18)
+        plusTicketsLabel.centerYAnchor.constraint(equalTo: ticketsSoldLabel.centerYAnchor).isActive = true
+        
+        ticketsSoldLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: plusTicketsLabel.leftAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
+        
+        ticketsTitleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: ticketsSoldLabel.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 66)
+        
+        
+        
         
         menuBarCollectionView.anchor(top: ticketsSoldLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 25)
         

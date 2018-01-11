@@ -53,6 +53,7 @@ class EventRewardContainerView: CustomUIView, ProgressBarContainerDelegate {
     override func setupViews() {
         super.setupViews()
         
+        
         addSubview(promoteTitleLabel)
         addSubview(soldTicketsLabel)
         addSubview(progressBarContainer)

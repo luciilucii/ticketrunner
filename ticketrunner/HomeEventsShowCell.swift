@@ -1,16 +1,14 @@
 //
-//  EventInvitationCell.swift
+//  HomeEventsShowCell.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 15.08.17.
+//  Created by Luca Kiedrowski on 09.12.17.
 //  Copyright © 2017 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 
-class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, EventCellDelegate {
-    
-    let titleLabel = HomeTableCellLabel(title: "Invitations", icon: #imageLiteral(resourceName: "Icon Merchandise"))
+class HomeEventsShowCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, EventCellDelegate {
     
     var events = [Event]() {
         didSet {
@@ -29,6 +27,12 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     var delegate: EventCellDelegate?
     
     let cellId = "cellId"
+    
+    let titleLabel: HomeTableCellLabel = {
+        let label = HomeTableCellLabel(title: "Active Events", icon: #imageLiteral(resourceName: "Icon Ticket"))
+        label.title = "Active Events"
+        return label
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -64,7 +68,7 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     }
     
     fileprivate func setupCollectionView() {
-        collectionView.register(EventInvitationSingleCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomeEventContainerCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
     }
@@ -90,19 +94,19 @@ class EventInvitationCell: TableCell, UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventInvitationSingleCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeEventContainerCell
         
         let event = events[indexPath.item]
         cell.event = event
-//        cell.delegate = self
+        cell.delegate = self
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 358
+        let height: CGFloat = 512
         let width: CGFloat = cellWidth ?? 0
-        //view.frame.width
+            //view.frame.width
         
         return CGSize(width: width, height: height)
     }
