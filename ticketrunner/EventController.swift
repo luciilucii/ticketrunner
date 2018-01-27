@@ -16,6 +16,7 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     let eventResource = EventResource()
     
     let cellId = "cellId"
+    let headerId = "headerId"
     
     var refresher: UIRefreshControl!
     
@@ -23,6 +24,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround(views: [view])
+        
         
         navigationController?.navigationBar.isTranslucent = false
         
@@ -30,6 +33,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         setupWhiteTitle(title: "Events")
         setupMenuBar()
         setupNavBarButton()
+        
+        setupShadowToNavigationBar()
         
         setupCollectionView()
         
@@ -42,7 +47,14 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(handleSearch))
         searchButton.tintColor = ColorCodes.ticketrunnerPurple
         
-        navigationItem.rightBarButtonItem = searchButton
+        let bellButton = UIBarButtonItem(image: #imageLiteral(resourceName: "bell_icon").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleBellForThisController))
+        bellButton.tintColor = UIColor.black
+        
+        navigationItem.rightBarButtonItems = [bellButton, searchButton]
+    }
+    
+    @objc func handleBellForThisController() {
+        print("bell")
     }
     
     @objc func handleSearch() {
@@ -62,7 +74,8 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     func setupCollectionView() {
         collectionView?.backgroundColor = ColorCodes.controllerBackground
-        collectionView?.register(EventCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(EventsShowCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(ActiveEventsHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.dataSource = self
         collectionView?.delegate = self
         
@@ -95,28 +108,35 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
         
     }
     
+    lazy var viewFrameWidth = view.frame.width
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventsShowCell
         
-        checkIfAnimated(cell: cell, int: indexPath.item)
+//        checkIfAnimated(cell: cell, int: indexPath.item)
+//
+//        var event: Event?
+//
+//        if filteredEvents != nil {
+//            event = filteredEvents?[indexPath.item]
+//        } else {
+//            event = events[indexPath.item]
+//        }
+//
+//        guard let currentEvent = event else { return cell }
+//
+//        cell.event = currentEvent
         
-        var event: Event?
         
-        if filteredEvents != nil {
-            event = filteredEvents?[indexPath.item]
-        } else {
-            event = events[indexPath.item]
-        }
-        
-        guard let currentEvent = event else { return cell }
-        
-        cell.currentEvent = currentEvent
+        cell.events = self.events
         cell.delegate = self
+        
+        cell.cellWidth = self.viewFrameWidth
         
         return cell
     }
     
-    func checkIfAnimated(cell: EventCell, int: Int) {
+    func checkIfAnimated(cell: HomeEventContainerCell, int: Int) {
         if !alreadyAnimatedArray.contains(int) {
             alreadyAnimatedArray.append(int)
             cell.shouldAnimateProgressBar = true
@@ -126,8 +146,10 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = CGFloat(497) + ((view.frame.width - 16) / 2.7)
-        let width = view.frame.width - 16
+//        let height = CGFloat(497) + ((view.frame.width - 16) / 2.7)
+        
+        let height: CGFloat = 552
+        let width = view.frame.width 
         
         let size = CGSize(width: width, height: height)
         
@@ -150,16 +172,28 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if filteredEvents != nil {
-            guard let returnCount = filteredEvents?.count else { return 0 }
-            return returnCount
-        } else {
-            return events.count
-        }
+//        if filteredEvents != nil {
+//            guard let returnCount = filteredEvents?.count else { return 0 }
+//            return returnCount
+//        } else {
+//            return events.count
+//        }
+        
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! ActiveEventsHeader
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 300)
     }
     
     func didTapPromote(event: Event) {
@@ -189,3 +223,12 @@ class EventController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
 }
+
+
+
+
+
+
+
+
+

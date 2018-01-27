@@ -17,6 +17,12 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         }
     }
     
+    var shouldAnimateProgressBar = true {
+        didSet {
+            progressContainer.animateProgressBar = shouldAnimateProgressBar
+        }
+    }
+    
     let whiteBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -111,9 +117,6 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         return view
     }()
     
-    
-    
-    
     lazy var promoteButton: TicketrunnerRedGradientButton = {
         let button = TicketrunnerRedGradientButton(title: "Promote")
         button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
@@ -124,24 +127,28 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
     
     lazy var eventInfoButton: TicketrunnerBorderedButton = {
         let button = TicketrunnerBorderedButton(title: "Event Info")
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
         return button
     }()
     
     lazy var historyButton: TicketrunnerBorderedButton = {
         let button = TicketrunnerBorderedButton(title: "History")
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
         return button
     }()
     
     lazy var leaderboardButton: TicketrunnerBorderedButton = {
         let button = TicketrunnerBorderedButton(title: "Leaderboard")
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(handleLeaderboard), for: .touchUpInside)
         return button
     }()
     
     lazy var rewardsButton: TicketrunnerBorderedButton = {
         let button = TicketrunnerBorderedButton(title: "Rewards")
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
         return button
     }()
@@ -163,7 +170,6 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         
         whiteBackgroundView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         whiteView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
-        
         
         
         whiteView.addSubview(eventImageView)

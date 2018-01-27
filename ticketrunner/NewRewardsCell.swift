@@ -8,14 +8,16 @@
 
 import UIKit
 
-class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NewRewardsCVCellDelegate {
     
     //NOTE: cell height is 54 + collectionView (50 per item)
     
     let cellId = "cellId"
     
+    var delegate: NewRewardsCVCellDelegate?
+    
     let rewardsTitleLabel: HomeTableCellLabel = {
-        let label = HomeTableCellLabel(title: "Earned Reweards", icon: #imageLiteral(resourceName: "Icon Merchandise"))
+        let label = HomeTableCellLabel(title: "Earned Rewards", icon: #imageLiteral(resourceName: "Icon Merchandise"))
         return label
     }()
     
@@ -67,6 +69,8 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
             cell.seperatorView.isHidden = true
         }
         
+        cell.delegate = self
+        
         return cell
     }
     
@@ -81,4 +85,14 @@ class NewRewardsCell: TableCell, UICollectionViewDelegate, UICollectionViewDataS
         return 0
     }
     
+    func didTapRedeem(reward: Reward?) {
+        delegate?.didTapRedeem(reward: reward)
+    }
+    
 }
+
+
+
+
+
+

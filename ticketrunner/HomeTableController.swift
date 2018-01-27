@@ -11,7 +11,9 @@ import MobileCoreServices
 import Intercom
 import Alamofire
 
-class HomeTableController: UITableViewController, SystemMessageCellDelegate, NewMessagesCellDelegate, StatisticsCellDelegate, EventCellDelegate, ExpiredEventHeaderCellDelegate {
+class HomeTableController: UITableViewController, SystemMessageCellDelegate, NewMessagesCellDelegate, StatisticsCellDelegate, EventCellDelegate, ExpiredEventHeaderCellDelegate, NewRewardsCVCellDelegate, RedeemRewardModelViewControllerDelegate {
+    
+    
     
     var homeCells = [WelcomeStatisticsCell.self/*, SystemMessageCell.self, NewMessagesCell.self*/, EventMessageCell.self, EventMessageCell.self, NewRewardsCell.self, QuickTipsCell.self, LeaderboardHomeCell.self]
     
@@ -89,10 +91,22 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         
         setupViews()
         checkIfMenuIsSet()
-        setupWhiteTitle(title: "Home")
+//        setupWhiteTitle(title: "Home")
+        setupTicketrunnerNavBar()
         setupMenuBar()
+        setupBellButton()
         
         userEvents = EventResource().getEvents()
+        
+        _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(showAcceptedTicketrunnerController), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func showAcceptedTicketrunnerController() {
+        let modalController = AcceptedTicketrunnerModalController()
+        modalController.modalTransitionStyle = .crossDissolve
+        modalController.modalPresentationStyle = .overCurrentContext
+        
+        present(modalController, animated: true, completion: nil)
     }
     
     func checkIfMenuIsSet() {
@@ -242,6 +256,8 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
 //                return cell
             case _ where type == NewRewardsCell.self:
                 let cell = tableView.dequeueReusableCell(withIdentifier: newRewardsId, for: indexPath) as! NewRewardsCell
+                
+                cell.delegate = self
                 
                 return cell
             case _ where type == EventInvitationCell.self:
@@ -411,6 +427,74 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
 //        leaderboardsController.event = event
         self.show(leaderboardsController, sender: self)
     }
+    
+    //MARK: Redeem Reward
+    
+    func didTapRedeem(reward: Reward?) {
+        let redeemRewardController = RedeemRewardModelViewController()
+        redeemRewardController.modalTransitionStyle = .crossDissolve
+        redeemRewardController.modalPresentationStyle = .overCurrentContext
+        redeemRewardController.delegate = self
+        redeemRewardController.reward = Reward(id: 5)
+        
+        self.present(redeemRewardController, animated: true, completion: nil)
+    }
+    
+    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController, reward: Reward) {
+        print("Redeem")
+    }
+    
+    func didTapCancel(redeemRewardModelViewController: RedeemRewardModelViewController) {
+        print("Cancel")
+        
+        redeemRewardModelViewController.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    fileprivate func setupTicketrunnerNavBar() {
+        let titleView = UIView()
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(containerView)
+        
+        let profileImageView = UIImageView()
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = #imageLiteral(resourceName: "ticketrunner_logo_short")
+        profileImageView.layer.cornerRadius = 25/2
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        containerView.addSubview(profileImageView)
+        
+        //ios 9 constraint anchors
+        //need x,y,width,height anchors
+        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        let nameLabel = UILabel()
+        nameLabel.text = "Ticketrunner"
+        nameLabel.font = UIFont.boldSourceSansPro(ofSize: 16)
+        
+        containerView.addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //need x,y,width,height
+        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
+        
+        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        
+        self.navigationItem.titleView = titleView
+    }
+    
+    
     
 }
 

@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol NewRewardsCVCellDelegate {
+    func didTapRedeem(reward: Reward?) //TODO: make Reward non optional
+}
+
 class NewRewardsCVCell: BaseCell {
+    
+    var reward: Reward?
+    
+    var delegate: NewRewardsCVCellDelegate?
     
     let rewardImageView: UIImageView = {
         let iv = UIImageView()
@@ -71,7 +79,7 @@ class NewRewardsCVCell: BaseCell {
     
     @objc func handleRedeem() {
         print("Redeem")
-        
+        delegate?.didTapRedeem(reward: reward)
     }
     
 }

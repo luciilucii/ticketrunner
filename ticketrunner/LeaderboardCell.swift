@@ -22,6 +22,19 @@ class LeaderboardCell: BaseCell {
         }
     }
     
+    let whiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    let gradientView: UIView = {
+        let view = UIView()
+        view.applyGradient(colours: [ColorCodes.ticketrunnerRed.cgColor, ColorCodes.gradientPurple.cgColor], locations: [0.0, 1.0])
+        view.backgroundColor = ColorCodes.ticketrunnerGreen
+        return view
+    }()
+    
     let placementLabel: UILabel = {
         let label = UILabel()
         label.text = "1."
@@ -44,7 +57,7 @@ class LeaderboardCell: BaseCell {
         label.textColor = ColorCodes.textColorGrey
         label.text = "Max Gonzales Mustermann"
         label.font = UIFont.boldSourceSansPro(ofSize: 14)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 2
         return label
     }()
@@ -60,29 +73,34 @@ class LeaderboardCell: BaseCell {
     
     override func setupViews() {
         super.setupViews()
-        
-        layer.cornerRadius = 5
-        
+                
         backgroundColor = .white
         
-        addSubview(placementLabel)
-        addSubview(profileImageView)
+        addSubview(whiteView)
         
-        addSubview(ticketsSoldLabel)
+        whiteView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        whiteView.addSubview(gradientView)
+        whiteView.addSubview(placementLabel)
+        whiteView.addSubview(profileImageView)
+        whiteView.addSubview(ticketsSoldLabel)
+        whiteView.addSubview(usernameLabel)
         
         
-        addSubview(usernameLabel)
         
-        placementLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 0)
+        gradientView.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: whiteView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 7, height: 0)
         
-        profileImageView.anchor(top: topAnchor, left: placementLabel.rightAnchor, bottom: bottomAnchor, right: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 0, width: 42, height: 0)
+        placementLabel.anchor(top: whiteView.topAnchor, left: gradientView.rightAnchor, bottom: whiteView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 0)
+        
+        profileImageView.anchor(top: nil, left: placementLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 42, height: 42)
+        profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         profileImageView.layer.cornerRadius = 42 / 2
         
         
-        ticketsSoldLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 50, height: 0)
+        ticketsSoldLabel.anchor(top: whiteView.topAnchor, left: nil, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingBottom: 4, paddingRight: 4, width: 50, height: 0)
         
         //width dif.
-        usernameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: ticketsSoldLabel.leftAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        usernameLabel.anchor(top: whiteView.topAnchor, left: profileImageView.rightAnchor, bottom: whiteView.bottomAnchor, right: ticketsSoldLabel.leftAnchor, paddingTop: 4, paddingLeft: 8, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
         
         
     }
@@ -94,10 +112,10 @@ class LeaderboardCell: BaseCell {
         
         switch cellType {
         case .normal:
-            //do norhing
+            //do nothing
             break
         case .firstThree:
-            backgroundColor = ColorCodes.leaderboardYellow
+            whiteView.backgroundColor = ColorCodes.leaderboardYellow
             placementLabel.textColor = UIColor.white
             placementLabel.font = UIFont.boldSourceSansPro(ofSize: 22)
             usernameLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
@@ -108,7 +126,7 @@ class LeaderboardCell: BaseCell {
         case .user:
             placementLabel.font = UIFont.boldSourceSansPro(ofSize: 22)
             usernameLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
-            backgroundColor = ColorCodes.ticketrunnerPurple
+            whiteView.backgroundColor = ColorCodes.ticketrunnerPurple
             ticketsSoldLabel.font = UIFont.boldSourceSansPro(ofSize: 14)
             
             usernameLabel.textColor = UIColor.white

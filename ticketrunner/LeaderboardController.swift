@@ -76,6 +76,11 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.leftBarButtonItems = [backButton, menuButton]
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.set(false, forKey: LeaderboardHeader.leaderboardHeaderLoadedString)
+    }
+    
     @objc func handlePopView() {
         navigationController?.popViewController(animated: true)
     }
@@ -95,29 +100,31 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         
-        return CGSize(width: view.frame.width, height: 25)
+        return CGSize(width: view.frame.width, height: 332)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! LeaderboardHeader
+        
+        header.leaderboardView = self.view
         
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 50
-        let width = view.frame.width - 16
+        let height: CGFloat = 90
+        let width = view.frame.width
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -131,15 +138,17 @@ class LeaderboardController: UICollectionViewController, UICollectionViewDelegat
         cell.placementLabel.text = "\(rank)"
         
         //TODO: Don't do this in the setup here! This has to be fixed with an timer
+//        
+//        switch (indexPath.item) {
+//        case _ where indexPath.item < 3 :
+//            cell.setupCell(cellType: .firstThree)
+//        case 7:
+//            cell.setupCell(cellType: .user)
+//        default:
+//            cell.setupCell(cellType: .normal)
+//        }
         
-        switch (indexPath.item) {
-        case _ where indexPath.item < 3 :
-            cell.setupCell(cellType: .firstThree)
-        case 7:
-            cell.setupCell(cellType: .user)
-        default:
-            cell.setupCell(cellType: .normal)
-        }
+        
         
         return cell
     }

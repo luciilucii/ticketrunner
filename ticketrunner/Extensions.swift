@@ -120,11 +120,45 @@ extension UIViewController {
         return tap
     }
     
+    func setupShadowToNavigationBar() {
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 6)
+        self.navigationController?.navigationBar.layer.shadowRadius = 3
+    }
+    
     func setupWhiteTitle(title: String) {
         let textAttributes = [NSAttributedStringKey.foregroundColor: ColorCodes.textColorGrey /*UIColor.white*/, NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 20)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationItem.title = title
+    }
+    
+    func setupModalCancelButton() {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "cancel").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(handleCancelController), for: .touchUpInside)
+        
+        view.addSubview(button)
+        button.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 44, height: 44)
+        
+    }
+    
+    @objc func handleCancelController() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    public func setupBellButton() {
+        let bellButton = UIBarButtonItem(image: #imageLiteral(resourceName: "bell_icon").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleBell))
+        bellButton.tintColor = UIColor.black
+        
+        self.navigationItem.rightBarButtonItem = bellButton
+    }
+    
+    @objc func handleBell() {
+        print("bell")
     }
     
 }
@@ -178,7 +212,6 @@ extension UIImageView {
         }).resume()
     }
 }
-
 
 extension UICollectionViewController {
     

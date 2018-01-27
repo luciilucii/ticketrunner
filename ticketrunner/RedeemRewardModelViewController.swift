@@ -44,17 +44,12 @@ class RedeemRewardModelViewController: UIViewController {
         return button
     }()
     
-    let titleLabel: H2 = {
-        let label = H2()
+    let titleLabel: H1 = {
+        let label = H1()
         label.text = "Redeem Reward"
+        label.font = UIFont.boldSourceSansPro(ofSize: 26)
+        label.textColor = ColorCodes.darkPurple
         return label
-    }()
-    
-    let rewardContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     let rewardsImageView: CustomImageView = {
@@ -68,19 +63,21 @@ class RedeemRewardModelViewController: UIViewController {
     let pointsLabel: TicketrunnerPointsLabel = {
         let label = TicketrunnerPointsLabel()
         label.text = "-200°"
+        label.font = UIFont.boldSourceSansPro(ofSize: 26)
         label.textColor = ColorCodes.ticketrunnerRed
         return label
     }()
     
     let rewardTitleLabel: H2 = {
         let label = H2()
+        label.textColor = UIColor.black
         label.text = "Meet & Greet"
         return label
     }()
     
     let textLabel: NormalTextLabel = {
         let label = NormalTextLabel()
-        label.text = "Do you want to redeem this reward?"
+        label.text = "Do you want to redeem this Reward?"
         label.textColor = ColorCodes.textColorGrey
         label.textAlignment = .center
         return label
@@ -94,63 +91,66 @@ class RedeemRewardModelViewController: UIViewController {
         return view
     }()
     
+    let actualBalanceLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
+        label.text = "Actual balance 1575°"
+        label.textColor = ColorCodes.textColorGrey
+        label.textAlignment = .center
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupModalCancelButton()
         
         view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         view.isOpaque = false
         
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
+//        view.isUserInteractionEnabled = true
+//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
         
         view.addSubview(whiteView)
         
-        if #available(iOS 11.0, *) {
-            whiteView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
-        } else {
-            // Fallback on earlier versions
-            whiteView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: bottomLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
-        }
+        whiteView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 400)
+        whiteView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         whiteView.addSubview(redeemButton)
         whiteView.addSubview(cancelButton)
+        whiteView.addSubview(rewardsImageView)
         whiteView.addSubview(titleLabel)
-        
-        whiteView.addSubview(rewardContainerView)
-        
-        rewardContainerView.addSubview(rewardsImageView)
-        rewardContainerView.addSubview(rewardTitleLabel)
-        
+        whiteView.addSubview(rewardTitleLabel)
         whiteView.addSubview(textLabel)
         whiteView.addSubview(pointsLabel)
+        whiteView.addSubview(actualBalanceLabel)
         
         redeemButton.anchor(top: nil, left: whiteView.centerXAnchor, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 8, paddingRight: 8, width: 0, height: 45)
         
         cancelButton.anchor(top: nil, left: whiteView.leftAnchor, bottom: whiteView.bottomAnchor, right: whiteView.centerXAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 4, width: 0, height: 45)
         
-        titleLabel.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        rewardsImageView.anchor(top: nil, left: rewardContainerView.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45)
-        rewardsImageView.centerYAnchor.constraint(equalTo: whiteView.centerYAnchor).isActive = true
-        rewardsImageView.layer.cornerRadius = 45 / 2
         
-        rewardTitleLabel.anchor(top: rewardsImageView.topAnchor, left: rewardsImageView.rightAnchor, bottom: rewardsImageView.bottomAnchor, right: rewardContainerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        rewardsImageView.anchor(top: whiteView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 85, height: 85)
+        rewardsImageView.layer.cornerRadius = 85/2
+        rewardsImageView.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor).isActive = true
         
-        rewardContainerView.centerXAnchor.constraint(equalTo: whiteView.centerXAnchor).isActive = true
-        rewardContainerView.centerYAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 29).isActive = true
+        titleLabel.anchor(top: rewardsImageView.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        textLabel.anchor(top: rewardsImageView.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        rewardTitleLabel.anchor(top: titleLabel.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 25)
         
-        pointsLabel.anchor(top: textLabel.bottomAnchor, left: whiteView.leftAnchor, bottom: cancelButton.topAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        textLabel.anchor(top: rewardTitleLabel.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        pointsLabel.anchor(top: textLabel.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
+        
+        actualBalanceLabel.anchor(top: pointsLabel.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
         
         view.addSubview(redeemWhiteView)
         
-        if #available(iOS 11.0, *) {
-            redeemWhiteView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
-        } else {
-            // Fallback on earlier versions
-            redeemWhiteView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: bottomLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
-        }
+        redeemWhiteView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 400)
+        redeemWhiteView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         setupRedeemWhiteView()
         
     }
@@ -158,38 +158,75 @@ class RedeemRewardModelViewController: UIViewController {
     let congratsLabel: H1 = {
         let label = H1()
         label.text = "Congrats!"
-        label.textColor = ColorCodes.homeYellow
+        label.textColor = ColorCodes.darkPurple
+        label.font = UIFont.boldSourceSansPro(ofSize: 26)
         return label
     }()
     
     let redeemedRewardImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         iv.image = #imageLiteral(resourceName: "event_neu")
         return iv
     }()
     
-    let redeemedRewardTitleLabel: H2 = {
-        let label = H2()
-        label.text = "Meet & Greet"
-        label.textColor = ColorCodes.textColorGrey
+    let redeemedRewardLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
+        label.textAlignment = .center
+        label.text = "VIP Ticket Reward is yours."
+        label.font = UIFont.boldSourceSansPro(ofSize: 16)
+        label.textColor = UIColor.black
+//        let attributedString = NSMutableAttributedString(string: "You just unlocked \"", attributes: [NSAttributedStringKey.font: UIFont.sourceSansPro(ofSize: 16), NSAttributedStringKey.foregroundColor: ColorCodes.textColorGrey])
+//
+//        attributedString.append(NSMutableAttributedString(string: "Free VIP Ticket", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black]))
+//
+//        attributedString.append(NSMutableAttributedString(string: "\" Reward", attributes: [NSAttributedStringKey.font: UIFont.sourceSansPro(ofSize: 16), NSAttributedStringKey.foregroundColor: ColorCodes.textColorGrey]))
+//
+//        label.attributedText = attributedString
+        
+        return label
+    }()
+    
+    let howToGetLabel: NormalTextLabel = {
+        let label = NormalTextLabel()
+        label.textAlignment = .center
+        let attributedString = NSMutableAttributedString(string: "This is how you'll get it:\n", attributes: [NSAttributedStringKey.font: UIFont.sourceSansPro(ofSize: 16), NSAttributedStringKey.foregroundColor: ColorCodes.textColorGrey])
+        
+        attributedString.append(NSMutableAttributedString(string: "%redeem_type%", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 16), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple]))
+        
+        label.attributedText = attributedString
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let whereLabel: NormalToSmallTextLabel = {
+        let label = NormalToSmallTextLabel()
+        label.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
     fileprivate func setupRedeemWhiteView() {
-        redeemWhiteView.addSubview(congratsLabel)
-        
         redeemWhiteView.addSubview(redeemedRewardImageView)
-        redeemWhiteView.addSubview(redeemedRewardTitleLabel)
+        redeemWhiteView.addSubview(congratsLabel)
+        redeemWhiteView.addSubview(redeemedRewardLabel)
+        redeemWhiteView.addSubview(howToGetLabel)
+        redeemWhiteView.addSubview(whereLabel)
         
-        congratsLabel.anchor(top: redeemWhiteView.topAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        redeemedRewardImageView.anchor(top: congratsLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 125, height: 125)
+        redeemedRewardImageView.anchor(top: redeemWhiteView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 85, height: 85)
         redeemedRewardImageView.centerXAnchor.constraint(equalTo: redeemWhiteView.centerXAnchor).isActive = true
-        redeemedRewardImageView.layer.cornerRadius = 125 / 2
+        redeemedRewardImageView.layer.cornerRadius = 85/2
         
-        redeemedRewardTitleLabel.anchor(top: redeemedRewardImageView.bottomAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        congratsLabel.anchor(top: redeemedRewardImageView.bottomAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        redeemedRewardLabel.anchor(top: congratsLabel.bottomAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
+        
+        howToGetLabel.anchor(top: redeemedRewardLabel.bottomAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 60)
+        
+        whereLabel.anchor(top: howToGetLabel.bottomAnchor, left: redeemWhiteView.leftAnchor, bottom: nil, right: redeemWhiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100)
         
     }
     
@@ -215,7 +252,7 @@ class RedeemRewardModelViewController: UIViewController {
                 self.redeemWhiteView.isHidden = false
                 self.handleAnimateConfetti()
                 
-                _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
+//                _ = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(self.handleDone), userInfo: nil, repeats: false)
             }
         }
         
