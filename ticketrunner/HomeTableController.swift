@@ -91,14 +91,14 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         
         setupViews()
         checkIfMenuIsSet()
-//        setupWhiteTitle(title: "Home")
+        
         setupTicketrunnerNavBar()
         setupMenuBar()
         setupBellButton()
         
         userEvents = EventResource().getEvents()
         
-        _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(showAcceptedTicketrunnerController), userInfo: nil, repeats: false)
+//        _ = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(showAcceptedTicketrunnerController), userInfo: nil, repeats: false)
     }
     
     @objc private func showAcceptedTicketrunnerController() {
@@ -403,7 +403,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     }
     
     func didTapPromote(event: Event) {
-        let controller = SellTicketsController()
+        let controller = PromoteEventController()
         controller.event = event
         
         self.show(controller, sender: self)

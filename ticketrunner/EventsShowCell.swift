@@ -102,6 +102,12 @@ class EventsShowCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: width, height: height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let event = events[indexPath.item]
+        delegate?.didTapEventInfo(event: event)
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
