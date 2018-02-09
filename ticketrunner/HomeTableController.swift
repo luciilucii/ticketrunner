@@ -176,7 +176,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == EventInvitationCell.self:
                 return 436
             case _ where type == LeaderboardHomeCell.self:
-                return 570
+                return 637
             case _ where type == EventTableCell.self:
                 let height = CGFloat(497) + ((view.frame.width - 32) / 2.7)
                 return height
@@ -191,9 +191,9 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == EventMessageCell.self:
                 return 158
             case _ where type == QuickTipsCell.self:
-                return 482
+                return 481
             case _ where type == PendingEventsCell.self:
-                return 560
+                return 610
             default:
                 return 0
             }
@@ -426,6 +426,12 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
         let leaderboardsController = LeaderboardController(collectionViewLayout: layout)
 //        leaderboardsController.event = event
         self.show(leaderboardsController, sender: self)
+    }
+    
+    func didTapFeed(event: Event) {
+        let layout = UICollectionViewFlowLayout()
+        let controller = ActivityFeedController(collectionViewLayout: layout)
+        self.show(controller, sender: self)
     }
     
     //MARK: Redeem Reward

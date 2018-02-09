@@ -34,6 +34,14 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
         return cv
     }()
     
+    lazy var viewAllButton: TicketrunnerGrayButton = {
+        let button = TicketrunnerGrayButton(title: "View All")
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
+        button.clipsToBounds = false
+        return button
+    }()
+    
     override func setupViews() {
         view.backgroundColor = .white
         self.layer.cornerRadius = 5
@@ -48,15 +56,21 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func setupCellViews() {
+        
+        addSubview(viewAllButton)
+        viewAllButton.anchor(top: nil, left: nil, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 120, height: 35)
+        viewAllButton.layer.cornerRadius = 20
+        viewAllButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
         addSubview(leaderboardLabel)
         addSubview(shadowView)
         addSubview(view)
         
         leaderboardLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30)
         
-        shadowView.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        shadowView.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 67, paddingRight: 8, width: 0, height: 0)
         
-        view.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        view.anchor(top: leaderboardLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 67, paddingRight: 8, width: 0, height: 0)
         
         shadowView.layer.shadowOpacity = 0.4
         shadowView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
@@ -66,9 +80,11 @@ class LeaderboardHomeCell: TableCell, UICollectionViewDelegateFlowLayout, UIColl
         view.addSubview(overallLabel)
         view.addSubview(collectionView)
         
-        overallLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        overallLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
         collectionView.anchor(top: overallLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

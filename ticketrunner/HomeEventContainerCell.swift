@@ -54,7 +54,7 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         let label = SmallTextLabel()
         label.text = "Electronic"
         label.textColor = ColorCodes.textColorGrey
-        label.backgroundColor = ColorCodes.lightGrayText
+        label.backgroundColor = ColorCodes.inactiveElementsGrey
         label.textAlignment = .center
         label.clipsToBounds = true
         return label
@@ -64,7 +64,7 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         let label = SmallTextLabel()
         label.text = "15/02/2018"
         label.textColor = ColorCodes.textColorGrey
-        label.backgroundColor = ColorCodes.lightGrayText
+        label.backgroundColor = ColorCodes.inactiveElementsGrey
         label.textAlignment = .center
         label.clipsToBounds = true
         return label
@@ -118,24 +118,24 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
     }()
     
     lazy var promoteButton: TicketrunnerRedGradientButton = {
-        let button = TicketrunnerRedGradientButton(title: "Promote")
+        let button = TicketrunnerRedGradientButton(title: "Earn Points")
         button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
         button.applyGradient(colours: [ColorCodes.ticketrunnerRed.cgColor, ColorCodes.gradientPurple.cgColor])
         
         return button
     }()
     
-    lazy var eventInfoButton: TicketrunnerBorderedButton = {
-        let button = TicketrunnerBorderedButton(title: "Event Info")
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
-        return button
-    }()
+//    lazy var eventInfoButton: TicketrunnerBorderedButton = {
+//        let button = TicketrunnerBorderedButton(title: "Event Info")
+//        button.setTitleColor(UIColor.black, for: .normal)
+//        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
+//        return button
+//    }()
     
     lazy var historyButton: TicketrunnerBorderedButton = {
-        let button = TicketrunnerBorderedButton(title: "History")
+        let button = TicketrunnerBorderedButton(title: "Active Feed")
         button.setTitleColor(UIColor.black, for: .normal)
-        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleFeed), for: .touchUpInside)
         return button
     }()
     
@@ -150,6 +150,13 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         let button = TicketrunnerBorderedButton(title: "Rewards")
         button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(handleRewards), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var groupButton: TicketrunnerBorderedButton = {
+        let button = TicketrunnerBorderedButton(title: "Group")
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: #selector(handleGroup), for: .touchUpInside)
         return button
     }()
     
@@ -185,10 +192,10 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         whiteView.addSubview(seperatorContainerView)
         
         whiteView.addSubview(promoteButton)
-        whiteView.addSubview(eventInfoButton)
-        whiteView.addSubview(historyButton)
-        whiteView.addSubview(leaderboardButton)
         whiteView.addSubview(rewardsButton)
+        whiteView.addSubview(historyButton)
+        whiteView.addSubview(groupButton)
+        whiteView.addSubview(leaderboardButton)
         
         eventImageView.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120)
         
@@ -221,13 +228,13 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
         
         promoteButton.anchor(top: seperatorContainerView.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
-        eventInfoButton.anchor(top: promoteButton.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.centerXAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
+        rewardsButton.anchor(top: promoteButton.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.centerXAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
         
-        historyButton.anchor(top: eventInfoButton.topAnchor, left: whiteView.centerXAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        historyButton.anchor(top: rewardsButton.topAnchor, left: whiteView.centerXAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
-        leaderboardButton.anchor(top: eventInfoButton.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.centerXAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
+        groupButton.anchor(top: rewardsButton.bottomAnchor, left: whiteView.leftAnchor, bottom: nil, right: whiteView.centerXAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 4, width: 0, height: 50)
         
-        rewardsButton.anchor(top: eventInfoButton.bottomAnchor, left: whiteView.centerXAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+        leaderboardButton.anchor(top: rewardsButton.bottomAnchor, left: whiteView.centerXAnchor, bottom: nil, right: whiteView.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
         
         
         promoteButton.applyGradient(colours: [ColorCodes.ticketrunnerRed.cgColor, UIColor.black.cgColor])
@@ -252,6 +259,15 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
     @objc func handleRewards() {
         guard let event = event else { return }
         delegate?.didTapRewards(event: event)
+    }
+    
+    @objc func handleFeed() {
+        guard let event = event else { return }
+        delegate?.didTapFeed(event: event)
+    }
+    
+    @objc func handleGroup() {
+        print("group")
     }
     
     func shouldShowTriangles() -> Bool {

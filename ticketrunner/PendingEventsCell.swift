@@ -88,7 +88,7 @@ class PendingEventsCell: TableCell, UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 472
+        let height: CGFloat = 522
         let width: CGFloat = cellWidth ?? 0
         //view.frame.width
         

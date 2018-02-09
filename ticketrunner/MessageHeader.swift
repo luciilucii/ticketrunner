@@ -20,7 +20,7 @@ class MessageHeader: BaseCell {
     let titleLabel: H1 = {
         let label = H1()
         
-        let attributedText = NSMutableAttributedString(string: "Messages", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: UIColor.black])
+        let attributedText = NSMutableAttributedString(string: "Messages", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple])
 //        attributedText.append(NSMutableAttributedString(string: "Events", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple]))
         
         

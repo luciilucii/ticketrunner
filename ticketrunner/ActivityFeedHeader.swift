@@ -1,36 +1,34 @@
 //
-//  SettingsHeader.swift
+//  ActivityFeedHeader.swift
 //  ticketrunner
 //
-//  Created by Luca Kiedrowski on 04.02.18.
+//  Created by Luca Kiedrowski on 06.02.18.
 //  Copyright © 2018 LucaKiedrowski. All rights reserved.
 //
 
 import UIKit
 
-class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+protocol ActivityFeedHeaderDelegate {
+    func didSelectIndexPath(int: Int)
+}
+
+class ActivityFeedHeader: BaseCell, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let cellId = "cellId"
     
-    var delegate: EarnedRewardsHeaderDelegate?
+    var delegate: ActivityFeedHeaderDelegate?
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
-    
-    let profileImageView: CustomImageView = {
-        let iv = CustomImageView()
-        iv.image = #imageLiteral(resourceName: "profile_avatar")
-        iv.clipsToBounds = true
-        iv.contentMode = .scaleAspectFill
-//        iv.setupShadows()
+    let iconImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "messageIcon")
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
     let titleLabel: H1 = {
         let label = H1()
-        let attributedText = NSMutableAttributedString(string: "Jake Salad", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: UIColor.black])
+        let attributedText = NSMutableAttributedString(string: "Activity ", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple])
+        attributedText.append(NSMutableAttributedString(string: "Feed", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         return label
     }()
@@ -42,7 +40,6 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         cv.delegate = self
         cv.dataSource = self
         cv.register(EarnedRewardsHeaderCell.self, forCellWithReuseIdentifier: cellId)
-        
         cv.backgroundColor = .clear
         return cv
     }()
@@ -58,26 +55,16 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     override func setupViews() {
         super.setupViews()
         
-        let profileBackgroundView = UIView()
-        profileBackgroundView.backgroundColor = UIColor.white
-        profileBackgroundView.setupShadows()
-        
         backgroundColor = .clear
         
-        addSubview(profileBackgroundView)
-        addSubview(profileImageView)
+        addSubview(iconImageView)
         addSubview(titleLabel)
         addSubview(collectionView)
         
-        profileBackgroundView.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 32, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
-        profileBackgroundView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        profileBackgroundView.layer.cornerRadius = 100/2
+        iconImageView.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 100)
+        iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        profileImageView.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 32, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
-        profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        profileImageView.layer.cornerRadius = 100/2
-        
-        titleLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 35)
+        titleLabel.anchor(top: iconImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 35)
         
         collectionView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
@@ -85,6 +72,8 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     @objc func setupBarView() {
+        
+        
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         
@@ -102,17 +91,13 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EarnedRewardsHeaderCell
         
-        
-        
         switch indexPath.item {
         case 0:
-            cell.titleLabel.text = "Personal"
+            cell.titleLabel.text = "Timeline"
         case 1:
-            cell.titleLabel.text = "Subscriptions"
+            cell.titleLabel.text = "Pending Purchase"
         case 2:
-            cell.titleLabel.text = "Password"
-        case 3:
-            cell.titleLabel.text = "Account"
+            cell.titleLabel.text = "Earned Points"
         default:
             break
         }
@@ -121,12 +106,12 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat = 50
-        let width: CGFloat = (frame.width - 0) / 4
+        let width: CGFloat = (frame.width) / 3
         
         return CGSize(width: width, height: height)
     }
@@ -141,7 +126,7 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func scrollBarViewTo(index: Int) {
-        let offset = (frame.width - 0) / 4
+        let offset = (frame.width) / 3
         let float = CGFloat(index)
         barViewCenterXAnchor?.constant = offset * float
         
@@ -151,3 +136,10 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
 }
+
+
+
+
+
+
+

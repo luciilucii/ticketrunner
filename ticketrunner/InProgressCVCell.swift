@@ -77,7 +77,7 @@ class InProgressCVCell: BaseCell, ProgressBarContainerDelegate {
         stackView.anchor(top: topAnchor, left: rewardImageView.rightAnchor, bottom: bottomAnchor, right: progressBarContainer.leftAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
         
         
-        seperatorView.backgroundColor = ColorCodes.lightGrayText
+        seperatorView.backgroundColor = ColorCodes.inactiveElementsGrey
         
         addSubview(seperatorView)
         

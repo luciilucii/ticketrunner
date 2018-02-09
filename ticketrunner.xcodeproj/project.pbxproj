@@ -50,6 +50,20 @@
 		194C4A872027630C0077EE22 /* MessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4A862027630C0077EE22 /* MessageHeader.swift */; };
 		194C4A892027667B0077EE22 /* MessagesBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4A882027667B0077EE22 /* MessagesBoxCell.swift */; };
 		194C4A8B2027949F0077EE22 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4A8A2027949F0077EE22 /* SettingsHeader.swift */; };
+		195A5547202A3B6200ACCC30 /* AFDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5546202A3B6200ACCC30 /* AFDateCell.swift */; };
+		195A5549202ABB8200ACCC30 /* AFClickedLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5548202ABB8200ACCC30 /* AFClickedLinkCell.swift */; };
+		195A554C202ABEA400ACCC30 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A554B202ABEA400ACCC30 /* NotificationsController.swift */; };
+		195A554E202AC0AF00ACCC30 /* NotificationBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A554D202AC0AF00ACCC30 /* NotificationBaseCell.swift */; };
+		195A5550202AC4C700ACCC30 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A554F202AC4C700ACCC30 /* NotificationCell.swift */; };
+		195A5552202B2C6E00ACCC30 /* AFBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5551202B2C6E00ACCC30 /* AFBaseCell.swift */; };
+		195A5554202B347F00ACCC30 /* AFAcceptedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5553202B347F00ACCC30 /* AFAcceptedCell.swift */; };
+		195A5557202B393400ACCC30 /* AFStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5556202B393400ACCC30 /* AFStepsView.swift */; };
+		195A5559202B60CB00ACCC30 /* AFBoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5558202B60CB00ACCC30 /* AFBoughtCell.swift */; };
+		195A555B202B68BD00ACCC30 /* AFShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A555A202B68BD00ACCC30 /* AFShareCell.swift */; };
+		195A555D202B72F000ACCC30 /* AFRedeemedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A555C202B72F000ACCC30 /* AFRedeemedCell.swift */; };
+		195A555F202B790700ACCC30 /* AFBoughtExpendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A555E202B790700ACCC30 /* AFBoughtExpendCell.swift */; };
+		195A5562202B7E5500ACCC30 /* AFExpendedTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5561202B7E5500ACCC30 /* AFExpendedTicketCell.swift */; };
+		195A5565202D5E4600ACCC30 /* InviteEventOrganizerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A5564202D5E4600ACCC30 /* InviteEventOrganizerCell.swift */; };
 		195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D46661F0A010C00E59777 /* HomeNoEventCell.swift */; };
 		195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466A1F0D22D800E59777 /* EventCategoryResource.swift */; };
 		195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */; };
@@ -76,6 +90,8 @@
 		1983025B202969660064235E /* SubscriptionSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983025A202969660064235E /* SubscriptionSettingCell.swift */; };
 		1983025D202969B40064235E /* PasswordSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983025C202969B40064235E /* PasswordSettingCell.swift */; };
 		1983025F202969DA0064235E /* AccountSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983025E202969DA0064235E /* AccountSettingCell.swift */; };
+		19830262202A2C1E0064235E /* ActivityFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19830261202A2C1E0064235E /* ActivityFeedController.swift */; };
+		19830264202A351A0064235E /* ActivityFeedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19830263202A351A0064235E /* ActivityFeedHeader.swift */; };
 		198476181FB6DB8600A98ED6 /* TwitterShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198476171FB6DB8600A98ED6 /* TwitterShareView.swift */; };
 		1984761A1FB6DF4500A98ED6 /* EmailShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198476191FB6DF4500A98ED6 /* EmailShareView.swift */; };
 		1986E5A21F973132002A6552 /* TextLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986E5A11F973132002A6552 /* TextLabels.swift */; };
@@ -223,6 +239,20 @@
 		194C4A862027630C0077EE22 /* MessageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHeader.swift; sourceTree = "<group>"; };
 		194C4A882027667B0077EE22 /* MessagesBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesBoxCell.swift; sourceTree = "<group>"; };
 		194C4A8A2027949F0077EE22 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
+		195A5546202A3B6200ACCC30 /* AFDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFDateCell.swift; sourceTree = "<group>"; };
+		195A5548202ABB8200ACCC30 /* AFClickedLinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFClickedLinkCell.swift; sourceTree = "<group>"; };
+		195A554B202ABEA400ACCC30 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		195A554D202AC0AF00ACCC30 /* NotificationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBaseCell.swift; sourceTree = "<group>"; };
+		195A554F202AC4C700ACCC30 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		195A5551202B2C6E00ACCC30 /* AFBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFBaseCell.swift; sourceTree = "<group>"; };
+		195A5553202B347F00ACCC30 /* AFAcceptedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFAcceptedCell.swift; sourceTree = "<group>"; };
+		195A5556202B393400ACCC30 /* AFStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFStepsView.swift; sourceTree = "<group>"; };
+		195A5558202B60CB00ACCC30 /* AFBoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFBoughtCell.swift; sourceTree = "<group>"; };
+		195A555A202B68BD00ACCC30 /* AFShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFShareCell.swift; sourceTree = "<group>"; };
+		195A555C202B72F000ACCC30 /* AFRedeemedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFRedeemedCell.swift; sourceTree = "<group>"; };
+		195A555E202B790700ACCC30 /* AFBoughtExpendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFBoughtExpendCell.swift; sourceTree = "<group>"; };
+		195A5561202B7E5500ACCC30 /* AFExpendedTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFExpendedTicketCell.swift; sourceTree = "<group>"; };
+		195A5564202D5E4600ACCC30 /* InviteEventOrganizerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteEventOrganizerCell.swift; sourceTree = "<group>"; };
 		195D46661F0A010C00E59777 /* HomeNoEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoEventCell.swift; sourceTree = "<group>"; };
 		195D466A1F0D22D800E59777 /* EventCategoryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoryResource.swift; sourceTree = "<group>"; };
 		195D466C1F0DEA5D00E59777 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -249,6 +279,8 @@
 		1983025A202969660064235E /* SubscriptionSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSettingCell.swift; sourceTree = "<group>"; };
 		1983025C202969B40064235E /* PasswordSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingCell.swift; sourceTree = "<group>"; };
 		1983025E202969DA0064235E /* AccountSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingCell.swift; sourceTree = "<group>"; };
+		19830261202A2C1E0064235E /* ActivityFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedController.swift; sourceTree = "<group>"; };
+		19830263202A351A0064235E /* ActivityFeedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedHeader.swift; sourceTree = "<group>"; };
 		198476171FB6DB8600A98ED6 /* TwitterShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterShareView.swift; sourceTree = "<group>"; };
 		198476191FB6DF4500A98ED6 /* EmailShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailShareView.swift; sourceTree = "<group>"; };
 		1986E5A11F973132002A6552 /* TextLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabels.swift; sourceTree = "<group>"; };
@@ -496,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				19E64B6B1EDB3CAA0085624C /* EventController.swift */,
+				195A5563202D5E2300ACCC30 /* Find Events */,
 				19D6A590201C8558004CA976 /* Search/Filter */,
 				19AE64EC201C8E4500D96158 /* SearchEventsView.swift */,
 			);
@@ -541,6 +574,57 @@
 				1983025E202969DA0064235E /* AccountSettingCell.swift */,
 			);
 			name = "Setting Cells";
+			sourceTree = "<group>";
+		};
+		195A5545202A3B0400ACCC30 /* AFCells */ = {
+			isa = PBXGroup;
+			children = (
+				195A5551202B2C6E00ACCC30 /* AFBaseCell.swift */,
+				195A5546202A3B6200ACCC30 /* AFDateCell.swift */,
+				195A5548202ABB8200ACCC30 /* AFClickedLinkCell.swift */,
+				195A5555202B392400ACCC30 /* StepsView */,
+				195A5553202B347F00ACCC30 /* AFAcceptedCell.swift */,
+				195A5558202B60CB00ACCC30 /* AFBoughtCell.swift */,
+				195A555A202B68BD00ACCC30 /* AFShareCell.swift */,
+				195A555C202B72F000ACCC30 /* AFRedeemedCell.swift */,
+				195A5560202B7E3700ACCC30 /* ExpendedCell */,
+			);
+			name = AFCells;
+			sourceTree = "<group>";
+		};
+		195A554A202ABE8400ACCC30 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				195A554B202ABEA400ACCC30 /* NotificationsController.swift */,
+				195A554D202AC0AF00ACCC30 /* NotificationBaseCell.swift */,
+				195A554F202AC4C700ACCC30 /* NotificationCell.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		195A5555202B392400ACCC30 /* StepsView */ = {
+			isa = PBXGroup;
+			children = (
+				195A5556202B393400ACCC30 /* AFStepsView.swift */,
+			);
+			name = StepsView;
+			sourceTree = "<group>";
+		};
+		195A5560202B7E3700ACCC30 /* ExpendedCell */ = {
+			isa = PBXGroup;
+			children = (
+				195A555E202B790700ACCC30 /* AFBoughtExpendCell.swift */,
+				195A5561202B7E5500ACCC30 /* AFExpendedTicketCell.swift */,
+			);
+			name = ExpendedCell;
+			sourceTree = "<group>";
+		};
+		195A5563202D5E2300ACCC30 /* Find Events */ = {
+			isa = PBXGroup;
+			children = (
+				195A5564202D5E4600ACCC30 /* InviteEventOrganizerCell.swift */,
+			);
+			name = "Find Events";
 			sourceTree = "<group>";
 		};
 		195D46721F0DF7C200E59777 /* Confirmation */ = {
@@ -612,6 +696,16 @@
 				196097FF1FB62DF20064C54A /* ShareWhatsappController.swift */,
 			);
 			name = Whatsapp;
+			sourceTree = "<group>";
+		};
+		19830260202A2C000064235E /* Activity Feed */ = {
+			isa = PBXGroup;
+			children = (
+				19830261202A2C1E0064235E /* ActivityFeedController.swift */,
+				19830263202A351A0064235E /* ActivityFeedHeader.swift */,
+				195A5545202A3B0400ACCC30 /* AFCells */,
+			);
+			name = "Activity Feed";
 			sourceTree = "<group>";
 		};
 		19953DD31F42AB5200409195 /* New Rewards */ = {
@@ -820,9 +914,11 @@
 				193B1A182024FF2D00FC85B4 /* Home Controller */,
 				193B1A1A2024FFB000FC85B4 /* Events */,
 				196097E21FB3887E0064C54A /* RewardsTableController.swift */,
+				19830260202A2C000064235E /* Activity Feed */,
 				19DD515F2025C7360050832F /* Earned Rewards */,
 				190775791EF6B59800C166CD /* MessagesController */,
 				19EE5CB61EF2784A0003F24E /* SettingController */,
+				195A554A202ABE8400ACCC30 /* Notifications */,
 				19B5DF5A1EDCA3CC00739A49 /* LanguageController.swift */,
 				19E7865D1F06D31700956958 /* FilterSearchController.swift */,
 				19B5DF5C1EDCA85E00739A49 /* TemplateForController.swift */,
@@ -936,8 +1032,8 @@
 				192C56881F3E25D900C77D34 /* StatisticsCVCells */,
 				19953DD31F42AB5200409195 /* New Rewards */,
 				192AE8DC1F548E03006E0B2A /* LeaderboardHomeCell.swift */,
-				19BA21C81FEECE63001B3B49 /* Invitations */,
 				192AE8E01F54907B006E0B2A /* LeaderboardHomeCVCell */,
+				19BA21C81FEECE63001B3B49 /* Invitations */,
 				1949354C1FADABB200AADC1D /* ExpiredEventHeaderCell.swift */,
 				19BA21C31FEEA7E7001B3B49 /* Quick Tips */,
 				19BA21C21FEEA672001B3B49 /* Events */,
@@ -1158,6 +1254,7 @@
 				19C0FF4B1FAE50AF007B3B9A /* EventRewardsTableController.swift in Sources */,
 				1975B54D1F9B173100ADFA3A /* EventInfoVideoContainer.swift in Sources */,
 				1913C7AB1F3357C0000B4710 /* ColorCodes.swift in Sources */,
+				195A555F202B790700ACCC30 /* AFBoughtExpendCell.swift in Sources */,
 				195D466B1F0D22D800E59777 /* EventCategoryResource.swift in Sources */,
 				19CD6FF91EF39D8B006D9E7C /* GenreContainer.swift in Sources */,
 				196097B81FB231FA0064C54A /* MessagesCell.swift in Sources */,
@@ -1167,9 +1264,11 @@
 				19DD5157202506EE0050832F /* ShareLinkView.swift in Sources */,
 				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
 				194C4A892027667B0077EE22 /* MessagesBoxCell.swift in Sources */,
+				195A5554202B347F00ACCC30 /* AFAcceptedCell.swift in Sources */,
 				19BA21C11FEB7F24001B3B49 /* EventMessageCell.swift in Sources */,
 				19F55C97201AFB47000F8C29 /* ActiveEventsHeader.swift in Sources */,
 				1998D2901F8B9922004C8334 /* ScrollController.swift in Sources */,
+				195A554C202ABEA400ACCC30 /* NotificationsController.swift in Sources */,
 				195D46671F0A010C00E59777 /* HomeNoEventCell.swift in Sources */,
 				19BA21CD1FEF91D4001B3B49 /* NewMessageCVCell.swift in Sources */,
 				1949354D1FADABB200AADC1D /* ExpiredEventHeaderCell.swift in Sources */,
@@ -1188,6 +1287,7 @@
 				192AE8DF1F549076006E0B2A /* LeaderboardHomeCVCell.swift in Sources */,
 				194C4A7D2026F50B0077EE22 /* EarnedRewardsCVCell.swift in Sources */,
 				196097BC1FB237230064C54A /* NewChatCell.swift in Sources */,
+				19830262202A2C1E0064235E /* ActivityFeedController.swift in Sources */,
 				19BEF59C1FEA9C54009F91DE /* WelcomeStatisticsCell.swift in Sources */,
 				1913C7A71F33557E000B4710 /* LeaderboardController.swift in Sources */,
 				19F716801F8BC595003710F1 /* PromoteShareLinkView.swift in Sources */,
@@ -1202,6 +1302,7 @@
 				19F5F3241FDC590F00FBC5EF /* HomeEventContainerCell.swift in Sources */,
 				19D6CBD81EDD2D3E00BA360A /* LanguageCell.swift in Sources */,
 				19AE64F4201CB24000D96158 /* SellTicketsViewCell.swift in Sources */,
+				195A5550202AC4C700ACCC30 /* NotificationCell.swift in Sources */,
 				19E29357201C76E6007FA332 /* FilterEventController.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
 				19C025F32015A3A100725EB2 /* AcceptedTicketrunnerModalController.swift in Sources */,
@@ -1211,6 +1312,7 @@
 				19DD515C2025B7BA0050832F /* ShareSuccessController.swift in Sources */,
 				19C390551EE1E7D300954E64 /* Reward.swift in Sources */,
 				19E29355201C719E007FA332 /* EventsShowCell.swift in Sources */,
+				195A5552202B2C6E00ACCC30 /* AFBaseCell.swift in Sources */,
 				19F533211F9BA26E00775192 /* EventTableCell.swift in Sources */,
 				19BA21CA1FEED355001B3B49 /* EventInvitationSingleCell.swift in Sources */,
 				19FDD14E1EE2EF7C00502BC6 /* AllArtistsForEventController.swift in Sources */,
@@ -1218,11 +1320,13 @@
 				19830259202819170064235E /* WhiteView.swift in Sources */,
 				19D6A58D201C7C08004CA976 /* FilterEventsCell.swift in Sources */,
 				196097EB1FB569BC0064C54A /* ShareLinkController.swift in Sources */,
+				195A5557202B393400ACCC30 /* AFStepsView.swift in Sources */,
 				19CD6FFF1EF464A7006D9E7C /* ConnectedAccountsController.swift in Sources */,
 				194C4A792026525C0077EE22 /* EarnedRewardsHeaderCell.swift in Sources */,
 				19E64B701EDB48DC0085624C /* EventCell.swift in Sources */,
 				194C4A772025F8EA0077EE22 /* EarnedRewardsHeader.swift in Sources */,
 				196097E81FB4DEF60064C54A /* PersonalShareView.swift in Sources */,
+				195A554E202AC0AF00ACCC30 /* NotificationBaseCell.swift in Sources */,
 				192AE8DD1F548E03006E0B2A /* LeaderboardHomeCell.swift in Sources */,
 				19E64B681EDB13920085624C /* User.swift in Sources */,
 				1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */,
@@ -1230,14 +1334,17 @@
 				19117A1C1FA98AA500B69F17 /* CountingLabel.swift in Sources */,
 				190C191E1EDE7543003BC179 /* EventResource.swift in Sources */,
 				19AE64ED201C8E4500D96158 /* SearchEventsView.swift in Sources */,
+				195A555D202B72F000ACCC30 /* AFRedeemedCell.swift in Sources */,
 				19B001C81F90CBD600684B48 /* RewardTableCell.swift in Sources */,
 				194C4A852027577D0077EE22 /* InProgressCVCell.swift in Sources */,
+				195A5559202B60CB00ACCC30 /* AFBoughtCell.swift in Sources */,
 				19F716821F8BC60A003710F1 /* HeadlineLabel.swift in Sources */,
 				190775751EF6B16200C166CD /* Message.swift in Sources */,
 				1907D5AE1EED4AAD00E603A6 /* StartCell.swift in Sources */,
 				19247BB31EDA8F4E00E0FFEC /* MenuCell.swift in Sources */,
 				19E8DC831EE278BC000F216D /* ArtistLineUpContainer.swift in Sources */,
 				192C56871F3E16B400C77D34 /* StatisticsCell.swift in Sources */,
+				19830264202A351A0064235E /* ActivityFeedHeader.swift in Sources */,
 				195D466D1F0DEA5D00E59777 /* ForgotPasswordController.swift in Sources */,
 				19CD6FF71EF39833006D9E7C /* TemplateForScrollViewController.swift in Sources */,
 				1978B9921F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift in Sources */,
@@ -1258,6 +1365,7 @@
 				19DD515E2025BC3A0050832F /* ShareSuccessView.swift in Sources */,
 				190FDEBA1EF83E2400E7EC0B /* ExampleMessages.swift in Sources */,
 				19BA21C51FEEA7FF001B3B49 /* QuickTipsCell.swift in Sources */,
+				195A5547202A3B6200ACCC30 /* AFDateCell.swift in Sources */,
 				19F611A11FB64DF6005F8458 /* FacebookShareView.swift in Sources */,
 				191B031D1F154D3F00CE8ED4 /* KeychainAccess.swift in Sources */,
 				19CD70021EF46ABA006D9E7C /* DeactivateAccountController.swift in Sources */,
@@ -1277,6 +1385,7 @@
 				19E98E2C1F8DCFBF00E62DB5 /* RewardsContainer.swift in Sources */,
 				1913C7AF1F336612000B4710 /* LeaderboardHeader.swift in Sources */,
 				19BA21C71FEEBC53001B3B49 /* QuickTipsTVCell.swift in Sources */,
+				195A5565202D5E4600ACCC30 /* InviteEventOrganizerCell.swift in Sources */,
 				196097F01FB570B70064C54A /* ShareFacebookController.swift in Sources */,
 				19EE5CBB1EF2B6450003F24E /* PersonalSettingsContainer.swift in Sources */,
 				19F3B0C31F4025F400568387 /* NewRewardsCell.swift in Sources */,
@@ -1290,6 +1399,8 @@
 				1983025B202969660064235E /* SubscriptionSettingCell.swift in Sources */,
 				1907757D1EF6B8AE00C166CD /* UserCell.swift in Sources */,
 				191253A71EF4FFEC000839B1 /* ApiService.swift in Sources */,
+				195A5549202ABB8200ACCC30 /* AFClickedLinkCell.swift in Sources */,
+				195A5562202B7E5500ACCC30 /* AFExpendedTicketCell.swift in Sources */,
 				190C19251EDF0A38003BC179 /* UserResource.swift in Sources */,
 				19C20AF81ED8A9F000C6FF17 /* AppDelegate.swift in Sources */,
 				19E8DC881EE282EC000F216D /* ProgressBarContainer.swift in Sources */,
@@ -1301,6 +1412,7 @@
 				19C3CFBC1EDFC737006BF04B /* ArtistLineUpContainerCell.swift in Sources */,
 				196097FA1FB62D300064C54A /* ShareEmailController.swift in Sources */,
 				1998D28B1F8B93C9004C8334 /* EventRewardContainerView.swift in Sources */,
+				195A555B202B68BD00ACCC30 /* AFShareCell.swift in Sources */,
 				19CFB4511EF0F6E700AB557E /* EventRewardCell.swift in Sources */,
 				194C4A8B2027949F0077EE22 /* SettingsHeader.swift in Sources */,
 			);
