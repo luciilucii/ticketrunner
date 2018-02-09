@@ -85,6 +85,8 @@
 		1978B98C1F8BCF8200046D8D /* TicketrunnerBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */; };
 		1978B98E1F8BD47700046D8D /* TicketrunnerGreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */; };
 		1978B9921F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */; };
+		197EA5E5202E3844004476D9 /* RedeemedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197EA5E4202E3844004476D9 /* RedeemedCell.swift */; };
+		197EA5E7202E3C00004476D9 /* RedeemedRewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197EA5E6202E3C00004476D9 /* RedeemedRewardCell.swift */; };
 		19830257202818A30064235E /* PersonalSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19830256202818A30064235E /* PersonalSettingCell.swift */; };
 		19830259202819170064235E /* WhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19830258202819170064235E /* WhiteView.swift */; };
 		1983025B202969660064235E /* SubscriptionSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983025A202969660064235E /* SubscriptionSettingCell.swift */; };
@@ -274,6 +276,8 @@
 		1978B98B1F8BCF8200046D8D /* TicketrunnerBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerBlueButton.swift; sourceTree = "<group>"; };
 		1978B98D1F8BD47700046D8D /* TicketrunnerGreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerGreenButton.swift; sourceTree = "<group>"; };
 		1978B9911F8BF0EC00046D8D /* TicketrunnerPointsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketrunnerPointsLabel.swift; sourceTree = "<group>"; };
+		197EA5E4202E3844004476D9 /* RedeemedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemedCell.swift; sourceTree = "<group>"; };
+		197EA5E6202E3C00004476D9 /* RedeemedRewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemedRewardCell.swift; sourceTree = "<group>"; };
 		19830256202818A30064235E /* PersonalSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSettingCell.swift; sourceTree = "<group>"; };
 		19830258202819170064235E /* WhiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteView.swift; sourceTree = "<group>"; };
 		1983025A202969660064235E /* SubscriptionSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSettingCell.swift; sourceTree = "<group>"; };
@@ -542,6 +546,7 @@
 				194C4A782026525C0077EE22 /* EarnedRewardsHeaderCell.swift */,
 				194C4A80202754460077EE22 /* Unlocked */,
 				194C4A81202754530077EE22 /* In Progress */,
+				197EA5E3202E3821004476D9 /* Redeemed */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -696,6 +701,15 @@
 				196097FF1FB62DF20064C54A /* ShareWhatsappController.swift */,
 			);
 			name = Whatsapp;
+			sourceTree = "<group>";
+		};
+		197EA5E3202E3821004476D9 /* Redeemed */ = {
+			isa = PBXGroup;
+			children = (
+				197EA5E4202E3844004476D9 /* RedeemedCell.swift */,
+				197EA5E6202E3C00004476D9 /* RedeemedRewardCell.swift */,
+			);
+			name = Redeemed;
 			sourceTree = "<group>";
 		};
 		19830260202A2C000064235E /* Activity Feed */ = {
@@ -1260,6 +1274,7 @@
 				196097B81FB231FA0064C54A /* MessagesCell.swift in Sources */,
 				195D466F1F0DEF4600E59777 /* ConfirmationController.swift in Sources */,
 				1913C7A91F3355DA000B4710 /* LeaderboardCell.swift in Sources */,
+				197EA5E7202E3C00004476D9 /* RedeemedRewardCell.swift in Sources */,
 				19AE64F2201CA85100D96158 /* SellTicketsView.swift in Sources */,
 				19DD5157202506EE0050832F /* ShareLinkView.swift in Sources */,
 				191B031B1F15460E00CE8ED4 /* HTTPHelper.swift in Sources */,
@@ -1304,6 +1319,7 @@
 				19AE64F4201CB24000D96158 /* SellTicketsViewCell.swift in Sources */,
 				195A5550202AC4C700ACCC30 /* NotificationCell.swift in Sources */,
 				19E29357201C76E6007FA332 /* FilterEventController.swift in Sources */,
+				197EA5E5202E3844004476D9 /* RedeemedCell.swift in Sources */,
 				19E8DC851EE27AF5000F216D /* Artist.swift in Sources */,
 				19C025F32015A3A100725EB2 /* AcceptedTicketrunnerModalController.swift in Sources */,
 				19C01D911F91048700969109 /* RedeemRewardModelViewController.swift in Sources */,

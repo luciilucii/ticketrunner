@@ -32,10 +32,9 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupShadowToNavigationBar()
         setupWhiteTitle(title: "Earned Rewards")
         setupMenuBar()
-        
-        setupShadowToNavigationBar()
         
         setupBellButton()
         
@@ -43,8 +42,9 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(EarnedRewardsCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(EarnedRewardsHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.register(InProgressCell.self, forCellWithReuseIdentifier: inProgressId)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: redeemedId)
+        collectionView?.register(RedeemedCell.self, forCellWithReuseIdentifier: redeemedId)
         collectionView?.alwaysBounceVertical = true
+        collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 16, 0)
 //        collectionView?.setupShadows()
         
     }
@@ -88,7 +88,7 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
             
             return cell
         case .redeemed:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: redeemedId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: redeemedId, for: indexPath) as! RedeemedCell
             
             return cell
         }
@@ -99,8 +99,20 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 80 * 7
+        
+        let height: CGFloat
         let width: CGFloat = view.frame.width
+        
+        switch controllerState {
+        case .unlocked:
+            height = 80 * 7
+        case .inProgress:
+            height = 80 * 7
+        case .redeemed:
+            height = 450
+        default:
+            height = 0
+        }
         
         return CGSize(width: width, height: height)
     }

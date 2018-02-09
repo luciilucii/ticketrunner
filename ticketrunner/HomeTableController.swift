@@ -191,7 +191,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
             case _ where type == EventMessageCell.self:
                 return 158
             case _ where type == QuickTipsCell.self:
-                return 481
+                return 521
             case _ where type == PendingEventsCell.self:
                 return 610
             default:
@@ -396,7 +396,7 @@ class HomeTableController: UITableViewController, SystemMessageCellDelegate, New
     
     func handleUpDown(buttonState: ButtonState) {
         if buttonState == .down {
-            self.statisticsCellHeight = 635
+            self.statisticsCellHeight = 635 + 66
         } else {
             self.statisticsCellHeight = 321
         }
