@@ -8,7 +8,19 @@
 
 import UIKit
 
+protocol EarnedRewardsCVCellDelegate {
+    func didTapRedeem(reward: Reward)
+}
+
 class EarnedRewardsCVCell: BaseCell {
+    
+    var reward: Reward? {
+        didSet {
+            
+        }
+    }
+    
+    var delegate: EarnedRewardsCVCellDelegate?
     
     let rewardImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -39,9 +51,10 @@ class EarnedRewardsCVCell: BaseCell {
         return label
     }()
     
-    lazy var redeemButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "1300°")
+    lazy var redeemButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "1300°")
         button.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 20)
+        button.addTarget(self, action: #selector(handleRedeem), for: .touchUpInside)
         return button
     }()
     
@@ -77,6 +90,11 @@ class EarnedRewardsCVCell: BaseCell {
         
         seperatorView.anchor(top: nil, left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor, padding: .zero, size: .init(width: 0, height: 0.5))
         
+    }
+    
+    @objc func handleRedeem() {
+        guard let reward = reward else { return }
+        delegate?.didTapRedeem(reward: reward)
     }
     
 }

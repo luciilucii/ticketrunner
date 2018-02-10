@@ -120,7 +120,7 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
     lazy var promoteButton: TicketrunnerRedGradientButton = {
         let button = TicketrunnerRedGradientButton(title: "Earn Points")
         button.addTarget(self, action: #selector(handlePromote), for: .touchUpInside)
-        button.applyGradient(colours: [ColorCodes.ticketrunnerRed.cgColor, ColorCodes.gradientPurple.cgColor])
+//        button.applyGradient(colours: [ColorCodes.ticketrunnerRed.cgColor, ColorCodes.gradientPurple.cgColor])
         
         return button
     }()
@@ -162,21 +162,17 @@ class HomeEventContainerCell: BaseCell, ProgressBarContainerDelegate {
     
     override func setupViews() {
         super.setupViews()
-                
-        layer.cornerRadius = 5
-        clipsToBounds = true
+        
+        
         backgroundColor = .clear
         
-        whiteBackgroundView.layer.shadowOpacity = 0.4
-        whiteBackgroundView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        whiteBackgroundView.layer.shadowColor = UIColor.darkGray.cgColor
-        whiteBackgroundView.layer.shadowRadius = 5.0
+        whiteBackgroundView.setupShadows()
         
         addSubview(whiteBackgroundView)
         addSubview(whiteView)
         
-        whiteBackgroundView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
-        whiteView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+        whiteBackgroundView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
+        whiteView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0)
         
         
         whiteView.addSubview(eventImageView)

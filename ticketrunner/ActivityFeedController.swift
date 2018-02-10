@@ -38,7 +38,7 @@ class ActivityFeedController: UICollectionViewController, UICollectionViewDelega
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 16, 0)
         
         setupNavBarButtons()
-        setupWhiteTitle(title: "Activity Feed")
+        setupWhiteTitle(title: "Active Feed")
         setupBellButton()
         
     }

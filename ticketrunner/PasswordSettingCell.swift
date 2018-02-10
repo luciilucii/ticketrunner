@@ -64,8 +64,8 @@ class PasswordSettingCell: BaseCell {
         return tf
     }()
     
-    lazy var updateButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "Update")
+    lazy var updateButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "Update")
         return button
     }()
     

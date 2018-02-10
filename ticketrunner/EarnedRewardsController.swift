@@ -14,9 +14,39 @@ enum EarnedRewardsControllerControllerState {
     case redeemed
 }
 
-class EarnedRewardsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, EarnedRewardsHeaderDelegate {
+class EarnedRewardsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, EarnedRewardsHeaderDelegate, EarnedRewardsCVCellDelegate, RedeemRewardModelViewControllerDelegate, InProgressCellDelegate {
     
+    var events = [Event]() {
+        didSet {
+            events.forEach { (event) in
+                self.setupEventRewards(event: event)
+            }
+        }
+    }
     
+    func setupEventRewards(event: Event) {
+        if let rewards = event.rewards {
+            rewards.forEach({ (reward) in
+                switch reward.currentRewardState {
+                case .inProgress?:
+                    self.inProgressRewards.append(reward)
+                case .none:
+                    break
+                case .some(.unlocked):
+                    self.unlockedRewards.append(reward)
+                case .some(.redeemed):
+                    self.redeemedRewards.append(reward)
+                }
+            })
+        }
+        collectionView?.reloadData()
+    }
+    
+    var unlockedRewards = [Reward]()
+    
+    var inProgressRewards = [Reward]()
+    
+    var redeemedRewards = [Reward]()
     
     let cellId = "cellId"
     let headerId = "headerId"
@@ -32,11 +62,13 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupShadowToNavigationBar()
+        navigationController?.navigationBar.isTranslucent = false
+        
         setupWhiteTitle(title: "Earned Rewards")
         setupMenuBar()
-        
         setupBellButton()
+        
+        setupShadowToNavigationBar()
         
         collectionView?.backgroundColor = ColorCodes.controllerBackground
         collectionView?.register(EarnedRewardsCell.self, forCellWithReuseIdentifier: cellId)
@@ -45,8 +77,8 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(RedeemedCell.self, forCellWithReuseIdentifier: redeemedId)
         collectionView?.alwaysBounceVertical = true
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 16, 0)
-//        collectionView?.setupShadows()
         
+        events = EventResource().getEvents()
     }
     
     func setupMenuBar() {
@@ -77,18 +109,25 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         switch controllerState {
         case .unlocked:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EarnedRewardsCell
+            
+            cell.rewards = self.unlockedRewards
+            cell.delegate = self
             
             return cell
         case .inProgress:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: inProgressId, for: indexPath) as! InProgressCell
             
+            cell.rewards = self.inProgressRewards
+            cell.delegate = self
+            
             return cell
         case .redeemed:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: redeemedId, for: indexPath) as! RedeemedCell
+            
+            cell.rewards = self.redeemedRewards
             
             return cell
         }
@@ -105,13 +144,11 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
         
         switch controllerState {
         case .unlocked:
-            height = 80 * 7
+            height = CGFloat(80 * unlockedRewards.count)
         case .inProgress:
-            height = 80 * 7
+            height = CGFloat(80 * inProgressRewards.count)
         case .redeemed:
             height = 450
-        default:
-            height = 0
         }
         
         return CGSize(width: width, height: height)
@@ -132,6 +169,38 @@ class EarnedRewardsController: UICollectionViewController, UICollectionViewDeleg
         default:
             break
         }
+    }
+    
+    func didTapRedeem(reward: Reward) {
+        let redeemRewardController = RedeemRewardModelViewController()
+        redeemRewardController.delegate = self
+        redeemRewardController.modalTransitionStyle = .crossDissolve
+        redeemRewardController.modalPresentationStyle = .overCurrentContext
+        redeemRewardController.reward = reward
+        self.present(redeemRewardController, animated: true, completion: nil)
+    }
+    
+    func didTapCancel(redeemRewardModelViewController: RedeemRewardModelViewController) {
+        redeemRewardModelViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func didTapRedeem(redeemRewardModelViewController: RedeemRewardModelViewController, reward: Reward) {
+        if let index = self.unlockedRewards.index(where: { (unlockedReward) -> Bool in
+            return reward.id == unlockedReward.id
+        }) {
+            unlockedRewards.remove(at: index)
+            redeemedRewards.append(reward)
+            
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    func didTapCell(reward: Reward) {
+        let rewardInfoModalController = RewardInfoModalController()
+        rewardInfoModalController.modalPresentationStyle = .overCurrentContext
+        rewardInfoModalController.modalTransitionStyle = .crossDissolve
+        
+        self.present(rewardInfoModalController, animated: true, completion: nil)
     }
     
 }

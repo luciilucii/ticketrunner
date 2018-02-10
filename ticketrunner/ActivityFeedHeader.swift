@@ -27,7 +27,7 @@ class ActivityFeedHeader: BaseCell, UICollectionViewDelegateFlowLayout, UICollec
     
     let titleLabel: H1 = {
         let label = H1()
-        let attributedText = NSMutableAttributedString(string: "Activity ", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple])
+        let attributedText = NSMutableAttributedString(string: "Active ", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: ColorCodes.darkPurple])
         attributedText.append(NSMutableAttributedString(string: "Feed", attributes: [NSAttributedStringKey.font: UIFont.boldSourceSansPro(ofSize: 28), NSAttributedStringKey.foregroundColor: UIColor.black]))
         label.attributedText = attributedText
         return label

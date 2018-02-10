@@ -27,8 +27,8 @@ class InviteEventOrganizerCell: BaseCell {
         return label
     }()
     
-    lazy var inviteButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "Invite Event Organizer")
+    lazy var inviteButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "Invite Event Organizer")
         button.addTarget(self, action: #selector(handleInvite), for: .touchUpInside)
         return button
     }()
@@ -40,7 +40,7 @@ class InviteEventOrganizerCell: BaseCell {
         
         addSubview(purpleView)
         
-        purpleView.anchor(top: topAnchor, left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor, padding: .init(top: 0, left: 8, bottom: 0, right: 8), size: .zero)
+        purpleView.anchor(top: topAnchor, left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 8, right: 8), size: .zero)
         
         
         purpleView.addSubview(titleLabel)

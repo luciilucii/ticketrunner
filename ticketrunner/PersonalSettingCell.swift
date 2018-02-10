@@ -11,6 +11,7 @@ import UIKit
 class PersonalSettingCell: BaseCell {
     
     let whiteView = WhiteView()
+    var scrollDelegate: ScrollTextFieldDelegate?
     
     let titleLabel: H1 = {
         let label = H1()
@@ -77,18 +78,18 @@ class PersonalSettingCell: BaseCell {
     
     let emailTextField: TicketrunnerTextField = {
         let tf = TicketrunnerTextField()
-        tf.placeholder = "State"
+        tf.placeholder = "Email Address"
         return tf
     }()
     
     let phoneTextField: TicketrunnerTextField = {
         let tf = TicketrunnerTextField()
-        tf.placeholder = "Country"
+        tf.placeholder = "Phone Number"
         return tf
     }()
     
-    lazy var updateButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "Update")
+    lazy var updateButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "Update")
         return button
     }()
     
@@ -129,7 +130,17 @@ class PersonalSettingCell: BaseCell {
         updateButton.anchor(top: contactStackView.bottomAnchor, left: whiteView.leadingAnchor, bottom: nil, right: whiteView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 50))
         
         
+        let textFields = [firstnameTextField, lastnameTextField, birthdayTextField, addressTextField, zipcodeTextField, stateTextField, countryTextField, emailTextField, phoneTextField]
+        
+        textFields.forEach { (tf) in
+            allTextFields.append(tf)
+            tf.addTarget(self, action: #selector(handleStartedEditing), for: .editingDidBegin)
+            tf.addTarget(self, action: #selector(handleStartedEditing), for: .editingDidEnd)
+        }
+        
     }
+    
+    var allTextFields = [TicketrunnerTextField]()
     
     private func setupStackView(subviews: [UIView]) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: subviews)
@@ -138,6 +149,21 @@ class PersonalSettingCell: BaseCell {
         stackView.spacing = 16
         
         return stackView
+    }
+    
+    @objc func handleStartedEditing(textField: UITextField) {
+        allTextFields.forEach { (tf) in
+            isEditingTextField(textField: tf)
+        }
+    }
+    
+    func isEditingTextField(textField: UITextField) {
+        if textField.isEditing {
+            textField.layer.borderColor = ColorCodes.darkPurple.cgColor
+            scrollDelegate?.didBecomeActive(textField: textField)
+        } else {
+            textField.layer.borderColor = ColorCodes.inactiveElementsGrey.cgColor
+        }
     }
     
 }

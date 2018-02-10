@@ -8,7 +8,15 @@
 
 import UIKit
 
-class EarnedRewardsCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class EarnedRewardsCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, EarnedRewardsCVCellDelegate {
+    
+    var rewards = [Reward]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var delegate: EarnedRewardsCVCellDelegate?
     
     let cellId = "cellId"
     
@@ -42,23 +50,25 @@ class EarnedRewardsCell: BaseCell, UICollectionViewDelegate, UICollectionViewDat
         
         collectionView.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EarnedRewardsCVCell
         
-        if indexPath.item == 7-1 {
+        cell.reward = rewards[indexPath.item]
+        
+        if indexPath.item == rewards.count - 1 {
             cell.seperatorView.isHidden = true
         } else {
             cell.seperatorView.isHidden = false
         }
+        cell.delegate = self
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return rewards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -70,6 +80,10 @@ class EarnedRewardsCell: BaseCell, UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func didTapRedeem(reward: Reward) {
+        delegate?.didTapRedeem(reward: reward)
     }
     
 }

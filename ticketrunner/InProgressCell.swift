@@ -8,7 +8,19 @@
 
 import UIKit
 
+protocol InProgressCellDelegate {
+    func didTapCell(reward: Reward)
+}
+
 class InProgressCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    var delegate: InProgressCellDelegate?
+    
+    var rewards = [Reward]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     let cellId = "cellId"
     
@@ -42,23 +54,24 @@ class InProgressCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         
         collectionView.anchor(top: whiteView.topAnchor, left: whiteView.leftAnchor, bottom: whiteView.bottomAnchor, right: whiteView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InProgressCVCell
         
-        if indexPath.item == 7-1 {
+        if indexPath.item == rewards.count - 1 {
             cell.seperatorView.isHidden = true
         } else {
             cell.seperatorView.isHidden = false
         }
         
+        cell.reward = rewards[indexPath.item]
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return rewards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -72,4 +85,17 @@ class InProgressCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let reward = rewards[indexPath.item]
+        delegate?.didTapCell(reward: reward)
+    }
+    
 }
+
+
+
+
+
+
+
+

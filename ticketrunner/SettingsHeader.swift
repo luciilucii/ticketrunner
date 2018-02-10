@@ -150,4 +150,5 @@ class SettingsHeader: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         }, completion: nil)
     }
     
+    
 }

@@ -10,6 +10,12 @@ import UIKit
 
 class RedeemedRewardCell: BaseCell {
     
+    var reward: Reward? {
+        didSet {
+            
+        }
+    }
+    
     let whiteView = WhiteView()
     let view = UIView()
     

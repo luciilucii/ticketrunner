@@ -40,8 +40,8 @@ class ShareSuccessView: CustomUIView {
         return label
     }()
     
-    lazy var continueButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "Continue Promoting")
+    lazy var continueButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "Continue Promoting")
         return button
     }()
     

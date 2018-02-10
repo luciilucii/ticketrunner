@@ -27,8 +27,8 @@ class SubscriptionSettingCell: BaseCell {
         return label
     }()
     
-    lazy var updateButton: TicketrunnerGreenButton = {
-        let button = TicketrunnerGreenButton(title: "Update")
+    lazy var updateButton: TicketrunnerGreenGradientButton = {
+        let button = TicketrunnerGreenGradientButton(title: "Update")
         
         return button
     }()

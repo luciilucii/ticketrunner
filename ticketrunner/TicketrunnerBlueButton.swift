@@ -8,45 +8,7 @@
 
 import UIKit
 
-class TicketrunnerBlueButton: UIButton {
-    
-    init(title: String) {
-        super.init(frame: .zero)
-        
-        self.backgroundColor = ColorCodes.ticketrunnerBlue
-        self.setTitle(title, for: .normal)
-        self.layer.cornerRadius = 5
-        self.clipsToBounds = true
-        self.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
-        
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
 
-class TicketrunnerRedGradientButton: UIButton {
-    
-    init(title: String) {
-        super.init(frame: .zero)
-        
-        self.backgroundColor = ColorCodes.ticketrunnerRed
-        self.setTitle(title, for: .normal)
-        self.layer.cornerRadius = 5
-        self.clipsToBounds = true
-        self.titleLabel?.font = UIFont.boldSourceSansPro(ofSize: 16)
-        
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
 
 
 
